@@ -1,0 +1,115 @@
+{
+  "version": 2,
+  "actualizado": "2026-09-30",
+  "nota": "Fuente única de reglas. La leen fb/patrones.py y la app. Cambiar aquí y regenerar con: python -m fb.cli reporte",
+  "patrones": [
+    {
+      "codigo": "P1",
+      "nombre": "Over con partido abierto",
+      "tipo": "a_favor",
+      "resumen": "El partido ya tiene goles y solo te falta uno para ganar.",
+      "mercado": "over",
+      "entrar_si": [
+        "Apuestas a Más de X goles",
+        "Ya hay 2 goles o más en el marcador",
+        "Te falta 1 solo gol para ganar la línea",
+        "Vas en el minuto 75 o antes"
+      ],
+      "no_entrar_si": [
+        "El partido va 0:0 o 1:0",
+        "Te faltan 2 goles o más",
+        "Ya pasó el minuto 75"
+      ],
+      "params": {"goles_min": 2, "faltan": 1, "minuto_max": 75}
+    },
+    {
+      "codigo": "P2",
+      "nombre": "Ganador al equipo que ya gana",
+      "tipo": "a_favor",
+      "resumen": "Apuestas a que gana el equipo que ya va arriba en el marcador.",
+      "mercado": "1x2",
+      "entrar_si": [
+        "Apuestas Ganador (1x2)",
+        "Tu equipo va ganando por 1 gol o más",
+        "Mejor si la ventaja es de 2 goles o si ya pasó el minuto 60"
+      ],
+      "no_entrar_si": [
+        "El partido está empatado",
+        "La cuota es menor a la cuota mínima de la tabla",
+        "El rival acaba de descontar y empuja"
+      ],
+      "params": {"dif_min": 1}
+    },
+    {
+      "codigo": "P3",
+      "nombre": "Roja: apostar a goles",
+      "tipo": "a_favor",
+      "resumen": "Tras una expulsión el partido se abre. Se apuesta a que llegan más goles.",
+      "mercado": "over",
+      "entrar_si": [
+        "Hubo una roja antes de apostar",
+        "Apuestas Más de goles o Ambos marcan",
+        "Te falta 1 solo gol para ganar"
+      ],
+      "no_entrar_si": [
+        "Te faltan 2 goles o más",
+        "Quedan menos de 15 minutos"
+      ],
+      "params": {"faltan": 1, "minuto_max": 80}
+    },
+    {
+      "codigo": "P4",
+      "nombre": "Roja: ganador al que tiene uno más",
+      "tipo": "a_validar",
+      "resumen": "El rival se quedó con 10 y el partido sigue empatado.",
+      "mercado": "1x2",
+      "entrar_si": [
+        "El rival de tu equipo tiene una roja",
+        "El partido está empatado",
+        "Tu equipo domina y llega"
+      ],
+      "no_entrar_si": [
+        "Pasó el minuto 70 y sigue 0:0",
+        "La cuota es menor a la cuota mínima de la tabla"
+      ],
+      "params": {}
+    },
+    {
+      "codigo": "A1",
+      "nombre": "Ganador con el partido empatado",
+      "tipo": "evitar",
+      "resumen": "Apostar a un ganador cuando el marcador está igualado.",
+      "mercado": "1x2",
+      "entrar_si": [],
+      "no_entrar_si": [
+        "El marcador está empatado: usa Doble oportunidad o espera el gol"
+      ],
+      "params": {}
+    },
+    {
+      "codigo": "A2",
+      "nombre": "Over que pide 2 goles con 0:0",
+      "tipo": "evitar",
+      "resumen": "Con 0:0 suele llegar un gol, pero dos ya es otra cosa.",
+      "mercado": "over",
+      "entrar_si": [],
+      "no_entrar_si": [
+        "El partido va 0:0 y tu línea necesita 2 goles o más (Más de 1.5 o mayor)",
+        "Si quieres entrar con 0:0, la línea debe pedir 1 solo gol (Más de 0.5) y la cuota superar la mínima"
+      ],
+      "params": {"faltan_min": 2}
+    },
+    {
+      "codigo": "A3",
+      "nombre": "Córners",
+      "tipo": "evitar",
+      "resumen": "Más de córners sin datos de córners al minuto.",
+      "mercado": "corners",
+      "entrar_si": [],
+      "no_entrar_si": [
+        "No hay forma de medir el ritmo de córners en vivo con tus datos actuales"
+      ],
+      "params": {}
+    }
+  ]
+}

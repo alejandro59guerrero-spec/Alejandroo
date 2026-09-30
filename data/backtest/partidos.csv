@@ -1,0 +1,116 @@
+liga,fecha,local,visitante,final,goles,rojas,completo,fuente,origen
+Brasil Serie B,2026-09-25,Vila Nova,Londrina,2:0,H45;H49,,1,revistafactual.com.br,backtest
+Brasil Serie B,2026-09-26,Operário-PR,Ceará,2:2,H9;H60;A69;A77,,1,gazetaesportiva.com,backtest
+Brasil Serie B,2026-09-26,Náutico,Sport,3:1,H45,,0,brasil247.com,backtest
+Brasil Serie B,2026-09-26,Goiás,Atlético-GO,0:1,A33,,1,gazetaesportiva.com,backtest
+Brasil Serie B,2026-09-27,CRB,Cuiabá,3:0,H6;H50;H75,,1,futebolinterior.com.br,backtest
+Brasil Serie B,2026-09-27,Fortaleza,Athletic Club,2:2,A42;H45;H50;A60,,1,vavel.com,backtest
+Brasil Serie B,2026-09-28,América-MG,Juventude,0:1,A61,,1,vavel.com,backtest
+Brasil Serie B,2026-09-25,Novorizontino,São Bernardo,0:0,,,1,brasil247.com,backtest
+Brasil Serie B,2026-09-27,Criciúma,Avaí,3:0,H48;H58;H81,,1,vavel.com,backtest
+Brasil Serie B,2026-09-18,Vila Nova,América-MG,1:0,H13,,1,revistafactual.com.br,backtest
+Brasil Serie B,2026-09-18,Ceará,Novorizontino,2:1,A45;H48;H61,,1,fifa.com,backtest
+Brasil Serie B,2026-09-18,Atlético-GO,São Bernardo,0:1,A19,,1,ocuriosodofutebol.com.br,backtest
+Brasil Serie B,2026-09-19,Sport,Juventude,2:1,H45;H85,,0,ncnews.com.br,backtest
+Brasil Serie B,2026-09-19,Athletic Club,Botafogo-SP,1:1,A25,,0,noataque.com.br,backtest
+Brasil Serie B,2026-09-20,Goiás,Avaí,2:1,H50;H66,,0,futebolinterior.com.br,backtest
+Brasil Serie B,2026-09-20,Ponte Preta,CRB,1:0,H84,,1,dgabc.com.br,backtest
+Brasil Serie B,2026-09-20,Londrina,Fortaleza,1:2,A33;H74;A88,,1,opovo.com.br,backtest
+Brasil Serie B,2026-09-21,Cuiabá,Náutico,3:0,H33;H52;H63,,1,futebolinterior.com.br,backtest
+Brasil Serie A,2026-09-19,Atlético-MG,Chapecoense,1:1,,,0,chapecoense.com,backtest
+Brasil Serie A,2026-09-19,Mirassol,Botafogo,2:0,H16;H45,,1,365scores.com,backtest
+Brasil Serie A,2026-09-19,Remo,Santos,1:2,A77;H82;A86,H?,1,radiosfutebol.com.br,backtest
+Brasil Serie A,2026-09-19,São Paulo,Internacional,1:0,,,0,gazetaesportiva.com,backtest
+Colombia Primera A,2026-09-22,Santa Fe,Deportivo Cali,0:1,A38,,1,infobae.com,backtest
+Colombia Primera A,2026-09-23,América de Cali,Águilas Doradas,1:0,H27,,1,futbolred.com,backtest
+Colombia Primera A,2026-09-24,Atlético Nacional,Millonarios,1:1,A39;H45,,1,noticiasrcn.com,backtest
+Colombia Primera A,2026-09-26,Fortaleza CEIF,Deportes Tolima,2:2,A30;H54;A73;H90,,1,deportesrcn.com,backtest
+Colombia Primera A,2026-09-26,Deportivo Pereira,Internacional de Bogotá,0:0,,,1,futbolred.com,backtest
+Colombia Primera A,2026-09-26,Cúcuta Deportivo,Llaneros,2:1,H5,??,0,futbolred.com,backtest
+Colombia Primera A,2026-09-25,Boyacá Chicó,Deportivo Pasto,3:0,H67;H69;H85,,1,futbolred.com,backtest
+Colombia Primera A,2026-09-26,Junior,Independiente Medellín,2:0,H75;H79,A17,1,elcolombiano.com,backtest
+Colombia Primera A,2026-09-27,Jaguares,Alianza Valledupar,1:2,H15;A39;A72,,1,pulzo.com,backtest
+Países Bajos Eredivisie,2026-09-18,FC Groningen,PEC Zwolle,3:0,H20;H43;H68,,1,goal.com,backtest
+Países Bajos Eredivisie,2026-09-19,ADO Den Haag,SC Cambuur,1:1,A44,,0,omroepwest.nl,backtest
+Países Bajos Eredivisie,2026-09-19,Ajax,Excelsior,2:2,H32;A45;A62;H64,,1,voetbaluitslagen.be,backtest
+Países Bajos Eredivisie,2026-09-19,Willem II,Fortuna Sittard,0:1,A80,,1,espn.com,backtest
+Países Bajos Eredivisie,2026-09-20,Feyenoord,FC Utrecht,5:0,H6;H9;H33;H53;H65,,1,fcupdate.nl,backtest
+Países Bajos Eredivisie,2026-09-20,AZ,Telstar,1:0,H19,,1,fcupdate.nl,backtest
+Países Bajos Eredivisie,2026-09-20,NEC,Go Ahead Eagles,1:1,,,0,espn.com,backtest
+Argentina Liga Profesional,2026-09-20,San Lorenzo,Boca Juniors,0:2,A57,H30,0,infobae.com,backtest
+Argentina Liga Profesional,2026-09-18,Central Córdoba,Defensa y Justicia,2:2,A36;A53;H71;H90,,1,442.perfil.com,backtest
+Argentina Liga Profesional,2026-09-18,Racing Club,Sarmiento,3:1,H23;A26;H52;H80,,1,lanacion.com.ar,backtest
+Argentina Liga Profesional,2026-09-19,Gimnasia La Plata,Banfield,2:2,H20;A38;H62;A90,,1,canal26.com,backtest
+Argentina Liga Profesional,2026-09-19,Unión,Independiente,1:2,H49;A51;A56,,1,urgente24.com,backtest
+Argentina Liga Profesional,2026-09-20,Instituto,Talleres,3:1,,,0,lanacion.com.ar,backtest
+Perú Liga 1,2026-09-18,Alianza Lima,ADT,2:0,H44;H46,A45,1,infobae.com,backtest
+Perú Liga 1,2026-09-19,Sporting Cristal,Atlético Grau,3:1,H2;H25;A44;H49,,1,infobae.com,backtest
+Perú Liga 1,2026-09-19,Deportivo Garcilaso,Universitario,4:0,H6;H9;H19;H58,,1,infobae.com,backtest
+Perú Liga 1,2026-09-19,Melgar,Sport Boys,1:1,H41;A45,,1,infobae.com,backtest
+Paraguay Primera,2026-09-28,Libertad,Olimpia,0:1,A32,H25,1,abc.com.py,backtest
+Paraguay Primera,2026-09-26,Sportivo Trinidense,Cerro Porteño,2:1,H24,,0,abc.com.py,backtest
+Bolivia Primera,2026-09-12,The Strongest,Real Oruro,5:0,H19;H39;H62,,0,larazon.bo,backtest
+Bolivia Primera,2026-09-13,Always Ready,Guabirá,6:0,H17;H20;H35;H40;H45;H88,,1,vision360.bo,backtest
+Inglaterra Premier League,2026-09-20,Manchester City,Sunderland,5:3,H9;A12;H29;A33;H43;H57;A59;H81,,1,espn.com,backtest
+Bolivia Primera,2026-09-12,Blooming,ABB,6:1,H31;H42;H51;A61;H78;H83;H90,,1,diez.bo,backtest
+UEFA Nations League,2026-09-29,Eslovenia,Macedonia del Norte,2:0,H55;H82,,1,espn.com,historial
+UEFA Nations League,2026-09-29,Chequia,Inglaterra,0:2,A47;A69,H25,1,beinsports.com,historial
+UEFA Nations League,2026-09-29,Escocia,Suiza,0:3,A12;A55;A82,H12,1,scottishfa.co.uk,historial
+Brasil Serie B,2026-09-27,Criciúma,Avaí,3:0,H48;H58;H81,,1,vavel.com,historial
+Bolivia Primera,2026-09-27,Bolívar,Blooming,3:0,H67;H83;H90,A57,1,elmundo.com.bo,historial
+España 2ª RFEF,2026-09-27,Antoniano,Ciudad de Lucena,0:3,A13;A63;A77,H55,1,flashscore.pe,historial
+Uruguay 2ª División,2026-09-27,Atenas,Plaza Colonia,0:0,,A24,1,cadenadelmar.uy,historial
+Copa Paulista,2026-09-26,Grêmio Prudente,União São João,0:0,,H62,1,gazetaesportiva.com,historial
+Colombia Primera A,2026-09-25,Once Caldas,Bucaramanga,1:3,A2;A12;A59;H62,,1,infobae.com,historial
+Paraguay Intermedia,2026-09-25,General Caballero JLM,3 de Noviembre,1:3,A7;A22;H65;A85,,1,abc.com.py,historial
+Copa de Noruega,2026-09-23,Grorud,Moss,1:1,H19;A53,,1,sokascore.com,historial
+Guatemala Liga Nacional,2026-09-20,Deportivo San Pedro,Cobán Imperial,1:1,A59;H90,,1,espn.com,historial
+MLS Next Pro,2026-09-20,Tacoma Defiance,Portland Timbers II,1:1,H50;A90,,1,sounderatheart.com,historial
+Alemania 3. Liga,2026-09-20,Wehen Wiesbaden,Duisburg,1:4,A18;A25;A33;H45;A54,,1,kicker.de,historial
+Italia Serie A,2026-09-20,Frosinone,Como,2:0,H14;H45,,1,comofootball.com,historial
+Dinamarca 1ª,2026-09-20,FC Fredericia,Vejle,2:2,A14;A24;H64;H84,,1,fifa.com,historial
+Ucrania Premier,2026-09-20,Karpaty,Veres,1:1,H24;A82,H64,1,mezha.net,historial
+Países Bajos Eredivisie,2026-09-20,FC Twente,PSV,3:2,H14;A26;A29;H79;H83,,1,vi.nl,historial
+Inglaterra Premier League,2026-09-20,Bournemouth,Liverpool,0:1,A57,,1,skysports.com,historial
+Colombia Primera A,2026-09-19,Deportivo Pasto,Once Caldas,1:0,H49,A21,1,futbolred.com,historial
+Brasil Serie A,2026-09-19,Vasco da Gama,Coritiba,5:0,H24;H44;H56;H63;H73,,1,meuvasco.com.br,historial
+USL Championship,2026-09-19,Lexington SC,Orange County SC,6:0,H9;H15;H24;H35;H49;H85,,1,orangecountysoccer.com,historial
+Argentina Liga Profesional,2026-09-19,River Plate,Huracán,1:2,A9;H65;A80,,1,lanacion.com.ar,historial
+MLS,2026-09-19,DC United,Charlotte FC,1:2,A22;H47;A71,,1,mlssoccer.com,historial
+México Liga Premier,2026-09-19,Pioneros de Cancún,Tapachula Soconusco,5:1,H3;H11;H33;A64;H66;H67,,1,quintanaroohoy.com,historial
+Bolivia Copa,2026-09-19,Club Aurora,Universitario de Vinto,4:2,A34;A41;H46;H59;H72;H81,,1,lostiempos.com,historial
+Honduras Liga Nacional,2026-09-19,CD Génesis,Olancho FC,0:0,,H12,1,diez.hn,historial
+Noruega Eliteserien,2026-09-19,Molde,Aalesunds,1:2,A7;A44;H82,,1,espn.com,historial
+Países Bajos Eredivisie,2026-09-19,Sparta Rotterdam,Heerenveen,0:4,A28;A43;A56;A75,,1,vi.nl,historial
+Brasil Serie A,2026-09-20,Grêmio,Palmeiras,0:0,,,1,PDF,historial
+Portugal Primeira Liga,2026-09-20,Santa Clara,SC Braga,0:0,,,1,espn.com,historial
+Taça de Portugal,2026-09-27,Camacha,Florgrade,0:1,A85,,1,bolanarede.pt,historial
+Nueva Zelanda Femenina,2026-09-26,Waterside Karori,Fencibles United,0:1,A41,,1,friendsoffootballnz.com,historial
+Países Bajos Eerste Divisie,2026-09-27,De Graafschap,Den Bosch,1:0,H22,,1,hollandsevelden.nl,historial
+España 1ª RFEF,2026-09-27,Mirandés,Unionistas,1:0,H40,,1,unionistascf.com,historial
+Colombia Primera A,2026-09-20,Fortaleza CEIF,Atlético Junior,1:4,A19;A26;A48;H65,H17,0,infobae.com,historial
+Perú Liga 1,2026-09-11,Alianza Lima,Universitario,1:2,A16;H77;A90,,1,infobae.com,backtest
+Brasil Serie A,2026-09-11,Coritiba,Athletico-PR,3:3,A13;A29;H90;H90,H45,0,vavel.com,backtest
+Brasil Serie A,2026-09-12,Palmeiras,São Paulo,2:0,H45;H50,,1,vavel.com,backtest
+Brasil Serie A,2026-09-12,Santos,Cruzeiro,2:1,H28;H32;A90,,1,vavel.com,backtest
+Brasil Serie A,2026-09-12,Grêmio,Vasco da Gama,1:2,,,0,vavel.com,backtest
+Brasil Serie A,2026-09-12,Atlético-MG,Fluminense,3:1,H61;H63;H80;A90,,1,365scores.com,backtest
+Brasil Serie A,2026-09-12,Botafogo,Red Bull Bragantino,1:1,A29;H55,A44,1,fogaonet.com,backtest
+Brasil Serie A,2026-09-13,Flamengo,Corinthians,2:1,H48;A78;H89,,1,ogol.com.br,backtest
+Brasil Serie A,2026-09-12,Chapecoense,Internacional,1:2,,,0,agenciaesporte.com.br,backtest
+Colombia Primera A,2026-09-18,Águilas Doradas,Deportivo Pereira,2:2,H22;A69;A90,,0,futbolred.com,backtest
+Colombia Primera A,2026-09-19,Millonarios,Boyacá Chicó,3:0,H29;H71;H90,,1,futbolred.com,backtest
+Colombia Primera A,2026-09-19,Alianza Valledupar,Santa Fe,1:4,A29;A32;H47;A90,,0,futbolred.com,backtest
+Colombia Primera A,2026-09-19,Deportivo Cali,Cúcuta Deportivo,3:0,H39;H52;H84,,1,elpais.com.co,backtest
+Colombia Primera A,2026-09-22,Independiente Medellín,Jaguares,2:1,A25;H32,H84,0,365scores.com,backtest
+Perú Liga 1,2026-09-12,Cusco FC,Melgar,0:1,A50,,1,rpp.pe,backtest
+Perú Liga 1,2026-09-13,Sport Boys,Deportivo Garcilaso,1:0,H80,,1,infobae.com,backtest
+Perú Liga 1,2026-09-13,CD Moquegua,Sporting Cristal,1:2,A5;H20;A35,,1,infobae.com,backtest
+Brasil Serie B,2026-09-13,Atlético-GO,Criciúma,4:0,H40;H51;H56;H61,,1,gazetaesportiva.com,backtest
+Brasil Serie B,2026-09-13,Juventude,Athletic Club,0:2,,,0,gazetaesportiva.com,backtest
+Colombia Primera A,2026-09-14,América de Cali,Deportivo Pasto,0:1,A78,,1,elpais.com.co,backtest
+Colombia Primera A,2026-09-13,Cúcuta Deportivo,Millonarios,1:2,A57;H79,,0,futbolred.com,backtest
+Colombia Primera A,2026-09-13,Atlético Nacional,Águilas Doradas,2:0,H68;H82,,1,infobae.com,backtest
+Países Bajos Eredivisie,2026-09-13,PEC Zwolle,Feyenoord,0:7,A18;A23,,0,fcupdate.nl,backtest
+Países Bajos Eredivisie,2026-09-09,FC Twente,Telstar,1:0,H65,,1,footballwebpages.co.uk,backtest
+Países Bajos Eredivisie,2026-09-11,AZ,Willem II,1:1,H32;A81,,1,azfanpage.nl,backtest
