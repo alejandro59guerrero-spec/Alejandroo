@@ -1,8 +1,8 @@
 {
- "generado": "2026-09-30 05:54",
+ "generado": "2026-09-30 06:07",
  "muestra": {
-  "backtest": 57,
-  "total": 92,
+  "backtest": 72,
+  "total": 107,
   "ligas": [
    "Argentina Liga Profesional",
    "Bolivia Primera",
@@ -11,6 +11,7 @@
    "Colombia Primera A",
    "Inglaterra Premier League",
    "Paraguay Primera",
+   "Países Bajos Eerste Divisie",
    "Países Bajos Eredivisie",
    "Perú Liga 1"
   ]
@@ -49,89 +50,89 @@
    ]
   ],
   "tasa_tramo": [
-   0.01811,
-   0.02396,
-   0.03058,
-   0.03217,
-   0.02805,
-   0.0301
+   0.01971,
+   0.0232,
+   0.03357,
+   0.03258,
+   0.02952,
+   0.03157
   ],
   "factor_liga": {
-   "Alemania 3. Liga": 1.069,
-   "Argentina Liga Profesional": 1.108,
-   "Bolivia Copa": 1.099,
-   "Bolivia Primera": 1.206,
-   "Brasil Serie A": 1.006,
-   "Brasil Serie B": 0.931,
-   "Colombia Primera A": 0.9,
+   "Alemania 3. Liga": 1.062,
+   "Argentina Liga Profesional": 1.089,
+   "Bolivia Copa": 1.09,
+   "Bolivia Primera": 1.247,
+   "Brasil Serie A": 0.985,
+   "Brasil Serie B": 0.912,
+   "Colombia Primera A": 0.88,
    "Copa Paulista": 0.923,
-   "Copa de Noruega": 0.982,
-   "Dinamarca 1ª": 1.04,
-   "España 1ª RFEF": 0.952,
-   "España 2ª RFEF": 1.011,
-   "Guatemala Liga Nacional": 0.982,
+   "Copa de Noruega": 0.979,
+   "Dinamarca 1ª": 1.034,
+   "España 1ª RFEF": 0.951,
+   "España 2ª RFEF": 1.006,
+   "Guatemala Liga Nacional": 0.979,
    "Honduras Liga Nacional": 0.923,
-   "Inglaterra Premier League": 1.102,
-   "Italia Serie A": 0.982,
-   "MLS": 1.011,
-   "MLS Next Pro": 0.982,
-   "México Liga Premier": 1.099,
-   "Noruega Eliteserien": 1.011,
-   "Nueva Zelanda Femenina": 0.952,
-   "Paraguay Intermedia": 1.04,
-   "Paraguay Primera": 0.952,
-   "Países Bajos Eerste Divisie": 0.952,
-   "Países Bajos Eredivisie": 1.042,
-   "Perú Liga 1": 0.98,
+   "Inglaterra Premier League": 1.09,
+   "Italia Serie A": 0.979,
+   "MLS": 1.006,
+   "MLS Next Pro": 0.979,
+   "México Liga Premier": 1.09,
+   "Noruega Eliteserien": 1.006,
+   "Nueva Zelanda Femenina": 0.951,
+   "Paraguay Intermedia": 1.034,
+   "Paraguay Primera": 0.951,
+   "Países Bajos Eerste Divisie": 1.044,
+   "Países Bajos Eredivisie": 1.019,
+   "Perú Liga 1": 1.059,
    "Portugal Primeira Liga": 0.923,
-   "Taça de Portugal": 0.952,
-   "UEFA Nations League": 0.977,
-   "USL Championship": 1.099,
-   "Ucrania Premier": 0.982,
+   "Taça de Portugal": 0.951,
+   "UEFA Nations League": 0.969,
+   "USL Championship": 1.09,
+   "Ucrania Premier": 0.979,
    "Uruguay 2ª División": 0.923
   },
-  "mult_roja": 0.797,
+  "mult_roja": 0.737,
   "reparto_roja": 0.845,
   "ventaja_local": 0.55,
-  "n_partidos": 92,
+  "n_partidos": 107,
   "notas": [
-   "Roja: 18 goles observados tras la roja contra 23.6 esperados.",
+   "Roja: 18 goles observados tras la roja contra 25.9 esperados.",
    "Tras la roja marcó el equipo con uno más 17 veces y el de 10 1 veces.",
-   "Goles por partido en la muestra: 2.63 en 92 partidos."
+   "Goles por partido en la muestra: 2.77 en 107 partidos."
   ]
  },
  "calibracion": {
-  "n": 460,
-  "brier": 0.2027,
-  "brier_base": 0.2352,
+  "n": 535,
+  "brier": 0.1967,
+  "brier_base": 0.2285,
   "fiabilidad": [
    [
     0.2,
     0.4,
-    93,
-    0.333,
-    0.355
+    102,
+    0.34,
+    0.382
    ],
    [
     0.4,
     0.6,
-    114,
-    0.512,
-    0.535
+    130,
+    0.513,
+    0.531
    ],
    [
     0.6,
     0.8,
-    158,
-    0.701,
-    0.69
+    182,
+    0.704,
+    0.72
    ],
    [
     0.8,
     1.0,
-    95,
-    0.855,
-    0.874
+    121,
+    0.863,
+    0.884
    ]
   ]
  },
@@ -154,55 +155,55 @@
     "Ya pasó el minuto 75"
    ],
    "backtest": {
-    "n": 33,
-    "k": 25,
-    "tasa": 0.7575757575757576,
-    "lo": 0.5897505131450971,
-    "hi": 0.8716843865335271,
-    "p_modelo": 0.7065450840703275,
-    "cuota_min": 1.3703703703703705,
+    "n": 46,
+    "k": 35,
+    "tasa": 0.7608695652173914,
+    "lo": 0.6206458383088198,
+    "hi": 0.860879634388686,
+    "p_modelo": 0.7242602063864553,
+    "cuota_min": 1.3513513513513513,
     "ligas": [
      {
       "liga": "Países Bajos Eredivisie",
       "k": 3,
       "n": 3,
       "tasa": 1.0,
-      "tasa_ajustada": 0.824
-     },
-     {
-      "liga": "Brasil Serie B",
-      "k": 7,
-      "n": 8,
-      "tasa": 0.875,
-      "tasa_ajustada": 0.816
+      "tasa_ajustada": 0.826
      },
      {
       "liga": "Bolivia Primera",
-      "k": 2,
-      "n": 2,
+      "k": 3,
+      "n": 3,
       "tasa": 1.0,
-      "tasa_ajustada": 0.806
+      "tasa_ajustada": 0.826
      },
      {
       "liga": "Inglaterra Premier League",
       "k": 1,
       "n": 1,
       "tasa": 1.0,
-      "tasa_ajustada": 0.785
+      "tasa_ajustada": 0.787
      },
      {
-      "liga": "Colombia Primera A",
-      "k": 4,
-      "n": 5,
+      "liga": "Brasil Serie B",
+      "k": 8,
+      "n": 10,
       "tasa": 0.8,
-      "tasa_ajustada": 0.774
+      "tasa_ajustada": 0.783
+     },
+     {
+      "liga": "Perú Liga 1",
+      "k": 8,
+      "n": 10,
+      "tasa": 0.8,
+      "tasa_ajustada": 0.783
      },
      {
       "liga": "Argentina Liga Profesional",
       "k": 3,
       "n": 4,
       "tasa": 0.75,
-      "tasa_ajustada": 0.755
+      "tasa_ajustada": 0.757
      }
     ]
    },
@@ -219,7 +220,7 @@
       "marcador": "0:2",
       "cuota": 1.63,
       "gano": true,
-      "p_modelo": 0.474
+      "p_modelo": 0.462
      },
      {
       "partido": "Criciúma vs Avaí",
@@ -228,7 +229,7 @@
       "marcador": "2:0",
       "cuota": 1.9,
       "gano": true,
-      "p_modelo": 0.548
+      "p_modelo": 0.558
      },
      {
       "partido": "Grorud vs Moss",
@@ -237,7 +238,7 @@
       "marcador": "1:1",
       "cuota": 1.47,
       "gano": false,
-      "p_modelo": 0.555
+      "p_modelo": 0.571
      },
      {
       "partido": "FC Fredericia vs Vejle",
@@ -246,7 +247,7 @@
       "marcador": "1:2",
       "cuota": 1.45,
       "gano": true,
-      "p_modelo": 0.537
+      "p_modelo": 0.552
      },
      {
       "partido": "DC United vs Charlotte FC",
@@ -255,7 +256,7 @@
       "marcador": "1:1",
       "cuota": 1.19,
       "gano": true,
-      "p_modelo": 0.767
+      "p_modelo": 0.779
      },
      {
       "partido": "Vasco da Gama vs Coritiba",
@@ -264,7 +265,7 @@
       "marcador": "2:0",
       "cuota": 1.17,
       "gano": true,
-      "p_modelo": 0.766
+      "p_modelo": 0.771
      },
      {
       "partido": "Lexington SC vs Orange County SC",
@@ -273,7 +274,7 @@
       "marcador": "5:0",
       "cuota": 1.45,
       "gano": true,
-      "p_modelo": 0.557
+      "p_modelo": 0.571
      },
      {
       "partido": "Pioneros de Cancún vs Tapachula Soconusco",
@@ -282,7 +283,7 @@
       "marcador": "3:0",
       "cuota": 1.28,
       "gano": true,
-      "p_modelo": 0.608
+      "p_modelo": 0.623
      }
     ]
    },
@@ -305,55 +306,55 @@
     "El rival acaba de descontar y empuja"
    ],
    "backtest": {
-    "n": 50,
-    "k": 42,
-    "tasa": 0.84,
-    "lo": 0.7148551903823401,
-    "hi": 0.9166267863791231,
-    "p_modelo": 0.7629559629719617,
-    "cuota_min": 1.2272727272727273,
+    "n": 65,
+    "k": 56,
+    "tasa": 0.8615384615384616,
+    "lo": 0.7573167852534054,
+    "hi": 0.9254099381231576,
+    "p_modelo": 0.7526991745170835,
+    "cuota_min": 1.1896551724137931,
     "ligas": [
      {
       "liga": "Perú Liga 1",
-      "k": 7,
-      "n": 7,
-      "tasa": 1.0,
-      "tasa_ajustada": 0.915
+      "k": 12,
+      "n": 13,
+      "tasa": 0.923,
+      "tasa_ajustada": 0.9
      },
      {
       "liga": "Bolivia Primera",
-      "k": 2,
-      "n": 2,
+      "k": 3,
+      "n": 3,
       "tasa": 1.0,
-      "tasa_ajustada": 0.872
+      "tasa_ajustada": 0.899
+     },
+     {
+      "liga": "Países Bajos Eerste Divisie",
+      "k": 3,
+      "n": 3,
+      "tasa": 1.0,
+      "tasa_ajustada": 0.899
      },
      {
       "liga": "Paraguay Primera",
       "k": 1,
       "n": 1,
       "tasa": 1.0,
-      "tasa_ajustada": 0.858
+      "tasa_ajustada": 0.877
      },
      {
       "liga": "Inglaterra Premier League",
       "k": 1,
       "n": 1,
       "tasa": 1.0,
-      "tasa_ajustada": 0.858
+      "tasa_ajustada": 0.877
      },
      {
-      "liga": "Brasil Serie A",
-      "k": 6,
-      "n": 7,
-      "tasa": 0.857,
-      "tasa_ajustada": 0.848
-     },
-     {
-      "liga": "Países Bajos Eredivisie",
-      "k": 5,
-      "n": 6,
-      "tasa": 0.833,
-      "tasa_ajustada": 0.837
+      "liga": "Brasil Serie B",
+      "k": 13,
+      "n": 15,
+      "tasa": 0.867,
+      "tasa_ajustada": 0.865
      }
     ]
    },
@@ -370,7 +371,7 @@
       "marcador": "0:2",
       "cuota": 1.34,
       "gano": true,
-      "p_modelo": 0.853
+      "p_modelo": 0.849
      },
      {
       "partido": "General Caballero JLM vs 3 de Noviembre",
@@ -379,7 +380,7 @@
       "marcador": "0:1",
       "cuota": 1.88,
       "gano": true,
-      "p_modelo": 0.588
+      "p_modelo": 0.583
      },
      {
       "partido": "Frosinone vs Como",
@@ -388,7 +389,7 @@
       "marcador": "2:0",
       "cuota": 1.34,
       "gano": true,
-      "p_modelo": 0.97
+      "p_modelo": 0.968
      },
      {
       "partido": "Club Aurora vs Universitario de Vinto",
@@ -397,7 +398,7 @@
       "marcador": "3:2",
       "cuota": 1.61,
       "gano": true,
-      "p_modelo": 0.807
+      "p_modelo": 0.802
      },
      {
       "partido": "Molde vs Aalesunds",
@@ -406,7 +407,7 @@
       "marcador": "0:2",
       "cuota": 1.4,
       "gano": true,
-      "p_modelo": 0.883
+      "p_modelo": 0.879
      }
     ]
    },
@@ -428,41 +429,41 @@
     "Quedan menos de 15 minutos"
    ],
    "backtest": {
-    "n": 4,
+    "n": 5,
     "k": 4,
-    "tasa": 1.0,
-    "lo": 0.5100999795960008,
-    "hi": 1.0,
-    "p_modelo": 0.7298743136390948,
-    "cuota_min": 1.3333333333333333,
+    "tasa": 0.8,
+    "lo": 0.3755282641185388,
+    "hi": 0.9637768390302125,
+    "p_modelo": 0.6749812244698511,
+    "cuota_min": 1.5,
     "ligas": [
-     {
-      "liga": "Colombia Primera A",
-      "k": 1,
-      "n": 1,
-      "tasa": 1.0,
-      "tasa_ajustada": 1.0
-     },
      {
       "liga": "Perú Liga 1",
       "k": 1,
       "n": 1,
       "tasa": 1.0,
-      "tasa_ajustada": 1.0
+      "tasa_ajustada": 0.822
      },
      {
       "liga": "Paraguay Primera",
       "k": 1,
       "n": 1,
       "tasa": 1.0,
-      "tasa_ajustada": 1.0
+      "tasa_ajustada": 0.822
      },
      {
       "liga": "Brasil Serie A",
       "k": 1,
       "n": 1,
       "tasa": 1.0,
-      "tasa_ajustada": 1.0
+      "tasa_ajustada": 0.822
+     },
+     {
+      "liga": "Colombia Primera A",
+      "k": 1,
+      "n": 2,
+      "tasa": 0.5,
+      "tasa_ajustada": 0.74
      }
     ]
    },
@@ -479,7 +480,7 @@
       "marcador": "0:1",
       "cuota": 1.42,
       "gano": true,
-      "p_modelo": 0.31
+      "p_modelo": 0.29
      },
      {
       "partido": "Bolívar vs Blooming",
@@ -488,7 +489,7 @@
       "marcador": "1:0",
       "cuota": 1.85,
       "gano": true,
-      "p_modelo": 0.482
+      "p_modelo": 0.472
      },
      {
       "partido": "Antoniano vs Ciudad de Lucena",
@@ -497,7 +498,7 @@
       "marcador": "0:2",
       "cuota": 1.63,
       "gano": true,
-      "p_modelo": 0.474
+      "p_modelo": 0.462
      },
      {
       "partido": "Fortaleza vs Atlético Junior",
@@ -506,7 +507,7 @@
       "marcador": "0:1",
       "cuota": 1.55,
       "gano": true,
-      "p_modelo": 0.454
+      "p_modelo": 0.427
      },
      {
       "partido": "Karpaty vs Veres",
@@ -515,7 +516,7 @@
       "marcador": "1:0",
       "cuota": 2.2,
       "gano": true,
-      "p_modelo": 0.264
+      "p_modelo": 0.256
      },
      {
       "partido": "Deportivo Pasto vs Once Caldas",
@@ -524,7 +525,7 @@
       "marcador": "0:0",
       "cuota": 2.05,
       "gano": false,
-      "p_modelo": 0.35
+      "p_modelo": 0.326
      },
      {
       "partido": "San Jose Earthquakes vs LAFC",
@@ -533,7 +534,7 @@
       "marcador": "0:1",
       "cuota": 1.27,
       "gano": true,
-      "p_modelo": 0.626
+      "p_modelo": 0.609
      },
      {
       "partido": "Odense Boldklub vs FC Midtjylland",
@@ -542,7 +543,7 @@
       "marcador": "0:1",
       "cuota": 1.4,
       "gano": true,
-      "p_modelo": 0.446
+      "p_modelo": 0.436
      }
     ]
    },
@@ -569,7 +570,7 @@
     "tasa": 0.6666666666666666,
     "lo": 0.2076549551264879,
     "hi": 0.9385096847238394,
-    "p_modelo": 0.5717827135937235,
+    "p_modelo": 0.5591849244271498,
     "cuota_min": 1.75,
     "ligas": [
      {
@@ -608,7 +609,7 @@
       "marcador": "0:0",
       "cuota": 1.77,
       "gano": true,
-      "p_modelo": 0.243
+      "p_modelo": 0.227
      },
      {
       "partido": "Atenas vs Plaza Colonia",
@@ -617,7 +618,7 @@
       "marcador": "0:0",
       "cuota": 1.84,
       "gano": false,
-      "p_modelo": 0.535
+      "p_modelo": 0.522
      },
      {
       "partido": "Grêmio Prudente vs União São João",
@@ -626,7 +627,7 @@
       "marcador": "0:0",
       "cuota": 2.75,
       "gano": false,
-      "p_modelo": 0.259
+      "p_modelo": 0.253
      },
      {
       "partido": "Comerciantes FC vs Sport Huancayo Reserva",
@@ -635,7 +636,7 @@
       "marcador": "0:0",
       "cuota": 3.0,
       "gano": true,
-      "p_modelo": 0.706
+      "p_modelo": 0.695
      },
      {
       "partido": "Rochdale vs Liverpool Sub-21",
@@ -644,7 +645,7 @@
       "marcador": "1:1",
       "cuota": 1.64,
       "gano": false,
-      "p_modelo": 0.515
+      "p_modelo": 0.504
      },
      {
       "partido": "Deportivo San Pedro vs Cobán Imperial",
@@ -653,7 +654,7 @@
       "marcador": "0:0",
       "cuota": 2.3,
       "gano": false,
-      "p_modelo": 0.517
+      "p_modelo": 0.505
      },
      {
       "partido": "CD Génesis vs Olancho FC",
@@ -662,7 +663,7 @@
       "marcador": "0:0",
       "cuota": 2.22,
       "gano": false,
-      "p_modelo": 0.433
+      "p_modelo": 0.424
      },
      {
       "partido": "O Elvas vs UD Leiria",
@@ -671,11 +672,186 @@
       "marcador": "0:0",
       "cuota": 2.1,
       "gano": true,
-      "p_modelo": 0.301
+      "p_modelo": 0.294
      }
     ]
    },
    "semaforo": "rojo"
+  },
+  {
+   "codigo": "P5",
+   "nombre": "Primer gol tras el descanso con 0:0",
+   "tipo": "a_validar",
+   "resumen": "El partido llega 0:0 al segundo tiempo. Se apuesta a que cae al menos un gol.",
+   "mercado": "over",
+   "entrar_si": [
+    "El marcador es 0:0",
+    "Estás entre el minuto 45 y el 60",
+    "Apuestas Más de 0.5 goles (te falta 1 solo gol)"
+   ],
+   "no_entrar_si": [
+    "Tu línea pide 2 goles o más (eso es A2)",
+    "Ya pasó el minuto 60",
+    "La cuota es menor a la cuota mínima de la tabla"
+   ],
+   "backtest": {
+    "n": 18,
+    "k": 16,
+    "tasa": 0.8888888888888888,
+    "lo": 0.6719975513339578,
+    "hi": 0.9689811315464172,
+    "p_modelo": 0.7603266934873567,
+    "cuota_min": 1.222222222222222,
+    "ligas": [
+     {
+      "liga": "Brasil Serie A",
+      "k": 3,
+      "n": 3,
+      "tasa": 1.0,
+      "tasa_ajustada": 0.919
+     },
+     {
+      "liga": "Países Bajos Eredivisie",
+      "k": 2,
+      "n": 2,
+      "tasa": 1.0,
+      "tasa_ajustada": 0.911
+     },
+     {
+      "liga": "Perú Liga 1",
+      "k": 2,
+      "n": 2,
+      "tasa": 1.0,
+      "tasa_ajustada": 0.911
+     },
+     {
+      "liga": "Argentina Liga Profesional",
+      "k": 1,
+      "n": 1,
+      "tasa": 1.0,
+      "tasa_ajustada": 0.901
+     },
+     {
+      "liga": "Brasil Serie B",
+      "k": 4,
+      "n": 5,
+      "tasa": 0.8,
+      "tasa_ajustada": 0.855
+     },
+     {
+      "liga": "Colombia Primera A",
+      "k": 4,
+      "n": 5,
+      "tasa": 0.8,
+      "tasa_ajustada": 0.855
+     }
+    ]
+   },
+   "tuyo": {
+    "n": 1,
+    "k": 0,
+    "cuota_media": 1.45,
+    "neto": -1,
+    "ejemplos": [
+     {
+      "partido": "Santa Clara vs SC Braga",
+      "seleccion": "Más de 0.5",
+      "minuto": 55,
+      "marcador": "0:0",
+      "cuota": 1.45,
+      "gano": false,
+      "p_modelo": 0.671
+     }
+    ]
+   },
+   "semaforo": "rojo"
+  },
+  {
+   "codigo": "P6",
+   "nombre": "Ganador con ventaja de 2 desde el 60'",
+   "tipo": "a_validar",
+   "resumen": "Un equipo gana por 2 goles o más con 30 minutos o menos por jugar.",
+   "mercado": "1x2",
+   "entrar_si": [
+    "Apuestas Ganador (1x2) al que va arriba",
+    "La ventaja es de 2 goles o más",
+    "Ya pasó el minuto 60"
+   ],
+   "no_entrar_si": [
+    "La ventaja es de 1 gol",
+    "La cuota es menor a la cuota mínima: suele pagar muy poco"
+   ],
+   "backtest": {
+    "n": 32,
+    "k": 30,
+    "tasa": 0.9375,
+    "lo": 0.7985253275199642,
+    "hi": 0.9826897968048427,
+    "p_modelo": 0.9681611353688676,
+    "cuota_min": 1.125,
+    "ligas": [
+     {
+      "liga": "Colombia Primera A",
+      "k": 6,
+      "n": 6,
+      "tasa": 1.0,
+      "tasa_ajustada": 0.964
+     },
+     {
+      "liga": "Perú Liga 1",
+      "k": 6,
+      "n": 6,
+      "tasa": 1.0,
+      "tasa_ajustada": 0.964
+     },
+     {
+      "liga": "Brasil Serie A",
+      "k": 4,
+      "n": 4,
+      "tasa": 1.0,
+      "tasa_ajustada": 0.958
+     },
+     {
+      "liga": "Países Bajos Eredivisie",
+      "k": 2,
+      "n": 2,
+      "tasa": 1.0,
+      "tasa_ajustada": 0.95
+     },
+     {
+      "liga": "Bolivia Primera",
+      "k": 2,
+      "n": 2,
+      "tasa": 1.0,
+      "tasa_ajustada": 0.95
+     },
+     {
+      "liga": "Países Bajos Eerste Divisie",
+      "k": 2,
+      "n": 2,
+      "tasa": 1.0,
+      "tasa_ajustada": 0.95
+     }
+    ]
+   },
+   "tuyo": {
+    "n": 1,
+    "k": 1,
+    "cuota_media": 1.34,
+    "neto": 0.3400000000000001,
+    "ejemplos": [
+     {
+      "partido": "Frosinone vs Como",
+      "seleccion": "Frosinone",
+      "minuto": 69,
+      "marcador": "2:0",
+      "cuota": 1.34,
+      "gano": true,
+      "p_modelo": 0.968
+     }
+    ]
+   },
+   "semaforo": "ambar"
   },
   {
    "codigo": "A1",
@@ -688,55 +864,55 @@
     "El marcador está empatado: usa Doble oportunidad o espera el gol"
    ],
    "backtest": {
-    "n": 30,
-    "k": 20,
-    "tasa": 0.6666666666666666,
-    "lo": 0.48779725813830266,
-    "hi": 0.807697044731538,
-    "p_modelo": 0.5798682639570322,
+    "n": 34,
+    "k": 24,
+    "tasa": 0.7058823529411765,
+    "lo": 0.5383077411853625,
+    "hi": 0.8316554739006805,
+    "p_modelo": 0.5885890838311407,
     "cuota_min": null,
     "ligas": [
+     {
+      "liga": "Perú Liga 1",
+      "k": 4,
+      "n": 5,
+      "tasa": 0.8,
+      "tasa_ajustada": 0.742
+     },
+     {
+      "liga": "Países Bajos Eerste Divisie",
+      "k": 1,
+      "n": 1,
+      "tasa": 1.0,
+      "tasa_ajustada": 0.739
+     },
      {
       "liga": "Brasil Serie A",
       "k": 3,
       "n": 4,
       "tasa": 0.75,
-      "tasa_ajustada": 0.694
+      "tasa_ajustada": 0.721
      },
      {
-      "liga": "Perú Liga 1",
-      "k": 3,
-      "n": 4,
-      "tasa": 0.75,
-      "tasa_ajustada": 0.694
+      "liga": "Brasil Serie B",
+      "k": 7,
+      "n": 10,
+      "tasa": 0.7,
+      "tasa_ajustada": 0.703
      },
      {
       "liga": "Países Bajos Eredivisie",
       "k": 2,
       "n": 3,
       "tasa": 0.667,
-      "tasa_ajustada": 0.667
+      "tasa_ajustada": 0.695
      },
      {
       "liga": "Argentina Liga Profesional",
       "k": 2,
       "n": 3,
       "tasa": 0.667,
-      "tasa_ajustada": 0.667
-     },
-     {
-      "liga": "Brasil Serie B",
-      "k": 5,
-      "n": 8,
-      "tasa": 0.625,
-      "tasa_ajustada": 0.646
-     },
-     {
-      "liga": "Colombia Primera A",
-      "k": 5,
-      "n": 8,
-      "tasa": 0.625,
-      "tasa_ajustada": 0.646
+      "tasa_ajustada": 0.695
      }
     ]
    },
@@ -753,7 +929,7 @@
       "marcador": "0:0",
       "cuota": 1.63,
       "gano": true,
-      "p_modelo": 0.339
+      "p_modelo": 0.343
      },
      {
       "partido": "Chequia vs Inglaterra",
@@ -762,7 +938,7 @@
       "marcador": "0:0",
       "cuota": 1.77,
       "gano": true,
-      "p_modelo": 0.243
+      "p_modelo": 0.227
      },
      {
       "partido": "Casarano vs Monopoli",
@@ -771,7 +947,7 @@
       "marcador": "0:0",
       "cuota": 1.85,
       "gano": false,
-      "p_modelo": 0.311
+      "p_modelo": 0.323
      },
      {
       "partido": "Atenas vs Plaza Colonia",
@@ -780,7 +956,7 @@
       "marcador": "0:0",
       "cuota": 1.84,
       "gano": false,
-      "p_modelo": 0.535
+      "p_modelo": 0.522
      },
      {
       "partido": "CS Fola Esch vs FC Juvenil Canach",
@@ -789,7 +965,7 @@
       "marcador": "0:0",
       "cuota": 1.9,
       "gano": true,
-      "p_modelo": 0.356
+      "p_modelo": 0.361
      },
      {
       "partido": "Grêmio Prudente vs União São João",
@@ -798,7 +974,7 @@
       "marcador": "0:0",
       "cuota": 2.75,
       "gano": false,
-      "p_modelo": 0.259
+      "p_modelo": 0.253
      },
      {
       "partido": "Waterside Karori vs Fencibles United (F)",
@@ -807,7 +983,7 @@
       "marcador": "0:0",
       "cuota": 1.68,
       "gano": false,
-      "p_modelo": 0.405
+      "p_modelo": 0.411
      },
      {
       "partido": "Comerciantes FC vs Sport Huancayo Reserva",
@@ -816,7 +992,7 @@
       "marcador": "0:0",
       "cuota": 3.0,
       "gano": true,
-      "p_modelo": 0.706
+      "p_modelo": 0.695
      },
      {
       "partido": "Gerasdorf Stammersdorf vs Mauer",
@@ -825,7 +1001,7 @@
       "marcador": "0:0",
       "cuota": 1.41,
       "gano": true,
-      "p_modelo": 0.299
+      "p_modelo": 0.302
      },
      {
       "partido": "Rochdale vs Liverpool Sub-21",
@@ -834,7 +1010,7 @@
       "marcador": "1:1",
       "cuota": 1.64,
       "gano": false,
-      "p_modelo": 0.515
+      "p_modelo": 0.504
      },
      {
       "partido": "Deportivo San Pedro vs Cobán Imperial",
@@ -843,7 +1019,7 @@
       "marcador": "0:0",
       "cuota": 2.3,
       "gano": false,
-      "p_modelo": 0.517
+      "p_modelo": 0.505
      },
      {
       "partido": "Tacoma Defiance vs Portland Timbers II",
@@ -852,7 +1028,7 @@
       "marcador": "0:0",
       "cuota": 1.85,
       "gano": false,
-      "p_modelo": 0.26
+      "p_modelo": 0.273
      },
      {
       "partido": "CD Génesis vs Olancho FC",
@@ -861,7 +1037,7 @@
       "marcador": "0:0",
       "cuota": 2.22,
       "gano": false,
-      "p_modelo": 0.433
+      "p_modelo": 0.424
      },
      {
       "partido": "O Elvas vs UD Leiria",
@@ -870,11 +1046,11 @@
       "marcador": "0:0",
       "cuota": 2.1,
       "gano": true,
-      "p_modelo": 0.301
+      "p_modelo": 0.294
      }
     ]
    },
-   "semaforo": "ambar"
+   "semaforo": "evitar"
   },
   {
    "codigo": "A2",
@@ -888,55 +1064,55 @@
     "Si quieres entrar con 0:0, la línea debe pedir 1 solo gol (Más de 0.5) y la cuota superar la mínima"
    ],
    "backtest": {
-    "n": 17,
+    "n": 18,
     "k": 8,
-    "tasa": 0.47058823529411764,
-    "lo": 0.26164801196088106,
-    "hi": 0.6903710268845051,
-    "p_modelo": 0.40983303100535845,
-    "cuota_min": 2.1,
+    "tasa": 0.4444444444444444,
+    "lo": 0.24559231101389126,
+    "hi": 0.6628393057174837,
+    "p_modelo": 0.4209620858583989,
+    "cuota_min": 2.2,
     "ligas": [
      {
       "liga": "Brasil Serie A",
       "k": 3,
       "n": 3,
       "tasa": 1.0,
-      "tasa_ajustada": 0.615
+      "tasa_ajustada": 0.596
      },
      {
       "liga": "Argentina Liga Profesional",
       "k": 1,
       "n": 1,
       "tasa": 1.0,
-      "tasa_ajustada": 0.529
+      "tasa_ajustada": 0.506
      },
      {
       "liga": "Colombia Primera A",
       "k": 3,
       "n": 5,
       "tasa": 0.6,
-      "tasa_ajustada": 0.52
-     },
-     {
-      "liga": "Brasil Serie B",
-      "k": 1,
-      "n": 4,
-      "tasa": 0.25,
-      "tasa_ajustada": 0.397
+      "tasa_ajustada": 0.504
      },
      {
       "liga": "Países Bajos Eredivisie",
       "k": 0,
       "n": 2,
       "tasa": 0.0,
-      "tasa_ajustada": 0.376
+      "tasa_ajustada": 0.356
      },
      {
       "liga": "Perú Liga 1",
       "k": 0,
       "n": 2,
       "tasa": 0.0,
-      "tasa_ajustada": 0.376
+      "tasa_ajustada": 0.356
+     },
+     {
+      "liga": "Brasil Serie B",
+      "k": 1,
+      "n": 5,
+      "tasa": 0.2,
+      "tasa_ajustada": 0.35
      }
     ]
    },
@@ -953,7 +1129,7 @@
       "marcador": "0:0",
       "cuota": 1.42,
       "gano": false,
-      "p_modelo": 0.621
+      "p_modelo": 0.636
      },
      {
       "partido": "Bournemouth vs Liverpool",
@@ -962,7 +1138,7 @@
       "marcador": "0:0",
       "cuota": 1.4,
       "gano": false,
-      "p_modelo": 0.688
+      "p_modelo": 0.706
      },
      {
       "partido": "Deportivo Pasto vs Once Caldas",
@@ -971,11 +1147,11 @@
       "marcador": "0:0",
       "cuota": 2.05,
       "gano": false,
-      "p_modelo": 0.35
+      "p_modelo": 0.326
      }
     ]
    },
-   "semaforo": "rojo"
+   "semaforo": "evitar"
   },
   {
    "codigo": "A3",
@@ -1004,7 +1180,7 @@
     "neto": 0,
     "ejemplos": []
    },
-   "semaforo": "rojo"
+   "semaforo": "evitar"
   }
  ],
  "mapa": [
@@ -1012,36 +1188,36 @@
    "minuto": 30,
    "goles": 0,
    "dif": 0,
-   "n": 35,
-   "mas1": 0.943,
-   "mas2": 0.657,
-   "p_mod_mas1": 0.85,
-   "empate_sigue": 0.229,
-   "lo_mas1": 0.814,
-   "hi_mas1": 0.984
+   "n": 41,
+   "mas1": 0.951,
+   "mas2": 0.683,
+   "p_mod_mas1": 0.864,
+   "empate_sigue": 0.22,
+   "lo_mas1": 0.839,
+   "hi_mas1": 0.987
   },
   {
    "minuto": 30,
    "goles": 1,
    "dif": 1,
-   "n": 15,
-   "mas1": 0.733,
-   "mas2": 0.6,
-   "p_mod_mas1": 0.854,
-   "lider_gana": 0.667,
-   "lo_mas1": 0.48,
-   "hi_mas1": 0.891
+   "n": 21,
+   "mas1": 0.81,
+   "mas2": 0.571,
+   "p_mod_mas1": 0.867,
+   "lider_gana": 0.762,
+   "lo_mas1": 0.6,
+   "hi_mas1": 0.923
   },
   {
    "minuto": 30,
    "goles": 2,
    "dif": 0,
-   "n": 2,
+   "n": 4,
    "mas1": 1.0,
-   "mas2": 0.5,
-   "p_mod_mas1": 0.874,
+   "mas2": 0.75,
+   "p_mod_mas1": 0.883,
    "empate_sigue": 0.0,
-   "lo_mas1": 0.342,
+   "lo_mas1": 0.51,
    "hi_mas1": 1.0
   },
   {
@@ -1051,7 +1227,7 @@
    "n": 3,
    "mas1": 1.0,
    "mas2": 1.0,
-   "p_mod_mas1": 0.881,
+   "p_mod_mas1": 0.901,
    "lider_gana": 1.0,
    "lo_mas1": 0.438,
    "hi_mas1": 1.0
@@ -1060,12 +1236,12 @@
    "minuto": 30,
    "goles": 3,
    "dif": 1,
-   "n": 1,
+   "n": 2,
    "mas1": 1.0,
    "mas2": 1.0,
-   "p_mod_mas1": 0.889,
+   "p_mod_mas1": 0.894,
    "lider_gana": 1.0,
-   "lo_mas1": 0.207,
+   "lo_mas1": 0.342,
    "hi_mas1": 1.0
   },
   {
@@ -1075,7 +1251,7 @@
    "n": 1,
    "mas1": 1.0,
    "mas2": 0.0,
-   "p_mod_mas1": 0.859,
+   "p_mod_mas1": 0.892,
    "lider_gana": 1.0,
    "lo_mas1": 0.207,
    "hi_mas1": 1.0
@@ -1084,49 +1260,49 @@
    "minuto": 45,
    "goles": 0,
    "dif": 0,
-   "n": 17,
-   "mas1": 0.882,
-   "mas2": 0.471,
-   "p_mod_mas1": 0.753,
-   "empate_sigue": 0.118,
-   "lo_mas1": 0.657,
-   "hi_mas1": 0.967
+   "n": 18,
+   "mas1": 0.889,
+   "mas2": 0.444,
+   "p_mod_mas1": 0.76,
+   "empate_sigue": 0.111,
+   "lo_mas1": 0.672,
+   "hi_mas1": 0.969
   },
   {
    "minuto": 45,
    "goles": 1,
    "dif": 1,
-   "n": 23,
-   "mas1": 0.696,
-   "mas2": 0.478,
-   "p_mod_mas1": 0.744,
-   "lider_gana": 0.739,
-   "lo_mas1": 0.491,
-   "hi_mas1": 0.844
+   "n": 29,
+   "mas1": 0.759,
+   "mas2": 0.552,
+   "p_mod_mas1": 0.758,
+   "lider_gana": 0.759,
+   "lo_mas1": 0.579,
+   "hi_mas1": 0.878
   },
   {
    "minuto": 45,
    "goles": 2,
    "dif": 0,
-   "n": 7,
-   "mas1": 0.714,
-   "mas2": 0.571,
-   "p_mod_mas1": 0.768,
-   "empate_sigue": 0.714,
-   "lo_mas1": 0.359,
-   "hi_mas1": 0.918
+   "n": 9,
+   "mas1": 0.778,
+   "mas2": 0.667,
+   "p_mod_mas1": 0.778,
+   "empate_sigue": 0.556,
+   "lo_mas1": 0.453,
+   "hi_mas1": 0.937
   },
   {
    "minuto": 45,
    "goles": 2,
    "dif": 2,
-   "n": 4,
-   "mas1": 0.75,
+   "n": 8,
+   "mas1": 0.625,
    "mas2": 0.25,
-   "p_mod_mas1": 0.791,
+   "p_mod_mas1": 0.785,
    "lider_gana": 1.0,
-   "lo_mas1": 0.301,
-   "hi_mas1": 0.954
+   "lo_mas1": 0.306,
+   "hi_mas1": 0.863
   },
   {
    "minuto": 45,
@@ -1135,7 +1311,7 @@
    "n": 3,
    "mas1": 0.667,
    "mas2": 0.333,
-   "p_mod_mas1": 0.777,
+   "p_mod_mas1": 0.806,
    "lider_gana": 1.0,
    "lo_mas1": 0.208,
    "hi_mas1": 0.939
@@ -1144,61 +1320,61 @@
    "minuto": 45,
    "goles": 3,
    "dif": 2,
-   "n": 3,
+   "n": 5,
    "mas1": 1.0,
-   "mas2": 0.333,
-   "p_mod_mas1": 0.794,
+   "mas2": 0.4,
+   "p_mod_mas1": 0.819,
    "lider_gana": 1.0,
-   "lo_mas1": 0.438,
+   "lo_mas1": 0.566,
    "hi_mas1": 1.0
   },
   {
    "minuto": 60,
    "goles": 0,
    "dif": 0,
-   "n": 13,
-   "mas1": 0.846,
-   "mas2": 0.385,
-   "p_mod_mas1": 0.604,
-   "empate_sigue": 0.154,
-   "lo_mas1": 0.578,
-   "hi_mas1": 0.957
+   "n": 14,
+   "mas1": 0.857,
+   "mas2": 0.357,
+   "p_mod_mas1": 0.615,
+   "empate_sigue": 0.143,
+   "lo_mas1": 0.601,
+   "hi_mas1": 0.96
   },
   {
    "minuto": 60,
    "goles": 1,
    "dif": 1,
-   "n": 13,
-   "mas1": 0.385,
-   "mas2": 0.308,
-   "p_mod_mas1": 0.606,
-   "lider_gana": 0.923,
-   "lo_mas1": 0.177,
-   "hi_mas1": 0.645
+   "n": 16,
+   "mas1": 0.5,
+   "mas2": 0.375,
+   "p_mod_mas1": 0.626,
+   "lider_gana": 0.938,
+   "lo_mas1": 0.28,
+   "hi_mas1": 0.72
   },
   {
    "minuto": 60,
    "goles": 2,
    "dif": 0,
-   "n": 8,
-   "mas1": 0.625,
-   "mas2": 0.375,
-   "p_mod_mas1": 0.607,
-   "empate_sigue": 0.75,
-   "lo_mas1": 0.306,
-   "hi_mas1": 0.863
+   "n": 9,
+   "mas1": 0.667,
+   "mas2": 0.333,
+   "p_mod_mas1": 0.624,
+   "empate_sigue": 0.667,
+   "lo_mas1": 0.354,
+   "hi_mas1": 0.879
   },
   {
    "minuto": 60,
    "goles": 2,
    "dif": 2,
-   "n": 12,
-   "mas1": 0.667,
-   "mas2": 0.167,
-   "p_mod_mas1": 0.613,
-   "lider_gana": 0.833,
-   "lo_mas1": 0.391,
-   "hi_mas1": 0.862
+   "n": 17,
+   "mas1": 0.647,
+   "mas2": 0.235,
+   "p_mod_mas1": 0.622,
+   "lider_gana": 0.882,
+   "lo_mas1": 0.413,
+   "hi_mas1": 0.827
   },
   {
    "minuto": 60,
@@ -1207,7 +1383,7 @@
    "n": 1,
    "mas1": 0.0,
    "mas2": 0.0,
-   "p_mod_mas1": 0.603,
+   "p_mod_mas1": 0.614,
    "empate_sigue": 1.0,
    "lo_mas1": 0.0,
    "hi_mas1": 0.793
@@ -1216,25 +1392,25 @@
    "minuto": 60,
    "goles": 3,
    "dif": 1,
-   "n": 4,
-   "mas1": 0.5,
-   "mas2": 0.0,
-   "p_mod_mas1": 0.655,
-   "lider_gana": 1.0,
-   "lo_mas1": 0.15,
-   "hi_mas1": 0.85
+   "n": 8,
+   "mas1": 0.75,
+   "mas2": 0.125,
+   "p_mod_mas1": 0.672,
+   "lider_gana": 0.875,
+   "lo_mas1": 0.409,
+   "hi_mas1": 0.929
   },
   {
    "minuto": 60,
    "goles": 3,
    "dif": 2,
-   "n": 6,
-   "mas1": 0.667,
-   "mas2": 0.167,
-   "p_mod_mas1": 0.648,
+   "n": 7,
+   "mas1": 0.714,
+   "mas2": 0.143,
+   "p_mod_mas1": 0.675,
    "lider_gana": 1.0,
-   "lo_mas1": 0.3,
-   "hi_mas1": 0.903
+   "lo_mas1": 0.359,
+   "hi_mas1": 0.918
   },
   {
    "minuto": 70,
@@ -1243,7 +1419,7 @@
    "n": 8,
    "mas1": 0.75,
    "mas2": 0.25,
-   "p_mod_mas1": 0.482,
+   "p_mod_mas1": 0.492,
    "empate_sigue": 0.25,
    "lo_mas1": 0.409,
    "hi_mas1": 0.929
@@ -1252,37 +1428,37 @@
    "minuto": 70,
    "goles": 1,
    "dif": 1,
-   "n": 16,
-   "mas1": 0.375,
-   "mas2": 0.25,
-   "p_mod_mas1": 0.489,
-   "lider_gana": 0.938,
-   "lo_mas1": 0.185,
+   "n": 18,
+   "mas1": 0.389,
+   "mas2": 0.222,
+   "p_mod_mas1": 0.504,
+   "lider_gana": 0.944,
+   "lo_mas1": 0.203,
    "hi_mas1": 0.614
   },
   {
    "minuto": 70,
    "goles": 2,
    "dif": 0,
-   "n": 5,
-   "mas1": 0.4,
-   "mas2": 0.2,
-   "p_mod_mas1": 0.471,
-   "empate_sigue": 0.8,
-   "lo_mas1": 0.118,
-   "hi_mas1": 0.769
+   "n": 6,
+   "mas1": 0.5,
+   "mas2": 0.167,
+   "p_mod_mas1": 0.493,
+   "empate_sigue": 0.667,
+   "lo_mas1": 0.188,
+   "hi_mas1": 0.812
   },
   {
    "minuto": 70,
    "goles": 2,
    "dif": 2,
-   "n": 11,
-   "mas1": 0.636,
-   "mas2": 0.182,
-   "p_mod_mas1": 0.493,
-   "lider_gana": 0.909,
-   "lo_mas1": 0.354,
-   "hi_mas1": 0.848
+   "n": 14,
+   "mas1": 0.571,
+   "mas2": 0.143,
+   "p_mod_mas1": 0.5,
+   "lider_gana": 0.929,
+   "lo_mas1": 0.326,
+   "hi_mas1": 0.786
   },
   {
    "minuto": 70,
@@ -1291,7 +1467,7 @@
    "n": 2,
    "mas1": 0.0,
    "mas2": 0.0,
-   "p_mod_mas1": 0.504,
+   "p_mod_mas1": 0.514,
    "empate_sigue": 1.0,
    "lo_mas1": 0.0,
    "hi_mas1": 0.658
@@ -1300,25 +1476,25 @@
    "minuto": 70,
    "goles": 3,
    "dif": 1,
-   "n": 7,
-   "mas1": 0.571,
-   "mas2": 0.0,
-   "p_mod_mas1": 0.522,
-   "lider_gana": 0.714,
-   "lo_mas1": 0.25,
-   "hi_mas1": 0.842
+   "n": 11,
+   "mas1": 0.727,
+   "mas2": 0.091,
+   "p_mod_mas1": 0.541,
+   "lider_gana": 0.727,
+   "lo_mas1": 0.434,
+   "hi_mas1": 0.903
   },
   {
    "minuto": 70,
    "goles": 3,
    "dif": 2,
-   "n": 8,
-   "mas1": 0.25,
-   "mas2": 0.125,
-   "p_mod_mas1": 0.522,
+   "n": 13,
+   "mas1": 0.385,
+   "mas2": 0.231,
+   "p_mod_mas1": 0.536,
    "lider_gana": 1.0,
-   "lo_mas1": 0.071,
-   "hi_mas1": 0.591
+   "lo_mas1": 0.177,
+   "hi_mas1": 0.645
   },
   {
    "minuto": 80,
@@ -1327,7 +1503,7 @@
    "n": 3,
    "mas1": 0.333,
    "mas2": 0.0,
-   "p_mod_mas1": 0.322,
+   "p_mod_mas1": 0.329,
    "empate_sigue": 0.667,
    "lo_mas1": 0.061,
    "hi_mas1": 0.792
@@ -1336,37 +1512,37 @@
    "minuto": 80,
    "goles": 1,
    "dif": 1,
-   "n": 16,
-   "mas1": 0.188,
-   "mas2": 0.062,
-   "p_mod_mas1": 0.33,
-   "lider_gana": 0.938,
-   "lo_mas1": 0.066,
-   "hi_mas1": 0.43
+   "n": 18,
+   "mas1": 0.222,
+   "mas2": 0.056,
+   "p_mod_mas1": 0.341,
+   "lider_gana": 0.944,
+   "lo_mas1": 0.09,
+   "hi_mas1": 0.452
   },
   {
    "minuto": 80,
    "goles": 2,
    "dif": 0,
-   "n": 6,
-   "mas1": 0.5,
+   "n": 7,
+   "mas1": 0.571,
    "mas2": 0.0,
-   "p_mod_mas1": 0.325,
-   "empate_sigue": 0.5,
-   "lo_mas1": 0.188,
-   "hi_mas1": 0.812
+   "p_mod_mas1": 0.343,
+   "empate_sigue": 0.429,
+   "lo_mas1": 0.25,
+   "hi_mas1": 0.842
   },
   {
    "minuto": 80,
    "goles": 2,
    "dif": 2,
-   "n": 10,
-   "mas1": 0.5,
+   "n": 13,
+   "mas1": 0.462,
    "mas2": 0.0,
-   "p_mod_mas1": 0.317,
+   "p_mod_mas1": 0.325,
    "lider_gana": 1.0,
-   "lo_mas1": 0.237,
-   "hi_mas1": 0.763
+   "lo_mas1": 0.232,
+   "hi_mas1": 0.709
   },
   {
    "minuto": 80,
@@ -1375,7 +1551,7 @@
    "n": 3,
    "mas1": 0.0,
    "mas2": 0.0,
-   "p_mod_mas1": 0.335,
+   "p_mod_mas1": 0.342,
    "empate_sigue": 1.0,
    "lo_mas1": 0.0,
    "hi_mas1": 0.562
@@ -1384,25 +1560,25 @@
    "minuto": 80,
    "goles": 3,
    "dif": 1,
-   "n": 8,
-   "mas1": 0.5,
-   "mas2": 0.0,
-   "p_mod_mas1": 0.348,
-   "lider_gana": 0.625,
-   "lo_mas1": 0.215,
-   "hi_mas1": 0.785
+   "n": 11,
+   "mas1": 0.636,
+   "mas2": 0.091,
+   "p_mod_mas1": 0.368,
+   "lider_gana": 0.636,
+   "lo_mas1": 0.354,
+   "hi_mas1": 0.848
   },
   {
    "minuto": 80,
    "goles": 3,
    "dif": 2,
-   "n": 11,
-   "mas1": 0.273,
-   "mas2": 0.091,
-   "p_mod_mas1": 0.352,
+   "n": 17,
+   "mas1": 0.353,
+   "mas2": 0.118,
+   "p_mod_mas1": 0.362,
    "lider_gana": 1.0,
-   "lo_mas1": 0.097,
-   "hi_mas1": 0.566
+   "lo_mas1": 0.173,
+   "hi_mas1": 0.587
   }
  ],
  "descubrimiento": [
@@ -1411,23 +1587,155 @@
    "goles_min": 0,
    "dif": null,
    "objetivo": "mas1",
-   "k_desc": 26,
-   "n_desc": 28,
-   "k_val": 25,
-   "n_val": 29,
-   "p_valor": 0.037894911252999534,
-   "confirmada": false
+   "k_desc": 34,
+   "n_desc": 36,
+   "k_val": 32,
+   "n_val": 36,
+   "p_valor": 0.007110349543889321,
+   "confirmada": true
+  },
+  {
+   "minuto": 80,
+   "goles_min": 0,
+   "dif": 2,
+   "objetivo": "lider_gana",
+   "k_desc": 17,
+   "n_desc": 17,
+   "k_val": 13,
+   "n_val": 13,
+   "p_valor": 0.009688901040699992,
+   "confirmada": true
+  },
+  {
+   "minuto": 80,
+   "goles_min": 1,
+   "dif": 2,
+   "objetivo": "lider_gana",
+   "k_desc": 17,
+   "n_desc": 17,
+   "k_val": 13,
+   "n_val": 13,
+   "p_valor": 0.009688901040699992,
+   "confirmada": true
+  },
+  {
+   "minuto": 80,
+   "goles_min": 2,
+   "dif": 2,
+   "objetivo": "lider_gana",
+   "k_desc": 17,
+   "n_desc": 17,
+   "k_val": 13,
+   "n_val": 13,
+   "p_valor": 0.009688901040699992,
+   "confirmada": true
+  },
+  {
+   "minuto": 70,
+   "goles_min": 0,
+   "dif": 2,
+   "objetivo": "lider_gana",
+   "k_desc": 15,
+   "n_desc": 16,
+   "k_val": 11,
+   "n_val": 11,
+   "p_valor": 0.019773267429999988,
+   "confirmada": true
+  },
+  {
+   "minuto": 70,
+   "goles_min": 1,
+   "dif": 2,
+   "objetivo": "lider_gana",
+   "k_desc": 15,
+   "n_desc": 16,
+   "k_val": 11,
+   "n_val": 11,
+   "p_valor": 0.019773267429999988,
+   "confirmada": true
+  },
+  {
+   "minuto": 70,
+   "goles_min": 2,
+   "dif": 2,
+   "objetivo": "lider_gana",
+   "k_desc": 15,
+   "n_desc": 16,
+   "k_val": 11,
+   "n_val": 11,
+   "p_valor": 0.019773267429999988,
+   "confirmada": true
   },
   {
    "minuto": 30,
    "goles_min": 0,
    "dif": 0,
    "objetivo": "mas1",
-   "k_desc": 19,
-   "n_desc": 19,
-   "k_val": 16,
-   "n_val": 18,
-   "p_valor": 0.059952206747560154,
+   "k_desc": 23,
+   "n_desc": 23,
+   "k_val": 20,
+   "n_val": 22,
+   "p_valor": 0.020666196971081484,
+   "confirmada": true
+  },
+  {
+   "minuto": 30,
+   "goles_min": 1,
+   "dif": null,
+   "objetivo": "mas1",
+   "k_desc": 14,
+   "n_desc": 16,
+   "k_val": 13,
+   "n_val": 15,
+   "p_valor": 0.1268277146227629,
+   "confirmada": false
+  },
+  {
+   "minuto": 80,
+   "goles_min": 0,
+   "dif": 1,
+   "objetivo": "lider_gana",
+   "k_desc": 12,
+   "n_desc": 15,
+   "k_val": 12,
+   "n_val": 14,
+   "p_valor": 0.1608357572756199,
+   "confirmada": false
+  },
+  {
+   "minuto": 80,
+   "goles_min": 1,
+   "dif": 1,
+   "objetivo": "lider_gana",
+   "k_desc": 12,
+   "n_desc": 15,
+   "k_val": 12,
+   "n_val": 14,
+   "p_valor": 0.1608357572756199,
+   "confirmada": false
+  },
+  {
+   "minuto": 70,
+   "goles_min": 0,
+   "dif": 1,
+   "objetivo": "lider_gana",
+   "k_desc": 14,
+   "n_desc": 16,
+   "k_val": 11,
+   "n_val": 13,
+   "p_valor": 0.20247825848319992,
+   "confirmada": false
+  },
+  {
+   "minuto": 70,
+   "goles_min": 1,
+   "dif": 1,
+   "objetivo": "lider_gana",
+   "k_desc": 14,
+   "n_desc": 16,
+   "k_val": 11,
+   "n_val": 13,
+   "p_valor": 0.20247825848319992,
    "confirmada": false
   },
   {
@@ -1435,11 +1743,11 @@
    "goles_min": 0,
    "dif": null,
    "objetivo": "mas1",
-   "k_desc": 24,
-   "n_desc": 28,
-   "k_val": 20,
-   "n_val": 29,
-   "p_valor": 0.6359959189280554,
+   "k_desc": 31,
+   "n_desc": 36,
+   "k_val": 26,
+   "n_val": 36,
+   "p_valor": 0.4663448420702013,
    "confirmada": false
   },
   {
@@ -1447,20 +1755,309 @@
    "goles_min": 1,
    "dif": null,
    "objetivo": "mas1",
-   "k_desc": 15,
-   "n_desc": 19,
-   "k_val": 14,
-   "n_val": 21,
-   "p_valor": 0.7229932018529894,
+   "k_desc": 23,
+   "n_desc": 28,
+   "k_val": 18,
+   "n_val": 26,
+   "p_valor": 0.6274042507634102,
+   "confirmada": false
+  },
+  {
+   "minuto": 45,
+   "goles_min": 0,
+   "dif": 1,
+   "objetivo": "mas1",
+   "k_desc": 14,
+   "n_desc": 17,
+   "k_val": 10,
+   "n_val": 15,
+   "p_valor": 0.7216214402043638,
+   "confirmada": false
+  },
+  {
+   "minuto": 45,
+   "goles_min": 1,
+   "dif": 1,
+   "objetivo": "mas1",
+   "k_desc": 14,
+   "n_desc": 17,
+   "k_val": 10,
+   "n_val": 15,
+   "p_valor": 0.7216214402043638,
+   "confirmada": false
+  },
+  {
+   "minuto": 60,
+   "goles_min": 0,
+   "dif": null,
+   "objetivo": "mas1",
+   "k_desc": 27,
+   "n_desc": 36,
+   "k_val": 21,
+   "n_val": 36,
+   "p_valor": 0.9529617595470061,
    "confirmada": false
   }
  ],
+ "ligas": {
+  "global": {
+   "n": 107,
+   "goles_partido": 2.766,
+   "over25": 0.551,
+   "over25_ic": [
+    0.457,
+    0.642
+   ],
+   "btts": 0.421,
+   "gol_desde_75": 0.486,
+   "gol_desde_75_ic": [
+    0.393,
+    0.58
+   ],
+   "parte_2t": 0.557
+  },
+  "ligas": [
+   {
+    "liga": "Brasil Serie B",
+    "tuyo": {
+     "n": 1,
+     "k": 1,
+     "neto": 0.9,
+     "cuota_media": 1.9
+    },
+    "base": {
+     "n": 19,
+     "goles_partido": 2.368,
+     "over25": 0.579,
+     "over25_ic": [
+      0.363,
+      0.769
+     ],
+     "btts": 0.263,
+     "gol_desde_75": 0.316,
+     "gol_desde_75_ic": [
+      0.154,
+      0.54
+     ],
+     "parte_2t": 0.667
+    },
+    "factor": 0.912
+   },
+   {
+    "liga": "Colombia Primera A",
+    "tuyo": {
+     "n": 4,
+     "k": 3,
+     "neto": 0.57,
+     "cuota_media": 1.655
+    },
+    "base": {
+     "n": 16,
+     "goles_partido": 2.188,
+     "over25": 0.438,
+     "over25_ic": [
+      0.231,
+      0.668
+     ],
+     "btts": 0.25,
+     "gol_desde_75": 0.438,
+     "gol_desde_75_ic": [
+      0.231,
+      0.668
+     ],
+     "parte_2t": 0.571
+    },
+    "factor": 0.88
+   },
+   {
+    "liga": "Perú Liga 1",
+    "tuyo": null,
+    "base": {
+     "n": 14,
+     "goles_partido": 3.071,
+     "over25": 0.643,
+     "over25_ic": [
+      0.388,
+      0.837
+     ],
+     "btts": 0.5,
+     "gol_desde_75": 0.571,
+     "gol_desde_75_ic": [
+      0.326,
+      0.786
+     ],
+     "parte_2t": 0.535
+    },
+    "factor": 1.059
+   },
+   {
+    "liga": "Brasil Serie A",
+    "tuyo": {
+     "n": 2,
+     "k": 1,
+     "neto": -0.83,
+     "cuota_media": 1.295
+    },
+    "base": {
+     "n": 9,
+     "goles_partido": 2.667,
+     "over25": 0.556,
+     "over25_ic": [
+      0.267,
+      0.811
+     ],
+     "btts": 0.556,
+     "gol_desde_75": 0.444,
+     "gol_desde_75_ic": [
+      0.189,
+      0.733
+     ],
+     "parte_2t": 0.667
+    },
+    "factor": 0.985
+   },
+   {
+    "liga": "Países Bajos Eredivisie",
+    "tuyo": {
+     "n": 2,
+     "k": 2,
+     "neto": 1.1,
+     "cuota_media": 1.55
+    },
+    "base": {
+     "n": 9,
+     "goles_partido": 2.889,
+     "over25": 0.556,
+     "over25_ic": [
+      0.267,
+      0.811
+     ],
+     "btts": 0.333,
+     "gol_desde_75": 0.444,
+     "gol_desde_75_ic": [
+      0.189,
+      0.733
+     ],
+     "parte_2t": 0.462
+    },
+    "factor": 1.019
+   },
+   {
+    "liga": "Argentina Liga Profesional",
+    "tuyo": {
+     "n": 1,
+     "k": 1,
+     "neto": 0.4,
+     "cuota_media": 1.4
+    },
+    "base": {
+     "n": 5,
+     "goles_partido": 3.6,
+     "over25": 1.0,
+     "over25_ic": [
+      0.566,
+      1.0
+     ],
+     "btts": 1.0,
+     "gol_desde_75": 0.8,
+     "gol_desde_75_ic": [
+      0.376,
+      0.964
+     ],
+     "parte_2t": 0.667
+    },
+    "factor": 1.089
+   },
+   {
+    "liga": "Países Bajos Eerste Divisie",
+    "tuyo": {
+     "n": 1,
+     "k": 1,
+     "neto": 0.63,
+     "cuota_media": 1.63
+    },
+    "base": {
+     "n": 4,
+     "goles_partido": 3.25,
+     "over25": 0.5,
+     "over25_ic": [
+      0.15,
+      0.85
+     ],
+     "btts": 0.5,
+     "gol_desde_75": 0.5,
+     "gol_desde_75_ic": [
+      0.15,
+      0.85
+     ],
+     "parte_2t": 0.308
+    },
+    "factor": 1.044
+   },
+   {
+    "liga": "Bolivia Primera",
+    "tuyo": null,
+    "base": {
+     "n": 4,
+     "goles_partido": 5.5,
+     "over25": 1.0,
+     "over25_ic": [
+      0.51,
+      1.0
+     ],
+     "btts": 0.5,
+     "gol_desde_75": 1.0,
+     "gol_desde_75_ic": [
+      0.51,
+      1.0
+     ],
+     "parte_2t": 0.545
+    },
+    "factor": 1.247
+   },
+   {
+    "liga": "UEFA Nations League",
+    "tuyo": {
+     "n": 8,
+     "k": 7,
+     "neto": 3.27,
+     "cuota_media": 1.637
+    },
+    "base": {
+     "n": 3
+    },
+    "factor": 0.969
+   },
+   {
+    "liga": "MLS",
+    "tuyo": {
+     "n": 3,
+     "k": 2,
+     "neto": -0.54,
+     "cuota_media": 1.337
+    },
+    "base": {
+     "n": 1
+    },
+    "factor": 1.006
+   }
+  ],
+  "min_partidos": 4
+ },
+ "equipos": {
+  "partidos": 11,
+  "predicciones": 66,
+  "brier_1x2_liga": 0.344,
+  "brier_1x2_equipos": 0.393,
+  "brier_gol_liga": 0.142,
+  "brier_gol_equipos": 0.138
+ },
  "apuestas_modelo": [
   {
-   "p": 0.339,
+   "p": 0.343,
    "p_nula": 0.0,
-   "cuota_min": 2.951,
-   "ev": -0.448,
+   "cuota_min": 2.912,
+   "ev": -0.44,
    "cuota": 1.63,
    "gano": true,
    "partido": "Eslovenia vs Macedonia del Norte",
@@ -1476,10 +2073,10 @@
    "liga": "UEFA Nations League"
   },
   {
-   "p": 0.368,
+   "p": 0.382,
    "p_nula": 0.0,
-   "cuota_min": 2.72,
-   "ev": -0.368,
+   "cuota_min": 2.616,
+   "ev": -0.343,
    "cuota": 1.72,
    "gano": true,
    "partido": "España vs Croacia",
@@ -1493,10 +2090,10 @@
    "liga": "UEFA Nations League"
   },
   {
-   "p": 0.243,
+   "p": 0.227,
    "p_nula": 0.0,
-   "cuota_min": 4.108,
-   "ev": -0.569,
+   "cuota_min": 4.41,
+   "ev": -0.599,
    "cuota": 1.77,
    "gano": true,
    "partido": "Chequia vs Inglaterra",
@@ -1513,10 +2110,10 @@
    "liga": "UEFA Nations League"
   },
   {
-   "p": 0.31,
-   "p_nula": 0.365,
-   "cuota_min": 3.226,
-   "ev": -0.195,
+   "p": 0.29,
+   "p_nula": 0.367,
+   "cuota_min": 3.449,
+   "ev": -0.221,
    "cuota": 1.42,
    "gano": true,
    "partido": "Escocia vs Suiza",
@@ -1532,10 +2129,10 @@
    "liga": "UEFA Nations League"
   },
   {
-   "p": 0.482,
+   "p": 0.472,
    "p_nula": 0.0,
-   "cuota_min": 2.076,
-   "ev": -0.109,
+   "cuota_min": 2.121,
+   "ev": -0.128,
    "cuota": 1.85,
    "gano": true,
    "partido": "Bolívar vs Blooming",
@@ -1551,10 +2148,10 @@
    "liga": "Bolivia"
   },
   {
-   "p": 0.311,
+   "p": 0.323,
    "p_nula": 0.0,
-   "cuota_min": 3.219,
-   "ev": -0.425,
+   "cuota_min": 3.1,
+   "ev": -0.403,
    "cuota": 1.85,
    "gano": false,
    "partido": "Casarano vs Monopoli",
@@ -1570,10 +2167,10 @@
    "liga": "Italia Serie C"
   },
   {
-   "p": 0.474,
+   "p": 0.462,
    "p_nula": 0.0,
-   "cuota_min": 2.111,
-   "ev": -0.228,
+   "cuota_min": 2.164,
+   "ev": -0.247,
    "cuota": 1.63,
    "gano": true,
    "partido": "Antoniano vs Ciudad de Lucena",
@@ -1590,10 +2187,10 @@
    "liga": "España 2ª RFEF"
   },
   {
-   "p": 0.535,
+   "p": 0.522,
    "p_nula": 0.0,
-   "cuota_min": 1.871,
-   "ev": -0.016,
+   "cuota_min": 1.915,
+   "ev": -0.039,
    "cuota": 1.84,
    "gano": false,
    "partido": "Atenas vs Plaza Colonia",
@@ -1610,10 +2207,10 @@
    "liga": "Uruguay 2ª División"
   },
   {
-   "p": 0.356,
+   "p": 0.361,
    "p_nula": 0.0,
-   "cuota_min": 2.812,
-   "ev": -0.324,
+   "cuota_min": 2.771,
+   "ev": -0.314,
    "cuota": 1.9,
    "gano": true,
    "partido": "CS Fola Esch vs FC Juvenil Canach",
@@ -1629,10 +2226,10 @@
    "liga": "Luxemburgo"
   },
   {
-   "p": 0.412,
-   "p_nula": 0.344,
-   "cuota_min": 2.429,
-   "ev": -0.051,
+   "p": 0.426,
+   "p_nula": 0.34,
+   "cuota_min": 2.348,
+   "ev": -0.034,
    "cuota": 1.47,
    "gano": true,
    "partido": "Austria vs Kosovo",
@@ -1646,10 +2243,10 @@
    "liga": "UEFA Nations League"
   },
   {
-   "p": 0.548,
-   "p_nula": 0.452,
-   "cuota_min": 1.826,
-   "ev": 0.493,
+   "p": 0.558,
+   "p_nula": 0.442,
+   "cuota_min": 1.792,
+   "ev": 0.502,
    "cuota": 1.9,
    "gano": true,
    "partido": "Criciúma vs Avaí",
@@ -1665,10 +2262,10 @@
    "liga": "Brasil Serie B"
   },
   {
-   "p": 0.55,
+   "p": 0.551,
    "p_nula": 0.0,
-   "cuota_min": 1.819,
-   "ev": -0.104,
+   "cuota_min": 1.814,
+   "ev": -0.101,
    "cuota": 1.63,
    "gano": false,
    "partido": "Camacha vs Florgrade",
@@ -1682,10 +2279,10 @@
    "liga": "Taça de Portugal"
   },
   {
-   "p": 0.501,
+   "p": 0.527,
    "p_nula": 0.0,
-   "cuota_min": 1.996,
-   "ev": -0.299,
+   "cuota_min": 1.897,
+   "ev": -0.262,
    "cuota": 1.4,
    "gano": false,
    "partido": "Levanger vs Grorud",
@@ -1699,10 +2296,10 @@
    "liga": "Noruega 2ª"
   },
   {
-   "p": 0.526,
+   "p": 0.542,
    "p_nula": 0.0,
-   "cuota_min": 1.901,
-   "ev": -0.227,
+   "cuota_min": 1.847,
+   "ev": -0.204,
    "cuota": 1.47,
    "gano": true,
    "partido": "Estrela Calheta vs Cinfães",
@@ -1716,10 +2313,10 @@
    "liga": "Campeonato de Portugal"
   },
   {
-   "p": 0.259,
+   "p": 0.253,
    "p_nula": 0.0,
-   "cuota_min": 3.857,
-   "ev": -0.287,
+   "cuota_min": 3.956,
+   "ev": -0.305,
    "cuota": 2.75,
    "gano": false,
    "partido": "Grêmio Prudente vs União São João",
@@ -1736,10 +2333,10 @@
    "liga": "Copa Paulista"
   },
   {
-   "p": 0.401,
+   "p": 0.415,
    "p_nula": 0.0,
-   "cuota_min": 2.497,
-   "ev": -0.299,
+   "cuota_min": 2.408,
+   "ev": -0.273,
    "cuota": 1.75,
    "gano": false,
    "partido": "Almirante Brown vs Acassuso",
@@ -1753,10 +2350,10 @@
    "liga": "Argentina Primera Nacional"
   },
   {
-   "p": 0.405,
+   "p": 0.411,
    "p_nula": 0.0,
-   "cuota_min": 2.467,
-   "ev": -0.319,
+   "cuota_min": 2.435,
+   "ev": -0.31,
    "cuota": 1.68,
    "gano": false,
    "partido": "Waterside Karori vs Fencibles United (F)",
@@ -1772,10 +2369,10 @@
    "liga": "Nueva Zelanda Femenina"
   },
   {
-   "p": 0.853,
+   "p": 0.849,
    "p_nula": 0.0,
-   "cuota_min": 1.172,
-   "ev": 0.143,
+   "cuota_min": 1.178,
+   "ev": 0.137,
    "cuota": 1.34,
    "gano": true,
    "partido": "Once Caldas vs Bucaramanga",
@@ -1791,10 +2388,10 @@
    "liga": "Colombia Primera A"
   },
   {
-   "p": 0.55,
+   "p": 0.576,
    "p_nula": 0.0,
-   "cuota_min": 1.82,
-   "ev": -0.203,
+   "cuota_min": 1.736,
+   "ev": -0.165,
    "cuota": 1.45,
    "gano": true,
    "partido": "Cavalry FC vs FC Supra du Québec",
@@ -1808,10 +2405,10 @@
    "liga": "Canadá CPL"
   },
   {
-   "p": 0.434,
+   "p": 0.453,
    "p_nula": 0.0,
-   "cuota_min": 2.305,
-   "ev": -0.293,
+   "cuota_min": 2.209,
+   "ev": -0.262,
    "cuota": 1.63,
    "gano": true,
    "partido": "Carlos Mannucci vs Universidad San Martín",
@@ -1825,10 +2422,10 @@
    "liga": "Perú Liga 2"
   },
   {
-   "p": 0.588,
+   "p": 0.583,
    "p_nula": 0.0,
-   "cuota_min": 1.701,
-   "ev": 0.105,
+   "cuota_min": 1.715,
+   "ev": 0.096,
    "cuota": 1.88,
    "gano": true,
    "partido": "General Caballero JLM vs 3 de Noviembre",
@@ -1844,10 +2441,10 @@
    "liga": "Paraguay Intermedia"
   },
   {
-   "p": 0.706,
+   "p": 0.695,
    "p_nula": 0.0,
-   "cuota_min": 1.417,
-   "ev": 1.117,
+   "cuota_min": 1.439,
+   "ev": 1.084,
    "cuota": 3.0,
    "gano": true,
    "partido": "Comerciantes FC vs Sport Huancayo Reserva",
@@ -1864,10 +2461,10 @@
    "liga": "Perú Liga 2"
   },
   {
-   "p": 0.555,
+   "p": 0.571,
    "p_nula": 0.0,
-   "cuota_min": 1.803,
-   "ev": -0.185,
+   "cuota_min": 1.75,
+   "ev": -0.16,
    "cuota": 1.47,
    "gano": false,
    "partido": "Grorud vs Moss",
@@ -1883,10 +2480,10 @@
    "liga": "Copa de Noruega"
   },
   {
-   "p": 0.299,
+   "p": 0.302,
    "p_nula": 0.0,
-   "cuota_min": 3.341,
-   "ev": -0.578,
+   "cuota_min": 3.313,
+   "ev": -0.574,
    "cuota": 1.41,
    "gano": true,
    "partido": "Gerasdorf Stammersdorf vs Mauer",
@@ -1902,10 +2499,10 @@
    "liga": "Austria Wiener Stadtliga"
   },
   {
-   "p": 0.262,
+   "p": 0.28,
    "p_nula": 0.0,
-   "cuota_min": 3.824,
-   "ev": -0.451,
+   "cuota_min": 3.572,
+   "ev": -0.412,
    "cuota": 2.1,
    "gano": true,
    "partido": "Groene Ster vs AFC Amsterdam",
@@ -1919,10 +2516,10 @@
    "liga": "Copa KNVB"
   },
   {
-   "p": 0.515,
+   "p": 0.504,
    "p_nula": 0.0,
-   "cuota_min": 1.94,
-   "ev": -0.155,
+   "cuota_min": 1.983,
+   "ev": -0.173,
    "cuota": 1.64,
    "gano": false,
    "partido": "Rochdale vs Liverpool Sub-21",
@@ -1939,10 +2536,10 @@
    "liga": "EFL Trophy"
   },
   {
-   "p": 0.517,
+   "p": 0.505,
    "p_nula": 0.0,
-   "cuota_min": 1.933,
-   "ev": 0.19,
+   "cuota_min": 1.98,
+   "ev": 0.162,
    "cuota": 2.3,
    "gano": false,
    "partido": "Deportivo San Pedro vs Cobán Imperial",
@@ -1959,10 +2556,10 @@
    "liga": "Guatemala Liga Nacional"
   },
   {
-   "p": 0.26,
+   "p": 0.273,
    "p_nula": 0.0,
-   "cuota_min": 3.839,
-   "ev": -0.518,
+   "cuota_min": 3.664,
+   "ev": -0.495,
    "cuota": 1.85,
    "gano": false,
    "partido": "Tacoma Defiance vs Portland Timbers II",
@@ -1978,10 +2575,10 @@
    "liga": "MLS Next Pro"
   },
   {
-   "p": 0.454,
+   "p": 0.427,
    "p_nula": 0.0,
-   "cuota_min": 2.203,
-   "ev": -0.296,
+   "cuota_min": 2.343,
+   "ev": -0.339,
    "cuota": 1.55,
    "gano": true,
    "partido": "Fortaleza vs Atlético Junior",
@@ -1997,10 +2594,10 @@
    "liga": "Colombia Primera A"
   },
   {
-   "p": 0.655,
+   "p": 0.671,
    "p_nula": 0.0,
-   "cuota_min": 1.526,
-   "ev": -0.05,
+   "cuota_min": 1.489,
+   "ev": -0.026,
    "cuota": 1.45,
    "gano": false,
    "partido": "Santa Clara vs SC Braga",
@@ -2009,15 +2606,17 @@
    "marcador": "0:0",
    "mercado": "over",
    "tipo_ticket": "combinada",
-   "patrones": [],
+   "patrones": [
+    "P5"
+   ],
    "confianza": "alta",
    "liga": "Portugal Primeira Liga"
   },
   {
-   "p": 0.519,
+   "p": 0.539,
    "p_nula": 0.0,
-   "cuota_min": 1.926,
-   "ev": -0.128,
+   "cuota_min": 1.857,
+   "ev": -0.095,
    "cuota": 1.68,
    "gano": true,
    "partido": "Wehen Wiesbaden vs Duisburg",
@@ -2031,10 +2630,10 @@
    "liga": "Alemania 3. Liga"
   },
   {
-   "p": 0.97,
+   "p": 0.968,
    "p_nula": 0.0,
-   "cuota_min": 1.031,
-   "ev": 0.3,
+   "cuota_min": 1.033,
+   "ev": 0.297,
    "cuota": 1.34,
    "gano": true,
    "partido": "Frosinone vs Como",
@@ -2044,16 +2643,17 @@
    "mercado": "1x2",
    "tipo_ticket": "combinada",
    "patrones": [
-    "P2"
+    "P2",
+    "P6"
    ],
    "confianza": "alta",
    "liga": "Italia Serie A"
   },
   {
-   "p": 0.621,
+   "p": 0.636,
    "p_nula": 0.0,
-   "cuota_min": 1.61,
-   "ev": -0.118,
+   "cuota_min": 1.573,
+   "ev": -0.097,
    "cuota": 1.42,
    "gano": false,
    "partido": "Grêmio vs Palmeiras",
@@ -2069,10 +2669,10 @@
    "liga": "Brasil Serie A"
   },
   {
-   "p": 0.537,
+   "p": 0.552,
    "p_nula": 0.0,
-   "cuota_min": 1.863,
-   "ev": -0.221,
+   "cuota_min": 1.811,
+   "ev": -0.199,
    "cuota": 1.45,
    "gano": true,
    "partido": "FC Fredericia vs Vejle",
@@ -2088,10 +2688,10 @@
    "liga": "Dinamarca 1ª"
   },
   {
-   "p": 0.264,
+   "p": 0.256,
    "p_nula": 0.0,
-   "cuota_min": 3.79,
-   "ev": -0.42,
+   "cuota_min": 3.903,
+   "ev": -0.436,
    "cuota": 2.2,
    "gano": true,
    "partido": "Karpaty vs Veres",
@@ -2107,10 +2707,10 @@
    "liga": "Ucrania Premier"
   },
   {
-   "p": 0.335,
+   "p": 0.342,
    "p_nula": 0.0,
-   "cuota_min": 2.986,
-   "ev": -0.454,
+   "cuota_min": 2.926,
+   "ev": -0.443,
    "cuota": 1.63,
    "gano": true,
    "partido": "Twente vs PSV",
@@ -2124,10 +2724,10 @@
    "liga": "Países Bajos Eredivisie"
   },
   {
-   "p": 0.688,
+   "p": 0.706,
    "p_nula": 0.0,
-   "cuota_min": 1.454,
-   "ev": -0.037,
+   "cuota_min": 1.417,
+   "ev": -0.012,
    "cuota": 1.4,
    "gano": false,
    "partido": "Bournemouth vs Liverpool",
@@ -2143,10 +2743,10 @@
    "liga": "Inglaterra Premier League"
   },
   {
-   "p": 0.35,
+   "p": 0.326,
    "p_nula": 0.0,
-   "cuota_min": 2.858,
-   "ev": -0.283,
+   "cuota_min": 3.07,
+   "ev": -0.332,
    "cuota": 2.05,
    "gano": false,
    "partido": "Deportivo Pasto vs Once Caldas",
@@ -2163,10 +2763,10 @@
    "liga": "Colombia Primera A"
   },
   {
-   "p": 0.626,
+   "p": 0.609,
    "p_nula": 0.0,
-   "cuota_min": 1.598,
-   "ev": -0.205,
+   "cuota_min": 1.642,
+   "ev": -0.227,
    "cuota": 1.27,
    "gano": true,
    "partido": "San Jose Earthquakes vs LAFC",
@@ -2182,10 +2782,10 @@
    "liga": "MLS"
   },
   {
-   "p": 0.767,
-   "p_nula": 0.233,
-   "cuota_min": 1.303,
-   "ev": 0.146,
+   "p": 0.779,
+   "p_nula": 0.221,
+   "cuota_min": 1.284,
+   "ev": 0.148,
    "cuota": 1.19,
    "gano": true,
    "partido": "DC United vs Charlotte FC",
@@ -2201,10 +2801,10 @@
    "liga": "MLS"
   },
   {
-   "p": 0.766,
+   "p": 0.771,
    "p_nula": 0.0,
-   "cuota_min": 1.306,
-   "ev": -0.104,
+   "cuota_min": 1.296,
+   "ev": -0.097,
    "cuota": 1.17,
    "gano": true,
    "partido": "Vasco da Gama vs Coritiba",
@@ -2220,10 +2820,10 @@
    "liga": "Brasil Serie A"
   },
   {
-   "p": 0.557,
+   "p": 0.571,
    "p_nula": 0.0,
-   "cuota_min": 1.797,
-   "ev": -0.193,
+   "cuota_min": 1.751,
+   "ev": -0.172,
    "cuota": 1.45,
    "gano": true,
    "partido": "Lexington SC vs Orange County SC",
@@ -2239,10 +2839,10 @@
    "liga": "USL Championship"
   },
   {
-   "p": 0.56,
+   "p": 0.568,
    "p_nula": 0.0,
-   "cuota_min": 1.786,
-   "ev": -0.216,
+   "cuota_min": 1.761,
+   "ev": -0.205,
    "cuota": 1.4,
    "gano": true,
    "partido": "River Plate vs Huracán",
@@ -2256,10 +2856,10 @@
    "liga": "Argentina Liga Profesional"
   },
   {
-   "p": 0.608,
+   "p": 0.623,
    "p_nula": 0.0,
-   "cuota_min": 1.645,
-   "ev": -0.222,
+   "cuota_min": 1.605,
+   "ev": -0.203,
    "cuota": 1.28,
    "gano": true,
    "partido": "Pioneros de Cancún vs Tapachula Soconusco",
@@ -2275,10 +2875,10 @@
    "liga": "México Liga Premier"
   },
   {
-   "p": 0.807,
+   "p": 0.802,
    "p_nula": 0.0,
-   "cuota_min": 1.239,
-   "ev": 0.299,
+   "cuota_min": 1.246,
+   "ev": 0.292,
    "cuota": 1.61,
    "gano": true,
    "partido": "Club Aurora vs Universitario de Vinto",
@@ -2294,10 +2894,10 @@
    "liga": "Bolivia Copa"
   },
   {
-   "p": 0.433,
+   "p": 0.424,
    "p_nula": 0.0,
-   "cuota_min": 2.308,
-   "ev": -0.038,
+   "cuota_min": 2.356,
+   "ev": -0.058,
    "cuota": 2.22,
    "gano": false,
    "partido": "CD Génesis vs Olancho FC",
@@ -2314,10 +2914,10 @@
    "liga": "Honduras Liga Nacional"
   },
   {
-   "p": 0.301,
+   "p": 0.294,
    "p_nula": 0.0,
-   "cuota_min": 3.318,
-   "ev": -0.367,
+   "cuota_min": 3.403,
+   "ev": -0.383,
    "cuota": 2.1,
    "gano": true,
    "partido": "O Elvas vs UD Leiria",
@@ -2334,10 +2934,10 @@
    "liga": "Taça de Portugal"
   },
   {
-   "p": 0.446,
+   "p": 0.436,
    "p_nula": 0.0,
-   "cuota_min": 2.243,
-   "ev": -0.376,
+   "cuota_min": 2.294,
+   "ev": -0.39,
    "cuota": 1.4,
    "gano": true,
    "partido": "Odense Boldklub vs FC Midtjylland",
@@ -2353,10 +2953,10 @@
    "liga": "Dinamarca Superliga"
   },
   {
-   "p": 0.516,
+   "p": 0.527,
    "p_nula": 0.0,
-   "cuota_min": 1.94,
-   "ev": -0.242,
+   "cuota_min": 1.898,
+   "ev": -0.225,
    "cuota": 1.47,
    "gano": true,
    "partido": "Sparta Rotterdam vs Heerenveen",
@@ -2370,10 +2970,10 @@
    "liga": "Países Bajos Eredivisie"
   },
   {
-   "p": 0.883,
+   "p": 0.879,
    "p_nula": 0.0,
-   "cuota_min": 1.132,
-   "ev": 0.236,
+   "cuota_min": 1.138,
+   "ev": 0.23,
    "cuota": 1.4,
    "gano": true,
    "partido": "Molde vs Aalesunds",

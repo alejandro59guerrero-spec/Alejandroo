@@ -46,11 +46,11 @@ def _p_modelo(cod: str, caso: dict, p: Partido, m: Modelo) -> float | None:
     e = caso["estado"]
     t = caso["minuto"]
     roja = e["hay_roja"]
-    if cod in ("P1", "P3"):
+    if cod in ("P1", "P3", "P5"):
         return m.prob_mas_goles(1, t, p.liga, roja)
     if cod == "A2":
         return m.prob_mas_goles(2, t, p.liga, roja)
-    if cod == "P2":
+    if cod in ("P2", "P6"):
         r = m.prob_1x2(e["gl"], e["gv"], t, p.liga, e["rojas_local"], e["rojas_visita"])
         return r["local"] if e["dif"] > 0 else r["visitante"]
     if cod == "P4":

@@ -12,13 +12,16 @@ base de datos del artifact. Código en `app/index.html`.
 
 - **Registrar**: con marcador, minuto, roja, mercado y cuota calcula la probabilidad, la
   cuota mínima y el valor esperado, y da un veredicto: Entrar, Cuota justa o No entrar.
+  Opcional: cuotas prepartido 1X2 (para Ganador) y promedios de goles a favor y en contra
+  de cada equipo, como los de scores24 (para Más de goles y Ambos marcan).
   Pide confirmación extra si es un anti-patrón o si saltaste tus límites del día.
 - **Panel**: curva de banca, caída máxima, racha, acierto por patrón con progreso hacia
   30 apuestas, disciplina (con regla contra sin regla), cortes por liga, mercado y minuto,
   ajustes y exportación a CSV.
 - **Patrones**: fichas claras con cuándo entrar, cuándo no, de cada 10 veces cuántas salió,
   cuota mínima y mejores ligas.
-- **Mapa**: qué pasó en partidos reales según minuto, goles y diferencia.
+- **Mapa**: qué pasó en partidos reales según minuto, goles y diferencia; fiabilidad del
+  modelo y tabla "Tus ligas" (tu historial y tasas base de cada liga).
 - **Historial**: los 45 tickets del PDF con marcador al apostar y probabilidad del modelo.
 
 ## Análisis
@@ -36,6 +39,19 @@ Solo usa Python estándar (3.10+).
 - `data/tickets.csv` y `data/legs.csv`: el historial del PDF con el marcador reconstruido.
 - `patterns/patrones.json`: fuente única de reglas. La leen Python y la app.
 - `fb/`: modelo de Poisson en vivo, backtest, mapa, descubrimiento de patrones, Sofascore.
+
+## Escáner en vivo (en la PC)
+
+```
+python -m fb.cli en-vivo --servir 8765          # tus ligas, escanea cada 60 s
+python -m fb.cli en-vivo --servir 8765 --todas  # todas las ligas
+```
+
+Lee los partidos en juego de Sofascore, calcula minuto, marcador y rojas, y lista las apuestas
+que encajan con P1, P2, P3, P5 o P6 con su probabilidad y cuota mínima. En verde, 75% o más.
+La página se abre en la PC (`http://localhost:8765/en_vivo.html`) y en el celular conectado a la
+misma WiFi (la dirección se imprime al arrancar). Las ligas de "tus ligas" están en
+`patterns/ligas.json`.
 
 ## Sofascore (datos completos: tiros, xG, presión)
 

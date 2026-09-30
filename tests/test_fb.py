@@ -96,6 +96,20 @@ class TestPatrones(unittest.TestCase):
         ap["linea"] = 1.5
         self.assertIn("A2", patrones.clasificar_apuesta(ap, self.cfg))
 
+    def test_p5_y_p6(self):
+        ap = {"mercado": "over", "minuto": 52, "gl": 0, "gv": 0, "linea": 0.5, "roja": "no"}
+        self.assertIn("P5", patrones.clasificar_apuesta(ap, self.cfg))
+        ap["minuto"] = 65
+        self.assertNotIn("P5", patrones.clasificar_apuesta(ap, self.cfg))
+        ap = {"mercado": "1x2", "minuto": 62, "gl": 0, "gv": 2, "lado": "visitante", "roja": "no"}
+        self.assertEqual(set(patrones.clasificar_apuesta(ap, self.cfg)), {"P2", "P6"})
+        ap["minuto"] = 55
+        self.assertEqual(patrones.clasificar_apuesta(ap, self.cfg), ["P2"])
+        casos = patrones.evaluar_en_partido("P6", partido("H10;H50;A88"), self.cfg)
+        self.assertEqual((casos[0]["minuto"], casos[0]["exito"]), (60, True))
+        casos = patrones.evaluar_en_partido("P5", partido("A70"), self.cfg)
+        self.assertEqual((casos[0]["minuto"], casos[0]["exito"]), (45, True))
+
     def test_backtest_p2(self):
         casos = patrones.evaluar_en_partido("P2", partido("H10;A80;H85"), self.cfg)
         self.assertEqual(len(casos), 1)
@@ -104,7 +118,7 @@ class TestPatrones(unittest.TestCase):
 
     def test_json_y_app_comparten_codigos(self):
         data = json.loads(patrones.JSON_PATRONES.read_text(encoding="utf-8"))
-        self.assertEqual({p["codigo"] for p in data["patrones"]}, {"P1", "P2", "P3", "P4", "A1", "A2", "A3"})
+        self.assertEqual({p["codigo"] for p in data["patrones"]}, {"P1", "P2", "P3", "P4", "P5", "P6", "A1", "A2", "A3"})
 
 
 class TestEtl(unittest.TestCase):
@@ -186,6 +200,19 @@ class TestEnVivo(unittest.TestCase):
         self.assertEqual({f["patron"] for f in filas if f["partido"] == "Vila Nova vs Goiás"}, {"P1+P3"})
         self.assertEqual([f["p"] for f in filas], sorted((f["p"] for f in filas), reverse=True))
         self.assertIn("Criciúma", envivo.html_reporte(filas))
+
+
+class TestLigas(unittest.TestCase):
+    def test_tasas_base(self):
+        from fb import ligas
+        b = ligas.tasas_base([partido("H10;A80;H85"), partido("")])
+        self.assertEqual((b["n"], b["goles_partido"], b["over25"], b["btts"], b["gol_desde_75"]), (2, 1.5, 0.5, 0.5, 0.5))
+
+    def test_historial_cuadra_con_legs(self):
+        from fb import ligas
+        h = ligas.tu_historial()
+        self.assertEqual(sum(x["n"] for x in h.values()), 78)
+        self.assertEqual(sum(x["k"] for x in h.values()), 48)
 
 
 class TestEquipos(unittest.TestCase):

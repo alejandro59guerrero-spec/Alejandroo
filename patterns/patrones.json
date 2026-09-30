@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "actualizado": "2026-09-30",
   "nota": "Fuente única de reglas. La leen fb/patrones.py y la app. Cambiar aquí y regenerar con: python -m fb.cli reporte",
   "patrones": [
@@ -20,7 +20,11 @@
         "Te faltan 2 goles o más",
         "Ya pasó el minuto 75"
       ],
-      "params": {"goles_min": 2, "faltan": 1, "minuto_max": 75}
+      "params": {
+        "goles_min": 2,
+        "faltan": 1,
+        "minuto_max": 75
+      }
     },
     {
       "codigo": "P2",
@@ -38,7 +42,9 @@
         "La cuota es menor a la cuota mínima de la tabla",
         "El rival acaba de descontar y empuja"
       ],
-      "params": {"dif_min": 1}
+      "params": {
+        "dif_min": 1
+      }
     },
     {
       "codigo": "P3",
@@ -55,7 +61,10 @@
         "Te faltan 2 goles o más",
         "Quedan menos de 15 minutos"
       ],
-      "params": {"faltan": 1, "minuto_max": 80}
+      "params": {
+        "faltan": 1,
+        "minuto_max": 80
+      }
     },
     {
       "codigo": "P4",
@@ -73,6 +82,48 @@
         "La cuota es menor a la cuota mínima de la tabla"
       ],
       "params": {}
+    },
+    {
+      "codigo": "P5",
+      "nombre": "Primer gol tras el descanso con 0:0",
+      "tipo": "a_validar",
+      "resumen": "El partido llega 0:0 al segundo tiempo. Se apuesta a que cae al menos un gol.",
+      "mercado": "over",
+      "entrar_si": [
+        "El marcador es 0:0",
+        "Estás entre el minuto 45 y el 60",
+        "Apuestas Más de 0.5 goles (te falta 1 solo gol)"
+      ],
+      "no_entrar_si": [
+        "Tu línea pide 2 goles o más (eso es A2)",
+        "Ya pasó el minuto 60",
+        "La cuota es menor a la cuota mínima de la tabla"
+      ],
+      "params": {
+        "minuto_min": 45,
+        "minuto_max": 60,
+        "faltan": 1
+      }
+    },
+    {
+      "codigo": "P6",
+      "nombre": "Ganador con ventaja de 2 desde el 60'",
+      "tipo": "a_validar",
+      "resumen": "Un equipo gana por 2 goles o más con 30 minutos o menos por jugar.",
+      "mercado": "1x2",
+      "entrar_si": [
+        "Apuestas Ganador (1x2) al que va arriba",
+        "La ventaja es de 2 goles o más",
+        "Ya pasó el minuto 60"
+      ],
+      "no_entrar_si": [
+        "La ventaja es de 1 gol",
+        "La cuota es menor a la cuota mínima: suele pagar muy poco"
+      ],
+      "params": {
+        "dif_min": 2,
+        "minuto_min": 60
+      }
     },
     {
       "codigo": "A1",
@@ -97,7 +148,9 @@
         "El partido va 0:0 y tu línea necesita 2 goles o más (Más de 1.5 o mayor)",
         "Si quieres entrar con 0:0, la línea debe pedir 1 solo gol (Más de 0.5) y la cuota superar la mínima"
       ],
-      "params": {"faltan_min": 2}
+      "params": {
+        "faltan_min": 2
+      }
     },
     {
       "codigo": "A3",

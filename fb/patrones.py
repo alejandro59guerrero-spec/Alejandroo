@@ -45,6 +45,9 @@ def clasificar_apuesta(ap: dict, cfg: dict[str, dict]) -> list[str]:
             out.append("P1")
         if goles == 0 and falt >= cfg["A2"]["params"]["faltan_min"]:
             out.append("A2")
+        p5 = cfg["P5"]["params"]
+        if goles == 0 and falt == p5["faltan"] and p5["minuto_min"] <= m <= p5["minuto_max"]:
+            out.append("P5")
     if roja and merc in ("over", "btts"):
         out.append("P3")
     if merc in ("1x2", "bb") and ap.get("lado") in ("local", "visitante"):
@@ -52,6 +55,9 @@ def clasificar_apuesta(ap: dict, cfg: dict[str, dict]) -> list[str]:
         rival_lado = "visitante" if ap["lado"] == "local" else "local"
         if propio > rival and merc == "1x2":
             out.append("P2")
+            p6 = cfg["P6"]["params"]
+            if propio - rival >= p6["dif_min"] and m >= p6["minuto_min"]:
+                out.append("P6")
         if propio == rival:
             if ap.get("roja") == rival_lado:
                 out.append("P4")
@@ -113,6 +119,22 @@ def evaluar_en_partido(codigo: str, p: Partido, cfg: dict[str, dict]) -> list[di
             h, a = p.final
             casos.append({"minuto": c, "estado": e, "exito": (h > a) if con_uno_mas_local else (a > h),
                           "detalle": f"Gana el {'local' if con_uno_mas_local else 'visitante'} con uno más"})
+    elif codigo == "P5":
+        prm = cfg["P5"]["params"]
+        hit = _primer_checkpoint(p, lambda e: e["goles"] == 0 and prm["minuto_min"] <= e["minuto"] <= prm["minuto_max"])
+        if hit:
+            c, e = hit
+            gh, ga = p.goles_despues(c)
+            casos.append({"minuto": c, "estado": e, "exito": gh + ga >= 1, "detalle": "Over 0.5 con 0:0"})
+    elif codigo == "P6":
+        prm = cfg["P6"]["params"]
+        hit = _primer_checkpoint(p, lambda e: abs(e["dif"]) >= prm["dif_min"] and e["minuto"] >= prm["minuto_min"])
+        if hit:
+            c, e = hit
+            lider_local = e["dif"] > 0
+            h, a = p.final
+            casos.append({"minuto": c, "estado": e, "exito": (h > a) if lider_local else (a > h),
+                          "detalle": f"Gana el {'local' if lider_local else 'visitante'} (ventaja {abs(e['dif'])})"})
     elif codigo == "A1":
         hit = _primer_checkpoint(p, lambda e: e["dif"] == 0 and e["minuto"] >= 45)
         if hit:
