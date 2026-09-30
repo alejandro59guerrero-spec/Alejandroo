@@ -63,18 +63,30 @@ Con las cuotas prepartido (1X2 y Más de 2.5) de cada partido del día, prepara 
 minuto y marcador con probabilidad, cuota mínima y patrón. Durante el partido solo buscas la
 fila. En Registrar, "Partido de hoy" carga esas cuotas.
 
-## Escáner en vivo (en la PC)
+## Escáner en vivo (API-Football, funciona desde la nube)
+
+API deportiva legítima que sí deja conectarse desde la nube (a diferencia del scraping) y cubre
+tus ligas (Perú, Colombia, Serie B, Argentina…). Tres pasos para activarlo:
+
+1. Saca una **clave gratuita** en https://dashboard.api-football.com (plan Free, 100 consultas/día).
+2. Agrega el dominio **`v3.football.api-sports.io`** en Network access del entorno.
+3. Guarda la clave en la variable de entorno **`API_FOOTBALL_KEY`** (nunca en el repo).
 
 ```
-python -m fb.cli en-vivo --servir 8765          # tus ligas, escanea cada 60 s
+python -m fb.cli apifootball-probar             # comprueba la clave y el acceso
+python -m fb.cli en-vivo --servir 8765          # tus ligas, escanea cada 120 s
 python -m fb.cli en-vivo --servir 8765 --todas  # todas las ligas
+python -m fb.cli en-vivo --fuente sofascore     # alternativa (solo desde tu PC)
 ```
 
-Lee los partidos en juego de Sofascore, calcula minuto, marcador y rojas, y lista las apuestas
-que encajan con P1, P2, P3, P5 o P6 con su probabilidad y cuota mínima. En verde, 75% o más.
-La página se abre en la PC (`http://localhost:8765/en_vivo.html`) y en el celular conectado a la
-misma WiFi (la dirección se imprime al arrancar). Las ligas de "tus ligas" están en
-`patterns/ligas.json`.
+Lee los partidos en juego, calcula minuto, marcador y rojas, y lista las apuestas que encajan con
+P1, P2, P3, P5 o P6 con su probabilidad y cuota mínima. En verde, 75% o más. La página se abre en
+la PC (`http://localhost:8765/en_vivo.html`) y en el celular en la misma WiFi (la dirección se
+imprime al arrancar). Las ligas están en `patterns/ligas.json`. La **cuota en vivo la tecleas tú**
+desde Ecuabet: nunca se usan credenciales de la casa de apuestas.
+
+Límite: el plan gratis da marcador, minuto, goles y tarjetas al minuto, **no** xG ni tiros (eso es
+plan de pago). Espacia el escáner (cada 2–3 min) para no gastar las 100 consultas del día.
 
 ## Sofascore (datos completos: tiros, xG, presión)
 

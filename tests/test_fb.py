@@ -254,6 +254,47 @@ class TestMercadoCLV(unittest.TestCase):
         self.assertAlmostEqual(sum(p), 1.0)
 
 
+class TestApiFootball(unittest.TestCase):
+    """Adaptador de API-Football con un cliente falso con la estructura real de v3."""
+
+    class ClienteFalso:
+        def __init__(self, vivos, eventos):
+            self._vivos = vivos
+            self._eventos = eventos
+
+        def en_vivo(self):
+            return self._vivos
+
+        def eventos(self, fid):
+            return self._eventos.get(fid, [])
+
+    def fixture(self, fid, casa, id_casa, visita, id_visita, gl, gv, elapsed, pais, liga):
+        return {"fixture": {"id": fid, "status": {"elapsed": elapsed}},
+                "league": {"country": pais, "name": liga},
+                "teams": {"home": {"id": id_casa, "name": casa}, "away": {"id": id_visita, "name": visita}},
+                "goals": {"home": gl, "away": gv}}
+
+    def test_estado_y_rojas(self):
+        from fb import envivo
+        fx = self.fixture(9, "Cienciano", 1, "Los Chankas", 2, 2, 0, 65, "Peru", "Liga 1")
+        eventos = [{"type": "Card", "detail": "Red Card", "team": {"id": 2}}]
+        e = envivo.estado_apifootball(fx, eventos)
+        self.assertEqual((e["gl"], e["gv"], e["minuto"], e["rojas_visita"]), (2, 0, 65, 1))
+
+    def test_escanear_filtra_ligas(self):
+        from fb import envivo
+        m = modelo.Modelo.ajustar(partidos.cargar())
+        vivos = [
+            self.fixture(1, "Cienciano", 1, "Chankas", 2, 2, 0, 65, "Peru", "Liga 1"),
+            self.fixture(2, "X", 3, "Y", 4, 1, 0, 70, "Japan", "J1 League"),
+        ]
+        filas = envivo.escanear_apifootball(self.ClienteFalso(vivos, {}), m, solo_mis_ligas=True)
+        vistos = {f["partido"] for f in filas}
+        self.assertIn("Cienciano vs Chankas", vistos)
+        self.assertNotIn("X vs Y", vistos)
+        self.assertTrue(all("liga" in f and f["p"] is not None for f in filas))
+
+
 class TestEquipos(unittest.TestCase):
     def test_con_equipos(self):
         m = modelo.Modelo.ajustar(partidos.cargar())

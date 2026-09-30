@@ -100,6 +100,59 @@ def oportunidades(estado: dict, m: Modelo, liga_modelo: str | None = None) -> li
     return out
 
 
+def liga_apifootball(fx: dict, ligas: list[dict]) -> str | None:
+    """Nombre de tu liga si el fixture de API-Football pertenece a una de tus ligas ganadoras."""
+    lg = fx.get("league") or {}
+    pais = _norm(lg.get("country", ""))
+    nombre = _norm(lg.get("name", ""))
+    for l in ligas:
+        if l["pais"] in pais and any(c in nombre for c in l["claves"]):
+            return l["liga"]
+    return None
+
+
+def estado_apifootball(fx: dict, eventos: list[dict]) -> dict:
+    """Estado del partido con la forma que consume oportunidades()."""
+    goles = fx.get("goals") or {}
+    equipos = fx.get("teams") or {}
+    id_local = ((equipos.get("home") or {}).get("id"))
+    rl = rv = 0
+    for ev in eventos or []:
+        if ev.get("type") == "Card" and ev.get("detail") == "Red Card":
+            if (ev.get("team") or {}).get("id") == id_local:
+                rl += 1
+            else:
+                rv += 1
+    elapsed = ((fx.get("fixture") or {}).get("status") or {}).get("elapsed") or 0
+    return {"gl": goles.get("home") or 0, "gv": goles.get("away") or 0,
+            "minuto": int(elapsed), "rojas_local": rl, "rojas_visita": rv}
+
+
+def escanear_apifootball(cliente, m: Modelo, solo_mis_ligas: bool = True) -> list[dict]:
+    """Escáner en vivo usando API-Football (api-sports.io)."""
+    ligas = cargar_ligas()
+    filas = []
+    for fx in cliente.en_vivo():
+        mi_liga = liga_apifootball(fx, ligas)
+        if solo_mis_ligas and not mi_liga:
+            continue
+        fid = (fx.get("fixture") or {}).get("id")
+        eventos = cliente.eventos(fid) if fid else []
+        estado = estado_apifootball(fx, eventos)
+        if estado["minuto"] <= 0:
+            continue
+        equipos = fx.get("teams") or {}
+        casa = (equipos.get("home") or {}).get("name", "?")
+        visita = (equipos.get("away") or {}).get("name", "?")
+        for o in oportunidades(estado, m, mi_liga):
+            rl, rv = estado["rojas_local"], estado["rojas_visita"]
+            filas.append({**o, "partido": f"{casa} vs {visita}",
+                          "liga": mi_liga or (fx.get("league") or {}).get("name", ""),
+                          "marcador": f"{estado['gl']}:{estado['gv']}", "minuto": estado["minuto"],
+                          "rojas": f"{rl}-{rv}" if rl + rv else "", "event_id": fid})
+    return sorted(filas, key=lambda f: -f["p"])
+
+
 def escanear(cliente, m: Modelo, solo_mis_ligas: bool = True, ahora: float | None = None) -> list[dict]:
     datos = cliente.get("sport/football/events/live", usar_cache=False) or {}
     ligas = cargar_ligas()

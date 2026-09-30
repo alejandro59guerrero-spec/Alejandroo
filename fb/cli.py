@@ -7,7 +7,8 @@
     python -m fb.cli buscar --fecha 2026-09-27 --equipo Criciuma
     python -m fb.cli descargar --torneo 390 --temporada 72603 --paginas 10
     python -m fb.cli descargar-evento --id 12345678
-    python -m fb.cli en-vivo --servir 8765        escáner en vivo, página en la red local
+    python -m fb.cli apifootball-probar           comprueba la clave API_FOOTBALL_KEY
+    python -m fb.cli en-vivo --servir 8765        escáner en vivo (API-Football), página en la red local
     python -m fb.cli hoja                         hojas en vivo de patterns/hoy.json (sin datos en vivo)
 
 Todo corre con Python 3.10+ estándar, en esta nube o en C:\\CLOUDE\\PRONOSTICOS.
@@ -92,6 +93,15 @@ def cmd_probar(_):
     return 0 if ok else 1
 
 
+def cmd_apifootball_probar(_):
+    from .apifootball import probar
+    ok, msg = probar()
+    print(("OK  " if ok else "FALTA  ") + msg)
+    if not ok:
+        print("Guarda tu clave en la variable API_FOOTBALL_KEY y agrega v3.football.api-sports.io en Network access.")
+    return 0 if ok else 1
+
+
 def cmd_buscar(a):
     from .sofascore import Cliente
     q = _norm(a.equipo)
@@ -155,12 +165,24 @@ def cmd_en_vivo(a):
     from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 
     from . import partidos
-    from .envivo import escanear, html_reporte
+    from .envivo import escanear, escanear_apifootball, html_reporte
     from .modelo import Modelo
-    from .sofascore import Cliente, SofascoreError
 
     m = Modelo.ajustar(partidos.cargar())
-    cli = Cliente(pausa=0.5, reintentos=1)
+    fuente = getattr(a, "fuente", "apifootball")
+    if fuente == "apifootball":
+        from .apifootball import ApiFootballError, Cliente
+        cli = Cliente(pausa=1.0, reintentos=1)
+        escaneo = lambda: escanear_apifootball(cli, m, solo_mis_ligas=not a.todas)
+        Error = ApiFootballError
+        nombre_fuente = "API-Football"
+    else:
+        from .sofascore import Cliente, SofascoreError
+        cli = Cliente(pausa=0.5, reintentos=1)
+        escaneo = lambda: escanear(cli, m, solo_mis_ligas=not a.todas)
+        Error = SofascoreError
+        nombre_fuente = "Sofascore"
+
     salida = RAIZ / "reports" / "en_vivo.html"
     salida.parent.mkdir(exist_ok=True)
     if a.servir:
@@ -174,9 +196,9 @@ def cmd_en_vivo(a):
         print(f"Abre en la PC http://localhost:{a.servir}/en_vivo.html  y en el celular (misma WiFi) http://{ip}:{a.servir}/en_vivo.html")
     while True:
         try:
-            filas = escanear(cli, m, solo_mis_ligas=not a.todas)
-        except SofascoreError as e:
-            print(f"Sofascore no responde: {e}")
+            filas = escaneo()
+        except Error as e:
+            print(f"{nombre_fuente} no responde: {e}")
             filas = []
         salida.write_text(html_reporte(filas, a.cada), encoding="utf-8")
         print(f"\n{len(filas)} oportunidades")
@@ -195,6 +217,7 @@ def main(argv=None):
     sub.add_parser("auditoria").set_defaults(fn=cmd_auditoria)
     sub.add_parser("inyectar-app").set_defaults(fn=cmd_inyectar)
     sub.add_parser("sofascore-probar").set_defaults(fn=cmd_probar)
+    sub.add_parser("apifootball-probar").set_defaults(fn=cmd_apifootball_probar)
     b = sub.add_parser("buscar")
     b.add_argument("--fecha", required=True)
     b.add_argument("--equipo", required=True)
@@ -209,7 +232,9 @@ def main(argv=None):
     e.set_defaults(fn=cmd_descargar_evento)
     sub.add_parser("hoja").set_defaults(fn=lambda a: cmd_hoja(a) and 0)
     v = sub.add_parser("en-vivo")
-    v.add_argument("--cada", type=int, default=60, help="segundos entre escaneos")
+    v.add_argument("--fuente", choices=["apifootball", "sofascore"], default="apifootball",
+                   help="fuente de datos en vivo (por defecto API-Football)")
+    v.add_argument("--cada", type=int, default=120, help="segundos entre escaneos")
     v.add_argument("--servir", type=int, default=0, help="puerto para ver la página en la red local")
     v.add_argument("--todas", action="store_true", help="incluye ligas fuera de tu historial")
     v.add_argument("--una-vez", action="store_true")
