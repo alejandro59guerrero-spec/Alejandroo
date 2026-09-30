@@ -7,6 +7,7 @@
     python -m fb.cli descargar --torneo 390 --temporada 72603 --paginas 10
     python -m fb.cli descargar-evento --id 12345678
     python -m fb.cli en-vivo --servir 8765        escáner en vivo, página en la red local
+    python -m fb.cli hoja                         hojas en vivo de patterns/hoy.json (sin datos en vivo)
 
 Todo corre con Python 3.10+ estándar, en esta nube o en C:\\CLOUDE\\PRONOSTICOS.
 """
@@ -100,6 +101,20 @@ def cmd_descargar(a):
             print(f"[{i}/{len(evs)}] {f['local']} {f['final']} {f['visitante']}  completo={f['completo']}")
 
 
+def cmd_hoja(_):
+    """Hojas en vivo de los partidos de patterns/hoy.json."""
+    from . import partidos
+    from .hoja import cargar_hoy, hoja, markdown
+    from .modelo import Modelo
+    hoy = cargar_hoy()
+    m = Modelo.ajustar(partidos.cargar())
+    hojas = [hoja(m, pt) for pt in hoy["partidos"]]
+    salida = RAIZ / "reports" / "hoja_en_vivo.md"
+    salida.write_text(markdown(hojas, hoy.get("fecha", "")), encoding="utf-8")
+    print(f"{len(hojas)} hojas en {salida.relative_to(RAIZ)}")
+    return hojas
+
+
 def cmd_en_vivo(a):
     """Escanea partidos en vivo cada `--cada` segundos. Ctrl+C para salir."""
     import socket
@@ -159,6 +174,7 @@ def main(argv=None):
     e = sub.add_parser("descargar-evento")
     e.add_argument("--id", type=int, required=True)
     e.set_defaults(fn=cmd_descargar_evento)
+    sub.add_parser("hoja").set_defaults(fn=lambda a: cmd_hoja(a) and 0)
     v = sub.add_parser("en-vivo")
     v.add_argument("--cada", type=int, default=60, help="segundos entre escaneos")
     v.add_argument("--servir", type=int, default=0, help="puerto para ver la página en la red local")

@@ -1,0 +1,18 @@
+{
+  "fecha": "2026-09-30",
+  "nota": "Partidos del día en tus ligas con cuotas prepartido de prensa. Horas en Ecuador (UTC-5). Regenerar: python -m fb.cli hoja",
+  "partidos": [
+    {"liga": "Perú Liga 1", "local": "Cienciano", "visitante": "Los Chankas", "hora": "15:00 (algunas fuentes dicen 18:00)",
+     "c1": 1.37, "o25": 1.76,
+     "contexto": "Cienciano 14.º del Clausura con 7 puntos y 2 derrotas seguidas; Los Chankas con 5 derrotas seguidas. Ambos marcan en 7 de 10 partidos de Los Chankas.",
+     "fuente": "apuestas-deportivas.pe, casasdeapuestas.com, rpp.pe"},
+    {"liga": "MLS", "local": "New York Red Bulls", "visitante": "St. Louis City", "hora": "17:30 o 19:30 (fuentes no coinciden)",
+     "c1": 3.45, "cx": 3.23, "c2": 2.50, "p_o25": 0.67,
+     "contexto": "NY 8.º con 33 puntos (G-G-P-E-P); St. Louis 3.º con 44 (G-G-E-G-E). Casas: 66% Ambos marcan, 67% Más de 2.5.",
+     "fuente": "squawka.com, bettingnews.com (probabilidades medias de casas)"},
+    {"liga": "Colombia Primera A", "local": "Atlético Nacional", "visitante": "Junior", "hora": "20:00",
+     "c1": 1.65, "cx": 4.40, "c2": 5.75,
+     "contexto": "Aplazado de la fecha 3. Nacional 19 puntos en 9 partidos; Junior 16 y dos victorias seguidas. Sin cuota de goles: el total sale de la liga (Colombia es la liga más cerrada de la muestra).",
+     "fuente": "futbolred.com, wincomparator.com, oddschecker.com"}
+  ]
+}

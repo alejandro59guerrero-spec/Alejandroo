@@ -40,6 +40,17 @@ Solo usa Python estándar (3.10+).
 - `patterns/patrones.json`: fuente única de reglas. La leen Python y la app.
 - `fb/`: modelo de Poisson en vivo, backtest, mapa, descubrimiento de patrones, Sofascore.
 
+## Hoja en vivo (sin datos en vivo)
+
+```
+python -m fb.cli hoja     # reports/hoja_en_vivo.md con los partidos de patterns/hoy.json
+python -m fb.cli reporte && python -m fb.cli inyectar-app   # y a la app (pestaña Mapa)
+```
+
+Con las cuotas prepartido (1X2 y Más de 2.5) de cada partido del día, prepara la tabla de
+minuto y marcador con probabilidad, cuota mínima y patrón. Durante el partido solo buscas la
+fila. En Registrar, "Partido de hoy" carga esas cuotas.
+
 ## Escáner en vivo (en la PC)
 
 ```

@@ -1,6 +1,6 @@
 # Football Brain · Análisis v2
 
-Generado el 2026-09-30 06:07 con `python -m fb.cli reporte`.
+Generado el 2026-09-30 06:12 con `python -m fb.cli reporte`.
 
 ## 1. De dónde salen los datos
 

@@ -1,5 +1,5 @@
 {
- "generado": "2026-09-30 06:07",
+ "generado": "2026-09-30 06:12",
  "muestra": {
   "backtest": 72,
   "total": 107,
@@ -2051,6 +2051,2153 @@
   "brier_1x2_equipos": 0.393,
   "brier_gol_liga": 0.142,
   "brier_gol_equipos": 0.138
+ },
+ "hoy": {
+  "fecha": "2026-09-30",
+  "partidos": [
+   {
+    "liga": "Perú Liga 1",
+    "local": "Cienciano",
+    "visitante": "Los Chankas",
+    "hora": "15:00 (algunas fuentes dicen 18:00)",
+    "c1": 1.37,
+    "o25": 1.76,
+    "contexto": "Cienciano 14.º del Clausura con 7 puntos y 2 derrotas seguidas; Los Chankas con 5 derrotas seguidas. Ambos marcan en 7 de 10 partidos de Los Chankas.",
+    "fuente": "apuestas-deportivas.pe, casasdeapuestas.com, rpp.pe",
+    "prepartido": {
+     "local": 0.695,
+     "empate": null,
+     "visitante": null,
+     "over25": 0.541,
+     "goles_esperados": 2.845
+    },
+    "filas": [
+     {
+      "minuto": 30,
+      "marcador": "0:0",
+      "over": {
+       "linea": 0.5,
+       "p": 0.887,
+       "cuota_min": 1.128
+      },
+      "lider": null,
+      "empate_sigue": 0.241,
+      "patrones": [],
+      "alta": false
+     },
+     {
+      "minuto": 30,
+      "marcador": "1:0",
+      "over": {
+       "linea": 1.5,
+       "p": 0.887,
+       "cuota_min": 1.128
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.875,
+       "cuota_min": 1.142
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 30,
+      "marcador": "0:1",
+      "over": {
+       "linea": 1.5,
+       "p": 0.887,
+       "cuota_min": 1.128
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.366,
+       "cuota_min": 2.735
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 30,
+      "marcador": "1:1",
+      "over": {
+       "linea": 2.5,
+       "p": 0.887,
+       "cuota_min": 1.128
+      },
+      "lider": null,
+      "empate_sigue": 0.241,
+      "patrones": [
+       "P1"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 30,
+      "marcador": "2:0",
+      "over": {
+       "linea": 2.5,
+       "p": 0.887,
+       "cuota_min": 1.128
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.972,
+       "cuota_min": 1.029
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 30,
+      "marcador": "0:2",
+      "over": {
+       "linea": 2.5,
+       "p": 0.887,
+       "cuota_min": 1.128
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.646,
+       "cuota_min": 1.549
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 45,
+      "marcador": "0:0",
+      "over": {
+       "linea": 0.5,
+       "p": 0.795,
+       "cuota_min": 1.257
+      },
+      "lider": null,
+      "empate_sigue": 0.315,
+      "patrones": [
+       "P5"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 45,
+      "marcador": "1:0",
+      "over": {
+       "linea": 1.5,
+       "p": 0.795,
+       "cuota_min": 1.257
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.873,
+       "cuota_min": 1.146
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 45,
+      "marcador": "0:1",
+      "over": {
+       "linea": 1.5,
+       "p": 0.795,
+       "cuota_min": 1.257
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.442,
+       "cuota_min": 2.261
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 45,
+      "marcador": "1:1",
+      "over": {
+       "linea": 2.5,
+       "p": 0.795,
+       "cuota_min": 1.257
+      },
+      "lider": null,
+      "empate_sigue": 0.315,
+      "patrones": [
+       "P1"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 45,
+      "marcador": "2:0",
+      "over": {
+       "linea": 2.5,
+       "p": 0.795,
+       "cuota_min": 1.257
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.977,
+       "cuota_min": 1.023
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 45,
+      "marcador": "0:2",
+      "over": {
+       "linea": 2.5,
+       "p": 0.795,
+       "cuota_min": 1.257
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.747,
+       "cuota_min": 1.339
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 55,
+      "marcador": "0:0",
+      "over": {
+       "linea": 0.5,
+       "p": 0.713,
+       "cuota_min": 1.402
+      },
+      "lider": null,
+      "empate_sigue": 0.379,
+      "patrones": [
+       "P5"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 55,
+      "marcador": "1:0",
+      "over": {
+       "linea": 1.5,
+       "p": 0.713,
+       "cuota_min": 1.402
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.876,
+       "cuota_min": 1.142
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 55,
+      "marcador": "0:1",
+      "over": {
+       "linea": 1.5,
+       "p": 0.713,
+       "cuota_min": 1.402
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.503,
+       "cuota_min": 1.99
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 55,
+      "marcador": "1:1",
+      "over": {
+       "linea": 2.5,
+       "p": 0.713,
+       "cuota_min": 1.402
+      },
+      "lider": null,
+      "empate_sigue": 0.379,
+      "patrones": [
+       "P1"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 55,
+      "marcador": "2:0",
+      "over": {
+       "linea": 2.5,
+       "p": 0.713,
+       "cuota_min": 1.402
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.982,
+       "cuota_min": 1.018
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 55,
+      "marcador": "0:2",
+      "over": {
+       "linea": 2.5,
+       "p": 0.713,
+       "cuota_min": 1.402
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.811,
+       "cuota_min": 1.234
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 65,
+      "marcador": "0:0",
+      "over": {
+       "linea": 0.5,
+       "p": 0.604,
+       "cuota_min": 1.655
+      },
+      "lider": null,
+      "empate_sigue": 0.463,
+      "patrones": [],
+      "alta": false
+     },
+     {
+      "minuto": 65,
+      "marcador": "1:0",
+      "over": {
+       "linea": 1.5,
+       "p": 0.604,
+       "cuota_min": 1.655
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.885,
+       "cuota_min": 1.129
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 65,
+      "marcador": "0:1",
+      "over": {
+       "linea": 1.5,
+       "p": 0.604,
+       "cuota_min": 1.655
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.578,
+       "cuota_min": 1.731
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 65,
+      "marcador": "1:1",
+      "over": {
+       "linea": 2.5,
+       "p": 0.604,
+       "cuota_min": 1.655
+      },
+      "lider": null,
+      "empate_sigue": 0.463,
+      "patrones": [
+       "P1"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 65,
+      "marcador": "2:0",
+      "over": {
+       "linea": 2.5,
+       "p": 0.604,
+       "cuota_min": 1.655
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.987,
+       "cuota_min": 1.013
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 65,
+      "marcador": "0:2",
+      "over": {
+       "linea": 2.5,
+       "p": 0.604,
+       "cuota_min": 1.655
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.874,
+       "cuota_min": 1.145
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 65,
+      "marcador": "2:1",
+      "over": {
+       "linea": 3.5,
+       "p": 0.604,
+       "cuota_min": 1.655
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.885,
+       "cuota_min": 1.129
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 65,
+      "marcador": "1:2",
+      "over": {
+       "linea": 3.5,
+       "p": 0.604,
+       "cuota_min": 1.655
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.578,
+       "cuota_min": 1.731
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 65,
+      "marcador": "3:0",
+      "over": {
+       "linea": 3.5,
+       "p": 0.604,
+       "cuota_min": 1.655
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.999,
+       "cuota_min": 1.001
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 65,
+      "marcador": "0:3",
+      "over": {
+       "linea": 3.5,
+       "p": 0.604,
+       "cuota_min": 1.655
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.973,
+       "cuota_min": 1.028
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 75,
+      "marcador": "0:0",
+      "over": {
+       "linea": 0.5,
+       "p": 0.463,
+       "cuota_min": 2.16
+      },
+      "lider": null,
+      "empate_sigue": 0.577,
+      "patrones": [],
+      "alta": false
+     },
+     {
+      "minuto": 75,
+      "marcador": "1:0",
+      "over": {
+       "linea": 1.5,
+       "p": 0.463,
+       "cuota_min": 2.16
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.904,
+       "cuota_min": 1.106
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 75,
+      "marcador": "0:1",
+      "over": {
+       "linea": 1.5,
+       "p": 0.463,
+       "cuota_min": 2.16
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.673,
+       "cuota_min": 1.485
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 75,
+      "marcador": "1:1",
+      "over": {
+       "linea": 2.5,
+       "p": 0.463,
+       "cuota_min": 2.16
+      },
+      "lider": null,
+      "empate_sigue": 0.577,
+      "patrones": [
+       "P1"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 75,
+      "marcador": "2:0",
+      "over": {
+       "linea": 2.5,
+       "p": 0.463,
+       "cuota_min": 2.16
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.993,
+       "cuota_min": 1.007
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 75,
+      "marcador": "0:2",
+      "over": {
+       "linea": 2.5,
+       "p": 0.463,
+       "cuota_min": 2.16
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.931,
+       "cuota_min": 1.074
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 75,
+      "marcador": "2:1",
+      "over": {
+       "linea": 3.5,
+       "p": 0.463,
+       "cuota_min": 2.16
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.904,
+       "cuota_min": 1.106
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 75,
+      "marcador": "1:2",
+      "over": {
+       "linea": 3.5,
+       "p": 0.463,
+       "cuota_min": 2.16
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.673,
+       "cuota_min": 1.485
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 75,
+      "marcador": "3:0",
+      "over": {
+       "linea": 3.5,
+       "p": 0.463,
+       "cuota_min": 2.16
+      },
+      "lider": {
+       "lado": "local",
+       "p": 1.0,
+       "cuota_min": 1.0
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 75,
+      "marcador": "0:3",
+      "over": {
+       "linea": 3.5,
+       "p": 0.463,
+       "cuota_min": 2.16
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.99,
+       "cuota_min": 1.01
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     }
+    ]
+   },
+   {
+    "liga": "MLS",
+    "local": "New York Red Bulls",
+    "visitante": "St. Louis City",
+    "hora": "17:30 o 19:30 (fuentes no coinciden)",
+    "c1": 3.45,
+    "cx": 3.23,
+    "c2": 2.5,
+    "p_o25": 0.67,
+    "contexto": "NY 8.º con 33 puntos (G-G-P-E-P); St. Louis 3.º con 44 (G-G-E-G-E). Casas: 66% Ambos marcan, 67% Más de 2.5.",
+    "fuente": "squawka.com, bettingnews.com (probabilidades medias de casas)",
+    "prepartido": {
+     "local": 0.29,
+     "empate": 0.31,
+     "visitante": 0.4,
+     "over25": 0.67,
+     "goles_esperados": 3.451
+    },
+    "filas": [
+     {
+      "minuto": 30,
+      "marcador": "0:0",
+      "over": {
+       "linea": 0.5,
+       "p": 0.929,
+       "cuota_min": 1.077
+      },
+      "lider": null,
+      "empate_sigue": 0.256,
+      "patrones": [],
+      "alta": false
+     },
+     {
+      "minuto": 30,
+      "marcador": "1:0",
+      "over": {
+       "linea": 1.5,
+       "p": 0.929,
+       "cuota_min": 1.077
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.541,
+       "cuota_min": 1.85
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 30,
+      "marcador": "0:1",
+      "over": {
+       "linea": 1.5,
+       "p": 0.929,
+       "cuota_min": 1.077
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.715,
+       "cuota_min": 1.398
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 30,
+      "marcador": "1:1",
+      "over": {
+       "linea": 2.5,
+       "p": 0.929,
+       "cuota_min": 1.077
+      },
+      "lider": null,
+      "empate_sigue": 0.256,
+      "patrones": [
+       "P1"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 30,
+      "marcador": "2:0",
+      "over": {
+       "linea": 2.5,
+       "p": 0.929,
+       "cuota_min": 1.077
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.77,
+       "cuota_min": 1.298
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 30,
+      "marcador": "0:2",
+      "over": {
+       "linea": 2.5,
+       "p": 0.929,
+       "cuota_min": 1.077
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.888,
+       "cuota_min": 1.127
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 45,
+      "marcador": "0:0",
+      "over": {
+       "linea": 0.5,
+       "p": 0.854,
+       "cuota_min": 1.171
+      },
+      "lider": null,
+      "empate_sigue": 0.312,
+      "patrones": [
+       "P5"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 45,
+      "marcador": "1:0",
+      "over": {
+       "linea": 1.5,
+       "p": 0.854,
+       "cuota_min": 1.171
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.583,
+       "cuota_min": 1.716
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 45,
+      "marcador": "0:1",
+      "over": {
+       "linea": 1.5,
+       "p": 0.854,
+       "cuota_min": 1.171
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.729,
+       "cuota_min": 1.372
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 45,
+      "marcador": "1:1",
+      "over": {
+       "linea": 2.5,
+       "p": 0.854,
+       "cuota_min": 1.171
+      },
+      "lider": null,
+      "empate_sigue": 0.312,
+      "patrones": [
+       "P1"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 45,
+      "marcador": "2:0",
+      "over": {
+       "linea": 2.5,
+       "p": 0.854,
+       "cuota_min": 1.171
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.828,
+       "cuota_min": 1.208
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 45,
+      "marcador": "0:2",
+      "over": {
+       "linea": 2.5,
+       "p": 0.854,
+       "cuota_min": 1.171
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.913,
+       "cuota_min": 1.096
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 55,
+      "marcador": "0:0",
+      "over": {
+       "linea": 0.5,
+       "p": 0.78,
+       "cuota_min": 1.282
+      },
+      "lider": null,
+      "empate_sigue": 0.362,
+      "patrones": [
+       "P5"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 55,
+      "marcador": "1:0",
+      "over": {
+       "linea": 1.5,
+       "p": 0.78,
+       "cuota_min": 1.282
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.618,
+       "cuota_min": 1.619
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 55,
+      "marcador": "0:1",
+      "over": {
+       "linea": 1.5,
+       "p": 0.78,
+       "cuota_min": 1.282
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.744,
+       "cuota_min": 1.344
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 55,
+      "marcador": "1:1",
+      "over": {
+       "linea": 2.5,
+       "p": 0.78,
+       "cuota_min": 1.282
+      },
+      "lider": null,
+      "empate_sigue": 0.362,
+      "patrones": [
+       "P1"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 55,
+      "marcador": "2:0",
+      "over": {
+       "linea": 2.5,
+       "p": 0.78,
+       "cuota_min": 1.282
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.867,
+       "cuota_min": 1.154
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 55,
+      "marcador": "0:2",
+      "over": {
+       "linea": 2.5,
+       "p": 0.78,
+       "cuota_min": 1.282
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.931,
+       "cuota_min": 1.074
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 65,
+      "marcador": "0:0",
+      "over": {
+       "linea": 0.5,
+       "p": 0.675,
+       "cuota_min": 1.481
+      },
+      "lider": null,
+      "empate_sigue": 0.433,
+      "patrones": [],
+      "alta": false
+     },
+     {
+      "minuto": 65,
+      "marcador": "1:0",
+      "over": {
+       "linea": 1.5,
+       "p": 0.675,
+       "cuota_min": 1.481
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.665,
+       "cuota_min": 1.505
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 65,
+      "marcador": "0:1",
+      "over": {
+       "linea": 1.5,
+       "p": 0.675,
+       "cuota_min": 1.481
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.769,
+       "cuota_min": 1.301
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 65,
+      "marcador": "1:1",
+      "over": {
+       "linea": 2.5,
+       "p": 0.675,
+       "cuota_min": 1.481
+      },
+      "lider": null,
+      "empate_sigue": 0.433,
+      "patrones": [
+       "P1"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 65,
+      "marcador": "2:0",
+      "over": {
+       "linea": 2.5,
+       "p": 0.675,
+       "cuota_min": 1.481
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.907,
+       "cuota_min": 1.102
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 65,
+      "marcador": "0:2",
+      "over": {
+       "linea": 2.5,
+       "p": 0.675,
+       "cuota_min": 1.481
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.951,
+       "cuota_min": 1.052
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 65,
+      "marcador": "2:1",
+      "over": {
+       "linea": 3.5,
+       "p": 0.675,
+       "cuota_min": 1.481
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.665,
+       "cuota_min": 1.505
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 65,
+      "marcador": "1:2",
+      "over": {
+       "linea": 3.5,
+       "p": 0.675,
+       "cuota_min": 1.481
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.769,
+       "cuota_min": 1.301
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 65,
+      "marcador": "3:0",
+      "over": {
+       "linea": 3.5,
+       "p": 0.675,
+       "cuota_min": 1.481
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.982,
+       "cuota_min": 1.019
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 65,
+      "marcador": "0:3",
+      "over": {
+       "linea": 3.5,
+       "p": 0.675,
+       "cuota_min": 1.481
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.993,
+       "cuota_min": 1.007
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 75,
+      "marcador": "0:0",
+      "over": {
+       "linea": 0.5,
+       "p": 0.53,
+       "cuota_min": 1.889
+      },
+      "lider": null,
+      "empate_sigue": 0.538,
+      "patrones": [],
+      "alta": false
+     },
+     {
+      "minuto": 75,
+      "marcador": "1:0",
+      "over": {
+       "linea": 1.5,
+       "p": 0.53,
+       "cuota_min": 1.889
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.73,
+       "cuota_min": 1.37
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 75,
+      "marcador": "0:1",
+      "over": {
+       "linea": 1.5,
+       "p": 0.53,
+       "cuota_min": 1.889
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.808,
+       "cuota_min": 1.237
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 75,
+      "marcador": "1:1",
+      "over": {
+       "linea": 2.5,
+       "p": 0.53,
+       "cuota_min": 1.889
+      },
+      "lider": null,
+      "empate_sigue": 0.538,
+      "patrones": [
+       "P1"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 75,
+      "marcador": "2:0",
+      "over": {
+       "linea": 2.5,
+       "p": 0.53,
+       "cuota_min": 1.889
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.947,
+       "cuota_min": 1.056
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 75,
+      "marcador": "0:2",
+      "over": {
+       "linea": 2.5,
+       "p": 0.53,
+       "cuota_min": 1.889
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.971,
+       "cuota_min": 1.03
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 75,
+      "marcador": "2:1",
+      "over": {
+       "linea": 3.5,
+       "p": 0.53,
+       "cuota_min": 1.889
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.73,
+       "cuota_min": 1.37
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 75,
+      "marcador": "1:2",
+      "over": {
+       "linea": 3.5,
+       "p": 0.53,
+       "cuota_min": 1.889
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.808,
+       "cuota_min": 1.237
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 75,
+      "marcador": "3:0",
+      "over": {
+       "linea": 3.5,
+       "p": 0.53,
+       "cuota_min": 1.889
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.993,
+       "cuota_min": 1.007
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 75,
+      "marcador": "0:3",
+      "over": {
+       "linea": 3.5,
+       "p": 0.53,
+       "cuota_min": 1.889
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.997,
+       "cuota_min": 1.003
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     }
+    ]
+   },
+   {
+    "liga": "Colombia Primera A",
+    "local": "Atlético Nacional",
+    "visitante": "Junior",
+    "hora": "20:00",
+    "c1": 1.65,
+    "cx": 4.4,
+    "c2": 5.75,
+    "contexto": "Aplazado de la fecha 3. Nacional 19 puntos en 9 partidos; Junior 16 y dos victorias seguidas. Sin cuota de goles: el total sale de la liga (Colombia es la liga más cerrada de la muestra).",
+    "fuente": "futbolred.com, wincomparator.com, oddschecker.com",
+    "prepartido": {
+     "local": 0.602,
+     "empate": 0.226,
+     "visitante": 0.173,
+     "over25": null,
+     "goles_esperados": 2.418
+    },
+    "filas": [
+     {
+      "minuto": 30,
+      "marcador": "0:0",
+      "over": {
+       "linea": 0.5,
+       "p": 0.843,
+       "cuota_min": 1.186
+      },
+      "lider": null,
+      "empate_sigue": 0.293,
+      "patrones": [],
+      "alta": false
+     },
+     {
+      "minuto": 30,
+      "marcador": "1:0",
+      "over": {
+       "linea": 1.5,
+       "p": 0.843,
+       "cuota_min": 1.186
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.838,
+       "cuota_min": 1.193
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 30,
+      "marcador": "0:1",
+      "over": {
+       "linea": 1.5,
+       "p": 0.843,
+       "cuota_min": 1.186
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.455,
+       "cuota_min": 2.197
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 30,
+      "marcador": "1:1",
+      "over": {
+       "linea": 2.5,
+       "p": 0.843,
+       "cuota_min": 1.186
+      },
+      "lider": null,
+      "empate_sigue": 0.293,
+      "patrones": [
+       "P1"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 30,
+      "marcador": "2:0",
+      "over": {
+       "linea": 2.5,
+       "p": 0.843,
+       "cuota_min": 1.186
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.962,
+       "cuota_min": 1.039
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 30,
+      "marcador": "0:2",
+      "over": {
+       "linea": 2.5,
+       "p": 0.843,
+       "cuota_min": 1.186
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.74,
+       "cuota_min": 1.351
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 45,
+      "marcador": "0:0",
+      "over": {
+       "linea": 0.5,
+       "p": 0.74,
+       "cuota_min": 1.351
+      },
+      "lider": null,
+      "empate_sigue": 0.369,
+      "patrones": [
+       "P5"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 45,
+      "marcador": "1:0",
+      "over": {
+       "linea": 1.5,
+       "p": 0.74,
+       "cuota_min": 1.351
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.844,
+       "cuota_min": 1.185
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 45,
+      "marcador": "0:1",
+      "over": {
+       "linea": 1.5,
+       "p": 0.74,
+       "cuota_min": 1.351
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.526,
+       "cuota_min": 1.902
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 45,
+      "marcador": "1:1",
+      "over": {
+       "linea": 2.5,
+       "p": 0.74,
+       "cuota_min": 1.351
+      },
+      "lider": null,
+      "empate_sigue": 0.369,
+      "patrones": [
+       "P1"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 45,
+      "marcador": "2:0",
+      "over": {
+       "linea": 2.5,
+       "p": 0.74,
+       "cuota_min": 1.351
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.972,
+       "cuota_min": 1.029
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 45,
+      "marcador": "0:2",
+      "over": {
+       "linea": 2.5,
+       "p": 0.74,
+       "cuota_min": 1.351
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.82,
+       "cuota_min": 1.22
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 55,
+      "marcador": "0:0",
+      "over": {
+       "linea": 0.5,
+       "p": 0.654,
+       "cuota_min": 1.529
+      },
+      "lider": null,
+      "empate_sigue": 0.433,
+      "patrones": [
+       "P5"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 55,
+      "marcador": "1:0",
+      "over": {
+       "linea": 1.5,
+       "p": 0.654,
+       "cuota_min": 1.529
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.853,
+       "cuota_min": 1.172
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 55,
+      "marcador": "0:1",
+      "over": {
+       "linea": 1.5,
+       "p": 0.654,
+       "cuota_min": 1.529
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.58,
+       "cuota_min": 1.724
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 55,
+      "marcador": "1:1",
+      "over": {
+       "linea": 2.5,
+       "p": 0.654,
+       "cuota_min": 1.529
+      },
+      "lider": null,
+      "empate_sigue": 0.433,
+      "patrones": [
+       "P1"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 55,
+      "marcador": "2:0",
+      "over": {
+       "linea": 2.5,
+       "p": 0.654,
+       "cuota_min": 1.529
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.978,
+       "cuota_min": 1.022
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 55,
+      "marcador": "0:2",
+      "over": {
+       "linea": 2.5,
+       "p": 0.654,
+       "cuota_min": 1.529
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.868,
+       "cuota_min": 1.152
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 65,
+      "marcador": "0:0",
+      "over": {
+       "linea": 0.5,
+       "p": 0.545,
+       "cuota_min": 1.834
+      },
+      "lider": null,
+      "empate_sigue": 0.516,
+      "patrones": [],
+      "alta": false
+     },
+     {
+      "minuto": 65,
+      "marcador": "1:0",
+      "over": {
+       "linea": 1.5,
+       "p": 0.545,
+       "cuota_min": 1.834
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.869,
+       "cuota_min": 1.15
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 65,
+      "marcador": "0:1",
+      "over": {
+       "linea": 1.5,
+       "p": 0.545,
+       "cuota_min": 1.834
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.647,
+       "cuota_min": 1.545
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 65,
+      "marcador": "1:1",
+      "over": {
+       "linea": 2.5,
+       "p": 0.545,
+       "cuota_min": 1.834
+      },
+      "lider": null,
+      "empate_sigue": 0.516,
+      "patrones": [
+       "P1"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 65,
+      "marcador": "2:0",
+      "over": {
+       "linea": 2.5,
+       "p": 0.545,
+       "cuota_min": 1.834
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.985,
+       "cuota_min": 1.015
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 65,
+      "marcador": "0:2",
+      "over": {
+       "linea": 2.5,
+       "p": 0.545,
+       "cuota_min": 1.834
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.913,
+       "cuota_min": 1.095
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 65,
+      "marcador": "2:1",
+      "over": {
+       "linea": 3.5,
+       "p": 0.545,
+       "cuota_min": 1.834
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.869,
+       "cuota_min": 1.15
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 65,
+      "marcador": "1:2",
+      "over": {
+       "linea": 3.5,
+       "p": 0.545,
+       "cuota_min": 1.834
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.647,
+       "cuota_min": 1.545
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 65,
+      "marcador": "3:0",
+      "over": {
+       "linea": 3.5,
+       "p": 0.545,
+       "cuota_min": 1.834
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.999,
+       "cuota_min": 1.001
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 65,
+      "marcador": "0:3",
+      "over": {
+       "linea": 3.5,
+       "p": 0.545,
+       "cuota_min": 1.834
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.985,
+       "cuota_min": 1.015
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 75,
+      "marcador": "0:0",
+      "over": {
+       "linea": 0.5,
+       "p": 0.41,
+       "cuota_min": 2.437
+      },
+      "lider": null,
+      "empate_sigue": 0.625,
+      "patrones": [],
+      "alta": false
+     },
+     {
+      "minuto": 75,
+      "marcador": "1:0",
+      "over": {
+       "linea": 1.5,
+       "p": 0.41,
+       "cuota_min": 2.437
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.895,
+       "cuota_min": 1.118
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 75,
+      "marcador": "0:1",
+      "over": {
+       "linea": 1.5,
+       "p": 0.41,
+       "cuota_min": 2.437
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.73,
+       "cuota_min": 1.369
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 75,
+      "marcador": "1:1",
+      "over": {
+       "linea": 2.5,
+       "p": 0.41,
+       "cuota_min": 2.437
+      },
+      "lider": null,
+      "empate_sigue": 0.625,
+      "patrones": [
+       "P1"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 75,
+      "marcador": "2:0",
+      "over": {
+       "linea": 2.5,
+       "p": 0.41,
+       "cuota_min": 2.437
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.992,
+       "cuota_min": 1.008
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 75,
+      "marcador": "0:2",
+      "over": {
+       "linea": 2.5,
+       "p": 0.41,
+       "cuota_min": 2.437
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.954,
+       "cuota_min": 1.048
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 75,
+      "marcador": "2:1",
+      "over": {
+       "linea": 3.5,
+       "p": 0.41,
+       "cuota_min": 2.437
+      },
+      "lider": {
+       "lado": "local",
+       "p": 0.895,
+       "cuota_min": 1.118
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 75,
+      "marcador": "1:2",
+      "over": {
+       "linea": 3.5,
+       "p": 0.41,
+       "cuota_min": 2.437
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.73,
+       "cuota_min": 1.369
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P2"
+      ],
+      "alta": false
+     },
+     {
+      "minuto": 75,
+      "marcador": "3:0",
+      "over": {
+       "linea": 3.5,
+       "p": 0.41,
+       "cuota_min": 2.437
+      },
+      "lider": {
+       "lado": "local",
+       "p": 1.0,
+       "cuota_min": 1.0
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     },
+     {
+      "minuto": 75,
+      "marcador": "0:3",
+      "over": {
+       "linea": 3.5,
+       "p": 0.41,
+       "cuota_min": 2.437
+      },
+      "lider": {
+       "lado": "visitante",
+       "p": 0.995,
+       "cuota_min": 1.005
+      },
+      "empate_sigue": null,
+      "patrones": [
+       "P1",
+       "P6"
+      ],
+      "alta": true
+     }
+    ]
+   }
+  ]
  },
  "apuestas_modelo": [
   {

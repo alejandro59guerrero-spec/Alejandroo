@@ -54,6 +54,9 @@ def generar() -> dict:
     ev = historial.evaluar(m)
     perfil = ligas.perfil(todos, m.factor_liga)
     equipos = backtest.validar_equipos(todos)
+    from .hoja import cargar_hoy, hoja
+    hoy = cargar_hoy()
+    hoy = {"fecha": hoy.get("fecha"), "partidos": [hoja(m, pt) for pt in hoy["partidos"]]}
 
     # tus apuestas por patrón (patas en vivo con marcador reconstruido)
     tus = {}
@@ -100,6 +103,7 @@ def generar() -> dict:
         "descubrimiento": desc,
         "ligas": _redondear(perfil),
         "equipos": _redondear(equipos),
+        "hoy": _redondear(hoy),
         "apuestas_modelo": [{k: (round(v, 3) if isinstance(v, float) else v) for k, v in r.items()} for r in ev],
     }
     JSON_APP.write_text(json.dumps(datos, ensure_ascii=False, indent=1), encoding="utf-8")

@@ -223,3 +223,29 @@ class TestEquipos(unittest.TestCase):
         self.assertGreater(e.prob_1x2(0, 0, 0)["local"], m.prob_1x2(0, 0, 0)["local"])
         self.assertAlmostEqual(e.lambda_restante(45) / e.lambda_restante(0), m.lambda_restante(45) / m.lambda_restante(0), places=6)
         self.assertIsNone(m.equipos)
+
+
+class TestMercado(unittest.TestCase):
+    def setUp(self):
+        self.m = modelo.Modelo.ajustar(partidos.cargar())
+
+    def test_con_mercado_reproduce_cuotas(self):
+        from fb.stats import poisson_pmf
+        e = self.m.con_mercado(0.60, 0.55)
+        tot = sum(e.equipos)
+        self.assertAlmostEqual(1 - sum(poisson_pmf(i, tot) for i in range(3)), 0.55, places=4)
+        self.assertAlmostEqual(e.prob_1x2(0, 0, 0)["local"], 0.60, places=3)
+        self.assertAlmostEqual(e.lambda_restante(0), tot, places=6)
+
+    def test_sin_margen(self):
+        p = modelo.prob_sin_margen(1.65, 4.40, 5.75)
+        self.assertAlmostEqual(sum(p), 1.0)
+        self.assertGreater(p[0], 0.55)
+
+    def test_hoja(self):
+        from fb import hoja
+        h = hoja.hoja(self.m, {"liga": "Perú Liga 1", "local": "A", "visitante": "B", "c1": 1.37, "o25": 1.76})
+        f = {(x["minuto"], x["marcador"]): x for x in h["filas"]}
+        self.assertIn("P5", f[(45, "0:0")]["patrones"])
+        self.assertIn("P6", f[(65, "2:0")]["patrones"])
+        self.assertGreater(f[(30, "0:0")]["over"]["p"], f[(75, "0:0")]["over"]["p"])

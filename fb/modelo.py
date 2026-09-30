@@ -228,6 +228,39 @@ class Modelo:
         m.ventaja_local = (lo + hi) / 2
         return m
 
+    def con_mercado(self, p_local: float | None = None, p_over25: float | None = None,
+                    liga: str | None = None) -> "Modelo":
+        """Copia del modelo que parte de lo que dice el mercado prepartido.
+
+        `p_over25` (probabilidad sin margen de Más de 2.5) fija los goles esperados
+        del partido: el total T de Poisson con P(T >= 3) = p_over25. `p_local`
+        reparte esos goles entre los dos equipos. El perfil por minuto sigue siendo
+        el de la muestra, así que el modelo en vivo arranca con el total del mercado
+        y lo va gastando según el minuto.
+        """
+        import copy
+        if p_over25 is not None:
+            lo, hi = 0.3, 7.0
+            for _ in range(50):
+                t = (lo + hi) / 2
+                p3 = 1 - math.exp(-t) * (1 + t + t * t / 2)
+                lo, hi = (t, hi) if p3 < p_over25 else (lo, t)
+            total = (lo + hi) / 2
+        else:
+            total = self.lambda_restante(0, liga)
+        v = self.ventaja_local
+        if p_local is not None:
+            lo, hi = 0.1, 0.9
+            for _ in range(40):
+                mid = (lo + hi) / 2
+                m = copy.copy(self)
+                m.equipos = (total * mid, total * (1 - mid))
+                lo, hi = (mid, hi) if m.prob_1x2(0, 0, 0)["local"] < p_local else (lo, mid)
+            v = (lo + hi) / 2
+        m = copy.copy(self)
+        m.equipos = (total * v, total * (1 - v))
+        return m
+
     # ------------------------------------------------------------ exportar
     def a_json(self) -> dict:
         return {
@@ -244,6 +277,20 @@ class Modelo:
     def guardar(self, path: Path) -> None:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(self.a_json(), ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def prob_sin_margen(c1: float, cx: float, c2: float) -> tuple[float, float, float]:
+    """Probabilidades 1X2 de las cuotas, quitando el margen de la casa en proporción."""
+    inv = (1 / c1, 1 / cx, 1 / c2)
+    s = sum(inv)
+    return tuple(x / s for x in inv)
+
+
+def prob_over_sin_margen(c_over: float, c_under: float | None = None, margen: float = 0.05) -> float:
+    """Probabilidad de Más de 2.5. Sin la cuota del Menos se asume un margen típico."""
+    if c_under:
+        return (1 / c_over) / (1 / c_over + 1 / c_under)
+    return min(0.95, (1 / c_over) / (1 + margen))
 
 
 def cuota_minima(p: float, colchon: float = 0.0) -> float:
