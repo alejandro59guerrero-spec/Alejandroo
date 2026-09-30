@@ -1,6 +1,6 @@
 # Football Brain · Análisis de patrones en vivo
 
-Generado por `analysis/validar_patrones.py` el 2026-09-30 04:43. Fuente: historial Ecuabet del 19 al 29 de septiembre de 2026 más reconstrucción web del marcador al minuto de cada apuesta.
+Generado por `analysis/validar_patrones.py` el 2026-09-30 05:53. Fuente: historial Ecuabet del 19 al 29 de septiembre de 2026 más reconstrucción web del marcador al minuto de cada apuesta.
 
 ## 1. Resultado real de los tickets
 
@@ -17,7 +17,7 @@ El ticket de Sport Huancayo aporta +$10.00 de los +$15.55. Sin él, el neto qued
 
 ## 2. Todas las patas en vivo como si fueran simples
 
-- Patas en vivo: 67. Con marcador reconstruido al minuto: 53.
+- Patas en vivo: 67. Con marcador reconstruido al minuto: 52.
 - Acierto por pata: 63% con cuota media 1.69 y break-even 59%.
 - ROI a stake plano de 1 unidad: +2.6%. Neto +1.72 unidades.
 
@@ -25,19 +25,19 @@ El ticket de Sport Huancayo aporta +$10.00 de los +$15.55. Sin él, el neto qued
 
 | Código | Patrón | Tipo | n | Aciertos | Tasa | IC 95% | Cuota media | Break-even | ROI plano | Veredicto |
 |---|---|---|---|---|---|---|---|---|---|---|
-| P1 | Over con partido abierto | a favor | 7 | 6 | 86% | 49%–97% | 1.48 | 68% | +27% | Sin muestra suficiente |
+| P1 | Over con partido abierto | a favor | 8 | 7 | 88% | 53%–98% | 1.44 | 69% | +26% | Sin muestra suficiente |
 | P2 | 1x2 al equipo que ya gana | a favor | 5 | 5 | 100% | 57%–100% | 1.51 | 66% | +51% | Sin muestra suficiente |
-| P3 | Roja: apostar a goles | a favor | 9 | 7 | 78% | 45%–94% | 1.65 | 61% | +26% | Sin muestra suficiente |
-| P4 | Roja: 1x2 al equipo con uno más | a validar | 7 | 3 | 43% | 16%–75% | 2.19 | 46% | -2% | Sin muestra suficiente |
+| P3 | Roja: apostar a goles | a favor | 8 | 7 | 88% | 53%–98% | 1.67 | 60% | +42% | Sin muestra suficiente |
+| P4 | Roja: 1x2 al equipo con uno más | a validar | 8 | 3 | 38% | 14%–69% | 2.20 | 45% | -14% | Sin muestra suficiente |
 | A1 | 1x2 con el partido empatado | anti-patrón | 14 | 6 | 43% | 21%–67% | 2.00 | 50% | -16% | Sin edge |
-| A2 | Over sin goles | anti-patrón | 5 | 1 | 20% | 4%–62% | 1.63 | 61% | -63% | Sin muestra suficiente |
+| A2 | Over sin goles | anti-patrón | 4 | 0 | 0% | 0%–49% | 1.58 | 63% | -100% | Sin muestra suficiente |
 | A3 | Córners (Over de tiros de esquina) | anti-patrón | 3 | 1 | 33% | 6%–79% | 1.82 | 55% | -46% | Sin muestra suficiente |
 
 ### P1 · Over con partido abierto
 
 **Regla:** Mercado Over de goles. Ya hay 2 o más goles, falta 1 solo gol para ganar la línea y el minuto es 75 o menos.
 
-**Tasa histórica:** 6/7 (86%), intervalo 95% 49%–97%. Cuota media 1.48, break-even 68%, ROI plano +27%.
+**Tasa histórica:** 7/8 (88%), intervalo 95% 53%–98%. Cuota media 1.44, break-even 69%, ROI plano +26%.
 
 **Veredicto:** Sin muestra suficiente.
 
@@ -46,6 +46,7 @@ El ticket de Sport Huancayo aporta +$10.00 de los +$15.55. Sin él, el neto qued
 | Pioneros de Cancún vs Tapachula Soconusco | Más de 3.5 | 65' | 3:0 | no | 1.28 | 5:1 | Ganó |
 | Lexington SC vs Orange County SC | Más de 5.5 | 69' | 5:0 | no | 1.45 | 6:0 | Ganó |
 | Vasco da Gama vs Coritiba | Más de 2.5 | 46' | 2:0 | no | 1.17 | 5:0 | Ganó |
+| DC United vs Charlotte FC | Más de 2 | 46' | 1:1 | no | 1.19 | 1:2 | Ganó |
 | FC Fredericia vs Vejle | Más de 3.5 | 69' | 1:2 | no | 1.45 | 2:2 | Ganó |
 | Grorud vs Moss | Más de 2.5 | 66' | 1:1 | no | 1.47 | 1:1 | Perdió |
 | Criciúma vs Avaí | Más de 2 | 65' | 2:0 | no | 1.90 | 3:0 | Ganó |
@@ -71,7 +72,7 @@ El ticket de Sport Huancayo aporta +$10.00 de los +$15.55. Sin él, el neto qued
 
 **Regla:** Hubo roja antes de apostar y la apuesta es a goles (Over o Ambos marcan).
 
-**Tasa histórica:** 7/9 (78%), intervalo 95% 45%–94%. Cuota media 1.65, break-even 61%, ROI plano +26%.
+**Tasa histórica:** 7/8 (88%), intervalo 95% 53%–98%. Cuota media 1.67, break-even 60%, ROI plano +42%.
 
 **Veredicto:** Sin muestra suficiente.
 
@@ -82,16 +83,15 @@ El ticket de Sport Huancayo aporta +$10.00 de los +$15.55. Sin él, el neto qued
 | Deportivo Pasto vs Once Caldas | Más de 1.5 | 39' | 0:0 | visitante 21' | 2.05 | 1:0 | Perdió |
 | Karpaty vs Veres | Más de 1.5 | 81' | 1:0 | local 64' | 2.20 | 1:1 | Ganó |
 | Fortaleza vs Atlético Junior | Más de 2.5 | 24' | 0:1 | local 17' | 1.55 | 1:4 | Ganó |
-| EVV Echt vs Halsteren | Más de 5.5 | 52' | 2:1 | visitante 30' | 1.47 | 3:1 | Perdió |
 | Antoniano vs Ciudad de Lucena | Más de 2.5 | 67' | 0:2 | local 55' | 1.63 | 0:3 | Ganó |
-| Bolívar vs Blooming | Más de 1.5 | 66' | 0:0 | visitante 57' | 1.85 | 3:0 | Ganó |
+| Bolívar vs Blooming | Más de 1.5 | 66' | 1:0 | visitante 57' | 1.85 | 3:0 | Ganó |
 | Escocia vs Suiza | Más de 2 | 46' | 0:1 | local 12' | 1.42 | 0:3 | Ganó |
 
 ### P4 · Roja: 1x2 al equipo con uno más
 
 **Regla:** El rival del equipo elegido tiene una roja y la apuesta es que el equipo con uno más gane.
 
-**Tasa histórica:** 3/7 (43%), intervalo 95% 16%–75%. Cuota media 2.19, break-even 46%, ROI plano -2%.
+**Tasa histórica:** 3/8 (38%), intervalo 95% 14%–69%. Cuota media 2.20, break-even 45%, ROI plano -14%.
 
 **Veredicto:** Sin muestra suficiente.
 
@@ -99,6 +99,7 @@ El ticket de Sport Huancayo aporta +$10.00 de los +$15.55. Sin él, el neto qued
 |---|---|---|---|---|---|---|---|
 | O Elvas vs UD Leiria | UD Leiria | 74' | 0:0 | local | 2.10 | 0:2 | Ganó |
 | CD Génesis vs Olancho FC | Olancho FC | 59' | 0:0 | local 12' | 2.22 | 0:0 | Perdió |
+| Deportivo San Pedro vs Cobán Imperial | Cobán Imperial | 51' | 0:0 | local 40' | 2.30 | 1:1 | Perdió |
 | Rochdale vs Liverpool Sub-21 | Rochdale | 52' | 1:1 | visitante 22' | 1.64 | 3:3 | Perdió |
 | Comerciantes FC vs Sport Huancayo Reserva | Sport Huancayo Reserva | 14' | 0:0 | local | 3.00 | 0:1 | Ganó |
 | Grêmio Prudente vs União São João | União São João | 77' | 0:0 | local 62' | 2.75 | 0:0 | Perdió |
@@ -117,7 +118,7 @@ El ticket de Sport Huancayo aporta +$10.00 de los +$15.55. Sin él, el neto qued
 |---|---|---|---|---|---|---|---|
 | O Elvas vs UD Leiria | UD Leiria | 74' | 0:0 | local | 2.10 | 0:2 | Ganó |
 | CD Génesis vs Olancho FC | Olancho FC | 59' | 0:0 | local 12' | 2.22 | 0:0 | Perdió |
-| Deportivo San Pedro vs Cobán Imperial | Cobán Imperial | 51' | 0:0 | no | 2.30 | 1:1 | Perdió |
+| Deportivo San Pedro vs Cobán Imperial | Cobán Imperial | 51' | 0:0 | local 40' | 2.30 | 1:1 | Perdió |
 | Tacoma Defiance vs Portland Timbers II | Tacoma gana + Más de 1.5 | 25' | 0:0 | no | 1.85 | 1:1 | Perdió |
 | Rochdale vs Liverpool Sub-21 | Rochdale | 52' | 1:1 | visitante 22' | 1.64 | 3:3 | Perdió |
 | Gerasdorf Stammersdorf vs Mauer | Mauer | 23' | 0:0 | no | 1.41 | 0:2 | Ganó |
@@ -134,7 +135,7 @@ El ticket de Sport Huancayo aporta +$10.00 de los +$15.55. Sin él, el neto qued
 
 **Regla:** Mercado Over y el partido va 0:0 al apostar.
 
-**Tasa histórica:** 1/5 (20%), intervalo 95% 4%–62%. Cuota media 1.63, break-even 61%, ROI plano -63%.
+**Tasa histórica:** 0/4 (0%), intervalo 95% 0%–49%. Cuota media 1.58, break-even 63%, ROI plano -100%.
 
 **Veredicto:** Sin muestra suficiente.
 
@@ -144,7 +145,6 @@ El ticket de Sport Huancayo aporta +$10.00 de los +$15.55. Sin él, el neto qued
 | Bournemouth vs Liverpool | Más de 1.5 | 23' | 0:0 | no | 1.40 | 0:1 | Perdió |
 | Grêmio vs Palmeiras | Más de 1.5 | 26' | 0:0 | no | 1.42 | 0:0 | Perdió |
 | Santa Clara vs SC Braga | Más de 0.5 | 55' | 0:0 | no | 1.45 | 0:0 | Perdió |
-| Bolívar vs Blooming | Más de 1.5 | 66' | 0:0 | visitante 57' | 1.85 | 3:0 | Ganó |
 
 ### A3 · Córners (Over de tiros de esquina)
 
@@ -172,6 +172,7 @@ Estas patas quedan fuera de los patrones porque no hay fuente con minutos o las 
 - Carmelita vs Municipal Santa Ana (Municipal Santa Ana, 1:0). Sin fuente
 - Dimona vs Maccabi Ironi Kiryat Malakhi (Más de 2.5, 1:5). Sin minutos
 - SK Austria Klagenfurt vs SV Donau Klagenfurt (Cuarto gol Austria Klagenfurt, 2:1). Sin minutos
+- EVV Echt vs Halsteren (Más de 5.5, 3:1). 2:1 al descanso y roja a Halsteren ~30'; la cuota 1.47 para Más de 5.5 es incompatible con ese marcador: pata excluida
 - FC Arlanda vs Hammarby Talang FF (Más de 4.5, 4:2). Sin minutos
 - FC Spaeri vs FC Dila Gori (Más de 5.5, 1:4). Sin minutos
 - Botafogo SP Sub-20 vs Audax Sub-20 (Más de 4.5, 4:1). Sin minutos

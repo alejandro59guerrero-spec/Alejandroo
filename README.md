@@ -1,38 +1,56 @@
 # Football Brain · Apuestas en vivo
 
-Análisis de mi historial real de Ecuabet y app para registrar apuestas simples nuevas,
-sincronizada entre PC y celular.
+Análisis de mi historial real de Ecuabet, validación de patrones en partidos terminados
+y app para registrar apuestas simples, sincronizada entre PC y celular.
 
 ## App
 
 https://claude.ai/artifact/EauH887JCpSi3r6ZDTTCHz
 
-Se abre con la misma cuenta de claude.ai en el navegador de la PC y del celular. Los datos
-viven en la base de datos del artifact, así que lo que registras en un dispositivo aparece
-en el otro. El código fuente está en `app/index.html`.
+Se abre con la misma cuenta de claude.ai en la PC y en el celular. Los datos viven en la
+base de datos del artifact. Código en `app/index.html`.
 
-Pestañas:
-- **Registrar**: marcador, minuto, roja, ritmo, mercado, cuota y stake. Detecta el patrón en vivo
-  y avisa si caes en un anti-patrón o si el stake supera el stake plano.
-- **Panel**: banca, neto, ROI, acierto, racha y acierto por patrón.
-- **Apuestas**: lista con botones para cerrar como ganada, perdida, nula o cash-out.
-- **Patrones**: regla exacta, tasa histórica, intervalo de confianza y límite de cada patrón.
-- **Historial**: los 45 tickets del PDF con el marcador al minuto de cada pata.
+- **Registrar**: con marcador, minuto, roja, mercado y cuota calcula la probabilidad, la
+  cuota mínima y el valor esperado, y da un veredicto: Entrar, Cuota justa o No entrar.
+  Pide confirmación extra si es un anti-patrón o si saltaste tus límites del día.
+- **Panel**: curva de banca, caída máxima, racha, acierto por patrón con progreso hacia
+  30 apuestas, disciplina (con regla contra sin regla), cortes por liga, mercado y minuto,
+  ajustes y exportación a CSV.
+- **Patrones**: fichas claras con cuándo entrar, cuándo no, de cada 10 veces cuántas salió,
+  cuota mínima y mejores ligas.
+- **Mapa**: qué pasó en partidos reales según minuto, goles y diferencia.
+- **Historial**: los 45 tickets del PDF con marcador al apostar y probabilidad del modelo.
 
 ## Análisis
 
 ```
-python3 analysis/validar_patrones.py
+python -m fb.cli reporte          # reports/analisis_v2.md, patterns/modelo.json, patterns/datos_app.json
+python -m fb.cli inyectar-app     # mete los datos en app/index.html antes de publicar
+python -m unittest discover -s tests
 ```
 
-Solo usa Python estándar. Lee `data/tickets.csv` y `data/legs.csv`, y escribe
-`reports/analisis_patrones.md` y `data/legs_enriquecido.csv`.
+Solo usa Python estándar (3.10+).
 
-- `data/tickets.csv`: 45 tickets del 19 al 29/09/2026 tal como salen del PDF.
-- `data/legs.csv`: 78 patas. Incluye el marcador al minuto de apostar reconstruido con fuentes web,
-  la roja previa, la confianza y el enlace a la fuente.
+- `data/backtest/partidos.csv`: partidos terminados con cada gol y roja al minuto y su fuente.
+  `origen=historial` son los partidos donde aposté y no cuentan para validar patrones.
+- `data/tickets.csv` y `data/legs.csv`: el historial del PDF con el marcador reconstruido.
+- `patterns/patrones.json`: fuente única de reglas. La leen Python y la app.
+- `fb/`: modelo de Poisson en vivo, backtest, mapa, descubrimiento de patrones, Sofascore.
+
+## Sofascore (datos completos: tiros, xG, presión)
+
+Desde la nube de Claude está bloqueado hasta habilitar `api.sofascore.com` en Network access.
+En la PC funciona directo:
+
+```
+python -m fb.cli sofascore-probar
+python -m fb.cli buscar --fecha 2026-09-27 --equipo Criciuma
+python -m fb.cli descargar --torneo <id> --temporada <id> --paginas 10
+```
+
+Los datos quedan en `data/sofascore/*.csv`, que DuckDB lee con `read_csv_auto`.
 
 ## Reglas duras
 
-Solo apuestas simples. Stake plano del 5% de la banca con tope de $1. Ningún patrón está probado
-todavía: todos tienen menos de 10 casos. Se validan con las apuestas nuevas que registre la app.
+Solo apuestas simples. Stake plano del 5% de la banca con tope de $1. Entrar solo si la cuota
+supera la cuota mínima. Ningún patrón está probado todavía con muestra grande.

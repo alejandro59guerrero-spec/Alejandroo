@@ -41,22 +41,24 @@
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 body { background: var(--bg); color: var(--fg); font: 16px/1.5 var(--f-body); margin: 0; }
-.wrap { max-width: 780px; margin: 0 auto; padding-inline: 16px; padding-block: 0 48px; }
+.wrap { max-width: 800px; margin: 0 auto; padding-inline: 16px; padding-block: 0 48px; }
 h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; letter-spacing: .01em; }
 h2 { font-size: 1.6rem; }
-h3 { font-size: 1.2rem; }
+h3 { font-size: 1.25rem; }
+p { margin: 0; }
 .num { font-family: var(--f-data); font-variant-numeric: tabular-nums; }
 .label { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
 .muted { color: var(--muted); }
-p { margin: 0; }
+.legend { font-size: .82rem; color: var(--muted); }
+.pos { color: var(--win); }
+.neg { color: var(--loss); }
 
-/* Cabecera */
 header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
-.brand { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-block: 12px 8px; flex-wrap: wrap; }
+.brand { display: flex; align-items: baseline; justify-content: space-between; gap: 8px 16px; padding-block: 12px 8px; flex-wrap: wrap; }
 .brand h1 { font-size: 1.75rem; line-height: 1; }
 .brand h1 span { color: var(--accent); }
-.bank { display: flex; gap: 16px; align-items: baseline; }
-.bank b { font-family: var(--f-data); font-size: 1.1rem; }
+.bank { display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap; }
+.bank b { font-family: var(--f-data); font-size: 1.05rem; }
 .sync { font-size: .78rem; color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
 .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); display: inline-block; }
 .dot.on { background: var(--win); }
@@ -65,7 +67,7 @@ nav.tabs { display: flex; gap: 4px; overflow-x: auto; padding-block: 0 10px; scr
 nav.tabs::-webkit-scrollbar { display: none; }
 nav.tabs button { flex: 1 0 auto; font: 700 .95rem var(--f-display); letter-spacing: .04em; text-transform: uppercase; padding: 8px 12px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 999px; cursor: pointer; }
 nav.tabs button[aria-selected="true"] { background: var(--accent); color: var(--surface); border-color: var(--accent); }
-button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 
 section.view { display: grid; gap: 20px; padding-block: 20px 0; }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; display: grid; gap: 14px; min-width: 0; }
@@ -74,34 +76,56 @@ section.view { display: grid; gap: 20px; padding-block: 20px 0; }
 .notice.info { background: var(--accent-soft); color: var(--accent); }
 .notice.loss { background: var(--loss-soft); color: var(--loss); }
 
-/* Formulario */
 form { display: grid; gap: 14px; }
 .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 @media (max-width: 520px) { .grid3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .field { display: grid; gap: 4px; min-width: 0; }
 .field label { font-size: .8rem; font-weight: 700; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; }
-input, select, textarea { width: 100%; font: 16px var(--f-body); color: var(--fg); background: var(--surface-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px 10px; min-width: 0; }
-textarea { min-height: 64px; resize: vertical; }
+input, select, textarea { width: 100%; font: 16px var(--f-body); color: var(--fg); background: var(--surface-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px; min-width: 0; }
+textarea { min-height: 60px; resize: vertical; }
 input[type="number"] { font-family: var(--f-data); }
+details.fold { border: 1px dashed var(--line); border-radius: 8px; padding: 10px 12px; }
+details.fold summary { cursor: pointer; font-weight: 600; font-size: .95rem; }
+details.fold[open] summary { margin-bottom: 10px; }
 
 .scoreboard { display: grid; grid-template-columns: 1fr auto 1fr auto; align-items: center; gap: 8px; background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
-.scoreboard .side { display: grid; gap: 2px; text-align: center; }
+.scoreboard .side { display: grid; gap: 2px; text-align: center; min-width: 0; }
+.scoreboard .side .label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .scoreboard input { text-align: center; font-size: 1.6rem; font-weight: 600; padding: 4px; background: var(--surface); }
 .scoreboard .colon { font: 700 1.8rem var(--f-display); color: var(--muted); }
 .scoreboard .min { display: grid; gap: 2px; text-align: center; width: 84px; }
 .scoreboard .min input { font-size: 1.2rem; }
 
-.detector { border-radius: var(--r); padding: 12px 14px; display: grid; gap: 6px; border: 1px solid var(--line); background: var(--surface-2); }
-.detector.ok { background: var(--win-soft); border-color: transparent; }
-.detector.warn { background: var(--warn-soft); border-color: transparent; }
-.detector.bad { background: var(--loss-soft); border-color: transparent; }
-.detector .head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+/* Veredicto al registrar */
+.verdict { border-radius: var(--r); border: 1px solid var(--line); background: var(--surface-2); padding: 14px; display: grid; gap: 10px; }
+.verdict.ok { background: var(--win-soft); border-color: transparent; }
+.verdict.warn { background: var(--warn-soft); border-color: transparent; }
+.verdict.bad { background: var(--loss-soft); border-color: transparent; }
+.verdict .head { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.verdict .big { font: 700 1.5rem var(--f-display); letter-spacing: .04em; text-transform: uppercase; }
+.verdict.ok .big { color: var(--win); }
+.verdict.warn .big { color: var(--warn); }
+.verdict.bad .big { color: var(--loss); }
+.vnums { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+@media (max-width: 520px) { .vnums { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.vnums div { background: var(--surface); border-radius: 8px; padding: 8px 10px; display: grid; gap: 0; min-width: 0; }
+.vnums b { font: 600 1.15rem var(--f-data); font-variant-numeric: tabular-nums; }
+.checks { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.checks li { display: flex; gap: 8px; align-items: flex-start; font-size: .95rem; }
+.mark { flex: 0 0 18px; height: 18px; border-radius: 4px; display: inline-grid; place-items: center; font: 700 .75rem var(--f-data); margin-top: 2px; }
+.mark.si { background: var(--win); color: var(--surface); }
+.mark.no { background: var(--loss); color: var(--surface); }
+.mark.q { background: var(--line); color: var(--fg); }
+
 .chip { display: inline-flex; align-items: center; gap: 4px; font: 700 .78rem var(--f-data); padding: 2px 8px; border-radius: 999px; background: var(--surface); color: var(--fg); border: 1px solid var(--line); white-space: nowrap; }
 .chip.ok { color: var(--win); border-color: var(--win); }
 .chip.warn { color: var(--warn); border-color: var(--warn); }
 .chip.bad { color: var(--loss); border-color: var(--loss); }
 .chip.pend { color: var(--accent); border-color: var(--accent); }
+.chip.solid-ok { background: var(--win); color: var(--surface); border-color: var(--win); }
+.chip.solid-warn { background: var(--warn); color: var(--surface); border-color: var(--warn); }
+.chip.solid-bad { background: var(--loss); color: var(--surface); border-color: var(--loss); }
 
 .actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 .btn { font: 700 1rem var(--f-display); letter-spacing: .05em; text-transform: uppercase; border-radius: 8px; padding: 10px 16px; border: 1px solid var(--accent); background: var(--accent); color: var(--surface); cursor: pointer; }
@@ -113,27 +137,24 @@ input[type="number"] { font-family: var(--f-data); }
 .btn:disabled { opacity: .5; cursor: not-allowed; }
 .toast { font-size: .9rem; color: var(--win); font-weight: 600; }
 
-/* KPIs */
 .kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
 @media (max-width: 560px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .kpi { background: var(--surface); padding: 12px 14px; display: grid; gap: 2px; min-width: 0; }
-.kpi b { font: 600 1.35rem var(--f-data); font-variant-numeric: tabular-nums; }
-.pos { color: var(--win); }
-.neg { color: var(--loss); }
+.kpi b { font: 600 1.3rem var(--f-data); font-variant-numeric: tabular-nums; }
 
 .streak { display: flex; gap: 4px; flex-wrap: wrap; }
 .streak i { width: 22px; height: 22px; border-radius: 4px; display: inline-grid; place-items: center; font: 700 .7rem var(--f-data); font-style: normal; }
 .streak i.w { background: var(--win-soft); color: var(--win); }
 .streak i.l { background: var(--loss-soft); color: var(--loss); }
-.streak i.v { background: var(--surface-2); color: var(--muted); }
 
 .tbl { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: .92rem; }
-th, td { text-align: left; padding: 8px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
 th { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 td.r, th.r { text-align: right; font-family: var(--f-data); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bar-mini { height: 6px; border-radius: 3px; background: var(--surface-2); border: 1px solid var(--line); position: relative; overflow: hidden; min-width: 60px; }
+.bar-mini span { position: absolute; inset: 0 auto 0 0; background: var(--accent); }
 
-/* Lista de apuestas */
 .bets { display: grid; gap: 10px; }
 .bet { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; min-width: 0; }
 .bet.ganada { border-left-color: var(--win); }
@@ -141,21 +162,30 @@ td.r, th.r { text-align: right; font-family: var(--f-data); font-variant-numeric
 .bet.pendiente { border-left-color: var(--accent); }
 .bet .row1 { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; flex-wrap: wrap; }
 .bet .row1 strong { font-size: 1.05rem; }
-.bet .meta { display: flex; gap: 8px 14px; flex-wrap: wrap; font-size: .88rem; color: var(--muted); }
+.bet .meta { display: flex; gap: 6px 14px; flex-wrap: wrap; font-size: .88rem; color: var(--muted); }
 .bet .meta .num { color: var(--fg); }
 .settle { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
 .settle input { width: 110px; padding: 6px 8px; }
 
-.rule { display: grid; gap: 8px; padding: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); }
-.rule .top { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: space-between; }
-.bar { height: 8px; border-radius: 4px; background: var(--surface-2); position: relative; overflow: hidden; border: 1px solid var(--line); }
-.bar span { position: absolute; top: 0; bottom: 0; background: var(--accent); opacity: .35; }
-.bar em { position: absolute; top: -2px; bottom: -2px; width: 2px; background: var(--fg); }
-.bar b { position: absolute; top: -3px; bottom: -3px; width: 4px; border-radius: 2px; background: var(--accent); }
-.legend { font-size: .8rem; color: var(--muted); }
+/* Fichas de patrones */
+.ficha { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; display: grid; gap: 12px; min-width: 0; }
+.ficha .top { display: flex; gap: 8px 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.ficha .resumen { font-size: 1.05rem; }
+.ficha .cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 560px) { .ficha .cols { grid-template-columns: 1fr; } }
+.box { background: var(--surface-2); border-radius: 8px; padding: 12px; display: grid; gap: 8px; min-width: 0; }
+.dots { display: flex; gap: 4px; flex-wrap: wrap; }
+.dots i { width: 14px; height: 14px; border-radius: 50%; display: inline-block; background: var(--line); }
+.dots i.on { background: var(--win); }
+.dots i.bad { background: var(--loss); }
+.bignum { font: 600 1.8rem var(--f-data); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.selrow { display: flex; gap: 8px; flex-wrap: wrap; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.seg button { font: 600 .9rem var(--f-data); padding: 6px 12px; border: 0; background: var(--surface); color: var(--fg); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--surface); }
 .empty { text-align: center; padding: 28px 16px; color: var(--muted); display: grid; gap: 8px; justify-items: center; }
-details summary { cursor: pointer; font-weight: 600; }
-@media (prefers-reduced-motion: no-preference) { .bet, .detector { transition: background-color .2s ease; } }
+svg text { fill: var(--muted); font: 11px var(--f-data); }
+@media (prefers-reduced-motion: no-preference) { .bet, .verdict { transition: background-color .2s ease; } }
 </style>
 
 <header class="top">
@@ -165,6 +195,7 @@ details summary { cursor: pointer; font-weight: 600; }
       <div class="bank">
         <div><span class="label">Banca</span> <b id="hdr-banca" class="num">—</b></div>
         <div><span class="label">Stake plano</span> <b id="hdr-stake" class="num">—</b></div>
+        <div><span class="label">Hoy</span> <b id="hdr-hoy" class="num">0</b></div>
       </div>
       <span class="sync"><i class="dot" id="sync-dot"></i><span id="sync-txt">Conectando…</span></span>
     </div>
@@ -173,6 +204,7 @@ details summary { cursor: pointer; font-weight: 600; }
       <button role="tab" id="tab-panel" aria-selected="false" data-view="panel">Panel</button>
       <button role="tab" id="tab-apuestas" aria-selected="false" data-view="apuestas">Apuestas</button>
       <button role="tab" id="tab-reglas" aria-selected="false" data-view="reglas">Patrones</button>
+      <button role="tab" id="tab-mapa" aria-selected="false" data-view="mapa">Mapa</button>
       <button role="tab" id="tab-historial" aria-selected="false" data-view="historial">Historial</button>
     </nav>
   </div>
@@ -183,12 +215,13 @@ details summary { cursor: pointer; font-weight: 600; }
 
   <!-- REGISTRAR -->
   <section class="view" id="view-registrar">
+    <div id="disciplina-aviso" class="notice loss" hidden></div>
     <div class="card">
       <h2>Nueva apuesta simple</h2>
       <form id="f" novalidate>
         <div class="grid2">
           <div class="field"><label for="f-fecha">Fecha y hora</label><input id="f-fecha" type="datetime-local" required></div>
-          <div class="field"><label for="f-liga">Liga</label><input id="f-liga" type="text" placeholder="Brasil Serie B" autocomplete="off"></div>
+          <div class="field"><label for="f-liga">Liga</label><input id="f-liga" type="text" list="ligas" placeholder="Brasil Serie B" autocomplete="off"><datalist id="ligas"></datalist></div>
         </div>
         <div class="grid2">
           <div class="field"><label for="f-local">Local</label><input id="f-local" type="text" placeholder="Criciúma" required autocomplete="off"></div>
@@ -229,15 +262,33 @@ details summary { cursor: pointer; font-weight: 600; }
           <div class="field"><label for="f-stake">Stake ($)</label><input id="f-stake" type="number" step="0.01" min="0.01" inputmode="decimal" required></div>
         </div>
 
-        <div class="detector" id="det" aria-live="polite">
-          <div class="head"><span class="chip" id="det-chip">—</span><strong id="det-title">Completa marcador, minuto y mercado</strong></div>
-          <p id="det-txt" class="muted">La app revisa tu entrada contra los patrones de tu historial.</p>
+        <details class="fold" id="fuerza">
+          <summary>Fuerza prepartido (opcional, mejora el cálculo de Ganador)</summary>
+          <div class="grid3">
+            <div class="field"><label for="f-c1">Cuota prepartido 1</label><input id="f-c1" type="number" step="0.01" min="1.01" inputmode="decimal" placeholder="1.60"></div>
+            <div class="field"><label for="f-cx">Cuota X</label><input id="f-cx" type="number" step="0.01" min="1.01" inputmode="decimal" placeholder="3.80"></div>
+            <div class="field"><label for="f-c2">Cuota 2</label><input id="f-c2" type="number" step="0.01" min="1.01" inputmode="decimal" placeholder="5.50"></div>
+          </div>
+          <p class="legend" style="margin-top:8px">Sin estas cuotas el modelo trata a los dos equipos casi iguales y subestima al favorito.</p>
+        </details>
+
+        <div class="verdict" id="ver" aria-live="polite">
+          <div class="head"><span class="big" id="ver-big">Completa el partido</span><span class="chip" id="ver-chip" hidden></span></div>
+          <p id="ver-txt" class="muted">Con marcador, minuto, mercado y cuota la app calcula la probabilidad, la cuota mínima y te dice si entrar.</p>
+          <div class="vnums" id="ver-nums" hidden>
+            <div><span class="label">Probabilidad</span><b id="vn-p">—</b></div>
+            <div><span class="label">Cuota mínima</span><b id="vn-min">—</b></div>
+            <div><span class="label">Tu cuota</span><b id="vn-c">—</b></div>
+            <div><span class="label">Valor esperado</span><b id="vn-ev">—</b></div>
+          </div>
+          <ul class="checks" id="ver-checks" hidden></ul>
         </div>
         <div id="stake-aviso" class="notice warn" hidden></div>
 
-        <div class="grid2">
-          <div class="field"><label for="f-patron">Patrón usado</label>
-            <select id="f-patron"></select></div>
+        <div class="grid3">
+          <div class="field"><label for="f-patron">Patrón usado</label><select id="f-patron"></select></div>
+          <div class="field"><label for="f-regla">¿Cumple tu regla?</label>
+            <select id="f-regla"><option value="si">Sí, todas las condiciones</option><option value="no">No, me salté algo</option></select></div>
           <div class="field"><label for="f-resultado">Resultado</label>
             <select id="f-resultado"><option value="pendiente">Pendiente</option><option value="ganada">Ganada</option><option value="perdida">Perdida</option><option value="nula">Nula / devuelta</option></select></div>
         </div>
@@ -250,32 +301,51 @@ details summary { cursor: pointer; font-weight: 600; }
         </div>
       </form>
     </div>
-    <div class="notice info">Solo apuestas simples. Stake plano del 5% de la banca con tope de $1. Si el partido no te da la razón todavía, no entres.</div>
+    <div class="notice info">Solo apuestas simples. Stake plano. Entra solo cuando el partido ya te da la razón y la cuota supera la cuota mínima.</div>
   </section>
 
   <!-- PANEL -->
   <section class="view" id="view-panel" hidden>
     <div class="kpis" id="kpis"></div>
     <div class="card">
+      <div class="actions" style="justify-content:space-between"><h3>Curva de banca</h3><span class="legend" id="curva-txt"></span></div>
+      <div id="curva"></div>
+    </div>
+    <div class="card">
       <div class="actions" style="justify-content:space-between"><h3>Racha</h3><span class="legend" id="racha-txt"></span></div>
       <div class="streak" id="racha"></div>
     </div>
     <div class="card">
-      <h3>Acierto por patrón · apuestas nuevas</h3>
+      <h3>Por patrón</h3>
       <div class="tbl"><table>
-        <thead><tr><th>Patrón</th><th class="r">n</th><th class="r">Acierto</th><th class="r">Break-even</th><th class="r">Neto</th><th class="r">ROI</th></tr></thead>
+        <thead><tr><th>Patrón</th><th class="r">n</th><th class="r">Acierto</th><th class="r">Break-even</th><th class="r">ROI</th><th>Hacia 30</th></tr></thead>
         <tbody id="tabla-pat"></tbody>
       </table></div>
-      <p class="legend">Hasta 10 apuestas por patrón no hay conclusión. El break-even es 1 dividido por la cuota media del patrón.</p>
+      <p class="legend">Con menos de 30 apuestas por patrón no hay conclusión. El break-even es 1 dividido por la cuota media.</p>
     </div>
     <div class="card">
-      <h3>Ajustes de banca</h3>
+      <h3>Disciplina</h3>
+      <div class="tbl"><table><thead><tr><th>Grupo</th><th class="r">n</th><th class="r">Acierto</th><th class="r">Neto</th><th class="r">ROI</th></tr></thead><tbody id="tabla-disc"></tbody></table></div>
+      <p class="legend" id="calib-txt"></p>
+    </div>
+    <div class="card">
+      <h3>Por liga, mercado y minuto</h3>
+      <div class="tbl"><table><thead><tr><th>Grupo</th><th class="r">n</th><th class="r">Acierto</th><th class="r">ROI</th></tr></thead><tbody id="tabla-seg"></tbody></table></div>
+    </div>
+    <div class="card">
+      <h3>Ajustes</h3>
       <div class="grid3">
         <div class="field"><label for="a-banca">Banca inicial ($)</label><input id="a-banca" type="number" step="0.01" min="0" inputmode="decimal"></div>
         <div class="field"><label for="a-pct">Stake (% banca)</label><input id="a-pct" type="number" step="0.5" min="0.5" max="20" inputmode="decimal"></div>
         <div class="field"><label for="a-tope">Tope por apuesta ($)</label><input id="a-tope" type="number" step="0.01" min="0.01" inputmode="decimal"></div>
+        <div class="field"><label for="a-dia">Máx. apuestas por día</label><input id="a-dia" type="number" step="1" min="1" inputmode="numeric"></div>
+        <div class="field"><label for="a-pausa">Pausa tras N pérdidas seguidas</label><input id="a-pausa" type="number" step="1" min="1" inputmode="numeric"></div>
       </div>
-      <div class="actions"><button class="btn sm" type="button" id="a-guardar">Guardar ajustes</button><span class="toast" id="a-toast" role="status"></span></div>
+      <div class="actions">
+        <button class="btn sm" type="button" id="a-guardar">Guardar ajustes</button>
+        <button class="btn sm ghost" type="button" id="a-exportar" hidden>Exportar CSV</button>
+        <span class="toast" id="a-toast" role="status"></span>
+      </div>
     </div>
   </section>
 
@@ -290,18 +360,38 @@ details summary { cursor: pointer; font-weight: 600; }
 
   <!-- PATRONES -->
   <section class="view" id="view-reglas" hidden>
-    <div>
-      <h2>Patrones de tu historial</h2>
-      <p class="muted" style="margin-top:6px">Reglas medidas con tus 67 patas en vivo del 19 al 29 de septiembre, con el marcador reconstruido al minuto en que apostaste. La barra muestra el intervalo de confianza del 95%; la línea vertical marca el break-even.</p>
+    <div style="display:grid;gap:8px">
+      <h2>Tus patrones</h2>
+      <p class="muted" id="pat-intro"></p>
+      <div class="notice info">Cómo leer cada ficha: la regla dice cuándo entrar y cuándo no. Los puntos muestran de cada 10 veces cuántas salió bien. La cuota mínima es el precio por debajo del cual pierdes dinero a la larga aunque aciertes seguido.</div>
     </div>
-    <div id="reglas" style="display:grid;gap:12px"></div>
+    <div id="fichas" style="display:grid;gap:14px"></div>
+  </section>
+
+  <!-- MAPA -->
+  <section class="view" id="view-mapa" hidden>
+    <div style="display:grid;gap:8px">
+      <h2>Mapa de probabilidades</h2>
+      <p class="muted">Elige el estado del partido y mira qué pasó en partidos reales terminados, junto a lo que estima el modelo.</p>
+    </div>
+    <div class="card">
+      <div class="selrow"><span class="label" style="align-self:center">Minuto</span><div class="seg" id="seg-min"></div></div>
+      <div class="selrow"><span class="label" style="align-self:center">Goles</span><div class="seg" id="seg-gol"></div></div>
+      <div class="selrow"><span class="label" style="align-self:center">Diferencia</span><div class="seg" id="seg-dif"></div></div>
+      <div id="mapa-res"></div>
+    </div>
+    <div class="card">
+      <h3>¿Qué tan fiable es el modelo?</h3>
+      <p class="muted" id="calib-intro"></p>
+      <div class="tbl"><table><thead><tr><th>El modelo dijo</th><th class="r">Casos</th><th class="r">Media</th><th class="r">Pasó</th></tr></thead><tbody id="tabla-calib"></tbody></table></div>
+    </div>
   </section>
 
   <!-- HISTORIAL -->
   <section class="view" id="view-historial" hidden>
-    <div>
+    <div style="display:grid;gap:8px">
       <h2>Historial importado</h2>
-      <p class="muted" style="margin-top:6px">Los 45 tickets del PDF de Ecuabet. Se guardan aparte para no mezclar la etapa de combinadas con la estrategia nueva.</p>
+      <p class="muted">Los 45 tickets del PDF de Ecuabet con el marcador reconstruido al minuto de cada pata y la probabilidad del modelo.</p>
     </div>
     <div class="kpis" id="kpis-h"></div>
     <div class="bets" id="lista-h"></div>
@@ -309,147 +399,123 @@ details summary { cursor: pointer; font-weight: 600; }
 </main>
 
 <script>
+/*DATOS_APP_INICIO*/
+const DATOS = {"generado":"2026-09-30 05:54","muestra":{"backtest":57,"total":92,"ligas":["Argentina Liga Profesional","Bolivia Primera","Brasil Serie A","Brasil Serie B","Colombia Primera A","Inglaterra Premier League","Paraguay Primera","Países Bajos Eredivisie","Perú Liga 1"]},"modelo":{"tramos":[[0,15,15],[15,30,15],[30,45,17],[45,60,15],[60,75,15],[75,90,19]],"tasa_tramo":[0.01811,0.02396,0.03058,0.03217,0.02805,0.0301],"factor_liga":{"Alemania 3. Liga":1.069,"Argentina Liga Profesional":1.108,"Bolivia Copa":1.099,"Bolivia Primera":1.206,"Brasil Serie A":1.006,"Brasil Serie B":0.931,"Colombia Primera A":0.9,"Copa Paulista":0.923,"Copa de Noruega":0.982,"Dinamarca 1ª":1.04,"España 1ª RFEF":0.952,"España 2ª RFEF":1.011,"Guatemala Liga Nacional":0.982,"Honduras Liga Nacional":0.923,"Inglaterra Premier League":1.102,"Italia Serie A":0.982,"MLS":1.011,"MLS Next Pro":0.982,"México Liga Premier":1.099,"Noruega Eliteserien":1.011,"Nueva Zelanda Femenina":0.952,"Paraguay Intermedia":1.04,"Paraguay Primera":0.952,"Países Bajos Eerste Divisie":0.952,"Países Bajos Eredivisie":1.042,"Perú Liga 1":0.98,"Portugal Primeira Liga":0.923,"Taça de Portugal":0.952,"UEFA Nations League":0.977,"USL Championship":1.099,"Ucrania Premier":0.982,"Uruguay 2ª División":0.923},"mult_roja":0.797,"reparto_roja":0.845,"ventaja_local":0.55,"n_partidos":92,"notas":["Roja: 18 goles observados tras la roja contra 23.6 esperados.","Tras la roja marcó el equipo con uno más 17 veces y el de 10 1 veces.","Goles por partido en la muestra: 2.63 en 92 partidos."]},"calibracion":{"n":460,"brier":0.2027,"brier_base":0.2352,"fiabilidad":[[0.2,0.4,93,0.333,0.355],[0.4,0.6,114,0.512,0.535],[0.6,0.8,158,0.701,0.69],[0.8,1.0,95,0.855,0.874]]},"fichas":[{"codigo":"P1","nombre":"Over con partido abierto","tipo":"a_favor","resumen":"El partido ya tiene goles y solo te falta uno para ganar.","mercado":"over","entrar_si":["Apuestas a Más de X goles","Ya hay 2 goles o más en el marcador","Te falta 1 solo gol para ganar la línea","Vas en el minuto 75 o antes"],"no_entrar_si":["El partido va 0:0 o 1:0","Te faltan 2 goles o más","Ya pasó el minuto 75"],"backtest":{"n":33,"k":25,"tasa":0.7575757575757576,"lo":0.5897505131450971,"hi":0.8716843865335271,"p_modelo":0.7065450840703275,"cuota_min":1.3703703703703705,"ligas":[{"liga":"Países Bajos Eredivisie","k":3,"n":3,"tasa":1.0,"tasa_ajustada":0.824},{"liga":"Brasil Serie B","k":7,"n":8,"tasa":0.875,"tasa_ajustada":0.816},{"liga":"Bolivia Primera","k":2,"n":2,"tasa":1.0,"tasa_ajustada":0.806},{"liga":"Inglaterra Premier League","k":1,"n":1,"tasa":1.0,"tasa_ajustada":0.785},{"liga":"Colombia Primera A","k":4,"n":5,"tasa":0.8,"tasa_ajustada":0.774},{"liga":"Argentina Liga Profesional","k":3,"n":4,"tasa":0.75,"tasa_ajustada":0.755}]},"tuyo":{"n":8,"k":7,"cuota_media":1.4425,"neto":2.0699999999999994,"ejemplos":[{"partido":"Antoniano vs Ciudad de Lucena","seleccion":"Más de 2.5","minuto":67,"marcador":"0:2","cuota":1.63,"gano":true,"p_modelo":0.474},{"partido":"Criciúma vs Avaí","seleccion":"Más de 2","minuto":65,"marcador":"2:0","cuota":1.9,"gano":true,"p_modelo":0.548},{"partido":"Grorud vs Moss","seleccion":"Más de 2.5","minuto":66,"marcador":"1:1","cuota":1.47,"gano":false,"p_modelo":0.555},{"partido":"FC Fredericia vs Vejle","seleccion":"Más de 3.5","minuto":69,"marcador":"1:2","cuota":1.45,"gano":true,"p_modelo":0.537},{"partido":"DC United vs Charlotte FC","seleccion":"Más de 2","minuto":46,"marcador":"1:1","cuota":1.19,"gano":true,"p_modelo":0.767},{"partido":"Vasco da Gama vs Coritiba","seleccion":"Más de 2.5","minuto":46,"marcador":"2:0","cuota":1.17,"gano":true,"p_modelo":0.766},{"partido":"Lexington SC vs Orange County SC","seleccion":"Más de 5.5","minuto":69,"marcador":"5:0","cuota":1.45,"gano":true,"p_modelo":0.557},{"partido":"Pioneros de Cancún vs Tapachula Soconusco","seleccion":"Más de 3.5","minuto":65,"marcador":"3:0","cuota":1.28,"gano":true,"p_modelo":0.608}]},"semaforo":"ambar"},{"codigo":"P2","nombre":"Ganador al equipo que ya gana","tipo":"a_favor","resumen":"Apuestas a que gana el equipo que ya va arriba en el marcador.","mercado":"1x2","entrar_si":["Apuestas Ganador (1x2)","Tu equipo va ganando por 1 gol o más","Mejor si la ventaja es de 2 goles o si ya pasó el minuto 60"],"no_entrar_si":["El partido está empatado","La cuota es menor a la cuota mínima de la tabla","El rival acaba de descontar y empuja"],"backtest":{"n":50,"k":42,"tasa":0.84,"lo":0.7148551903823401,"hi":0.9166267863791231,"p_modelo":0.7629559629719617,"cuota_min":1.2272727272727273,"ligas":[{"liga":"Perú Liga 1","k":7,"n":7,"tasa":1.0,"tasa_ajustada":0.915},{"liga":"Bolivia Primera","k":2,"n":2,"tasa":1.0,"tasa_ajustada":0.872},{"liga":"Paraguay Primera","k":1,"n":1,"tasa":1.0,"tasa_ajustada":0.858},{"liga":"Inglaterra Premier League","k":1,"n":1,"tasa":1.0,"tasa_ajustada":0.858},{"liga":"Brasil Serie A","k":6,"n":7,"tasa":0.857,"tasa_ajustada":0.848},{"liga":"Países Bajos Eredivisie","k":5,"n":6,"tasa":0.833,"tasa_ajustada":0.837}]},"tuyo":{"n":5,"k":5,"cuota_media":1.514,"neto":2.57,"ejemplos":[{"partido":"Once Caldas vs Bucaramanga","seleccion":"Bucaramanga","minuto":30,"marcador":"0:2","cuota":1.34,"gano":true,"p_modelo":0.853},{"partido":"General Caballero JLM vs 3 de Noviembre","seleccion":"3 de Noviembre","minuto":24,"marcador":"0:1","cuota":1.88,"gano":true,"p_modelo":0.588},{"partido":"Frosinone vs Como","seleccion":"Frosinone","minuto":69,"marcador":"2:0","cuota":1.34,"gano":true,"p_modelo":0.97},{"partido":"Club Aurora vs Universitario de Vinto","seleccion":"Club Aurora","minuto":73,"marcador":"3:2","cuota":1.61,"gano":true,"p_modelo":0.807},{"partido":"Molde vs Aalesunds","seleccion":"Aalesunds","minuto":46,"marcador":"0:2","cuota":1.4,"gano":true,"p_modelo":0.883}]},"semaforo":"verde"},{"codigo":"P3","nombre":"Roja: apostar a goles","tipo":"a_favor","resumen":"Tras una expulsión el partido se abre. Se apuesta a que llegan más goles.","mercado":"over","entrar_si":["Hubo una roja antes de apostar","Apuestas Más de goles o Ambos marcan","Te falta 1 solo gol para ganar"],"no_entrar_si":["Te faltan 2 goles o más","Quedan menos de 15 minutos"],"backtest":{"n":4,"k":4,"tasa":1.0,"lo":0.5100999795960008,"hi":1.0,"p_modelo":0.7298743136390948,"cuota_min":1.3333333333333333,"ligas":[{"liga":"Colombia Primera A","k":1,"n":1,"tasa":1.0,"tasa_ajustada":1.0},{"liga":"Perú Liga 1","k":1,"n":1,"tasa":1.0,"tasa_ajustada":1.0},{"liga":"Paraguay Primera","k":1,"n":1,"tasa":1.0,"tasa_ajustada":1.0},{"liga":"Brasil Serie A","k":1,"n":1,"tasa":1.0,"tasa_ajustada":1.0}]},"tuyo":{"n":8,"k":7,"cuota_media":1.67125,"neto":3.3200000000000003,"ejemplos":[{"partido":"Escocia vs Suiza","seleccion":"Más de 2","minuto":46,"marcador":"0:1","cuota":1.42,"gano":true,"p_modelo":0.31},{"partido":"Bolívar vs Blooming","seleccion":"Más de 1.5","minuto":66,"marcador":"1:0","cuota":1.85,"gano":true,"p_modelo":0.482},{"partido":"Antoniano vs Ciudad de Lucena","seleccion":"Más de 2.5","minuto":67,"marcador":"0:2","cuota":1.63,"gano":true,"p_modelo":0.474},{"partido":"Fortaleza vs Atlético Junior","seleccion":"Más de 2.5","minuto":24,"marcador":"0:1","cuota":1.55,"gano":true,"p_modelo":0.454},{"partido":"Karpaty vs Veres","seleccion":"Más de 1.5","minuto":81,"marcador":"1:0","cuota":2.2,"gano":true,"p_modelo":0.264},{"partido":"Deportivo Pasto vs Once Caldas","seleccion":"Más de 1.5","minuto":39,"marcador":"0:0","cuota":2.05,"gano":false,"p_modelo":0.35},{"partido":"San Jose Earthquakes vs LAFC","seleccion":"Sí","minuto":46,"marcador":"0:1","cuota":1.27,"gano":true,"p_modelo":0.626},{"partido":"Odense Boldklub vs FC Midtjylland","seleccion":"Más de 1.5","minuto":69,"marcador":"0:1","cuota":1.4,"gano":true,"p_modelo":0.446}]},"semaforo":"rojo"},{"codigo":"P4","nombre":"Roja: ganador al que tiene uno más","tipo":"a_validar","resumen":"El rival se quedó con 10 y el partido sigue empatado.","mercado":"1x2","entrar_si":["El rival de tu equipo tiene una roja","El partido está empatado","Tu equipo domina y llega"],"no_entrar_si":["Pasó el minuto 70 y sigue 0:0","La cuota es menor a la cuota mínima de la tabla"],"backtest":{"n":3,"k":2,"tasa":0.6666666666666666,"lo":0.2076549551264879,"hi":0.9385096847238394,"p_modelo":0.5717827135937235,"cuota_min":1.75,"ligas":[{"liga":"Colombia Primera A","k":1,"n":1,"tasa":1.0,"tasa_ajustada":0.704},{"liga":"Paraguay Primera","k":1,"n":1,"tasa":1.0,"tasa_ajustada":0.704},{"liga":"Brasil Serie A","k":0,"n":1,"tasa":0.0,"tasa_ajustada":0.593}]},"tuyo":{"n":8,"k":3,"cuota_media":2.2025,"neto":-1.13,"ejemplos":[{"partido":"Chequia vs Inglaterra","seleccion":"Inglaterra gana + Más de 1.5","minuto":46,"marcador":"0:0","cuota":1.77,"gano":true,"p_modelo":0.243},{"partido":"Atenas vs Plaza Colonia","seleccion":"Atenas","minuto":46,"marcador":"0:0","cuota":1.84,"gano":false,"p_modelo":0.535},{"partido":"Grêmio Prudente vs União São João","seleccion":"União São João","minuto":77,"marcador":"0:0","cuota":2.75,"gano":false,"p_modelo":0.259},{"partido":"Comerciantes FC vs Sport Huancayo Reserva","seleccion":"Sport Huancayo Reserva","minuto":14,"marcador":"0:0","cuota":3.0,"gano":true,"p_modelo":0.706},{"partido":"Rochdale vs Liverpool Sub-21","seleccion":"Rochdale","minuto":52,"marcador":"1:1","cuota":1.64,"gano":false,"p_modelo":0.515},{"partido":"Deportivo San Pedro vs Cobán Imperial","seleccion":"Cobán Imperial","minuto":51,"marcador":"0:0","cuota":2.3,"gano":false,"p_modelo":0.517},{"partido":"CD Génesis vs Olancho FC","seleccion":"Olancho FC","minuto":59,"marcador":"0:0","cuota":2.22,"gano":false,"p_modelo":0.433},{"partido":"O Elvas vs UD Leiria","seleccion":"UD Leiria","minuto":74,"marcador":"0:0","cuota":2.1,"gano":true,"p_modelo":0.301}]},"semaforo":"rojo"},{"codigo":"A1","nombre":"Ganador con el partido empatado","tipo":"evitar","resumen":"Apostar a un ganador cuando el marcador está igualado.","mercado":"1x2","entrar_si":[],"no_entrar_si":["El marcador está empatado: usa Doble oportunidad o espera el gol"],"backtest":{"n":30,"k":20,"tasa":0.6666666666666666,"lo":0.48779725813830266,"hi":0.807697044731538,"p_modelo":0.5798682639570322,"cuota_min":null,"ligas":[{"liga":"Brasil Serie A","k":3,"n":4,"tasa":0.75,"tasa_ajustada":0.694},{"liga":"Perú Liga 1","k":3,"n":4,"tasa":0.75,"tasa_ajustada":0.694},{"liga":"Países Bajos Eredivisie","k":2,"n":3,"tasa":0.667,"tasa_ajustada":0.667},{"liga":"Argentina Liga Profesional","k":2,"n":3,"tasa":0.667,"tasa_ajustada":0.667},{"liga":"Brasil Serie B","k":5,"n":8,"tasa":0.625,"tasa_ajustada":0.646},{"liga":"Colombia Primera A","k":5,"n":8,"tasa":0.625,"tasa_ajustada":0.646}]},"tuyo":{"n":14,"k":6,"cuota_media":1.995714285714286,"neto":-2.19,"ejemplos":[{"partido":"Eslovenia vs Macedonia del Norte","seleccion":"Eslovenia","minuto":50,"marcador":"0:0","cuota":1.63,"gano":true,"p_modelo":0.339},{"partido":"Chequia vs Inglaterra","seleccion":"Inglaterra gana + Más de 1.5","minuto":46,"marcador":"0:0","cuota":1.77,"gano":true,"p_modelo":0.243},{"partido":"Casarano vs Monopoli","seleccion":"Casarano gana + Más de 1.5","minuto":8,"marcador":"0:0","cuota":1.85,"gano":false,"p_modelo":0.311},{"partido":"Atenas vs Plaza Colonia","seleccion":"Atenas","minuto":46,"marcador":"0:0","cuota":1.84,"gano":false,"p_modelo":0.535},{"partido":"CS Fola Esch vs FC Juvenil Canach","seleccion":"CS Fola Esch","minuto":46,"marcador":"0:0","cuota":1.9,"gano":true,"p_modelo":0.356},{"partido":"Grêmio Prudente vs União São João","seleccion":"União São João","minuto":77,"marcador":"0:0","cuota":2.75,"gano":false,"p_modelo":0.259},{"partido":"Waterside Karori vs Fencibles United (F)","seleccion":"Waterside Karori","minuto":21,"marcador":"0:0","cuota":1.68,"gano":false,"p_modelo":0.405},{"partido":"Comerciantes FC vs Sport Huancayo Reserva","seleccion":"Sport Huancayo Reserva","minuto":14,"marcador":"0:0","cuota":3.0,"gano":true,"p_modelo":0.706},{"partido":"Gerasdorf Stammersdorf vs Mauer","seleccion":"Mauer","minuto":23,"marcador":"0:0","cuota":1.41,"gano":true,"p_modelo":0.299},{"partido":"Rochdale vs Liverpool Sub-21","seleccion":"Rochdale","minuto":52,"marcador":"1:1","cuota":1.64,"gano":false,"p_modelo":0.515},{"partido":"Deportivo San Pedro vs Cobán Imperial","seleccion":"Cobán Imperial","minuto":51,"marcador":"0:0","cuota":2.3,"gano":false,"p_modelo":0.517},{"partido":"Tacoma Defiance vs Portland Timbers II","seleccion":"Tacoma gana + Más de 1.5","minuto":25,"marcador":"0:0","cuota":1.85,"gano":false,"p_modelo":0.26},{"partido":"CD Génesis vs Olancho FC","seleccion":"Olancho FC","minuto":59,"marcador":"0:0","cuota":2.22,"gano":false,"p_modelo":0.433},{"partido":"O Elvas vs UD Leiria","seleccion":"UD Leiria","minuto":74,"marcador":"0:0","cuota":2.1,"gano":true,"p_modelo":0.301}]},"semaforo":"ambar"},{"codigo":"A2","nombre":"Over que pide 2 goles con 0:0","tipo":"evitar","resumen":"Con 0:0 suele llegar un gol, pero dos ya es otra cosa.","mercado":"over","entrar_si":[],"no_entrar_si":["El partido va 0:0 y tu línea necesita 2 goles o más (Más de 1.5 o mayor)","Si quieres entrar con 0:0, la línea debe pedir 1 solo gol (Más de 0.5) y la cuota superar la mínima"],"backtest":{"n":17,"k":8,"tasa":0.47058823529411764,"lo":0.26164801196088106,"hi":0.6903710268845051,"p_modelo":0.40983303100535845,"cuota_min":2.1,"ligas":[{"liga":"Brasil Serie A","k":3,"n":3,"tasa":1.0,"tasa_ajustada":0.615},{"liga":"Argentina Liga Profesional","k":1,"n":1,"tasa":1.0,"tasa_ajustada":0.529},{"liga":"Colombia Primera A","k":3,"n":5,"tasa":0.6,"tasa_ajustada":0.52},{"liga":"Brasil Serie B","k":1,"n":4,"tasa":0.25,"tasa_ajustada":0.397},{"liga":"Países Bajos Eredivisie","k":0,"n":2,"tasa":0.0,"tasa_ajustada":0.376},{"liga":"Perú Liga 1","k":0,"n":2,"tasa":0.0,"tasa_ajustada":0.376}]},"tuyo":{"n":3,"k":0,"cuota_media":1.623333333333333,"neto":-3,"ejemplos":[{"partido":"Grêmio vs Palmeiras","seleccion":"Más de 1.5","minuto":26,"marcador":"0:0","cuota":1.42,"gano":false,"p_modelo":0.621},{"partido":"Bournemouth vs Liverpool","seleccion":"Más de 1.5","minuto":23,"marcador":"0:0","cuota":1.4,"gano":false,"p_modelo":0.688},{"partido":"Deportivo Pasto vs Once Caldas","seleccion":"Más de 1.5","minuto":39,"marcador":"0:0","cuota":2.05,"gano":false,"p_modelo":0.35}]},"semaforo":"rojo"},{"codigo":"A3","nombre":"Córners","tipo":"evitar","resumen":"Más de córners sin datos de córners al minuto.","mercado":"corners","entrar_si":[],"no_entrar_si":["No hay forma de medir el ritmo de córners en vivo con tus datos actuales"],"backtest":{"n":0,"k":0,"tasa":0.0,"lo":0.0,"hi":1.0,"p_modelo":null,"cuota_min":null,"ligas":[]},"tuyo":{"n":0,"k":0,"cuota_media":null,"neto":0,"ejemplos":[]},"semaforo":"rojo"}],"mapa":[{"minuto":30,"goles":0,"dif":0,"n":35,"mas1":0.943,"mas2":0.657,"p_mod_mas1":0.85,"empate_sigue":0.229,"lo_mas1":0.814,"hi_mas1":0.984},{"minuto":30,"goles":1,"dif":1,"n":15,"mas1":0.733,"mas2":0.6,"p_mod_mas1":0.854,"lider_gana":0.667,"lo_mas1":0.48,"hi_mas1":0.891},{"minuto":30,"goles":2,"dif":0,"n":2,"mas1":1.0,"mas2":0.5,"p_mod_mas1":0.874,"empate_sigue":0.0,"lo_mas1":0.342,"hi_mas1":1.0},{"minuto":30,"goles":2,"dif":2,"n":3,"mas1":1.0,"mas2":1.0,"p_mod_mas1":0.881,"lider_gana":1.0,"lo_mas1":0.438,"hi_mas1":1.0},{"minuto":30,"goles":3,"dif":1,"n":1,"mas1":1.0,"mas2":1.0,"p_mod_mas1":0.889,"lider_gana":1.0,"lo_mas1":0.207,"hi_mas1":1.0},{"minuto":30,"goles":3,"dif":2,"n":1,"mas1":1.0,"mas2":0.0,"p_mod_mas1":0.859,"lider_gana":1.0,"lo_mas1":0.207,"hi_mas1":1.0},{"minuto":45,"goles":0,"dif":0,"n":17,"mas1":0.882,"mas2":0.471,"p_mod_mas1":0.753,"empate_sigue":0.118,"lo_mas1":0.657,"hi_mas1":0.967},{"minuto":45,"goles":1,"dif":1,"n":23,"mas1":0.696,"mas2":0.478,"p_mod_mas1":0.744,"lider_gana":0.739,"lo_mas1":0.491,"hi_mas1":0.844},{"minuto":45,"goles":2,"dif":0,"n":7,"mas1":0.714,"mas2":0.571,"p_mod_mas1":0.768,"empate_sigue":0.714,"lo_mas1":0.359,"hi_mas1":0.918},{"minuto":45,"goles":2,"dif":2,"n":4,"mas1":0.75,"mas2":0.25,"p_mod_mas1":0.791,"lider_gana":1.0,"lo_mas1":0.301,"hi_mas1":0.954},{"minuto":45,"goles":3,"dif":1,"n":3,"mas1":0.667,"mas2":0.333,"p_mod_mas1":0.777,"lider_gana":1.0,"lo_mas1":0.208,"hi_mas1":0.939},{"minuto":45,"goles":3,"dif":2,"n":3,"mas1":1.0,"mas2":0.333,"p_mod_mas1":0.794,"lider_gana":1.0,"lo_mas1":0.438,"hi_mas1":1.0},{"minuto":60,"goles":0,"dif":0,"n":13,"mas1":0.846,"mas2":0.385,"p_mod_mas1":0.604,"empate_sigue":0.154,"lo_mas1":0.578,"hi_mas1":0.957},{"minuto":60,"goles":1,"dif":1,"n":13,"mas1":0.385,"mas2":0.308,"p_mod_mas1":0.606,"lider_gana":0.923,"lo_mas1":0.177,"hi_mas1":0.645},{"minuto":60,"goles":2,"dif":0,"n":8,"mas1":0.625,"mas2":0.375,"p_mod_mas1":0.607,"empate_sigue":0.75,"lo_mas1":0.306,"hi_mas1":0.863},{"minuto":60,"goles":2,"dif":2,"n":12,"mas1":0.667,"mas2":0.167,"p_mod_mas1":0.613,"lider_gana":0.833,"lo_mas1":0.391,"hi_mas1":0.862},{"minuto":60,"goles":3,"dif":0,"n":1,"mas1":0.0,"mas2":0.0,"p_mod_mas1":0.603,"empate_sigue":1.0,"lo_mas1":0.0,"hi_mas1":0.793},{"minuto":60,"goles":3,"dif":1,"n":4,"mas1":0.5,"mas2":0.0,"p_mod_mas1":0.655,"lider_gana":1.0,"lo_mas1":0.15,"hi_mas1":0.85},{"minuto":60,"goles":3,"dif":2,"n":6,"mas1":0.667,"mas2":0.167,"p_mod_mas1":0.648,"lider_gana":1.0,"lo_mas1":0.3,"hi_mas1":0.903},{"minuto":70,"goles":0,"dif":0,"n":8,"mas1":0.75,"mas2":0.25,"p_mod_mas1":0.482,"empate_sigue":0.25,"lo_mas1":0.409,"hi_mas1":0.929},{"minuto":70,"goles":1,"dif":1,"n":16,"mas1":0.375,"mas2":0.25,"p_mod_mas1":0.489,"lider_gana":0.938,"lo_mas1":0.185,"hi_mas1":0.614},{"minuto":70,"goles":2,"dif":0,"n":5,"mas1":0.4,"mas2":0.2,"p_mod_mas1":0.471,"empate_sigue":0.8,"lo_mas1":0.118,"hi_mas1":0.769},{"minuto":70,"goles":2,"dif":2,"n":11,"mas1":0.636,"mas2":0.182,"p_mod_mas1":0.493,"lider_gana":0.909,"lo_mas1":0.354,"hi_mas1":0.848},{"minuto":70,"goles":3,"dif":0,"n":2,"mas1":0.0,"mas2":0.0,"p_mod_mas1":0.504,"empate_sigue":1.0,"lo_mas1":0.0,"hi_mas1":0.658},{"minuto":70,"goles":3,"dif":1,"n":7,"mas1":0.571,"mas2":0.0,"p_mod_mas1":0.522,"lider_gana":0.714,"lo_mas1":0.25,"hi_mas1":0.842},{"minuto":70,"goles":3,"dif":2,"n":8,"mas1":0.25,"mas2":0.125,"p_mod_mas1":0.522,"lider_gana":1.0,"lo_mas1":0.071,"hi_mas1":0.591},{"minuto":80,"goles":0,"dif":0,"n":3,"mas1":0.333,"mas2":0.0,"p_mod_mas1":0.322,"empate_sigue":0.667,"lo_mas1":0.061,"hi_mas1":0.792},{"minuto":80,"goles":1,"dif":1,"n":16,"mas1":0.188,"mas2":0.062,"p_mod_mas1":0.33,"lider_gana":0.938,"lo_mas1":0.066,"hi_mas1":0.43},{"minuto":80,"goles":2,"dif":0,"n":6,"mas1":0.5,"mas2":0.0,"p_mod_mas1":0.325,"empate_sigue":0.5,"lo_mas1":0.188,"hi_mas1":0.812},{"minuto":80,"goles":2,"dif":2,"n":10,"mas1":0.5,"mas2":0.0,"p_mod_mas1":0.317,"lider_gana":1.0,"lo_mas1":0.237,"hi_mas1":0.763},{"minuto":80,"goles":3,"dif":0,"n":3,"mas1":0.0,"mas2":0.0,"p_mod_mas1":0.335,"empate_sigue":1.0,"lo_mas1":0.0,"hi_mas1":0.562},{"minuto":80,"goles":3,"dif":1,"n":8,"mas1":0.5,"mas2":0.0,"p_mod_mas1":0.348,"lider_gana":0.625,"lo_mas1":0.215,"hi_mas1":0.785},{"minuto":80,"goles":3,"dif":2,"n":11,"mas1":0.273,"mas2":0.091,"p_mod_mas1":0.352,"lider_gana":1.0,"lo_mas1":0.097,"hi_mas1":0.566}],"descubrimiento":[{"minuto":30,"goles_min":0,"dif":null,"objetivo":"mas1","k_desc":26,"n_desc":28,"k_val":25,"n_val":29,"p_valor":0.037894911252999534,"confirmada":false},{"minuto":30,"goles_min":0,"dif":0,"objetivo":"mas1","k_desc":19,"n_desc":19,"k_val":16,"n_val":18,"p_valor":0.059952206747560154,"confirmada":false},{"minuto":45,"goles_min":0,"dif":null,"objetivo":"mas1","k_desc":24,"n_desc":28,"k_val":20,"n_val":29,"p_valor":0.6359959189280554,"confirmada":false},{"minuto":45,"goles_min":1,"dif":null,"objetivo":"mas1","k_desc":15,"n_desc":19,"k_val":14,"n_val":21,"p_valor":0.7229932018529894,"confirmada":false}],"apuestas_modelo":[{"p":0.339,"p_nula":0.0,"cuota_min":2.951,"ev":-0.448,"cuota":1.63,"gano":true,"partido":"Eslovenia vs Macedonia del Norte","seleccion":"Eslovenia","minuto":50,"marcador":"0:0","mercado":"1x2","tipo_ticket":"combinada","patrones":["A1"],"confianza":"alta","liga":"UEFA Nations League"},{"p":0.368,"p_nula":0.0,"cuota_min":2.72,"ev":-0.368,"cuota":1.72,"gano":true,"partido":"España vs Croacia","seleccion":"Más de 4.5","minuto":50,"marcador":"2:1","mercado":"over","tipo_ticket":"combinada","patrones":[],"confianza":"media","liga":"UEFA Nations League"},{"p":0.243,"p_nula":0.0,"cuota_min":4.108,"ev":-0.569,"cuota":1.77,"gano":true,"partido":"Chequia vs Inglaterra","seleccion":"Inglaterra gana + Más de 1.5","minuto":46,"marcador":"0:0","mercado":"bb","tipo_ticket":"combinada","patrones":["P4","A1"],"confianza":"alta","liga":"UEFA Nations League"},{"p":0.31,"p_nula":0.365,"cuota_min":3.226,"ev":-0.195,"cuota":1.42,"gano":true,"partido":"Escocia vs Suiza","seleccion":"Más de 2","minuto":46,"marcador":"0:1","mercado":"over","tipo_ticket":"combinada","patrones":["P3"],"confianza":"alta","liga":"UEFA Nations League"},{"p":0.482,"p_nula":0.0,"cuota_min":2.076,"ev":-0.109,"cuota":1.85,"gano":true,"partido":"Bolívar vs Blooming","seleccion":"Más de 1.5","minuto":66,"marcador":"1:0","mercado":"over","tipo_ticket":"simple","patrones":["P3"],"confianza":"media","liga":"Bolivia"},{"p":0.311,"p_nula":0.0,"cuota_min":3.219,"ev":-0.425,"cuota":1.85,"gano":false,"partido":"Casarano vs Monopoli","seleccion":"Casarano gana + Más de 1.5","minuto":8,"marcador":"0:0","mercado":"bb","tipo_ticket":"simple","patrones":["A1"],"confianza":"baja","liga":"Italia Serie C"},{"p":0.474,"p_nula":0.0,"cuota_min":2.111,"ev":-0.228,"cuota":1.63,"gano":true,"partido":"Antoniano vs Ciudad de Lucena","seleccion":"Más de 2.5","minuto":67,"marcador":"0:2","mercado":"over","tipo_ticket":"simple","patrones":["P1","P3"],"confianza":"alta","liga":"España 2ª RFEF"},{"p":0.535,"p_nula":0.0,"cuota_min":1.871,"ev":-0.016,"cuota":1.84,"gano":false,"partido":"Atenas vs Plaza Colonia","seleccion":"Atenas","minuto":46,"marcador":"0:0","mercado":"1x2","tipo_ticket":"simple","patrones":["P4","A1"],"confianza":"alta","liga":"Uruguay 2ª División"},{"p":0.356,"p_nula":0.0,"cuota_min":2.812,"ev":-0.324,"cuota":1.9,"gano":true,"partido":"CS Fola Esch vs FC Juvenil Canach","seleccion":"CS Fola Esch","minuto":46,"marcador":"0:0","mercado":"1x2","tipo_ticket":"simple","patrones":["A1"],"confianza":"baja","liga":"Luxemburgo"},{"p":0.412,"p_nula":0.344,"cuota_min":2.429,"ev":-0.051,"cuota":1.47,"gano":true,"partido":"Austria vs Kosovo","seleccion":"Más de 3","minuto":46,"marcador":"2:0","mercado":"over","tipo_ticket":"combinada","patrones":[],"confianza":"alta","liga":"UEFA Nations League"},{"p":0.548,"p_nula":0.452,"cuota_min":1.826,"ev":0.493,"cuota":1.9,"gano":true,"partido":"Criciúma vs Avaí","seleccion":"Más de 2","minuto":65,"marcador":"2:0","mercado":"over","tipo_ticket":"simple","patrones":["P1"],"confianza":"alta","liga":"Brasil Serie B"},{"p":0.55,"p_nula":0.0,"cuota_min":1.819,"ev":-0.104,"cuota":1.63,"gano":false,"partido":"Camacha vs Florgrade","seleccion":"Camacha se clasifica","minuto":32,"marcador":"0:0","mercado":"clasifica","tipo_ticket":"combinada","patrones":[],"confianza":"alta","liga":"Taça de Portugal"},{"p":0.501,"p_nula":0.0,"cuota_min":1.996,"ev":-0.299,"cuota":1.4,"gano":false,"partido":"Levanger vs Grorud","seleccion":"Ambos marcan + Más de 2.5","minuto":32,"marcador":"0:1","mercado":"bb","tipo_ticket":"combinada","patrones":[],"confianza":"alta","liga":"Noruega 2ª"},{"p":0.526,"p_nula":0.0,"cuota_min":1.901,"ev":-0.227,"cuota":1.47,"gano":true,"partido":"Estrela Calheta vs Cinfães","seleccion":"Sí","minuto":41,"marcador":"1:0","mercado":"btts","tipo_ticket":"combinada","patrones":[],"confianza":"media","liga":"Campeonato de Portugal"},{"p":0.259,"p_nula":0.0,"cuota_min":3.857,"ev":-0.287,"cuota":2.75,"gano":false,"partido":"Grêmio Prudente vs União São João","seleccion":"União São João","minuto":77,"marcador":"0:0","mercado":"1x2","tipo_ticket":"simple","patrones":["P4","A1"],"confianza":"alta","liga":"Copa Paulista"},{"p":0.401,"p_nula":0.0,"cuota_min":2.497,"ev":-0.299,"cuota":1.75,"gano":false,"partido":"Almirante Brown vs Acassuso","seleccion":"Más de 1.5","minuto":77,"marcador":"0:1","mercado":"over","tipo_ticket":"simple","patrones":[],"confianza":"media","liga":"Argentina Primera Nacional"},{"p":0.405,"p_nula":0.0,"cuota_min":2.467,"ev":-0.319,"cuota":1.68,"gano":false,"partido":"Waterside Karori vs Fencibles United (F)","seleccion":"Waterside Karori","minuto":21,"marcador":"0:0","mercado":"1x2","tipo_ticket":"simple","patrones":["A1"],"confianza":"alta","liga":"Nueva Zelanda Femenina"},{"p":0.853,"p_nula":0.0,"cuota_min":1.172,"ev":0.143,"cuota":1.34,"gano":true,"partido":"Once Caldas vs Bucaramanga","seleccion":"Bucaramanga","minuto":30,"marcador":"0:2","mercado":"1x2","tipo_ticket":"combinada","patrones":["P2"],"confianza":"alta","liga":"Colombia Primera A"},{"p":0.55,"p_nula":0.0,"cuota_min":1.82,"ev":-0.203,"cuota":1.45,"gano":true,"partido":"Cavalry FC vs FC Supra du Québec","seleccion":"Más de 3.5","minuto":35,"marcador":"2:0","mercado":"over","tipo_ticket":"combinada","patrones":[],"confianza":"media","liga":"Canadá CPL"},{"p":0.434,"p_nula":0.0,"cuota_min":2.305,"ev":-0.293,"cuota":1.63,"gano":true,"partido":"Carlos Mannucci vs Universidad San Martín","seleccion":"Más de 4.5","minuto":45,"marcador":"3:0","mercado":"over","tipo_ticket":"combinada","patrones":[],"confianza":"alta","liga":"Perú Liga 2"},{"p":0.588,"p_nula":0.0,"cuota_min":1.701,"ev":0.105,"cuota":1.88,"gano":true,"partido":"General Caballero JLM vs 3 de Noviembre","seleccion":"3 de Noviembre","minuto":24,"marcador":"0:1","mercado":"1x2","tipo_ticket":"simple","patrones":["P2"],"confianza":"media","liga":"Paraguay Intermedia"},{"p":0.706,"p_nula":0.0,"cuota_min":1.417,"ev":1.117,"cuota":3.0,"gano":true,"partido":"Comerciantes FC vs Sport Huancayo Reserva","seleccion":"Sport Huancayo Reserva","minuto":14,"marcador":"0:0","mercado":"1x2","tipo_ticket":"simple","patrones":["P4","A1"],"confianza":"media","liga":"Perú Liga 2"},{"p":0.555,"p_nula":0.0,"cuota_min":1.803,"ev":-0.185,"cuota":1.47,"gano":false,"partido":"Grorud vs Moss","seleccion":"Más de 2.5","minuto":66,"marcador":"1:1","mercado":"over","tipo_ticket":"combinada","patrones":["P1"],"confianza":"alta","liga":"Copa de Noruega"},{"p":0.299,"p_nula":0.0,"cuota_min":3.341,"ev":-0.578,"cuota":1.41,"gano":true,"partido":"Gerasdorf Stammersdorf vs Mauer","seleccion":"Mauer","minuto":23,"marcador":"0:0","mercado":"1x2","tipo_ticket":"combinada","patrones":["A1"],"confianza":"alta","liga":"Austria Wiener Stadtliga"},{"p":0.262,"p_nula":0.0,"cuota_min":3.824,"ev":-0.451,"cuota":2.1,"gano":true,"partido":"Groene Ster vs AFC Amsterdam","seleccion":"Más de 5.5","minuto":60,"marcador":"0:4","mercado":"over","tipo_ticket":"combinada","patrones":[],"confianza":"media","liga":"Copa KNVB"},{"p":0.515,"p_nula":0.0,"cuota_min":1.94,"ev":-0.155,"cuota":1.64,"gano":false,"partido":"Rochdale vs Liverpool Sub-21","seleccion":"Rochdale","minuto":52,"marcador":"1:1","mercado":"1x2","tipo_ticket":"combinada","patrones":["P4","A1"],"confianza":"media","liga":"EFL Trophy"},{"p":0.517,"p_nula":0.0,"cuota_min":1.933,"ev":0.19,"cuota":2.3,"gano":false,"partido":"Deportivo San Pedro vs Cobán Imperial","seleccion":"Cobán Imperial","minuto":51,"marcador":"0:0","mercado":"1x2","tipo_ticket":"simple","patrones":["P4","A1"],"confianza":"alta","liga":"Guatemala Liga Nacional"},{"p":0.26,"p_nula":0.0,"cuota_min":3.839,"ev":-0.518,"cuota":1.85,"gano":false,"partido":"Tacoma Defiance vs Portland Timbers II","seleccion":"Tacoma gana + Más de 1.5","minuto":25,"marcador":"0:0","mercado":"bb","tipo_ticket":"simple","patrones":["A1"],"confianza":"alta","liga":"MLS Next Pro"},{"p":0.454,"p_nula":0.0,"cuota_min":2.203,"ev":-0.296,"cuota":1.55,"gano":true,"partido":"Fortaleza vs Atlético Junior","seleccion":"Más de 2.5","minuto":24,"marcador":"0:1","mercado":"over","tipo_ticket":"combinada","patrones":["P3"],"confianza":"alta","liga":"Colombia Primera A"},{"p":0.655,"p_nula":0.0,"cuota_min":1.526,"ev":-0.05,"cuota":1.45,"gano":false,"partido":"Santa Clara vs SC Braga","seleccion":"Más de 0.5","minuto":55,"marcador":"0:0","mercado":"over","tipo_ticket":"combinada","patrones":[],"confianza":"alta","liga":"Portugal Primeira Liga"},{"p":0.519,"p_nula":0.0,"cuota_min":1.926,"ev":-0.128,"cuota":1.68,"gano":true,"partido":"Wehen Wiesbaden vs Duisburg","seleccion":"Más de 4.5","minuto":42,"marcador":"0:3","mercado":"over","tipo_ticket":"combinada","patrones":[],"confianza":"alta","liga":"Alemania 3. Liga"},{"p":0.97,"p_nula":0.0,"cuota_min":1.031,"ev":0.3,"cuota":1.34,"gano":true,"partido":"Frosinone vs Como","seleccion":"Frosinone","minuto":69,"marcador":"2:0","mercado":"1x2","tipo_ticket":"combinada","patrones":["P2"],"confianza":"alta","liga":"Italia Serie A"},{"p":0.621,"p_nula":0.0,"cuota_min":1.61,"ev":-0.118,"cuota":1.42,"gano":false,"partido":"Grêmio vs Palmeiras","seleccion":"Más de 1.5","minuto":26,"marcador":"0:0","mercado":"over","tipo_ticket":"combinada","patrones":["A2"],"confianza":"alta","liga":"Brasil Serie A"},{"p":0.537,"p_nula":0.0,"cuota_min":1.863,"ev":-0.221,"cuota":1.45,"gano":true,"partido":"FC Fredericia vs Vejle","seleccion":"Más de 3.5","minuto":69,"marcador":"1:2","mercado":"over","tipo_ticket":"combinada","patrones":["P1"],"confianza":"alta","liga":"Dinamarca 1ª"},{"p":0.264,"p_nula":0.0,"cuota_min":3.79,"ev":-0.42,"cuota":2.2,"gano":true,"partido":"Karpaty vs Veres","seleccion":"Más de 1.5","minuto":81,"marcador":"1:0","mercado":"over","tipo_ticket":"combinada","patrones":["P3"],"confianza":"alta","liga":"Ucrania Premier"},{"p":0.335,"p_nula":0.0,"cuota_min":2.986,"ev":-0.454,"cuota":1.63,"gano":true,"partido":"Twente vs PSV","seleccion":"Más de 3.5","minuto":81,"marcador":"1:2","mercado":"over","tipo_ticket":"combinada","patrones":[],"confianza":"media","liga":"Países Bajos Eredivisie"},{"p":0.688,"p_nula":0.0,"cuota_min":1.454,"ev":-0.037,"cuota":1.4,"gano":false,"partido":"Bournemouth vs Liverpool","seleccion":"Más de 1.5","minuto":23,"marcador":"0:0","mercado":"over","tipo_ticket":"combinada","patrones":["A2"],"confianza":"alta","liga":"Inglaterra Premier League"},{"p":0.35,"p_nula":0.0,"cuota_min":2.858,"ev":-0.283,"cuota":2.05,"gano":false,"partido":"Deportivo Pasto vs Once Caldas","seleccion":"Más de 1.5","minuto":39,"marcador":"0:0","mercado":"over","tipo_ticket":"simple","patrones":["A2","P3"],"confianza":"alta","liga":"Colombia Primera A"},{"p":0.626,"p_nula":0.0,"cuota_min":1.598,"ev":-0.205,"cuota":1.27,"gano":true,"partido":"San Jose Earthquakes vs LAFC","seleccion":"Sí","minuto":46,"marcador":"0:1","mercado":"btts","tipo_ticket":"combinada","patrones":["P3"],"confianza":"alta","liga":"MLS"},{"p":0.767,"p_nula":0.233,"cuota_min":1.303,"ev":0.146,"cuota":1.19,"gano":true,"partido":"DC United vs Charlotte FC","seleccion":"Más de 2","minuto":46,"marcador":"1:1","mercado":"over","tipo_ticket":"combinada","patrones":["P1"],"confianza":"media","liga":"MLS"},{"p":0.766,"p_nula":0.0,"cuota_min":1.306,"ev":-0.104,"cuota":1.17,"gano":true,"partido":"Vasco da Gama vs Coritiba","seleccion":"Más de 2.5","minuto":46,"marcador":"2:0","mercado":"over","tipo_ticket":"combinada","patrones":["P1"],"confianza":"alta","liga":"Brasil Serie A"},{"p":0.557,"p_nula":0.0,"cuota_min":1.797,"ev":-0.193,"cuota":1.45,"gano":true,"partido":"Lexington SC vs Orange County SC","seleccion":"Más de 5.5","minuto":69,"marcador":"5:0","mercado":"over","tipo_ticket":"combinada","patrones":["P1"],"confianza":"alta","liga":"USL Championship"},{"p":0.56,"p_nula":0.0,"cuota_min":1.786,"ev":-0.216,"cuota":1.4,"gano":true,"partido":"River Plate vs Huracán","seleccion":"Sí","minuto":49,"marcador":"0:1","mercado":"btts","tipo_ticket":"combinada","patrones":[],"confianza":"alta","liga":"Argentina Liga Profesional"},{"p":0.608,"p_nula":0.0,"cuota_min":1.645,"ev":-0.222,"cuota":1.28,"gano":true,"partido":"Pioneros de Cancún vs Tapachula Soconusco","seleccion":"Más de 3.5","minuto":65,"marcador":"3:0","mercado":"over","tipo_ticket":"combinada","patrones":["P1"],"confianza":"media","liga":"México Liga Premier"},{"p":0.807,"p_nula":0.0,"cuota_min":1.239,"ev":0.299,"cuota":1.61,"gano":true,"partido":"Club Aurora vs Universitario de Vinto","seleccion":"Club Aurora","minuto":73,"marcador":"3:2","mercado":"1x2","tipo_ticket":"simple","patrones":["P2"],"confianza":"alta","liga":"Bolivia Copa"},{"p":0.433,"p_nula":0.0,"cuota_min":2.308,"ev":-0.038,"cuota":2.22,"gano":false,"partido":"CD Génesis vs Olancho FC","seleccion":"Olancho FC","minuto":59,"marcador":"0:0","mercado":"1x2","tipo_ticket":"simple","patrones":["P4","A1"],"confianza":"alta","liga":"Honduras Liga Nacional"},{"p":0.301,"p_nula":0.0,"cuota_min":3.318,"ev":-0.367,"cuota":2.1,"gano":true,"partido":"O Elvas vs UD Leiria","seleccion":"UD Leiria","minuto":74,"marcador":"0:0","mercado":"1x2","tipo_ticket":"simple","patrones":["P4","A1"],"confianza":"media","liga":"Taça de Portugal"},{"p":0.446,"p_nula":0.0,"cuota_min":2.243,"ev":-0.376,"cuota":1.4,"gano":true,"partido":"Odense Boldklub vs FC Midtjylland","seleccion":"Más de 1.5","minuto":69,"marcador":"0:1","mercado":"over","tipo_ticket":"combinada","patrones":["P3"],"confianza":"media","liga":"Dinamarca Superliga"},{"p":0.516,"p_nula":0.0,"cuota_min":1.94,"ev":-0.242,"cuota":1.47,"gano":true,"partido":"Sparta Rotterdam vs Heerenveen","seleccion":"Más de 2.5","minuto":41,"marcador":"0:1","mercado":"over","tipo_ticket":"combinada","patrones":[],"confianza":"baja","liga":"Países Bajos Eredivisie"},{"p":0.883,"p_nula":0.0,"cuota_min":1.132,"ev":0.236,"cuota":1.4,"gano":true,"partido":"Molde vs Aalesunds","seleccion":"Aalesunds","minuto":46,"marcador":"0:2","mercado":"1x2","tipo_ticket":"combinada","patrones":["P2"],"confianza":"alta","liga":"Noruega Eliteserien"}]};
+const PATRONES_JSON = {"version":2,"actualizado":"2026-09-30","nota":"Fuente única de reglas. La leen fb/patrones.py y la app. Cambiar aquí y regenerar con: python -m fb.cli reporte","patrones":[{"codigo":"P1","nombre":"Over con partido abierto","tipo":"a_favor","resumen":"El partido ya tiene goles y solo te falta uno para ganar.","mercado":"over","entrar_si":["Apuestas a Más de X goles","Ya hay 2 goles o más en el marcador","Te falta 1 solo gol para ganar la línea","Vas en el minuto 75 o antes"],"no_entrar_si":["El partido va 0:0 o 1:0","Te faltan 2 goles o más","Ya pasó el minuto 75"],"params":{"goles_min":2,"faltan":1,"minuto_max":75}},{"codigo":"P2","nombre":"Ganador al equipo que ya gana","tipo":"a_favor","resumen":"Apuestas a que gana el equipo que ya va arriba en el marcador.","mercado":"1x2","entrar_si":["Apuestas Ganador (1x2)","Tu equipo va ganando por 1 gol o más","Mejor si la ventaja es de 2 goles o si ya pasó el minuto 60"],"no_entrar_si":["El partido está empatado","La cuota es menor a la cuota mínima de la tabla","El rival acaba de descontar y empuja"],"params":{"dif_min":1}},{"codigo":"P3","nombre":"Roja: apostar a goles","tipo":"a_favor","resumen":"Tras una expulsión el partido se abre. Se apuesta a que llegan más goles.","mercado":"over","entrar_si":["Hubo una roja antes de apostar","Apuestas Más de goles o Ambos marcan","Te falta 1 solo gol para ganar"],"no_entrar_si":["Te faltan 2 goles o más","Quedan menos de 15 minutos"],"params":{"faltan":1,"minuto_max":80}},{"codigo":"P4","nombre":"Roja: ganador al que tiene uno más","tipo":"a_validar","resumen":"El rival se quedó con 10 y el partido sigue empatado.","mercado":"1x2","entrar_si":["El rival de tu equipo tiene una roja","El partido está empatado","Tu equipo domina y llega"],"no_entrar_si":["Pasó el minuto 70 y sigue 0:0","La cuota es menor a la cuota mínima de la tabla"],"params":{}},{"codigo":"A1","nombre":"Ganador con el partido empatado","tipo":"evitar","resumen":"Apostar a un ganador cuando el marcador está igualado.","mercado":"1x2","entrar_si":[],"no_entrar_si":["El marcador está empatado: usa Doble oportunidad o espera el gol"],"params":{}},{"codigo":"A2","nombre":"Over que pide 2 goles con 0:0","tipo":"evitar","resumen":"Con 0:0 suele llegar un gol, pero dos ya es otra cosa.","mercado":"over","entrar_si":[],"no_entrar_si":["El partido va 0:0 y tu línea necesita 2 goles o más (Más de 1.5 o mayor)","Si quieres entrar con 0:0, la línea debe pedir 1 solo gol (Más de 0.5) y la cuota superar la mínima"],"params":{"faltan_min":2}},{"codigo":"A3","nombre":"Córners","tipo":"evitar","resumen":"Más de córners sin datos de córners al minuto.","mercado":"corners","entrar_si":[],"no_entrar_si":["No hay forma de medir el ritmo de córners en vivo con tus datos actuales"],"params":{}}]};
+/*DATOS_APP_FIN*/
+</script>
+<script>
 (() => {
-  // Tasas históricas por patrón (reports/analisis_patrones.md, 30/09/2026)
-  const PATRONES = {
-    P1: { nombre: 'Over con partido abierto', tipo: 'ok', k: 6, n: 7, cuota: 1.48, lo: .49, hi: .97,
-      regla: 'Más de goles con 2 o más goles ya marcados, falta 1 solo gol para ganar la línea y minuto 75 o menos.',
-      limite: '7 casos. Tasa alta, pero el intervalo baja hasta 49% y el break-even es 68%. Aún no está probado.' },
-    P2: { nombre: '1x2 al equipo que ya gana', tipo: 'ok', k: 5, n: 5, cuota: 1.51, lo: .57, hi: 1,
-      regla: 'Ganador 1x2 al equipo que va arriba por 1 o más goles cuando apuestas.',
-      limite: '5 de 5, muestra mínima. Las cuotas bajas castigan un solo empate tardío.' },
-    P3: { nombre: 'Roja: apostar a goles', tipo: 'ok', k: 7, n: 9, cuota: 1.65, lo: .45, hi: .94,
-      regla: 'Hubo roja antes de apostar y apuestas a Más de goles o Ambos marcan.',
-      limite: '9 casos. La roja abrió el partido más veces de las que le dio el triunfo al de 11.' },
-    P4: { nombre: 'Roja: 1x2 al que tiene uno más', tipo: 'warn', k: 3, n: 7, cuota: 2.19, lo: .16, hi: .75,
-      regla: 'El rival tiene una roja, el partido va empatado y apuestas a que gana el equipo con uno más.',
-      limite: '3 de 7. Cuatro terminaron en empate. Con uno más no alcanza si no hay gol.' },
-    A1: { nombre: '1x2 con el partido empatado', tipo: 'bad', k: 6, n: 14, cuota: 2.00, lo: .21, hi: .67,
-      regla: 'Ganador 1x2 cuando el marcador está empatado al apostar.',
-      limite: '6 de 14 con break-even de 50%. Si el favorito no marca, usa doble oportunidad o no entres.' },
-    A2: { nombre: 'Over sin goles', tipo: 'bad', k: 1, n: 5, cuota: 1.63, lo: .04, hi: .62,
-      regla: 'Más de goles con el partido 0:0.',
-      limite: '1 de 5. El único acierto llegó con roja en Bolívar.' },
-    A3: { nombre: 'Córners', tipo: 'bad', k: 1, n: 3, cuota: 1.82, lo: .06, hi: .79,
-      regla: 'Cualquier Más de córners.',
-      limite: '1 de 3 y sin datos de córners al minuto. Queda fuera hasta medirlo.' },
-    SP: { nombre: 'Sin patrón', tipo: 'none' }
-  };
-  const ORDEN = ['P1', 'P2', 'P3', 'P4', 'A1', 'A2', 'A3', 'SP'];
-
   const $ = (id) => document.getElementById(id);
-  const S = { db: null, apuestas: [], historico: [], ajustes: { banca_inicial: 20, stake_pct: 5, tope: 1 }, soloLectura: false, cargado: false };
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const num = (v) => { const n = parseFloat(String(v ?? '').replace(',', '.')); return Number.isFinite(n) ? n : null; };
   const money = (x) => (x < 0 ? '−$' : '$') + Math.abs(x).toFixed(2);
   const signed = (x) => (x > 0 ? '+' : x < 0 ? '−' : '') + '$' + Math.abs(x).toFixed(2);
-  const pct = (x) => (x * 100).toFixed(0) + '%';
-  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const num = (v) => { const n = parseFloat(String(v).replace(',', '.')); return Number.isFinite(n) ? n : null; };
+  const pct = (x) => (x == null || !isFinite(x)) ? '—' : (x * 100).toFixed(0) + '%';
+  const fx = (x, d = 2) => (x == null || !isFinite(x)) ? '—' : Number(x).toFixed(d);
 
-  // ---------- detector de patrones (mismas reglas que analysis/validar_patrones.py)
-  function detectar(d) {
+  const D = DATOS || { fichas: [], mapa: [], modelo: null, apuestas_modelo: [], calibracion: null, muestra: { backtest: 0, total: 0, ligas: [] } };
+  const FICHAS = Object.fromEntries(D.fichas.map((f) => [f.codigo, f]));
+  const ORDEN = ['P1', 'P2', 'P3', 'P4', 'A1', 'A2', 'A3', 'SP'];
+  const NOMBRE = (c) => c === 'SP' ? 'Sin patrón' : (FICHAS[c]?.nombre || c);
+  const TIPO = (c) => c === 'SP' ? 'none' : (FICHAS[c]?.tipo || 'none');
+
+  // ---------------------------------------------------------------- modelo (misma lógica que fb/modelo.py)
+  const MOD = D.modelo;
+  const lgam = (k) => { let s = 0; for (let i = 2; i <= k; i++) s += Math.log(i); return s; };
+  const pmf = (k, lam) => lam <= 0 ? (k === 0 ? 1 : 0) : Math.exp(-lam + k * Math.log(lam) - lgam(k));
+  function factorLiga(liga) {
+    if (!MOD || !liga) return 1;
+    const q = liga.trim().toLowerCase();
+    const k = Object.keys(MOD.factor_liga).find((x) => x.toLowerCase() === q);
+    return k ? MOD.factor_liga[k] : 1;
+  }
+  function lambdaRest(min, liga, roja) {
+    if (!MOD) return null;
+    let lam = 0;
+    MOD.tramos.forEach(([a, , d], i) => {
+      if (i === 2 && min >= 45) return;
+      lam += MOD.tasa_tramo[i] * Math.max(0, a + d - Math.max(min, a));
+    });
+    return lam * factorLiga(liga) * (roja ? MOD.mult_roja : 1);
+  }
+  function probOver(linea, goles, min, liga, roja) {
+    const lam = lambdaRest(min, liga, roja);
+    const entera = Math.abs(linea - Math.round(linea)) < 1e-9;
+    const nec = Math.floor(linea) + 1 - goles;
+    if (nec <= 0) return { gana: 1, nula: 0 };
+    let menos = 0; for (let i = 0; i < nec; i++) menos += pmf(i, lam);
+    const nula = entera && goles + nec - 1 === linea ? pmf(nec - 1, lam) : 0;
+    return { gana: 1 - menos, nula };
+  }
+  function lambdasEq(min, liga, rl, rv, ventaja) {
+    const lam = lambdaRest(min, liga, rl + rv > 0);
+    let parte = ventaja;
+    if (rl > rv) parte = 1 - MOD.reparto_roja; else if (rv > rl) parte = MOD.reparto_roja;
+    return [lam * parte, lam * (1 - parte)];
+  }
+  function grid(gl, gv, min, liga, rl, rv, ventaja, fn) {
+    const [lh, la] = lambdasEq(min, liga, rl, rv, ventaja);
+    let tot = 0, acc = 0;
+    for (let i = 0; i < 12; i++) { const pi = pmf(i, lh); for (let j = 0; j < 12; j++) { const p = pi * pmf(j, la); tot += p; if (fn(gl + i, gv + j)) acc += p; } }
+    return tot ? acc / tot : 0;
+  }
+  function ventajaDesdeCuotas(c1, cx, c2, liga) {
+    if (!c1 || !c2 || !MOD) return null;
+    const px = cx ? 1 / cx : 0.27 * (1 / c1 + 1 / c2) / 0.73;
+    const pl = (1 / c1) / (1 / c1 + px + 1 / c2);
+    let lo = 0.15, hi = 0.85;
+    for (let k = 0; k < 40; k++) { const mid = (lo + hi) / 2; (grid(0, 0, 0, liga, 0, 0, mid, (h, a) => h > a) < pl) ? lo = mid : hi = mid; }
+    return (lo + hi) / 2;
+  }
+
+  // ---------------------------------------------------------------- patrones (misma lógica que fb/patrones.py)
+  function clasificar(d) {
     const out = [];
     if (d.min == null || d.gl == null || d.gv == null) return out;
     const goles = d.gl + d.gv;
     const roja = d.roja && d.roja !== 'no';
+    const P1 = FICHAS.P1 ? PATRONES_JSON.patrones.find((p) => p.codigo === 'P1').params : { goles_min: 2, faltan: 1, minuto_max: 75 };
     if (d.mercado === 'over' && d.linea != null) {
-      const faltan = Math.max(0, Math.floor(d.linea) + 1 - goles);
-      if (goles >= 2 && faltan === 1 && d.min <= 75) out.push('P1');
-      if (goles === 0) out.push('A2');
+      const falt = Math.max(0, Math.floor(d.linea) + 1 - goles);
+      if (goles >= P1.goles_min && falt === P1.faltan && d.min <= P1.minuto_max) out.push('P1');
+      if (goles === 0 && falt >= 2) out.push('A2');
     }
     if (roja && (d.mercado === 'over' || d.mercado === 'btts')) out.push('P3');
     if (d.mercado === '1x2') {
       const [p, r] = d.lado === 'local' ? [d.gl, d.gv] : [d.gv, d.gl];
       const rivalLado = d.lado === 'local' ? 'visitante' : 'local';
       if (p > r) out.push('P2');
-      if (p === r) {
-        if (d.roja === rivalLado) out.push('P4');
-        out.push('A1');
-      }
+      if (p === r) { if (d.roja === rivalLado) out.push('P4'); out.push('A1'); }
     }
     if (d.mercado === 'corners') out.push('A3');
     return out;
   }
 
-  function leerForm() {
-    return {
-      fecha: $('f-fecha').value, liga: $('f-liga').value.trim(),
-      local: $('f-local').value.trim(), visitante: $('f-visita').value.trim(),
-      gl: num($('f-gl').value), gv: num($('f-gv').value), min: num($('f-min').value),
-      roja: $('f-roja').value, ritmo: $('f-ritmo').value, mercado: $('f-mercado').value,
-      linea: num($('f-linea').value), lado: $('f-lado').value,
-      cuota: num($('f-cuota').value), stake: num($('f-stake').value),
-      patron: $('f-patron').value, resultado: $('f-resultado').value, notas: $('f-notas').value.trim()
-    };
+  function evaluar(d) {
+    if (d.min == null || !MOD) return null;
+    const rl = d.roja === 'local' || d.roja === 'ambos' ? 1 : 0;
+    const rv = d.roja === 'visitante' || d.roja === 'ambos' ? 1 : 0;
+    const vent = ventajaDesdeCuotas(d.c1, d.cx, d.c2, d.liga) ?? MOD.ventaja_local;
+    let p = null, nula = 0;
+    if (d.mercado === 'over' && d.linea != null) { const r = probOver(d.linea, d.gl + d.gv, d.min, d.liga, rl + rv > 0); p = r.gana; nula = r.nula; }
+    else if (d.mercado === '1x2') p = grid(d.gl, d.gv, d.min, d.liga, rl, rv, vent, d.lado === 'local' ? (h, a) => h > a : (h, a) => a > h);
+    else if (d.mercado === 'dc') p = grid(d.gl, d.gv, d.min, d.liga, rl, rv, vent, d.lado === 'local' ? (h, a) => h >= a : (h, a) => a >= h);
+    else if (d.mercado === 'btts') p = grid(d.gl, d.gv, d.min, d.liga, rl, rv, vent, (h, a) => h > 0 && a > 0);
+    if (p == null) return { sinModelo: true };
+    const cmin = p > 0 ? 1 + (1 - p - nula) / p : Infinity;
+    const ev = d.cuota ? p * (d.cuota - 1) - (1 - p - nula) : null;
+    return { p, nula, cmin, ev, conFuerza: !!(d.c1 && d.c2) };
   }
 
-  let patronTocado = false;
-  function actualizarDetector() {
-    const d = leerForm();
-    const m = d.mercado;
-    $('w-linea').hidden = !(m === 'over' || m === 'corners');
-    $('w-lado').hidden = !(m === '1x2' || m === 'dc');
-    $('sb-l').textContent = d.local ? d.local.slice(0, 14) : 'Local';
-    $('sb-v').textContent = d.visitante ? d.visitante.slice(0, 14) : 'Visita';
-    const cods = detectar(d);
-    const det = $('det'), chip = $('det-chip');
-    det.className = 'detector'; chip.className = 'chip';
-    const buenos = cods.filter((c) => PATRONES[c].tipo === 'ok');
-    const malos = cods.filter((c) => PATRONES[c].tipo !== 'ok');
-    let principal = 'SP';
-    if (d.min == null) {
-      chip.textContent = '—';
-      $('det-title').textContent = 'Falta el minuto';
-      $('det-txt').textContent = 'Anota el minuto y el marcador que ves en el momento de apostar.';
-    } else if (malos.some((c) => PATRONES[c].tipo === 'bad')) {
-      const c = malos.find((x) => PATRONES[x].tipo === 'bad');
-      principal = buenos[0] || c;
-      det.classList.add('bad'); chip.classList.add('bad'); chip.textContent = c;
-      $('det-title').textContent = 'Anti-patrón: ' + PATRONES[c].nombre;
-      let t = PATRONES[c].limite;
-      if (c === 'A1' && m === '1x2') t += ' Cambia a Doble oportunidad o espera el gol.';
-      $('det-txt').textContent = t + (buenos.length ? ' También cumple ' + buenos.join(', ') + '.' : '');
-    } else if (buenos.length) {
-      principal = buenos[0];
-      const p = PATRONES[principal];
-      det.classList.add('ok'); chip.classList.add('ok'); chip.textContent = buenos.join(' + ');
-      $('det-title').textContent = p.nombre;
-      $('det-txt').textContent = `Histórico ${p.k}/${p.n} (${pct(p.k / p.n)}) a cuota media ${p.cuota.toFixed(2)}. ${p.limite}`;
-    } else if (malos.length) {
-      principal = malos[0];
-      const p = PATRONES[principal];
-      det.classList.add('warn'); chip.classList.add('warn'); chip.textContent = principal;
-      $('det-title').textContent = 'A validar: ' + p.nombre;
-      $('det-txt').textContent = `Histórico ${p.k}/${p.n}. ${p.limite}`;
-    } else {
-      det.classList.add('warn'); chip.classList.add('warn'); chip.textContent = 'SP';
-      $('det-title').textContent = 'Ningún patrón se cumple';
-      $('det-txt').textContent = 'Esta entrada no coincide con nada medido. Registrarla es válido, pero cuenta como apuesta sin ventaja conocida.';
-    }
-    if (!patronTocado) $('f-patron').value = principal;
-    // stake
-    const sug = stakeSugerido();
-    const av = $('stake-aviso');
-    if (d.stake != null && d.stake > sug + 1e-9) {
-      av.hidden = false;
-      av.textContent = `El stake supera tu stake plano de ${money(sug)}. Mantén el mismo monto en cada apuesta.`;
-    } else av.hidden = true;
-    if (d.cuota != null && d.cuota < 1.2) { av.hidden = false; av.textContent = 'Cuota menor a 1.20: un solo fallo borra varias ganancias. Revisa si vale la pena.'; }
-    return principal;
-  }
-
-  // ---------- métricas
-  function beneficio(a) {
-    if (a.resultado === 'ganada') return a.stake * (a.cuota - 1);
-    if (a.resultado === 'perdida') return -a.stake;
-    if (a.resultado === 'cashout') return (a.retorno || 0) - a.stake;
-    return 0;
-  }
+  // ---------------------------------------------------------------- estado
+  const S = { db: null, dl: null, apuestas: [], historico: [], ajustes: { banca_inicial: 20, stake_pct: 5, tope: 1, max_dia: 5, pausa_perdidas: 3 }, soloLectura: false, cargado: false };
+  const beneficio = (a) => a.resultado === 'ganada' ? a.stake * (a.cuota - 1) : a.resultado === 'perdida' ? -a.stake : a.resultado === 'cashout' ? (a.retorno || 0) - a.stake : 0;
   const cerradas = () => S.apuestas.filter((a) => a.resultado && a.resultado !== 'pendiente');
-  function bancaActual() { return S.ajustes.banca_inicial + cerradas().reduce((s, a) => s + beneficio(a), 0); }
-  function stakeSugerido() {
-    const b = Math.max(0, bancaActual());
-    return Math.max(0, Math.min(S.ajustes.tope, Math.round(b * S.ajustes.stake_pct) / 100));
-  }
+  const bancaActual = () => S.ajustes.banca_inicial + cerradas().reduce((s, a) => s + beneficio(a), 0);
+  const stakeSugerido = () => Math.max(0, Math.min(S.ajustes.tope, Math.round(Math.max(0, bancaActual()) * S.ajustes.stake_pct) / 100));
+  const hoyISO = () => { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 10); };
+  const apuestasHoy = () => S.apuestas.filter((a) => (a.fecha || '').slice(0, 10) === hoyISO()).length;
   function stats(list) {
     const c = list.filter((a) => a.resultado && a.resultado !== 'pendiente' && a.resultado !== 'nula');
     const stake = c.reduce((s, a) => s + a.stake, 0);
@@ -458,228 +524,424 @@ details summary { cursor: pointer; font-weight: 600; }
     const cm = c.length ? c.reduce((s, a) => s + a.cuota, 0) / c.length : 0;
     return { n: c.length, g, tasa: c.length ? g / c.length : 0, stake, neto, roi: stake ? neto / stake : 0, be: cm ? 1 / cm : 0 };
   }
+  function secuencia() {
+    return cerradas().filter((a) => a.resultado !== 'nula').sort((a, b) => (a.fecha < b.fecha ? -1 : 1));
+  }
   function rachas() {
-    const seq = cerradas().filter((a) => a.resultado !== 'nula').sort((a, b) => (a.fecha < b.fecha ? -1 : 1)).map((a) => (beneficio(a) > 0 ? 'w' : beneficio(a) < 0 ? 'l' : 'v')).filter((x) => x !== 'v');
-    let actual = 0, tipo = null, maxW = 0, maxL = 0, run = 0, prev = null;
+    const seq = secuencia().map((a) => beneficio(a) > 0 ? 'w' : beneficio(a) < 0 ? 'l' : 'v').filter((x) => x !== 'v');
+    let run = 0, prev = null, maxW = 0, maxL = 0;
     for (const x of seq) { run = x === prev ? run + 1 : 1; prev = x; if (x === 'w') maxW = Math.max(maxW, run); else maxL = Math.max(maxL, run); }
-    if (seq.length) { tipo = seq[seq.length - 1]; actual = run; }
-    return { seq, actual, tipo, maxW, maxL };
+    return { seq, actual: seq.length ? run : 0, tipo: prev, maxW, maxL };
   }
 
-  // ---------- render
+  // ---------------------------------------------------------------- formulario
+  function leerForm() {
+    return {
+      fecha: $('f-fecha').value, liga: $('f-liga').value.trim(), local: $('f-local').value.trim(), visitante: $('f-visita').value.trim(),
+      gl: num($('f-gl').value), gv: num($('f-gv').value), min: num($('f-min').value), roja: $('f-roja').value, ritmo: $('f-ritmo').value,
+      mercado: $('f-mercado').value, linea: num($('f-linea').value), lado: $('f-lado').value, cuota: num($('f-cuota').value), stake: num($('f-stake').value),
+      c1: num($('f-c1').value), cx: num($('f-cx').value), c2: num($('f-c2').value),
+      patron: $('f-patron').value, regla: $('f-regla').value, resultado: $('f-resultado').value, notas: $('f-notas').value.trim()
+    };
+  }
+  let patronTocado = false, reglaTocada = false, confirmar = false, ultimoVeredicto = null;
+  function actualizar() {
+    const d = leerForm();
+    $('w-linea').hidden = !(d.mercado === 'over' || d.mercado === 'corners');
+    $('w-lado').hidden = !(d.mercado === '1x2' || d.mercado === 'dc');
+    $('sb-l').textContent = d.local || 'Local';
+    $('sb-v').textContent = d.visitante || 'Visita';
+    const cods = clasificar(d);
+    const buenos = cods.filter((c) => TIPO(c) === 'a_favor');
+    const malos = cods.filter((c) => TIPO(c) === 'evitar');
+    const dudosos = cods.filter((c) => TIPO(c) === 'a_validar');
+    const ev = evaluar(d);
+    const ver = $('ver'), big = $('ver-big'), chip = $('ver-chip');
+    ver.className = 'verdict'; chip.hidden = true; $('ver-nums').hidden = true; $('ver-checks').hidden = true;
+    let principal = buenos[0] || malos[0] || dudosos[0] || 'SP';
+    let veredicto = null;
+    if (d.min == null) {
+      big.textContent = 'Falta el minuto';
+      $('ver-txt').textContent = 'Anota el minuto y el marcador que ves en el momento de apostar.';
+    } else {
+      chip.hidden = false;
+      chip.textContent = cods.length ? cods.join(' + ') : 'Sin patrón';
+      chip.className = 'chip ' + (malos.length ? 'bad' : buenos.length ? 'ok' : 'warn');
+      const umbral = 0.03;
+      let txt = '';
+      if (malos.length) {
+        veredicto = 'no'; ver.classList.add('bad'); big.textContent = 'No entrar';
+        const f = FICHAS[malos[0]];
+        txt = `${f.nombre}. ${f.no_entrar_si[0]}.`;
+      } else if (ev && ev.sinModelo) {
+        veredicto = buenos.length ? 'dudoso' : 'no';
+        ver.classList.add(buenos.length ? 'warn' : 'bad'); big.textContent = buenos.length ? 'Sin cálculo' : 'No entrar';
+        txt = 'Este mercado no tiene modelo. Sin forma de medir su valor, queda fuera de la estrategia.';
+      } else if (ev && d.cuota) {
+        if (ev.ev >= umbral && buenos.length) { veredicto = 'entrar'; ver.classList.add('ok'); big.textContent = 'Entrar'; txt = 'Cumple un patrón a favor y la cuota paga más que la cuota mínima.'; }
+        else if (ev.ev >= umbral) { veredicto = 'dudoso'; ver.classList.add('warn'); big.textContent = 'Valor sin patrón'; txt = 'La cuota paga más de lo que marca el modelo, pero no cumple ningún patrón medido.'; }
+        else if (ev.ev > -umbral) { veredicto = 'dudoso'; ver.classList.add('warn'); big.textContent = 'Cuota justa'; txt = 'La cuota está en el límite. A largo plazo no ganas ni pierdes.'; }
+        else { veredicto = 'no'; ver.classList.add('bad'); big.textContent = 'No entrar'; txt = `La cuota es baja para esta situación. Necesitas al menos ${fx(ev.cmin)}.`; }
+        if ((d.mercado === '1x2' || d.mercado === 'dc') && !ev.conFuerza) txt += ' Agrega la cuota prepartido para que el modelo sepa quién es el favorito.';
+        if (dudosos.length) txt += ` ${FICHAS[dudosos[0]].nombre}: patrón aún por validar.`;
+      } else {
+        big.textContent = buenos.length ? NOMBRE(buenos[0]) : 'Escribe la cuota';
+        txt = 'Con la cuota la app calcula si conviene entrar.';
+      }
+      $('ver-txt').textContent = txt;
+      if (ev && !ev.sinModelo) {
+        $('ver-nums').hidden = false;
+        $('vn-p').textContent = pct(ev.p) + (ev.nula > 0.01 ? ` (+${pct(ev.nula)} nula)` : '');
+        $('vn-min').textContent = fx(ev.cmin);
+        $('vn-c').textContent = d.cuota ? fx(d.cuota) : '—';
+        $('vn-ev').textContent = ev.ev == null ? '—' : (ev.ev >= 0 ? '+' : '') + (ev.ev * 100).toFixed(0) + '%';
+        $('vn-ev').className = ev.ev == null ? '' : ev.ev >= 0 ? 'pos' : 'neg';
+      }
+      const f = FICHAS[principal];
+      if (f && (f.entrar_si.length || f.no_entrar_si.length)) {
+        $('ver-checks').hidden = false;
+        $('ver-checks').innerHTML = f.entrar_si.map((x) => `<li><span class="mark q" aria-hidden="true">?</span><span>${esc(x)}</span></li>`).join('')
+          + f.no_entrar_si.map((x) => `<li><span class="mark no" aria-hidden="true">×</span><span>${esc(x)}</span></li>`).join('');
+      }
+    }
+    ultimoVeredicto = { veredicto, ev, cods };
+    if (!patronTocado) $('f-patron').value = principal;
+    if (!reglaTocada) $('f-regla').value = veredicto === 'entrar' ? 'si' : 'no';
+    const sug = stakeSugerido(), av = $('stake-aviso');
+    av.hidden = true;
+    if (d.stake != null && d.stake > sug + 1e-9) { av.hidden = false; av.textContent = `El stake supera tu stake plano de ${money(sug)}. Mantén el mismo monto en cada apuesta.`; }
+    confirmar = false; $('f-guardar').textContent = 'Guardar apuesta';
+  }
+  function avisoDisciplina() {
+    const r = rachas(), msgs = [];
+    if (apuestasHoy() >= S.ajustes.max_dia) msgs.push(`Llegaste a tu tope de ${S.ajustes.max_dia} apuestas hoy.`);
+    if (r.tipo === 'l' && r.actual >= S.ajustes.pausa_perdidas) msgs.push(`Llevas ${r.actual} pérdidas seguidas. Toca pausa hasta mañana.`);
+    $('disciplina-aviso').hidden = !msgs.length;
+    $('disciplina-aviso').textContent = msgs.join(' ');
+    return msgs;
+  }
+
+  // ---------------------------------------------------------------- render: cabecera, panel
   function renderHeader() {
     $('hdr-banca').textContent = money(bancaActual());
     $('hdr-stake').textContent = money(stakeSugerido());
-    if (!$('f-stake').value) $('f-stake').placeholder = stakeSugerido().toFixed(2);
+    $('hdr-hoy').textContent = `${apuestasHoy()}/${S.ajustes.max_dia}`;
+  }
+  function curvaSVG() {
+    const seq = secuencia();
+    if (seq.length < 2) { $('curva').innerHTML = '<p class="legend">La curva aparece con 2 apuestas cerradas.</p>'; $('curva-txt').textContent = ''; return; }
+    const pts = [S.ajustes.banca_inicial];
+    seq.forEach((a) => pts.push(pts[pts.length - 1] + beneficio(a)));
+    let pico = pts[0], dd = 0; pts.forEach((v) => { pico = Math.max(pico, v); dd = Math.max(dd, pico - v); });
+    const W = 640, H = 180, P = { l: 44, r: 12, t: 12, b: 24 };
+    const lo = Math.min(...pts, S.ajustes.banca_inicial), hi = Math.max(...pts, S.ajustes.banca_inicial);
+    const pad = (hi - lo) * 0.1 || 1;
+    const y0 = lo - pad, y1 = hi + pad;
+    const X = (i) => P.l + (W - P.l - P.r) * i / (pts.length - 1);
+    const Y = (v) => P.t + (H - P.t - P.b) * (1 - (v - y0) / (y1 - y0));
+    const path = pts.map((v, i) => `${i ? 'L' : 'M'}${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join('');
+    const area = `${path}L${X(pts.length - 1).toFixed(1)},${(H - P.b)}L${X(0).toFixed(1)},${(H - P.b)}Z`;
+    const ticks = [y0 + pad, (y0 + y1) / 2, y1 - pad];
+    const last = pts[pts.length - 1];
+    $('curva').innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Banca de ${money(pts[0])} a ${money(last)}">
+      ${ticks.map((t) => `<line x1="${P.l}" x2="${W - P.r}" y1="${Y(t)}" y2="${Y(t)}" stroke="var(--line)" stroke-width="1"/><text x="${P.l - 6}" y="${Y(t) + 4}" text-anchor="end">${t.toFixed(1)}</text>`).join('')}
+      <line x1="${P.l}" x2="${W - P.r}" y1="${Y(S.ajustes.banca_inicial)}" y2="${Y(S.ajustes.banca_inicial)}" stroke="var(--muted)" stroke-dasharray="4 4"/>
+      <path d="${area}" fill="var(--accent-soft)"/>
+      <path d="${path}" fill="none" stroke="var(--accent)" stroke-width="2"/>
+      <circle cx="${X(pts.length - 1)}" cy="${Y(last)}" r="4" fill="${last >= pts[0] ? 'var(--win)' : 'var(--loss)'}"/>
+      <text x="${P.l}" y="${H - 6}">1</text><text x="${W - P.r}" y="${H - 6}" text-anchor="end">${pts.length - 1} apuestas</text>
+    </svg>`;
+    $('curva-txt').textContent = `Caída máxima ${money(dd)}`;
+    return dd;
+  }
+  function filaGrupo(nombre, list) {
+    const s = stats(list);
+    if (!s.n) return '';
+    return `<tr><td>${esc(nombre)}</td><td class="r">${s.n}</td><td class="r">${pct(s.tasa)}</td><td class="r ${s.roi >= 0 ? 'pos' : 'neg'}">${(s.roi * 100).toFixed(0)}%</td></tr>`;
   }
   function renderPanel() {
-    const s = stats(S.apuestas);
+    const s = stats(S.apuestas), r = rachas();
     const pend = S.apuestas.filter((a) => (a.resultado || 'pendiente') === 'pendiente').length;
-    const r = rachas();
-    const kp = [
-      ['Neto', `<b class="${s.neto >= 0 ? 'pos' : 'neg'}">${signed(s.neto)}</b>`],
-      ['ROI', `<b class="${s.roi >= 0 ? 'pos' : 'neg'}">${(s.roi * 100).toFixed(1)}%</b>`],
-      ['Acierto', `<b>${s.n ? pct(s.tasa) : '—'}</b><span class="legend">${s.g}/${s.n} · break-even ${s.n ? pct(s.be) : '—'}</span>`],
+    const dd = curvaSVG() || 0;
+    $('kpis').innerHTML = [
+      ['Neto', `<b class="${s.neto >= 0 ? 'pos' : 'neg'}">${signed(s.neto)}</b><span class="legend">ROI ${(s.roi * 100).toFixed(1)}%</span>`],
+      ['Acierto', `<b>${s.n ? pct(s.tasa) : '—'}</b><span class="legend">${s.g}/${s.n} · necesitas ${s.n ? pct(s.be) : '—'}</span>`],
+      ['Caída máxima', `<b>${money(dd)}</b><span class="legend">desde el pico</span>`],
       ['Pendientes', `<b>${pend}</b><span class="legend">${S.apuestas.length} registradas</span>`]
-    ];
-    $('kpis').innerHTML = kp.map(([l, v]) => `<div class="kpi"><span class="label">${l}</span>${v}</div>`).join('');
+    ].map(([l, v]) => `<div class="kpi"><span class="label">${l}</span>${v}</div>`).join('');
     $('racha').innerHTML = r.seq.length ? r.seq.slice(-30).map((x) => `<i class="${x}">${x === 'w' ? 'G' : 'P'}</i>`).join('') : '<span class="legend">Sin apuestas cerradas todavía.</span>';
-    $('racha-txt').textContent = r.seq.length ? `Actual: ${r.actual} ${r.tipo === 'w' ? 'ganadas' : 'perdidas'} seguidas · Máx. ${r.maxW} ganadas · Máx. ${r.maxL} perdidas` : '';
-    const filas = ORDEN.map((c) => {
+    $('racha-txt').textContent = r.seq.length ? `Actual: ${r.actual} ${r.tipo === 'w' ? 'ganadas' : 'perdidas'} · Máx. ${r.maxW} ganadas · Máx. ${r.maxL} perdidas` : '';
+    $('tabla-pat').innerHTML = ORDEN.map((c) => {
       const st = stats(S.apuestas.filter((a) => (a.patron || 'SP') === c));
       if (!st.n) return '';
-      return `<tr><td><span class="chip ${PATRONES[c].tipo === 'ok' ? 'ok' : PATRONES[c].tipo === 'bad' ? 'bad' : PATRONES[c].tipo === 'warn' ? 'warn' : ''}">${c}</span> ${esc(PATRONES[c].nombre)}</td>
-        <td class="r">${st.n}</td><td class="r">${pct(st.tasa)}</td><td class="r">${pct(st.be)}</td>
-        <td class="r ${st.neto >= 0 ? 'pos' : 'neg'}">${signed(st.neto)}</td><td class="r">${(st.roi * 100).toFixed(0)}%</td></tr>`;
+      const cls = TIPO(c) === 'a_favor' ? 'ok' : TIPO(c) === 'evitar' ? 'bad' : 'warn';
+      return `<tr><td><span class="chip ${cls}">${c}</span> ${esc(NOMBRE(c))}</td><td class="r">${st.n}</td><td class="r">${pct(st.tasa)}</td><td class="r">${pct(st.be)}</td>
+        <td class="r ${st.roi >= 0 ? 'pos' : 'neg'}">${(st.roi * 100).toFixed(0)}%</td><td><div class="bar-mini"><span style="width:${Math.min(100, st.n / 30 * 100)}%"></span></div></td></tr>`;
+    }).join('') || '<tr><td colspan="6" class="muted">Cuando cierres tus primeras apuestas verás aquí el acierto real de cada patrón.</td></tr>';
+    const conRegla = S.apuestas.filter((a) => a.regla === 'si'), sinRegla = S.apuestas.filter((a) => a.regla === 'no');
+    $('tabla-disc').innerHTML = [['Seguí la regla', conRegla], ['Me salté la regla', sinRegla]].map(([n, l]) => {
+      const st = stats(l);
+      return `<tr><td>${n}</td><td class="r">${st.n}</td><td class="r">${st.n ? pct(st.tasa) : '—'}</td><td class="r ${st.neto >= 0 ? 'pos' : 'neg'}">${signed(st.neto)}</td><td class="r">${st.n ? (st.roi * 100).toFixed(0) + '%' : '—'}</td></tr>`;
     }).join('');
-    $('tabla-pat').innerHTML = filas || '<tr><td colspan="6" class="muted">Cuando cierres tus primeras apuestas verás aquí el acierto real de cada patrón.</td></tr>';
-    if (document.activeElement?.closest?.('#view-panel .grid3') == null) {
+    const conP = cerradas().filter((a) => a.p_modelo != null && a.resultado !== 'nula');
+    $('calib-txt').textContent = conP.length >= 5
+      ? `En tus ${conP.length} apuestas con cálculo, el modelo esperaba ${pct(conP.reduce((s, a) => s + a.p_modelo, 0) / conP.length)} de acierto y ganaste ${pct(conP.filter((a) => beneficio(a) > 0).length / conP.length)}.`
+      : 'Con 5 apuestas cerradas se compara tu acierto real con lo que esperaba el modelo.';
+    const tramo = (m) => m == null ? 'Sin minuto' : m < 30 ? 'Minuto 0–29' : m < 46 ? 'Minuto 30–45' : m < 60 ? 'Minuto 46–59' : m < 75 ? 'Minuto 60–74' : 'Minuto 75+';
+    const grupos = [];
+    const agrupar = (clave, etiqueta) => { const m = new Map(); S.apuestas.forEach((a) => { const k = clave(a); if (!m.has(k)) m.set(k, []); m.get(k).push(a); }); [...m.entries()].forEach(([k, l]) => grupos.push(filaGrupo(`${etiqueta}: ${k}`, l))); };
+    agrupar((a) => a.liga || 'Sin liga', 'Liga');
+    agrupar((a) => ({ over: 'Más de', '1x2': 'Ganador', dc: 'Doble op.', btts: 'Ambos marcan', corners: 'Córners' }[a.mercado] || 'Otro'), 'Mercado');
+    agrupar((a) => tramo(a.min), 'Tramo');
+    $('tabla-seg').innerHTML = grupos.join('') || '<tr><td colspan="4" class="muted">Aún sin apuestas cerradas.</td></tr>';
+    const act = document.activeElement;
+    if (!act || !act.closest || !act.closest('#view-panel .grid3')) {
       $('a-banca').value = S.ajustes.banca_inicial; $('a-pct').value = S.ajustes.stake_pct; $('a-tope').value = S.ajustes.tope;
+      $('a-dia').value = S.ajustes.max_dia; $('a-pausa').value = S.ajustes.pausa_perdidas;
     }
   }
-  const MERC = { over: 'Más de', '1x2': 'Ganador', dc: 'Doble op.', btts: 'Ambos marcan', corners: 'Córners', otro: 'Otro' };
+
+  // ---------------------------------------------------------------- render: apuestas
   function descApuesta(a) {
     if (a.mercado === 'over') return `Más de ${a.linea}`;
     if (a.mercado === 'corners') return `Córners más de ${a.linea}`;
     if (a.mercado === '1x2') return `Gana ${a.lado === 'local' ? a.local : a.visitante}`;
     if (a.mercado === 'dc') return `Doble op. ${a.lado === 'local' ? a.local : a.visitante}`;
-    return MERC[a.mercado] || a.mercado;
+    return { btts: 'Ambos marcan', otro: 'Otro' }[a.mercado] || a.mercado;
   }
   function renderLista() {
+    if (!S.cargado) { $('lista').innerHTML = '<div class="empty">Cargando tus apuestas…</div>'; return; }
     const f = $('filtro').value;
     const list = S.apuestas.filter((a) => f === 'todas' || (a.resultado || 'pendiente') === f);
-    if (!S.cargado) { $('lista').innerHTML = '<div class="empty">Cargando tus apuestas…</div>'; return; }
-    if (!list.length) {
-      $('lista').innerHTML = `<div class="empty"><strong>${S.apuestas.length ? 'Nada con este filtro.' : 'Aún no registras apuestas nuevas.'}</strong><span>Usa la pestaña Registrar al momento de apostar. Aparecerán aquí en la PC y en el celular.</span></div>`;
-      return;
-    }
+    if (!list.length) { $('lista').innerHTML = `<div class="empty"><strong>${S.apuestas.length ? 'Nada con este filtro.' : 'Aún no registras apuestas nuevas.'}</strong><span>Usa Registrar al momento de apostar. Aparecen aquí en la PC y en el celular.</span></div>`; return; }
     $('lista').innerHTML = list.map((a) => {
-      const res = a.resultado || 'pendiente';
-      const b = beneficio(a);
-      const p = PATRONES[a.patron || 'SP'] || PATRONES.SP;
-      const chipCls = p.tipo === 'ok' ? 'ok' : p.tipo === 'bad' ? 'bad' : p.tipo === 'warn' ? 'warn' : '';
+      const res = a.resultado || 'pendiente', b = beneficio(a), c = a.patron || 'SP';
+      const cls = TIPO(c) === 'a_favor' ? 'ok' : TIPO(c) === 'evitar' ? 'bad' : TIPO(c) === 'a_validar' ? 'warn' : '';
       const fecha = a.fecha ? new Date(a.fecha).toLocaleString('es-EC', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : '';
-      const settle = res === 'pendiente' && !S.soloLectura ? `
-        <div class="settle">
+      const settle = res === 'pendiente' && !S.soloLectura ? `<div class="settle">
           <button class="btn sm win" data-act="ganada" data-id="${a.id}">Ganada</button>
           <button class="btn sm loss" data-act="perdida" data-id="${a.id}">Perdida</button>
           <button class="btn sm neutral" data-act="nula" data-id="${a.id}">Nula</button>
           <input type="number" step="0.01" min="0" placeholder="Cash-out $" id="co-${a.id}" aria-label="Monto de cash-out">
-          <button class="btn sm neutral" data-act="cashout" data-id="${a.id}">Cash-out</button>
-        </div>` : '';
-      const borrar = S.soloLectura ? '' : `<button class="btn sm neutral" data-act="borrar" data-id="${a.id}">Borrar</button>`;
+          <button class="btn sm neutral" data-act="cashout" data-id="${a.id}">Cash-out</button></div>` : '';
+      const modelo = a.p_modelo != null ? `<span>Modelo <span class="num">${pct(a.p_modelo)}</span> · mín. <span class="num">${fx(a.cuota_min)}</span></span>` : '';
       return `<article class="bet ${res}">
         <div class="row1"><strong>${esc(a.local)} vs ${esc(a.visitante)}</strong>
           <span class="chip ${res === 'ganada' ? 'ok' : res === 'perdida' ? 'bad' : res === 'pendiente' ? 'pend' : ''}">${res === 'pendiente' ? 'Pendiente' : res === 'cashout' ? 'Cash-out' : res[0].toUpperCase() + res.slice(1)}${res !== 'pendiente' ? ' ' + signed(b) : ''}</span></div>
-        <div class="meta"><span>${esc(fecha)}</span>${a.liga ? `<span>${esc(a.liga)}</span>` : ''}<span class="chip ${chipCls}">${a.patron || 'SP'}</span></div>
-        <div class="meta"><span>${esc(descApuesta(a))} @ <span class="num">${Number(a.cuota).toFixed(2)}</span></span><span>Stake <span class="num">${money(a.stake)}</span></span><span>Al apostar <span class="num">${a.gl}:${a.gv} · ${a.min}'</span></span>${a.roja && a.roja !== 'no' ? `<span>Roja ${esc(a.roja)}</span>` : ''}${a.ritmo ? `<span>Ritmo ${esc(a.ritmo)}</span>` : ''}</div>
+        <div class="meta"><span>${esc(fecha)}</span>${a.liga ? `<span>${esc(a.liga)}</span>` : ''}<span class="chip ${cls}">${esc(c)}</span>${a.regla === 'no' ? '<span class="chip warn">Fuera de regla</span>' : ''}</div>
+        <div class="meta"><span>${esc(descApuesta(a))} @ <span class="num">${Number(a.cuota).toFixed(2)}</span></span><span>Stake <span class="num">${money(a.stake)}</span></span><span>Al apostar <span class="num">${a.gl}:${a.gv} · ${a.min}'</span></span>${a.roja && a.roja !== 'no' ? `<span>Roja ${esc(a.roja)}</span>` : ''}${modelo}</div>
         ${a.notas ? `<p class="muted" style="font-size:.9rem">${esc(a.notas)}</p>` : ''}
         ${settle}
-        <div class="actions" style="justify-content:flex-end">${borrar}</div>
+        ${S.soloLectura ? '' : `<div class="actions" style="justify-content:flex-end"><button class="btn sm neutral" data-act="borrar" data-id="${a.id}">Borrar</button></div>`}
       </article>`;
     }).join('');
   }
-  function renderReglas() {
-    $('reglas').innerHTML = ORDEN.filter((c) => c !== 'SP').map((c) => {
-      const p = PATRONES[c];
-      const be = 1 / p.cuota, tasa = p.k / p.n;
-      const cls = p.tipo === 'ok' ? 'ok' : p.tipo === 'bad' ? 'bad' : 'warn';
-      const tag = p.tipo === 'ok' ? 'A favor' : p.tipo === 'bad' ? 'Evitar' : 'A validar';
-      return `<div class="rule">
-        <div class="top"><h3><span class="chip ${cls}">${c}</span> ${esc(p.nombre)}</h3><span class="chip ${cls}">${tag}</span></div>
-        <p><strong>Regla:</strong> ${esc(p.regla)}</p>
-        <p><strong>Tasa histórica:</strong> <span class="num">${p.k}/${p.n} · ${pct(tasa)}</span> a cuota media <span class="num">${p.cuota.toFixed(2)}</span>; break-even <span class="num">${pct(be)}</span>.</p>
-        <div class="bar" role="img" aria-label="Intervalo ${pct(p.lo)} a ${pct(p.hi)}, break-even ${pct(be)}">
-          <span style="left:${p.lo * 100}%;right:${100 - p.hi * 100}%"></span><em style="left:calc(${be * 100}% - 1px)"></em><b style="left:calc(${tasa * 100}% - 2px)"></b></div>
-        <p class="legend">Intervalo 95%: ${pct(p.lo)} a ${pct(p.hi)}. Punto: tasa observada. Línea: break-even.</p>
-        <p><strong>Límite:</strong> ${esc(p.limite)}</p>
-      </div>`;
-    }).join('');
+
+  // ---------------------------------------------------------------- render: patrones
+  function dots(k, n) {
+    if (!n) return '<span class="legend">Sin casos</span>';
+    const on = Math.round(k / n * 10);
+    return `<div class="dots" role="img" aria-label="${on} de cada 10">${Array.from({ length: 10 }, (_, i) => `<i class="${i < on ? 'on' : 'bad'}"></i>`).join('')}</div>`;
   }
+  function renderFichas() {
+    $('pat-intro').textContent = `Cada patrón se midió en ${D.muestra.backtest} partidos terminados ajenos a tus apuestas y en tus propias apuestas del 19 al 29 de septiembre.`;
+    const sem = { rojo: ['solid-bad', 'Muestra chica'], ambar: ['solid-warn', 'Prometedor'], verde: ['solid-ok', 'Con ventaja'] };
+    $('fichas').innerHTML = D.fichas.map((f) => {
+      const b = f.backtest, t = f.tuyo, [scls, stxt] = sem[f.semaforo] || sem.rojo;
+      const tipoTxt = f.tipo === 'a_favor' ? 'A favor' : f.tipo === 'evitar' ? 'Evitar' : 'A validar';
+      const tipoCls = f.tipo === 'a_favor' ? 'ok' : f.tipo === 'evitar' ? 'bad' : 'warn';
+      const ligas = (b.ligas || []).slice(0, 3).map((l) => `${esc(l.liga)} ${l.k}/${l.n}`).join(' · ');
+      const ej = (t.ejemplos || []).slice(0, 6).map((e) => `<li><span class="mark ${e.gano ? 'si' : 'no'}" aria-hidden="true">${e.gano ? 'G' : 'P'}</span><span>${esc(e.partido)} · ${esc(e.seleccion)} a ${fx(e.cuota)} con ${esc(e.marcador)} al ${e.minuto}'</span></li>`).join('');
+      return `<article class="ficha">
+        <div class="top"><h3><span class="chip ${tipoCls}">${f.codigo}</span> ${esc(f.nombre)}</h3><span class="chip ${scls}">${stxt}</span></div>
+        <p class="resumen">${esc(f.resumen)}</p>
+        <div class="cols">
+          ${f.entrar_si.length ? `<div class="box"><span class="label">Entra solo si</span><ul class="checks">${f.entrar_si.map((x) => `<li><span class="mark si" aria-hidden="true">✓</span><span>${esc(x)}</span></li>`).join('')}</ul></div>` : ''}
+          <div class="box"><span class="label">No entres si</span><ul class="checks">${f.no_entrar_si.map((x) => `<li><span class="mark no" aria-hidden="true">×</span><span>${esc(x)}</span></li>`).join('')}</ul></div>
+        </div>
+        <div class="cols">
+          <div class="box"><span class="label">En partidos ajenos</span>${dots(b.k, b.n)}<span>${b.n ? `${b.k} de ${b.n} (${pct(b.tasa)}) · el modelo esperaba ${pct(b.p_modelo)}` : 'Sin datos para medirlo'}</span>${ligas ? `<span class="legend">Mejores ligas: ${ligas}</span>` : ''}</div>
+          <div class="box"><span class="label">En tus apuestas</span>${dots(t.k, t.n)}<span>${t.n ? `${t.k} de ${t.n} · cuota media ${fx(t.cuota_media)} · neto ${t.neto >= 0 ? '+' : ''}${fx(t.neto)} u` : 'Sin apuestas'}</span></div>
+        </div>
+        ${b.cuota_min ? `<div class="box" style="grid-template-columns:auto 1fr;align-items:center;gap:12px"><div><span class="label">Cuota mínima</span><div class="bignum">${fx(b.cuota_min)}</div></div><p class="legend">${f.tipo === 'evitar' ? 'Precio justo del evento medido. Tus cuotas en este caso estuvieron por debajo.' : 'Por debajo de este precio pierdes a la larga. Varía con el minuto y el marcador: la pestaña Registrar la calcula para tu caso exacto.'}</p></div>` : ''}
+        ${ej ? `<details class="fold"><summary>Tus apuestas en este patrón</summary><ul class="checks">${ej}</ul></details>` : ''}
+      </article>`;
+    }).join('') || '<div class="empty">Sin datos de patrones.</div>';
+  }
+
+  // ---------------------------------------------------------------- render: mapa
+  const MSEL = { min: 60, gol: 2, dif: 0 };
+  function seg(id, vals, clave, fmt) {
+    $(id).innerHTML = vals.map((v) => `<button type="button" aria-pressed="${MSEL[clave] === v}" data-k="${clave}" data-v="${v}">${fmt(v)}</button>`).join('');
+  }
+  function renderMapa() {
+    seg('seg-min', [30, 45, 60, 70, 80], 'min', (v) => v + "'");
+    seg('seg-gol', [0, 1, 2, 3], 'gol', (v) => v === 3 ? '3+' : String(v));
+    seg('seg-dif', [0, 1, 2], 'dif', (v) => v === 2 ? '2+' : String(v));
+    const f = D.mapa.find((x) => x.minuto === MSEL.min && x.goles === MSEL.gol && x.dif === MSEL.dif);
+    const lam = lambdaRest(MSEL.min, '', false);
+    const pm1 = lam == null ? null : 1 - pmf(0, lam), pm2 = lam == null ? null : 1 - pmf(0, lam) - pmf(1, lam);
+    const imposible = (MSEL.gol === 0 && MSEL.dif > 0) || (MSEL.gol === 1 && MSEL.dif !== 1) || (MSEL.gol === 2 && MSEL.dif === 1) || (MSEL.gol === 3 && false);
+    if (imposible) { $('mapa-res').innerHTML = '<p class="legend">Esa combinación de goles y diferencia no existe.</p>'; return; }
+    const fila = (t, real, mod, n) => `<tr><td>${t}</td><td class="r">${real == null ? '—' : pct(real)}</td><td class="r">${pct(mod)}</td><td class="r">${real ? fx(1 / real) : '—'}</td></tr>`;
+    let ult = '';
+    if (MSEL.dif > 0) ult = fila('El que va ganando, gana', f?.lider_gana ?? null, null, f?.n);
+    else ult = fila('Termina empatado', f?.empate_sigue ?? null, null, f?.n);
+    $('mapa-res').innerHTML = `<p><strong>${f ? f.n : 0} partidos</strong> llegaron al minuto ${MSEL.min} con ${MSEL.gol === 3 ? '3 o más' : MSEL.gol} goles y diferencia ${MSEL.dif === 2 ? 'de 2 o más' : MSEL.dif}.${f && f.n < 10 ? ' Muestra chica: úsalo como orientación.' : ''}</p>
+      <div class="tbl"><table><thead><tr><th>Qué pasó después</th><th class="r">Real</th><th class="r">Modelo</th><th class="r">Cuota mín.</th></tr></thead><tbody>
+      ${fila('Llega al menos 1 gol más', f?.mas1 ?? null, pm1)}${fila('Llegan 2 goles más', f?.mas2 ?? null, pm2)}${ult}</tbody></table></div>`;
+  }
+  $('view-mapa').addEventListener('click', (e) => { const b = e.target.closest('button[data-k]'); if (!b) return; MSEL[b.dataset.k] = Number(b.dataset.v); renderMapa(); });
+  function renderCalib() {
+    const c = D.calibracion;
+    if (!c) return;
+    $('calib-intro').textContent = `Prueba con validación cruzada en ${c.n} situaciones reales: el modelo se ajustó sin ver el partido que predecía. Brier ${c.brier} contra ${c.brier_base} de adivinar siempre la media.`;
+    $('tabla-calib').innerHTML = c.fiabilidad.map(([a, b, n, pm, fr]) => `<tr><td>Entre ${pct(a)} y ${pct(b)}</td><td class="r">${n}</td><td class="r">${pct(pm)}</td><td class="r">${pct(fr)}</td></tr>`).join('');
+  }
+
+  // ---------------------------------------------------------------- render: historial
   function renderHistorial() {
-    const h = [...S.historico].sort((a, b) => (a.emision < b.emision ? 1 : -1));
     if (!S.cargado) { $('lista-h').innerHTML = '<div class="empty">Cargando historial…</div>'; $('kpis-h').innerHTML = ''; return; }
-    if (!h.length) { $('lista-h').innerHTML = '<div class="empty"><strong>El historial aún no está cargado.</strong><span>Claude lo importa desde el PDF.</span></div>'; $('kpis-h').innerHTML = ''; return; }
+    const h = [...S.historico].sort((a, b) => (a.emision < b.emision ? 1 : -1));
+    if (!h.length) { $('lista-h').innerHTML = '<div class="empty"><strong>El historial aún no está cargado.</strong></div>'; $('kpis-h').innerHTML = ''; return; }
     const st = h.reduce((s, t) => ({ stake: s.stake + t.stake, ret: s.ret + t.retorno, g: s.g + (t.estado === 'ganado' ? 1 : 0) }), { stake: 0, ret: 0, g: 0 });
-    $('kpis-h').innerHTML = [
-      ['Tickets', `<b>${h.length}</b><span class="legend">${h.filter((t) => t.tipo === 'simple').length} simples</span>`],
-      ['Ganados', `<b>${st.g}</b><span class="legend">${pct(st.g / h.length)}</span>`],
-      ['Apostado', `<b>${money(st.stake)}</b>`],
-      ['Neto', `<b class="${st.ret - st.stake >= 0 ? 'pos' : 'neg'}">${signed(st.ret - st.stake)}</b>`]
-    ].map(([l, v]) => `<div class="kpi"><span class="label">${l}</span>${v}</div>`).join('');
+    $('kpis-h').innerHTML = [['Tickets', `<b>${h.length}</b><span class="legend">${h.filter((t) => t.tipo === 'simple').length} simples</span>`], ['Ganados', `<b>${st.g}</b><span class="legend">${pct(st.g / h.length)}</span>`], ['Apostado', `<b>${money(st.stake)}</b>`], ['Neto', `<b class="${st.ret - st.stake >= 0 ? 'pos' : 'neg'}">${signed(st.ret - st.stake)}</b>`]]
+      .map(([l, v]) => `<div class="kpi"><span class="label">${l}</span>${v}</div>`).join('');
+    const pm = new Map((D.apuestas_modelo || []).map((r) => [r.partido + '|' + r.seleccion, r]));
     $('lista-h').innerHTML = h.map((t) => {
       const cls = t.estado === 'ganado' ? 'ganada' : t.estado === 'perdido' ? 'perdida' : '';
-      const legs = (t.patas || []).map((l) => `<tr><td>${esc(l.partido)}<br><span class="legend">${esc(l.seleccion)} @ ${Number(l.cuota).toFixed(2)}</span></td><td class="r">${esc(l.minuto)}</td><td class="r">${esc(l.marcador_apuesta)}</td><td class="r">${esc(l.marcador_final)}</td><td>${l.resultado === 'W' ? '<span class="chip ok">G</span>' : '<span class="chip bad">P</span>'} ${esc(l.patrones || '')}</td></tr>`).join('');
+      const legs = (t.patas || []).map((l) => {
+        const m = pm.get(l.partido + '|' + l.seleccion);
+        return `<tr><td>${esc(l.partido)}<br><span class="legend">${esc(l.seleccion)} @ ${Number(l.cuota).toFixed(2)}</span></td><td class="r">${esc(l.minuto)}</td><td class="r">${esc(l.marcador_apuesta)}</td><td class="r">${esc(l.marcador_final)}</td><td class="r">${m ? pct(m.p) : '—'}</td><td>${l.resultado === 'W' ? '<span class="chip ok">G</span>' : '<span class="chip bad">P</span>'} ${esc(l.patrones || '')}</td></tr>`;
+      }).join('');
       return `<article class="bet ${cls}">
-        <div class="row1"><strong>${t.tipo === 'simple' ? esc((t.patas && t.patas[0] && t.patas[0].partido) || 'Simple') : 'Combinada de ' + (t.patas || []).length}</strong>
-          <span class="chip ${t.estado === 'ganado' ? 'ok' : t.estado === 'perdido' ? 'bad' : 'pend'}">${t.estado} ${signed(t.retorno - t.stake)}</span></div>
+        <div class="row1"><strong>${t.tipo === 'simple' ? esc(t.patas?.[0]?.partido || 'Simple') : 'Combinada de ' + (t.patas || []).length}</strong><span class="chip ${t.estado === 'ganado' ? 'ok' : t.estado === 'perdido' ? 'bad' : 'pend'}">${t.estado} ${signed(t.retorno - t.stake)}</span></div>
         <div class="meta"><span>${esc(t.emision)}</span><span>${esc(t.modo)}</span><span>Cuota <span class="num">${Number(t.cuota_total).toFixed(2)}</span></span><span>Stake <span class="num">${money(t.stake)}</span></span></div>
-        <details><summary>Patas y marcador al apostar</summary><div class="tbl"><table><thead><tr><th>Partido</th><th class="r">Min</th><th class="r">Al apostar</th><th class="r">Final</th><th>Patrón</th></tr></thead><tbody>${legs}</tbody></table></div></details>
+        <details class="fold"><summary>Patas, marcador al apostar y modelo</summary><div class="tbl"><table><thead><tr><th>Partido</th><th class="r">Min</th><th class="r">Al apostar</th><th class="r">Final</th><th class="r">Modelo</th><th>Patrón</th></tr></thead><tbody>${legs}</tbody></table></div></details>
       </article>`;
     }).join('');
   }
-  function renderAll() { renderHeader(); renderPanel(); renderLista(); renderHistorial(); }
+  function renderAll() { renderHeader(); avisoDisciplina(); renderPanel(); renderLista(); renderHistorial(); }
 
-  // ---------- navegación
+  // ---------------------------------------------------------------- navegación
   function mostrar(v) {
-    document.querySelectorAll('nav.tabs button').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.view === v)));
+    document.querySelectorAll('nav.tabs button').forEach((b) => { b.setAttribute('aria-selected', String(b.dataset.view === v)); if (b.dataset.view === v && b.scrollIntoView) b.scrollIntoView({ block: 'nearest', inline: 'nearest' }); });
     document.querySelectorAll('section.view').forEach((s) => (s.hidden = s.id !== 'view-' + v));
     try { localStorage.setItem('fb-tab', v); } catch (e) {}
   }
   document.querySelectorAll('nav.tabs button').forEach((b) => b.addEventListener('click', () => mostrar(b.dataset.view)));
   try { const t = localStorage.getItem('fb-tab'); if (t && $('view-' + t)) mostrar(t); } catch (e) {}
-  const h = location.hash.slice(1); if (h && $('view-' + h)) mostrar(h);
+  const hash = location.hash.slice(1); if (hash && $('view-' + hash)) mostrar(hash);
 
-  // ---------- formulario
-  $('f-patron').innerHTML = ORDEN.map((c) => `<option value="${c}">${c} · ${PATRONES[c].nombre}</option>`).join('');
-  function ahoraLocal() { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 16); }
+  // ---------------------------------------------------------------- eventos del formulario
+  $('f-patron').innerHTML = ORDEN.map((c) => `<option value="${c}">${c} · ${esc(NOMBRE(c))}</option>`).join('');
+  $('ligas').innerHTML = (D.muestra.ligas || []).map((l) => `<option value="${esc(l)}"></option>`).join('');
+  const ahoraLocal = () => { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 16); };
   function limpiar() {
     $('f').reset(); $('f-fecha').value = ahoraLocal(); $('f-gl').value = 0; $('f-gv').value = 0;
-    patronTocado = false; $('f-stake').value = stakeSugerido() ? stakeSugerido().toFixed(2) : ''; actualizarDetector();
+    patronTocado = false; reglaTocada = false; $('f-stake').value = stakeSugerido() ? stakeSugerido().toFixed(2) : ''; actualizar();
   }
-  $('f').addEventListener('input', (e) => { if (e.target.id === 'f-patron') patronTocado = true; actualizarDetector(); });
-  $('f').addEventListener('change', (e) => { if (e.target.id === 'f-patron') patronTocado = true; actualizarDetector(); });
+  const onForm = (e) => { if (e.target.id === 'f-patron') patronTocado = true; if (e.target.id === 'f-regla') reglaTocada = true; actualizar(); };
+  $('f').addEventListener('input', onForm);
+  $('f').addEventListener('change', onForm);
   $('f-limpiar').addEventListener('click', limpiar);
   $('f').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const d = leerForm();
+    const d = leerForm(), toast = $('f-toast');
     const falta = [];
     if (!d.local || !d.visitante) falta.push('equipos');
     if (d.min == null) falta.push('minuto');
     if (d.cuota == null || d.cuota <= 1) falta.push('cuota');
     if (d.stake == null || d.stake <= 0) falta.push('stake');
     if ((d.mercado === 'over' || d.mercado === 'corners') && d.linea == null) falta.push('línea');
-    if (falta.length) { $('f-toast').style.color = 'var(--loss)'; $('f-toast').textContent = 'Falta: ' + falta.join(', ') + '.'; return; }
-    if (!S.db || S.soloLectura) { $('f-toast').style.color = 'var(--loss)'; $('f-toast').textContent = 'No se puede guardar desde esta vista.'; return; }
+    if (falta.length) { toast.style.color = 'var(--loss)'; toast.textContent = 'Falta: ' + falta.join(', ') + '.'; return; }
+    if (!S.db || S.soloLectura) { toast.style.color = 'var(--loss)'; toast.textContent = 'No se puede guardar desde esta vista.'; return; }
+    const avisos = avisoDisciplina();
+    const riesgo = ultimoVeredicto?.veredicto === 'no' || avisos.length;
+    if (riesgo && !confirmar) {
+      confirmar = true; $('f-guardar').textContent = 'Guardar igual';
+      toast.style.color = 'var(--loss)'; toast.textContent = ultimoVeredicto?.veredicto === 'no' ? 'La app recomienda no entrar. Toca otra vez para guardar igual.' : 'Tienes un aviso de disciplina. Toca otra vez para guardar igual.';
+      return;
+    }
+    const ev = ultimoVeredicto?.ev;
     const doc = {
       creada: new Date().toISOString(), fecha: d.fecha || ahoraLocal(), liga: d.liga, local: d.local, visitante: d.visitante,
       gl: d.gl ?? 0, gv: d.gv ?? 0, min: d.min, roja: d.roja, ritmo: d.ritmo, mercado: d.mercado,
-      linea: (d.mercado === 'over' || d.mercado === 'corners') ? d.linea : null,
-      lado: (d.mercado === '1x2' || d.mercado === 'dc') ? d.lado : null,
-      cuota: d.cuota, stake: d.stake, patron: d.patron, patron_auto: detectar(d).join(' ') || 'SP',
+      linea: (d.mercado === 'over' || d.mercado === 'corners') ? d.linea : null, lado: (d.mercado === '1x2' || d.mercado === 'dc') ? d.lado : null,
+      cuota: d.cuota, stake: d.stake, patron: d.patron, patron_auto: (ultimoVeredicto?.cods || []).join(' ') || 'SP',
+      regla: d.regla, veredicto: ultimoVeredicto?.veredicto || null,
+      p_modelo: ev && !ev.sinModelo ? Math.round(ev.p * 1000) / 1000 : null, cuota_min: ev && !ev.sinModelo && isFinite(ev.cmin) ? Math.round(ev.cmin * 100) / 100 : null,
+      ev: ev && ev.ev != null ? Math.round(ev.ev * 1000) / 1000 : null,
+      cuotas_pre: d.c1 && d.c2 ? { c1: d.c1, cx: d.cx, c2: d.c2 } : null,
       resultado: d.resultado, retorno: null, notas: d.notas
     };
     $('f-guardar').disabled = true;
     try {
       await S.db.collection('apuestas').add(doc);
-      $('f-toast').style.color = ''; $('f-toast').textContent = 'Guardada.';
-      limpiar();
+      toast.style.color = ''; toast.textContent = 'Guardada.'; limpiar();
     } catch (err) {
-      $('f-toast').style.color = 'var(--loss)';
-      if (err && err.code === 'invalid_argument') { S.soloLectura = true; $('f-toast').textContent = 'Tu cuenta no tiene permiso para guardar aquí.'; }
-      else if (err && err.code === 'quota_exceeded') $('f-toast').textContent = 'La base llegó a su límite. Borra apuestas viejas.';
-      else $('f-toast').textContent = 'No se guardó. Revisa la conexión y vuelve a intentar.';
-    } finally { $('f-guardar').disabled = false; setTimeout(() => ($('f-toast').textContent = ''), 4000); }
+      toast.style.color = 'var(--loss)';
+      if (err && err.code === 'invalid_argument') { S.soloLectura = true; toast.textContent = 'Tu cuenta no tiene permiso para guardar aquí.'; }
+      else if (err && err.code === 'quota_exceeded') toast.textContent = 'La base llegó a su límite. Borra apuestas viejas.';
+      else toast.textContent = 'No se guardó. Revisa la conexión y vuelve a intentar.';
+    } finally { $('f-guardar').disabled = false; setTimeout(() => (toast.textContent = ''), 4500); }
   });
 
-  // acciones en la lista
   const pendienteBorrar = new Set();
   $('lista').addEventListener('click', async (e) => {
     const b = e.target.closest('button[data-act]'); if (!b || !S.db) return;
-    const id = b.dataset.id, act = b.dataset.act;
-    const ref = S.db.collection('apuestas').doc(id);
+    const id = b.dataset.id, act = b.dataset.act, ref = S.db.collection('apuestas').doc(id);
     try {
       if (act === 'borrar') {
         if (!pendienteBorrar.has(id)) { pendienteBorrar.add(id); b.textContent = '¿Borrar? Toca otra vez'; b.classList.add('loss'); setTimeout(() => { pendienteBorrar.delete(id); renderLista(); }, 4000); return; }
         pendienteBorrar.delete(id); await ref.delete(); return;
       }
-      if (act === 'cashout') {
-        const v = num($('co-' + id).value);
-        if (v == null || v < 0) { $('co-' + id).focus(); return; }
-        await ref.update({ resultado: 'cashout', retorno: v }); return;
-      }
+      if (act === 'cashout') { const v = num($('co-' + id).value); if (v == null || v < 0) { $('co-' + id).focus(); return; } await ref.update({ resultado: 'cashout', retorno: v }); return; }
       await ref.update({ resultado: act });
     } catch (err) { b.textContent = 'Error, reintenta'; }
   });
   $('filtro').addEventListener('change', renderLista);
 
   $('a-guardar').addEventListener('click', async () => {
-    const aj = { banca_inicial: num($('a-banca').value) ?? 0, stake_pct: num($('a-pct').value) ?? 5, tope: num($('a-tope').value) ?? 1 };
+    const aj = { banca_inicial: num($('a-banca').value) ?? 0, stake_pct: num($('a-pct').value) ?? 5, tope: num($('a-tope').value) ?? 1, max_dia: num($('a-dia').value) ?? 5, pausa_perdidas: num($('a-pausa').value) ?? 3 };
     if (!S.db) return;
-    try { await S.db.doc('config/ajustes').set(aj); $('a-toast').textContent = 'Ajustes guardados.'; }
+    try { await S.db.doc('config/ajustes').set(aj); $('a-toast').style.color = ''; $('a-toast').textContent = 'Ajustes guardados.'; }
     catch (err) { $('a-toast').style.color = 'var(--loss)'; $('a-toast').textContent = 'No se guardaron los ajustes.'; }
     setTimeout(() => ($('a-toast').textContent = ''), 3000);
   });
+  $('a-exportar').addEventListener('click', async () => {
+    if (!S.dl) return;
+    const cols = ['fecha', 'liga', 'local', 'visitante', 'min', 'gl', 'gv', 'roja', 'ritmo', 'mercado', 'linea', 'lado', 'cuota', 'stake', 'patron', 'regla', 'veredicto', 'p_modelo', 'cuota_min', 'ev', 'resultado', 'retorno', 'notas'];
+    const q = (v) => { const s = v == null ? '' : String(v); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+    const csv = [cols.join(',')].concat(S.apuestas.map((a) => cols.map((c) => q(a[c])).join(','))).join('\n');
+    try { await S.dl.save({ filename: `football-brain-apuestas-${hoyISO()}.csv`, data: csv }); $('a-toast').textContent = 'CSV entregado.'; }
+    catch (err) { if (err && err.code !== 'declined') { $('a-toast').style.color = 'var(--loss)'; $('a-toast').textContent = 'No se pudo exportar.'; } }
+    setTimeout(() => ($('a-toast').textContent = ''), 3000);
+  });
 
-  // ---------- arranque
-  renderReglas(); limpiar(); renderAll();
+  // ---------------------------------------------------------------- arranque
+  renderFichas(); renderMapa(); renderCalib(); limpiar(); renderAll();
   function estado(on, txt) { $('sync-dot').className = 'dot ' + (on ? 'on' : 'off'); $('sync-txt').textContent = txt; }
+  (async () => {
+    try { S.dl = window.claude && (await window.claude.use('downloads')); } catch (e) { S.dl = null; }
+    $('a-exportar').hidden = !S.dl;
+  })();
   (async () => {
     let db = null;
     try { db = window.claude && (await window.claude.use('db')); } catch (e) { db = null; }
     if (!db) { estado(false, 'Sin sincronizar'); $('db-aviso').hidden = false; S.soloLectura = true; S.cargado = true; renderAll(); return; }
     S.db = db;
-    let listos = 0; const listo = () => { if (++listos >= 2) { S.cargado = true; } renderAll(); };
+    const listos = new Set();
+    const listo = (k) => { listos.add(k); if (listos.has('a') && listos.has('h')) S.cargado = true; renderAll(); };
     const err = (e) => estado(false, e && e.code === 'revoked' ? 'Acceso retirado' : 'Sin conexión');
     db.collection('apuestas').orderBy('fecha', 'desc').onSnapshot((snap) => {
       S.apuestas = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
-      estado(true, snap.metadata.fromCache ? 'Sincronizando…' : 'Sincronizado');
-      listo();
+      estado(true, snap.metadata.fromCache ? 'Sincronizando…' : 'Sincronizado'); listo('a');
     }, err);
-    db.collection('historico').onSnapshot((snap) => { S.historico = snap.docs.map((d) => ({ id: d.id, ...d.data() })); listo(); }, err);
+    db.collection('historico').onSnapshot((snap) => { S.historico = snap.docs.map((d) => ({ id: d.id, ...d.data() })); listo('h'); }, err);
     db.doc('config/ajustes').onSnapshot((snap) => {
       if (snap.exists) S.ajustes = { ...S.ajustes, ...snap.data() };
-      renderAll(); if (!$('f-stake').value) $('f-stake').value = stakeSugerido().toFixed(2); actualizarDetector();
+      renderAll(); if (!$('f-stake').value) $('f-stake').value = stakeSugerido().toFixed(2); actualizar();
     }, err);
   })();
 })();

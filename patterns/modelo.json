@@ -73,13 +73,13 @@
     "Ucrania Premier": 0.982,
     "Uruguay 2ª División": 0.923
   },
-  "mult_roja": 0.771,
-  "reparto_roja": 0.873,
+  "mult_roja": 0.797,
+  "reparto_roja": 0.845,
   "ventaja_local": 0.55,
   "n_partidos": 92,
   "notas": [
-    "Roja: 16 goles observados tras la roja contra 21.9 esperados.",
-    "Tras la roja marcó el equipo con uno más 16 veces y el de 10 0 veces.",
+    "Roja: 18 goles observados tras la roja contra 23.6 esperados.",
+    "Tras la roja marcó el equipo con uno más 17 veces y el de 10 1 veces.",
     "Goles por partido en la muestra: 2.63 en 92 partidos."
   ]
 }

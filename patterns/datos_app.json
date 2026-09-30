@@ -1,5 +1,5 @@
 {
- "generado": "2026-09-30 05:47",
+ "generado": "2026-09-30 05:54",
  "muestra": {
   "backtest": 57,
   "total": 92,
@@ -90,34 +90,34 @@
    "Ucrania Premier": 0.982,
    "Uruguay 2ª División": 0.923
   },
-  "mult_roja": 0.771,
-  "reparto_roja": 0.873,
+  "mult_roja": 0.797,
+  "reparto_roja": 0.845,
   "ventaja_local": 0.55,
   "n_partidos": 92,
   "notas": [
-   "Roja: 16 goles observados tras la roja contra 21.9 esperados.",
-   "Tras la roja marcó el equipo con uno más 16 veces y el de 10 0 veces.",
+   "Roja: 18 goles observados tras la roja contra 23.6 esperados.",
+   "Tras la roja marcó el equipo con uno más 17 veces y el de 10 1 veces.",
    "Goles por partido en la muestra: 2.63 en 92 partidos."
   ]
  },
  "calibracion": {
   "n": 460,
-  "brier": 0.2026,
+  "brier": 0.2027,
   "brier_base": 0.2352,
   "fiabilidad": [
    [
     0.2,
     0.4,
-    94,
+    93,
     0.333,
-    0.362
+    0.355
    ],
    [
     0.4,
     0.6,
-    113,
+    114,
     0.512,
-    0.531
+    0.535
    ],
    [
     0.6,
@@ -159,7 +159,7 @@
     "tasa": 0.7575757575757576,
     "lo": 0.5897505131450971,
     "hi": 0.8716843865335271,
-    "p_modelo": 0.7058244365915949,
+    "p_modelo": 0.7065450840703275,
     "cuota_min": 1.3703703703703705,
     "ligas": [
      {
@@ -207,10 +207,10 @@
     ]
    },
    "tuyo": {
-    "n": 7,
-    "k": 6,
-    "cuota_media": 1.4785714285714284,
-    "neto": 1.8799999999999997,
+    "n": 8,
+    "k": 7,
+    "cuota_media": 1.4425,
+    "neto": 2.0699999999999994,
     "ejemplos": [
      {
       "partido": "Antoniano vs Ciudad de Lucena",
@@ -219,7 +219,7 @@
       "marcador": "0:2",
       "cuota": 1.63,
       "gano": true,
-      "p_modelo": 0.462
+      "p_modelo": 0.474
      },
      {
       "partido": "Criciúma vs Avaí",
@@ -247,6 +247,15 @@
       "cuota": 1.45,
       "gano": true,
       "p_modelo": 0.537
+     },
+     {
+      "partido": "DC United vs Charlotte FC",
+      "seleccion": "Más de 2",
+      "minuto": 46,
+      "marcador": "1:1",
+      "cuota": 1.19,
+      "gano": true,
+      "p_modelo": 0.767
      },
      {
       "partido": "Vasco da Gama vs Coritiba",
@@ -301,7 +310,7 @@
     "tasa": 0.84,
     "lo": 0.7148551903823401,
     "hi": 0.9166267863791231,
-    "p_modelo": 0.763527899180269,
+    "p_modelo": 0.7629559629719617,
     "cuota_min": 1.2272727272727273,
     "ligas": [
      {
@@ -424,7 +433,7 @@
     "tasa": 1.0,
     "lo": 0.5100999795960008,
     "hi": 1.0,
-    "p_modelo": 0.7181402472475882,
+    "p_modelo": 0.7298743136390948,
     "cuota_min": 1.3333333333333333,
     "ligas": [
      {
@@ -458,10 +467,10 @@
     ]
    },
    "tuyo": {
-    "n": 9,
+    "n": 8,
     "k": 7,
-    "cuota_media": 1.648888888888889,
-    "neto": 2.3200000000000003,
+    "cuota_media": 1.67125,
+    "neto": 3.3200000000000003,
     "ejemplos": [
      {
       "partido": "Escocia vs Suiza",
@@ -470,16 +479,16 @@
       "marcador": "0:1",
       "cuota": 1.42,
       "gano": true,
-      "p_modelo": 0.297
+      "p_modelo": 0.31
      },
      {
       "partido": "Bolívar vs Blooming",
       "seleccion": "Más de 1.5",
       "minuto": 66,
-      "marcador": "0:0",
+      "marcador": "1:0",
       "cuota": 1.85,
       "gano": true,
-      "p_modelo": 0.134
+      "p_modelo": 0.482
      },
      {
       "partido": "Antoniano vs Ciudad de Lucena",
@@ -488,16 +497,7 @@
       "marcador": "0:2",
       "cuota": 1.63,
       "gano": true,
-      "p_modelo": 0.462
-     },
-     {
-      "partido": "EVV Echt vs Halsteren",
-      "seleccion": "Más de 5.5",
-      "minuto": 52,
-      "marcador": "2:1",
-      "cuota": 1.47,
-      "gano": false,
-      "p_modelo": 0.074
+      "p_modelo": 0.474
      },
      {
       "partido": "Fortaleza vs Atlético Junior",
@@ -506,7 +506,7 @@
       "marcador": "0:1",
       "cuota": 1.55,
       "gano": true,
-      "p_modelo": 0.437
+      "p_modelo": 0.454
      },
      {
       "partido": "Karpaty vs Veres",
@@ -515,7 +515,7 @@
       "marcador": "1:0",
       "cuota": 2.2,
       "gano": true,
-      "p_modelo": 0.256
+      "p_modelo": 0.264
      },
      {
       "partido": "Deportivo Pasto vs Once Caldas",
@@ -524,7 +524,7 @@
       "marcador": "0:0",
       "cuota": 2.05,
       "gano": false,
-      "p_modelo": 0.335
+      "p_modelo": 0.35
      },
      {
       "partido": "San Jose Earthquakes vs LAFC",
@@ -542,7 +542,7 @@
       "marcador": "0:1",
       "cuota": 1.4,
       "gano": true,
-      "p_modelo": 0.435
+      "p_modelo": 0.446
      }
     ]
    },
@@ -569,7 +569,7 @@
     "tasa": 0.6666666666666666,
     "lo": 0.2076549551264879,
     "hi": 0.9385096847238394,
-    "p_modelo": 0.5852873031027456,
+    "p_modelo": 0.5717827135937235,
     "cuota_min": 1.75,
     "ligas": [
      {
@@ -596,10 +596,10 @@
     ]
    },
    "tuyo": {
-    "n": 7,
+    "n": 8,
     "k": 3,
-    "cuota_media": 2.1885714285714286,
-    "neto": -0.1299999999999999,
+    "cuota_media": 2.2025,
+    "neto": -1.13,
     "ejemplos": [
      {
       "partido": "Chequia vs Inglaterra",
@@ -608,7 +608,7 @@
       "marcador": "0:0",
       "cuota": 1.77,
       "gano": true,
-      "p_modelo": 0.244
+      "p_modelo": 0.243
      },
      {
       "partido": "Atenas vs Plaza Colonia",
@@ -617,7 +617,7 @@
       "marcador": "0:0",
       "cuota": 1.84,
       "gano": false,
-      "p_modelo": 0.546
+      "p_modelo": 0.535
      },
      {
       "partido": "Grêmio Prudente vs União São João",
@@ -626,7 +626,7 @@
       "marcador": "0:0",
       "cuota": 2.75,
       "gano": false,
-      "p_modelo": 0.262
+      "p_modelo": 0.259
      },
      {
       "partido": "Comerciantes FC vs Sport Huancayo Reserva",
@@ -635,7 +635,7 @@
       "marcador": "0:0",
       "cuota": 3.0,
       "gano": true,
-      "p_modelo": 0.725
+      "p_modelo": 0.706
      },
      {
       "partido": "Rochdale vs Liverpool Sub-21",
@@ -644,7 +644,16 @@
       "marcador": "1:1",
       "cuota": 1.64,
       "gano": false,
-      "p_modelo": 0.526
+      "p_modelo": 0.515
+     },
+     {
+      "partido": "Deportivo San Pedro vs Cobán Imperial",
+      "seleccion": "Cobán Imperial",
+      "minuto": 51,
+      "marcador": "0:0",
+      "cuota": 2.3,
+      "gano": false,
+      "p_modelo": 0.517
      },
      {
       "partido": "CD Génesis vs Olancho FC",
@@ -653,7 +662,7 @@
       "marcador": "0:0",
       "cuota": 2.22,
       "gano": false,
-      "p_modelo": 0.441
+      "p_modelo": 0.433
      },
      {
       "partido": "O Elvas vs UD Leiria",
@@ -662,7 +671,7 @@
       "marcador": "0:0",
       "cuota": 2.1,
       "gano": true,
-      "p_modelo": 0.305
+      "p_modelo": 0.301
      }
     ]
    },
@@ -684,7 +693,7 @@
     "tasa": 0.6666666666666666,
     "lo": 0.48779725813830266,
     "hi": 0.807697044731538,
-    "p_modelo": 0.5796455931344112,
+    "p_modelo": 0.5798682639570322,
     "cuota_min": null,
     "ligas": [
      {
@@ -753,7 +762,7 @@
       "marcador": "0:0",
       "cuota": 1.77,
       "gano": true,
-      "p_modelo": 0.244
+      "p_modelo": 0.243
      },
      {
       "partido": "Casarano vs Monopoli",
@@ -771,7 +780,7 @@
       "marcador": "0:0",
       "cuota": 1.84,
       "gano": false,
-      "p_modelo": 0.546
+      "p_modelo": 0.535
      },
      {
       "partido": "CS Fola Esch vs FC Juvenil Canach",
@@ -789,7 +798,7 @@
       "marcador": "0:0",
       "cuota": 2.75,
       "gano": false,
-      "p_modelo": 0.262
+      "p_modelo": 0.259
      },
      {
       "partido": "Waterside Karori vs Fencibles United (F)",
@@ -807,7 +816,7 @@
       "marcador": "0:0",
       "cuota": 3.0,
       "gano": true,
-      "p_modelo": 0.725
+      "p_modelo": 0.706
      },
      {
       "partido": "Gerasdorf Stammersdorf vs Mauer",
@@ -825,7 +834,7 @@
       "marcador": "1:1",
       "cuota": 1.64,
       "gano": false,
-      "p_modelo": 0.526
+      "p_modelo": 0.515
      },
      {
       "partido": "Deportivo San Pedro vs Cobán Imperial",
@@ -834,7 +843,7 @@
       "marcador": "0:0",
       "cuota": 2.3,
       "gano": false,
-      "p_modelo": 0.257
+      "p_modelo": 0.517
      },
      {
       "partido": "Tacoma Defiance vs Portland Timbers II",
@@ -852,7 +861,7 @@
       "marcador": "0:0",
       "cuota": 2.22,
       "gano": false,
-      "p_modelo": 0.441
+      "p_modelo": 0.433
      },
      {
       "partido": "O Elvas vs UD Leiria",
@@ -861,7 +870,7 @@
       "marcador": "0:0",
       "cuota": 2.1,
       "gano": true,
-      "p_modelo": 0.305
+      "p_modelo": 0.301
      }
     ]
    },
@@ -884,7 +893,7 @@
     "tasa": 0.47058823529411764,
     "lo": 0.26164801196088106,
     "hi": 0.6903710268845051,
-    "p_modelo": 0.4090825998443557,
+    "p_modelo": 0.40983303100535845,
     "cuota_min": 2.1,
     "ligas": [
      {
@@ -932,20 +941,11 @@
     ]
    },
    "tuyo": {
-    "n": 4,
-    "k": 1,
-    "cuota_media": 1.68,
-    "neto": -2.15,
+    "n": 3,
+    "k": 0,
+    "cuota_media": 1.623333333333333,
+    "neto": -3,
     "ejemplos": [
-     {
-      "partido": "Bolívar vs Blooming",
-      "seleccion": "Más de 1.5",
-      "minuto": 66,
-      "marcador": "0:0",
-      "cuota": 1.85,
-      "gano": true,
-      "p_modelo": 0.134
-     },
      {
       "partido": "Grêmio vs Palmeiras",
       "seleccion": "Más de 1.5",
@@ -971,7 +971,7 @@
       "marcador": "0:0",
       "cuota": 2.05,
       "gano": false,
-      "p_modelo": 0.335
+      "p_modelo": 0.35
      }
     ]
    },
@@ -1015,7 +1015,7 @@
    "n": 35,
    "mas1": 0.943,
    "mas2": 0.657,
-   "p_mod_mas1": 0.849,
+   "p_mod_mas1": 0.85,
    "empate_sigue": 0.229,
    "lo_mas1": 0.814,
    "hi_mas1": 0.984
@@ -1087,7 +1087,7 @@
    "n": 17,
    "mas1": 0.882,
    "mas2": 0.471,
-   "p_mod_mas1": 0.752,
+   "p_mod_mas1": 0.753,
    "empate_sigue": 0.118,
    "lo_mas1": 0.657,
    "hi_mas1": 0.967
@@ -1099,7 +1099,7 @@
    "n": 23,
    "mas1": 0.696,
    "mas2": 0.478,
-   "p_mod_mas1": 0.742,
+   "p_mod_mas1": 0.744,
    "lider_gana": 0.739,
    "lo_mas1": 0.491,
    "hi_mas1": 0.844
@@ -1159,7 +1159,7 @@
    "n": 13,
    "mas1": 0.846,
    "mas2": 0.385,
-   "p_mod_mas1": 0.603,
+   "p_mod_mas1": 0.604,
    "empate_sigue": 0.154,
    "lo_mas1": 0.578,
    "hi_mas1": 0.957
@@ -1171,7 +1171,7 @@
    "n": 13,
    "mas1": 0.385,
    "mas2": 0.308,
-   "p_mod_mas1": 0.605,
+   "p_mod_mas1": 0.606,
    "lider_gana": 0.923,
    "lo_mas1": 0.177,
    "hi_mas1": 0.645
@@ -1183,7 +1183,7 @@
    "n": 8,
    "mas1": 0.625,
    "mas2": 0.375,
-   "p_mod_mas1": 0.606,
+   "p_mod_mas1": 0.607,
    "empate_sigue": 0.75,
    "lo_mas1": 0.306,
    "hi_mas1": 0.863
@@ -1195,7 +1195,7 @@
    "n": 12,
    "mas1": 0.667,
    "mas2": 0.167,
-   "p_mod_mas1": 0.612,
+   "p_mod_mas1": 0.613,
    "lider_gana": 0.833,
    "lo_mas1": 0.391,
    "hi_mas1": 0.862
@@ -1243,7 +1243,7 @@
    "n": 8,
    "mas1": 0.75,
    "mas2": 0.25,
-   "p_mod_mas1": 0.48,
+   "p_mod_mas1": 0.482,
    "empate_sigue": 0.25,
    "lo_mas1": 0.409,
    "hi_mas1": 0.929
@@ -1255,7 +1255,7 @@
    "n": 16,
    "mas1": 0.375,
    "mas2": 0.25,
-   "p_mod_mas1": 0.488,
+   "p_mod_mas1": 0.489,
    "lider_gana": 0.938,
    "lo_mas1": 0.185,
    "hi_mas1": 0.614
@@ -1267,7 +1267,7 @@
    "n": 5,
    "mas1": 0.4,
    "mas2": 0.2,
-   "p_mod_mas1": 0.469,
+   "p_mod_mas1": 0.471,
    "empate_sigue": 0.8,
    "lo_mas1": 0.118,
    "hi_mas1": 0.769
@@ -1279,7 +1279,7 @@
    "n": 11,
    "mas1": 0.636,
    "mas2": 0.182,
-   "p_mod_mas1": 0.492,
+   "p_mod_mas1": 0.493,
    "lider_gana": 0.909,
    "lo_mas1": 0.354,
    "hi_mas1": 0.848
@@ -1339,7 +1339,7 @@
    "n": 16,
    "mas1": 0.188,
    "mas2": 0.062,
-   "p_mod_mas1": 0.329,
+   "p_mod_mas1": 0.33,
    "lider_gana": 0.938,
    "lo_mas1": 0.066,
    "hi_mas1": 0.43
@@ -1351,7 +1351,7 @@
    "n": 6,
    "mas1": 0.5,
    "mas2": 0.0,
-   "p_mod_mas1": 0.324,
+   "p_mod_mas1": 0.325,
    "empate_sigue": 0.5,
    "lo_mas1": 0.188,
    "hi_mas1": 0.812
@@ -1363,7 +1363,7 @@
    "n": 10,
    "mas1": 0.5,
    "mas2": 0.0,
-   "p_mod_mas1": 0.316,
+   "p_mod_mas1": 0.317,
    "lider_gana": 1.0,
    "lo_mas1": 0.237,
    "hi_mas1": 0.763
@@ -1493,10 +1493,10 @@
    "liga": "UEFA Nations League"
   },
   {
-   "p": 0.244,
+   "p": 0.243,
    "p_nula": 0.0,
-   "cuota_min": 4.093,
-   "ev": -0.568,
+   "cuota_min": 4.108,
+   "ev": -0.569,
    "cuota": 1.77,
    "gano": true,
    "partido": "Chequia vs Inglaterra",
@@ -1513,10 +1513,10 @@
    "liga": "UEFA Nations League"
   },
   {
-   "p": 0.297,
-   "p_nula": 0.367,
-   "cuota_min": 3.372,
-   "ev": -0.212,
+   "p": 0.31,
+   "p_nula": 0.365,
+   "cuota_min": 3.226,
+   "ev": -0.195,
    "cuota": 1.42,
    "gano": true,
    "partido": "Escocia vs Suiza",
@@ -1532,23 +1532,22 @@
    "liga": "UEFA Nations League"
   },
   {
-   "p": 0.134,
+   "p": 0.482,
    "p_nula": 0.0,
-   "cuota_min": 7.472,
-   "ev": -0.752,
+   "cuota_min": 2.076,
+   "ev": -0.109,
    "cuota": 1.85,
    "gano": true,
    "partido": "Bolívar vs Blooming",
    "seleccion": "Más de 1.5",
    "minuto": 66,
-   "marcador": "0:0",
+   "marcador": "1:0",
    "mercado": "over",
    "tipo_ticket": "simple",
    "patrones": [
-    "A2",
     "P3"
    ],
-   "confianza": "alta",
+   "confianza": "media",
    "liga": "Bolivia"
   },
   {
@@ -1571,10 +1570,10 @@
    "liga": "Italia Serie C"
   },
   {
-   "p": 0.462,
+   "p": 0.474,
    "p_nula": 0.0,
-   "cuota_min": 2.162,
-   "ev": -0.246,
+   "cuota_min": 2.111,
+   "ev": -0.228,
    "cuota": 1.63,
    "gano": true,
    "partido": "Antoniano vs Ciudad de Lucena",
@@ -1591,10 +1590,10 @@
    "liga": "España 2ª RFEF"
   },
   {
-   "p": 0.546,
+   "p": 0.535,
    "p_nula": 0.0,
-   "cuota_min": 1.83,
-   "ev": 0.005,
+   "cuota_min": 1.871,
+   "ev": -0.016,
    "cuota": 1.84,
    "gano": false,
    "partido": "Atenas vs Plaza Colonia",
@@ -1717,10 +1716,10 @@
    "liga": "Campeonato de Portugal"
   },
   {
-   "p": 0.262,
+   "p": 0.259,
    "p_nula": 0.0,
-   "cuota_min": 3.816,
-   "ev": -0.279,
+   "cuota_min": 3.857,
+   "ev": -0.287,
    "cuota": 2.75,
    "gano": false,
    "partido": "Grêmio Prudente vs União São João",
@@ -1845,10 +1844,10 @@
    "liga": "Paraguay Intermedia"
   },
   {
-   "p": 0.725,
+   "p": 0.706,
    "p_nula": 0.0,
-   "cuota_min": 1.38,
-   "ev": 1.174,
+   "cuota_min": 1.417,
+   "ev": 1.117,
    "cuota": 3.0,
    "gano": true,
    "partido": "Comerciantes FC vs Sport Huancayo Reserva",
@@ -1920,10 +1919,10 @@
    "liga": "Copa KNVB"
   },
   {
-   "p": 0.526,
+   "p": 0.515,
    "p_nula": 0.0,
-   "cuota_min": 1.9,
-   "ev": -0.137,
+   "cuota_min": 1.94,
+   "ev": -0.155,
    "cuota": 1.64,
    "gano": false,
    "partido": "Rochdale vs Liverpool Sub-21",
@@ -1940,29 +1939,10 @@
    "liga": "EFL Trophy"
   },
   {
-   "p": 0.074,
+   "p": 0.517,
    "p_nula": 0.0,
-   "cuota_min": 13.546,
-   "ev": -0.891,
-   "cuota": 1.47,
-   "gano": false,
-   "partido": "EVV Echt vs Halsteren",
-   "seleccion": "Más de 5.5",
-   "minuto": 52,
-   "marcador": "2:1",
-   "mercado": "over",
-   "tipo_ticket": "combinada",
-   "patrones": [
-    "P3"
-   ],
-   "confianza": "media",
-   "liga": "Copa KNVB"
-  },
-  {
-   "p": 0.257,
-   "p_nula": 0.0,
-   "cuota_min": 3.886,
-   "ev": -0.408,
+   "cuota_min": 1.933,
+   "ev": 0.19,
    "cuota": 2.3,
    "gano": false,
    "partido": "Deportivo San Pedro vs Cobán Imperial",
@@ -1972,6 +1952,7 @@
    "mercado": "1x2",
    "tipo_ticket": "simple",
    "patrones": [
+    "P4",
     "A1"
    ],
    "confianza": "alta",
@@ -1997,10 +1978,10 @@
    "liga": "MLS Next Pro"
   },
   {
-   "p": 0.437,
+   "p": 0.454,
    "p_nula": 0.0,
-   "cuota_min": 2.287,
-   "ev": -0.322,
+   "cuota_min": 2.203,
+   "ev": -0.296,
    "cuota": 1.55,
    "gano": true,
    "partido": "Fortaleza vs Atlético Junior",
@@ -2107,10 +2088,10 @@
    "liga": "Dinamarca 1ª"
   },
   {
-   "p": 0.256,
+   "p": 0.264,
    "p_nula": 0.0,
-   "cuota_min": 3.9,
-   "ev": -0.436,
+   "cuota_min": 3.79,
+   "ev": -0.42,
    "cuota": 2.2,
    "gano": true,
    "partido": "Karpaty vs Veres",
@@ -2162,10 +2143,10 @@
    "liga": "Inglaterra Premier League"
   },
   {
-   "p": 0.335,
+   "p": 0.35,
    "p_nula": 0.0,
-   "cuota_min": 2.983,
-   "ev": -0.313,
+   "cuota_min": 2.858,
+   "ev": -0.283,
    "cuota": 2.05,
    "gano": false,
    "partido": "Deportivo Pasto vs Once Caldas",
@@ -2201,19 +2182,21 @@
    "liga": "MLS"
   },
   {
-   "p": 0.428,
-   "p_nula": 0.339,
-   "cuota_min": 2.335,
-   "ev": -0.151,
+   "p": 0.767,
+   "p_nula": 0.233,
+   "cuota_min": 1.303,
+   "ev": 0.146,
    "cuota": 1.19,
    "gano": true,
    "partido": "DC United vs Charlotte FC",
    "seleccion": "Más de 2",
    "minuto": 46,
-   "marcador": "0:1",
+   "marcador": "1:1",
    "mercado": "over",
    "tipo_ticket": "combinada",
-   "patrones": [],
+   "patrones": [
+    "P1"
+   ],
    "confianza": "media",
    "liga": "MLS"
   },
@@ -2311,10 +2294,10 @@
    "liga": "Bolivia Copa"
   },
   {
-   "p": 0.441,
+   "p": 0.433,
    "p_nula": 0.0,
-   "cuota_min": 2.267,
-   "ev": -0.021,
+   "cuota_min": 2.308,
+   "ev": -0.038,
    "cuota": 2.22,
    "gano": false,
    "partido": "CD Génesis vs Olancho FC",
@@ -2331,10 +2314,10 @@
    "liga": "Honduras Liga Nacional"
   },
   {
-   "p": 0.305,
+   "p": 0.301,
    "p_nula": 0.0,
-   "cuota_min": 3.277,
-   "ev": -0.359,
+   "cuota_min": 3.318,
+   "ev": -0.367,
    "cuota": 2.1,
    "gano": true,
    "partido": "O Elvas vs UD Leiria",
@@ -2351,10 +2334,10 @@
    "liga": "Taça de Portugal"
   },
   {
-   "p": 0.435,
+   "p": 0.446,
    "p_nula": 0.0,
-   "cuota_min": 2.299,
-   "ev": -0.391,
+   "cuota_min": 2.243,
+   "ev": -0.376,
    "cuota": 1.4,
    "gano": true,
    "partido": "Odense Boldklub vs FC Midtjylland",
