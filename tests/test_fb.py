@@ -223,6 +223,37 @@ class TestLigas(unittest.TestCase):
         self.assertEqual(sum(x["k"] for x in h.values()), 48)
 
 
+class TestCalidadYPromocion(unittest.TestCase):
+    def test_minutos_implausibles_fallan(self):
+        p = partido("H9;A12")
+        p.goles = [(120, "H")]  # minuto fuera de rango
+        self.assertIsNotNone(partidos._minutos_plausibles(p))
+        p.goles = [(50, "H"), (20, "A")]  # fuera de orden
+        self.assertIsNotNone(partidos._minutos_plausibles(p))
+        p.goles = [(20, "A"), (50, "H")]
+        self.assertIsNone(partidos._minutos_plausibles(p))
+
+    def test_informe_calidad(self):
+        q = partidos.informe_calidad()
+        self.assertEqual(q["partidos"], q["completos"] + (q["partidos"] - q["completos"]))
+        self.assertGreater(q["backtest"], 50)
+
+    def test_promocion(self):
+        from fb import backtest as bt
+        self.assertEqual(bt.promocion("evitar", 100, 0.9, 0.5, 50), "evitar")
+        self.assertEqual(bt.promocion("a_favor", 20, 0.9, 0.5, 50), "rojo")  # pocos casos
+        self.assertEqual(bt.promocion("a_favor", 50, 0.9, 0.5, 5), "rojo")   # poca muestra OOS
+        self.assertEqual(bt.promocion("a_favor", 50, 0.70, 0.60, 20), "verde")
+        self.assertEqual(bt.promocion("a_favor", 50, 0.55, 0.60, 20), "ambar")
+        self.assertEqual(bt.promocion("a_favor", 50, 0.70, 0.60, 20, clv_medio=-0.02), "ambar")
+
+
+class TestMercadoCLV(unittest.TestCase):
+    def test_prob_sin_margen_suma_uno(self):
+        p = modelo.prob_sin_margen(1.65, 4.40, 5.75)
+        self.assertAlmostEqual(sum(p), 1.0)
+
+
 class TestEquipos(unittest.TestCase):
     def test_con_equipos(self):
         m = modelo.Modelo.ajustar(partidos.cargar())

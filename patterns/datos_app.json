@@ -1,5 +1,5 @@
 {
- "generado": "2026-09-30 11:56",
+ "generado": "2026-09-30 14:42",
  "muestra": {
   "backtest": 82,
   "total": 117,
@@ -162,6 +162,10 @@
     "hi": 0.8418802724267501,
     "p_modelo": 0.7232581602025218,
     "cuota_min": 1.372093023255814,
+    "lo_oos": 0.592,
+    "n_oos": 27,
+    "k_oos": 21,
+    "break_even": 0.693,
     "ligas": [
      {
       "liga": "Perú Liga 1",
@@ -313,6 +317,10 @@
     "hi": 0.8854199437768794,
     "p_modelo": 0.743116248865419,
     "cuota_min": 1.253968253968254,
+    "lo_oos": 0.665,
+    "n_oos": 34,
+    "k_oos": 28,
+    "break_even": 0.661,
     "ligas": [
      {
       "liga": "Bolivia Primera",
@@ -436,6 +444,10 @@
     "hi": 0.9177828342909844,
     "p_modelo": 0.6156163217012356,
     "cuota_min": 1.5714285714285714,
+    "lo_oos": 0.208,
+    "n_oos": 3,
+    "k_oos": 2,
+    "break_even": 0.598,
     "ligas": [
      {
       "liga": "Perú Liga 1",
@@ -572,6 +584,10 @@
     "hi": 0.9544139373553637,
     "p_modelo": 0.5494718015123632,
     "cuota_min": 1.6,
+    "lo_oos": 0.342,
+    "n_oos": 2,
+    "k_oos": 2,
+    "break_even": 0.454,
     "ligas": [
      {
       "liga": "Colombia Primera A",
@@ -709,6 +725,10 @@
     "hi": 0.967120919987079,
     "p_modelo": 0.7513005313037879,
     "cuota_min": 1.2352941176470589,
+    "lo_oos": 0.453,
+    "n_oos": 9,
+    "k_oos": 7,
+    "break_even": null,
     "ligas": [
      {
       "liga": "Brasil Serie A",
@@ -796,6 +816,10 @@
     "hi": 0.9837176869361576,
     "p_modelo": 0.9709597626507777,
     "cuota_min": 1.1176470588235294,
+    "lo_oos": 0.702,
+    "n_oos": 15,
+    "k_oos": 14,
+    "break_even": null,
     "ligas": [
      {
       "liga": "Colombia Primera A",
@@ -878,6 +902,10 @@
     "hi": 0.7936723389308484,
     "p_modelo": 0.5796002710968727,
     "cuota_min": null,
+    "lo_oos": 0.347,
+    "n_oos": 22,
+    "k_oos": 12,
+    "break_even": 0.501,
     "ligas": [
      {
       "liga": "Perú Liga 1",
@@ -1078,6 +1106,10 @@
     "hi": 0.6399492561448447,
     "p_modelo": 0.4085048554125062,
     "cuota_min": 2.3333333333333335,
+    "lo_oos": 0.189,
+    "n_oos": 9,
+    "k_oos": 4,
+    "break_even": null,
     "ligas": [
      {
       "liga": "Brasil Serie A",
@@ -1178,6 +1210,10 @@
     "hi": 1.0,
     "p_modelo": null,
     "cuota_min": null,
+    "lo_oos": 0.0,
+    "n_oos": 0,
+    "k_oos": 0,
+    "break_even": null,
     "ligas": []
    },
    "tuyo": {

@@ -250,3 +250,51 @@ def calibracion_por_estado(partidos: list[Partido], modelo: Modelo) -> list[dict
         filas.append({"fase": fase, "estado": est, "n": n, "real": k / n, "lo": lo, "hi": hi, "modelo": pm / n,
                       "ok": lo <= pm / n <= hi})
     return filas
+
+
+# ------------------------------------------------------------------ validación fuera de muestra
+def validar_fuera_de_muestra(partidos: list[Partido], modelo: Modelo) -> dict[str, dict]:
+    """Juzga cada patrón en la mitad MÁS RECIENTE de los partidos, ajena a su origen.
+
+    P5 y P6 se propusieron mirando toda la muestra. Aquí se parte por fecha: se mide
+    en la mitad reciente, que no influyó en proponerlos. Se reporta el límite inferior
+    de Wilson en esa mitad, el valor honesto para decidir si un patrón vale.
+    """
+    cfg = cargar_patrones()
+    orden = sorted(partidos, key=lambda p: p.fecha)
+    mitad = len(orden) // 2
+    antiguos, recientes = orden[:mitad], orden[mitad:]
+    out = {}
+    for cod in cfg:
+        def contar(ps):
+            k = n = 0
+            for p in ps:
+                for c in evaluar_en_partido(cod, p, cfg):
+                    n += 1
+                    k += c["exito"]
+            return k, n
+        k_ant, n_ant = contar(antiguos)
+        k_rec, n_rec = contar(recientes)
+        lo_rec, hi_rec = wilson(k_rec, n_rec)
+        out[cod] = {"k_ant": k_ant, "n_ant": n_ant, "k_rec": k_rec, "n_rec": n_rec,
+                    "tasa_rec": k_rec / n_rec if n_rec else None, "lo_rec": lo_rec, "hi_rec": hi_rec}
+    return out
+
+
+def promocion(tipo: str, n_total: int, lo_oos: float, break_even: float | None,
+              n_oos: int, clv_medio: float | None = None) -> str:
+    """Semáforo pre-registrado y honesto. Reglas fijas, decididas de antemano:
+
+    - Anti-patrones (evitar): no llevan color, se evitan.
+    - rojo: menos de 30 casos en total, o menos de 10 fuera de muestra. No se puede afirmar nada.
+    - verde: el límite inferior FUERA DE MUESTRA supera el break-even de tus cuotas, y el CLV
+      medio no es negativo (cuando ya hay apuestas registradas). Solo entonces hay ventaja probada.
+    - ámbar: prometedor pero sin prueba fuera de muestra suficiente.
+    """
+    if tipo == "evitar":
+        return "evitar"
+    if n_total < 30 or n_oos < 10:
+        return "rojo"
+    if break_even and lo_oos > break_even and (clv_medio is None or clv_medio >= 0):
+        return "verde"
+    return "ambar"

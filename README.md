@@ -3,6 +3,16 @@
 Análisis de mi historial real de Ecuabet, validación de patrones en partidos terminados
 y app para registrar apuestas simples, sincronizada entre PC y celular.
 
+## Misión, visión y principios
+
+- **Misión.** Hacer crecer la banca a largo plazo tomando solo apuestas simples con **valor esperado
+  positivo comprobado** (cuando la cuota de la casa supera la cuota mínima del modelo) y demostrando ese
+  valor midiéndolo contra la línea de cierre (**CLV**). El acierto es un medio; el valor es el fin.
+- **Visión.** Un sistema de datos reproducible que estime la probabilidad real en vivo mejor que la línea
+  de la casa en unas pocas situaciones bien validadas, con mejora continua y honestidad total.
+- **Principios.** Simples, nunca combinadas · stake plano, proteger la banca primero · medir valor, no
+  solo acierto · nada es "verde" sin prueba fuera de muestra · dos fuentes por dato · mejora continua.
+
 ## App
 
 https://claude.ai/artifact/EauH887JCpSi3r6ZDTTCHz
@@ -15,9 +25,10 @@ base de datos del artifact. Código en `app/index.html`.
   Opcional: cuotas prepartido 1X2 (para Ganador) y promedios de goles a favor y en contra
   de cada equipo, como los de scores24 (para Más de goles y Ambos marcan).
   Pide confirmación extra si es un anti-patrón o si saltaste tus límites del día.
-- **Panel**: curva de banca, caída máxima, racha, acierto por patrón con progreso hacia
-  30 apuestas, disciplina (con regla contra sin regla), cortes por liga, mercado y minuto,
-  ajustes y exportación a CSV.
+- **Panel**: CLV medio (si le ganas a la línea de cierre) y borde medio del modelo como
+  métricas principales, más neto, curva de banca, caída máxima, racha, acierto por patrón,
+  disciplina (con regla contra sin regla), cortes por liga, mercado y minuto, y exportación
+  a CSV. Al liquidar una apuesta anota la **cuota de cierre** para calcular el CLV.
 - **Patrones**: fichas claras con cuándo entrar, cuándo no, de cada 10 veces cuántas salió,
   cuota mínima y mejores ligas.
 - **Mapa**: qué pasó en partidos reales según minuto, goles y diferencia; fiabilidad del
@@ -28,6 +39,7 @@ base de datos del artifact. Código en `app/index.html`.
 
 ```
 python -m fb.cli reporte          # reports/analisis_v2.md, patterns/modelo.json, patterns/datos_app.json
+python -m fb.cli auditoria        # salud del sistema: muestra, calidad, calibración, patrones OOS
 python -m fb.cli inyectar-app     # mete los datos en app/index.html antes de publicar
 python -m unittest discover -s tests
 ```

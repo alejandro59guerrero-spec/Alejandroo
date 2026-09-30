@@ -1,6 +1,7 @@
 """Comandos de Football Brain.
 
     python -m fb.cli reporte                      análisis v2, modelo y datos de la app
+    python -m fb.cli auditoria                     salud del sistema: muestra, calidad, calibración
     python -m fb.cli inyectar-app                 mete patterns/datos_app.json en app/index.html
     python -m fb.cli sofascore-probar             comprueba el acceso a Sofascore
     python -m fb.cli buscar --fecha 2026-09-27 --equipo Criciuma
@@ -35,6 +36,37 @@ def cmd_reporte(_):
     for f in d["fichas"]:
         b = f["backtest"]
         print(f"  {f['codigo']} {f['nombre']:36s} backtest {b['k']}/{b['n']}  tuyo {f['tuyo']['k']}/{f['tuyo']['n']}  {f['semaforo']}")
+
+
+def cmd_auditoria(_):
+    """Tablero de salud del sistema: muestra, calidad, calibración y patrones sin prueba."""
+    from . import backtest, partidos
+    from .modelo import Modelo
+    bt = partidos.cargar(origen="backtest")
+    todos = partidos.cargar()
+    m = Modelo.ajustar(todos)
+    q = partidos.informe_calidad()
+    cal = backtest.calibrar(todos)
+    est = backtest.calibracion_por_estado(todos, m)
+    oos = backtest.validar_fuera_de_muestra(bt, m)
+
+    print("== SALUD DEL SISTEMA ==")
+    print(f"Muestra: {len(todos)} partidos ({len(bt)} ajenos validan patrones).")
+    print(f"Calidad: {q['completos']} completos, {q['con_fuente2']}/{q['backtest']} con segunda fuente, "
+          f"{len(q['rojas_no_fiables'])} con rojas no fiables.")
+    print(f"Calibración global (llega +1 gol): Brier {cal['brier']:.3f} vs {cal['brier_base']:.3f} base.")
+    malas = [f for f in est if not f["ok"]]
+    print(f"Calibración por estado: {len(est) - len(malas)}/{len(est)} cuadran"
+          + ("." if not malas else "; revisar: " + ", ".join(f"{f['fase']}/{f['estado']}" for f in malas)))
+    print("\n== PATRONES: prueba fuera de muestra ==")
+    for cod, o in oos.items():
+        if not o["n_rec"]:
+            continue
+        marca = "OK " if o["lo_rec"] >= 0.60 else "   "
+        print(f"{marca}{cod}: reciente {o['k_rec']}/{o['n_rec']} (límite inferior {o['lo_rec'] * 100:.0f}%)")
+    if q["sin_fuente2"]:
+        print(f"\nSin segunda fuente ({len(q['sin_fuente2'])}). Añade columna fuente2 al CSV para reforzar la calidad.")
+    return 0
 
 
 def cmd_inyectar(_):
@@ -160,6 +192,7 @@ def main(argv=None):
     p = argparse.ArgumentParser(prog="fb")
     sub = p.add_subparsers(dest="cmd", required=True)
     sub.add_parser("reporte").set_defaults(fn=cmd_reporte)
+    sub.add_parser("auditoria").set_defaults(fn=cmd_auditoria)
     sub.add_parser("inyectar-app").set_defaults(fn=cmd_inyectar)
     sub.add_parser("sofascore-probar").set_defaults(fn=cmd_probar)
     b = sub.add_parser("buscar")

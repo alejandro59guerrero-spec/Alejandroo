@@ -1,6 +1,6 @@
 # Football Brain · Análisis v2
 
-Generado el 2026-09-30 11:56 con `python -m fb.cli reporte`.
+Generado el 2026-09-30 14:42 con `python -m fb.cli reporte`.
 
 ## 1. De dónde salen los datos
 
@@ -60,19 +60,21 @@ Uso recomendado en la app: los promedios de la temporada completa (10 partidos o
 
 ## 3. Patrones
 
-| Código | Patrón | Backtest | Tu historial | Cuota mínima | Semáforo |
-|---|---|---|---|---|---|
-| P1 | Over con partido abierto | 41/55 (75%) | 7/8 | 1.37 | ambar |
-| P2 | Ganador al equipo que ya gana | 61/75 (81%) | 5/5 | 1.25 | verde |
-| P3 | Roja: apostar a goles | 5/7 (71%) | 7/8 | 1.57 | rojo |
-| P4 | Roja: ganador al que tiene uno más | 3/4 (75%) | 3/8 | 1.60 | rojo |
-| P5 | Primer gol tras el descanso con 0:0 | 15/17 (88%) | 0/1 | 1.24 | rojo |
-| P6 | Ganador con ventaja de 2 desde el 60' | 32/34 (94%) | 1/1 | 1.12 | ambar |
-| A1 | Ganador con el partido empatado | 26/39 (67%) | 6/14 | — | evitar |
-| A2 | Over que pide 2 goles con 0:0 | 7/17 (41%) | 0/3 | 2.33 | evitar |
-| A3 | Córners | sin datos | — | — | evitar |
+| Código | Patrón | Backtest | Fuera de muestra | Tu historial | Cuota mínima | Semáforo |
+|---|---|---|---|---|---|---|
+| P1 | Over con partido abierto | 41/55 (75%) | 21/27 (mín 59%) | 7/8 | 1.37 | ambar |
+| P2 | Ganador al equipo que ya gana | 61/75 (81%) | 28/34 (mín 66%) | 5/5 | 1.25 | verde |
+| P3 | Roja: apostar a goles | 5/7 (71%) | 2/3 (mín 21%) | 7/8 | 1.57 | rojo |
+| P4 | Roja: ganador al que tiene uno más | 3/4 (75%) | 2/2 (mín 34%) | 3/8 | 1.60 | rojo |
+| P5 | Primer gol tras el descanso con 0:0 | 15/17 (88%) | 7/9 (mín 45%) | 0/1 | 1.24 | rojo |
+| P6 | Ganador con ventaja de 2 desde el 60' | 32/34 (94%) | 14/15 (mín 70%) | 1/1 | 1.12 | ambar |
+| A1 | Ganador con el partido empatado | 26/39 (67%) | 12/22 (mín 35%) | 6/14 | — | evitar |
+| A2 | Over que pide 2 goles con 0:0 | 7/17 (41%) | 4/9 (mín 19%) | 0/3 | 2.33 | evitar |
+| A3 | Córners | sin datos | — | — | — | evitar |
 
-Semáforo: rojo con menos de 30 casos en total; ámbar si el intervalo toca el break-even de tus cuotas (o si aún no hay 5 apuestas tuyas para saber qué cuota tomas); verde si el límite inferior lo supera. Los anti-patrones (A) no llevan color: se evitan.
+**Semáforo (regla fija, decidida de antemano).** rojo: menos de 30 casos en total o menos de 10 fuera de muestra, no se puede afirmar nada. verde: el límite inferior FUERA DE MUESTRA (mitad más reciente de los partidos, que no influyó en proponer el patrón) supera el break-even de tus cuotas. ámbar: prometedor pero sin prueba fuera de muestra suficiente. Los anti-patrones (A) no llevan color.
+
+La columna *Fuera de muestra* es la prueba honesta: un patrón puede acertar mucho en toda la muestra y aun así no llegar a verde porque, al medirlo solo en los partidos recientes, el límite inferior no supera lo que necesitas para ganarle a tu cuota. P6 es el caso claro: acierta casi siempre, pero su cuota justa es tan baja que casi nunca hay valor.
 
 ### P1 · Over con partido abierto
 

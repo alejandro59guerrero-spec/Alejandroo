@@ -19,18 +19,6 @@ def pct(x):
     return "—" if x is None else f"{x * 100:.0f}%"
 
 
-def semaforo(n: int, lo: float, cuota_media: float | None, n_tuyo: int = 0, tipo: str = "a_favor") -> str:
-    """rojo: menos de 30 casos. verde: el límite inferior supera el break-even de TUS cuotas
-    (solo con 5 apuestas tuyas o más para saber qué cuota tomas). Los anti-patrones no llevan color."""
-    if tipo == "evitar":
-        return "evitar"
-    if n < 30:
-        return "rojo"
-    if cuota_media and n_tuyo >= 5 and lo > 1 / cuota_media:
-        return "verde"
-    return "ambar"
-
-
 def _redondear(x):
     if isinstance(x, float):
         return round(x, 3)
@@ -55,6 +43,7 @@ def generar() -> dict:
     perfil = ligas.perfil(todos, m.factor_liga)
     equipos = backtest.validar_equipos(todos)
     por_estado = backtest.calibracion_por_estado(todos, m)
+    oos = backtest.validar_fuera_de_muestra(bt, m)
     from .hoja import cargar_hoy, hoja
     hoy = cargar_hoy()
     hoy = {"fecha": hoy.get("fecha"), "partidos": [hoja(m, pt) for pt in hoy["partidos"]]}
@@ -76,16 +65,21 @@ def generar() -> dict:
     for cod, p in cfg.items():
         r = res[cod]
         t = tus[cod]
+        o = oos[cod]
+        # break-even = la probabilidad que necesitas para no perder a tu cuota típica en ese patrón
+        break_even = 1 / t["cuota_media"] if t["n"] >= 5 and t["cuota_media"] else None
         fichas.append({
             **{k: p[k] for k in ("codigo", "nombre", "tipo", "resumen", "mercado", "entrar_si", "no_entrar_si")},
             "backtest": {"n": r["n"], "k": r["k"], "tasa": r["tasa"], "lo": r["lo"], "hi": r["hi"],
                          "p_modelo": r["p_modelo_media"],
                          # en A1 el evento medido (se rompe el empate) no es una apuesta: sin cuota mínima
                          "cuota_min": None if cod == "A1" else r["cuota_min"],
+                         "lo_oos": round(o["lo_rec"], 3), "n_oos": o["n_rec"], "k_oos": o["k_rec"],
+                         "break_even": round(break_even, 3) if break_even else None,
                          "ligas": [{k2: (round(v, 3) if isinstance(v, float) else v) for k2, v in x.items()}
                                    for x in r["ligas"][:6]]},
             "tuyo": t,
-            "semaforo": semaforo(r["n"] + t["n"], r["lo"], t["cuota_media"], t["n"], p["tipo"]),
+            "semaforo": backtest.promocion(p["tipo"], r["n"] + t["n"], o["lo_rec"], break_even, o["n_rec"]),
         })
 
     # alertas de reconstrucción: la cuota tomada choca con el modelo
@@ -217,18 +211,25 @@ def _markdown(d: dict, alertas: list[dict], m: Modelo) -> None:
     w("")
     w("## 3. Patrones")
     w("")
-    w("| Código | Patrón | Backtest | Tu historial | Cuota mínima | Semáforo |")
-    w("|---|---|---|---|---|---|")
+    w("| Código | Patrón | Backtest | Fuera de muestra | Tu historial | Cuota mínima | Semáforo |")
+    w("|---|---|---|---|---|---|---|")
     for f in d["fichas"]:
         b, t = f["backtest"], f["tuyo"]
         bt = f"{b['k']}/{b['n']} ({pct(b['tasa'])})" if b["n"] else "sin datos"
+        oos = f"{b['k_oos']}/{b['n_oos']} (mín {pct(b['lo_oos'])})" if b["n_oos"] else "—"
         tu = f"{t['k']}/{t['n']}" if t["n"] else "—"
         cm = f"{b['cuota_min']:.2f}" if b["cuota_min"] else "—"
-        w(f"| {f['codigo']} | {f['nombre']} | {bt} | {tu} | {cm} | {f['semaforo']} |")
+        w(f"| {f['codigo']} | {f['nombre']} | {bt} | {oos} | {tu} | {cm} | {f['semaforo']} |")
     w("")
-    w("Semáforo: rojo con menos de 30 casos en total; ámbar si el intervalo toca el break-even de tus cuotas "
-      "(o si aún no hay 5 apuestas tuyas para saber qué cuota tomas); verde si el límite inferior lo supera. "
-      "Los anti-patrones (A) no llevan color: se evitan.")
+    w("**Semáforo (regla fija, decidida de antemano).** rojo: menos de 30 casos en total o menos de 10 "
+      "fuera de muestra, no se puede afirmar nada. verde: el límite inferior FUERA DE MUESTRA (mitad más "
+      "reciente de los partidos, que no influyó en proponer el patrón) supera el break-even de tus cuotas. "
+      "ámbar: prometedor pero sin prueba fuera de muestra suficiente. Los anti-patrones (A) no llevan color.")
+    w("")
+    w("La columna *Fuera de muestra* es la prueba honesta: un patrón puede acertar mucho en toda la muestra "
+      "y aun así no llegar a verde porque, al medirlo solo en los partidos recientes, el límite inferior no "
+      "supera lo que necesitas para ganarle a tu cuota. P6 es el caso claro: acierta casi siempre, pero su "
+      "cuota justa es tan baja que casi nunca hay valor.")
     w("")
     for f in d["fichas"]:
         b, t = f["backtest"], f["tuyo"]
