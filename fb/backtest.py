@@ -223,3 +223,30 @@ def validar_equipos(partidos: list[Partido], fuerza: float = 3.0) -> dict:
     return {"partidos": res["n"], "predicciones": len(res["liga_1x2"]),
             "brier_1x2_liga": prom_(res["liga_1x2"]), "brier_1x2_equipos": prom_(res["eq_1x2"]),
             "brier_gol_liga": prom_(res["liga_gol"]), "brier_gol_equipos": prom_(res["eq_gol"])}
+
+
+# ------------------------------------------------------------------ supuesto del marcador
+def calibracion_por_estado(partidos: list[Partido], modelo: Modelo) -> list[dict]:
+    """¿La probabilidad de otro gol depende del marcador? Real contra modelo por estado.
+
+    El modelo supone que no: solo mira minuto, liga y rojas. Si una fila se aleja
+    del modelo más que su intervalo, el supuesto falla en ese estado.
+    """
+    g: dict[tuple[str, str], list] = {}
+    for p in partidos:
+        for c in CHECKPOINTS:
+            e = p.estado(c)
+            d = abs(e["dif"])
+            est = "empate" if d == 0 else "ventaja de 1" if d == 1 else "ventaja de 2+"
+            fase = "hasta el 45'" if c <= 45 else "desde el 60'"
+            gh, ga = p.goles_despues(c)
+            x = g.setdefault((fase, est), [0, 0, 0.0])
+            x[0] += 1
+            x[1] += gh + ga >= 1
+            x[2] += modelo.prob_mas_goles(1, c, p.liga, e["hay_roja"])
+    filas = []
+    for (fase, est), (n, k, pm) in sorted(g.items()):
+        lo, hi = wilson(k, n)
+        filas.append({"fase": fase, "estado": est, "n": n, "real": k / n, "lo": lo, "hi": hi, "modelo": pm / n,
+                      "ok": lo <= pm / n <= hi})
+    return filas

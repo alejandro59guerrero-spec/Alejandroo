@@ -1,11 +1,11 @@
 # Football Brain · Análisis v2
 
-Generado el 2026-09-30 11:53 con `python -m fb.cli reporte`.
+Generado el 2026-09-30 11:56 con `python -m fb.cli reporte`.
 
 ## 1. De dónde salen los datos
 
-- Partidos terminados con todos los goles al minuto: 110.
-- De ellos, 75 son partidos ajenos a tus apuestas. Solo esos validan patrones.
+- Partidos terminados con todos los goles al minuto: 117.
+- De ellos, 82 son partidos ajenos a tus apuestas. Solo esos validan patrones.
 - Los otros son los partidos donde apostaste. Sirven para el modelo, no para darte la razón.
 - Fuente: crónicas y fichas de prensa encontradas por búsqueda web, una por partido, con enlace en el CSV.
 - Cada partido se verificó: la lista de goles debe sumar exactamente el marcador final.
@@ -14,21 +14,36 @@ Generado el 2026-09-30 11:53 con `python -m fb.cli reporte`.
 
 Estima cuántos goles faltan según el minuto, la liga y si hubo roja. Con eso calcula la probabilidad de cada mercado y la cuota mínima para que la apuesta valga la pena.
 
-- Validación cruzada en 550 predicciones de 'llega al menos un gol más'.
-- Brier score 0.196 contra 0.229 de adivinar siempre la media. Menor es mejor.
+- Validación cruzada en 585 predicciones de 'llega al menos un gol más'.
+- Brier score 0.196 contra 0.232 de adivinar siempre la media. Menor es mejor.
 
 | Probabilidad del modelo | Casos | Media predicha | Ocurrió |
 |---|---|---|---|
-| 20% a 40% | 111 | 34% | 37% |
-| 40% a 60% | 136 | 52% | 54% |
-| 60% a 80% | 182 | 71% | 73% |
-| 80% a 100% | 121 | 86% | 88% |
+| 20% a 40% | 122 | 34% | 38% |
+| 40% a 60% | 146 | 52% | 51% |
+| 60% a 80% | 194 | 71% | 74% |
+| 80% a 100% | 123 | 87% | 88% |
 
-- Roja: 19 goles observados tras la roja contra 27.9 esperados.
+- Roja: 19 goles observados tras la roja contra 28.7 esperados.
 - Tras la roja marcó el equipo con uno más 18 veces y el de 10 1 veces.
-- Goles por partido en la muestra: 2.78 en 110 partidos.
+- Goles por partido en la muestra: 2.79 en 117 partidos.
 - Límite: el modelo no conoce la fuerza de cada equipo. En apuestas a ganador subestima al favorito.
   La app pide la cuota prepartido del favorito para corregirlo.
+
+### ¿Importa el marcador para que llegue otro gol?
+
+El modelo supone que no: solo mira minuto, liga y rojas. Prueba en todos los partidos:
+
+| Momento | Marcador | Casos | Llegó otro gol | Intervalo 95% | Modelo | ¿Cuadra? |
+|---|---|---|---|---|---|---|
+| desde el 60' | empate | 92 | 48% | 38%–58% | 49% | sí |
+| desde el 60' | ventaja de 1 | 136 | 50% | 42%–58% | 48% | sí |
+| desde el 60' | ventaja de 2+ | 123 | 53% | 44%–61% | 48% | sí |
+| hasta el 45' | empate | 109 | 84% | 75%–89% | 81% | sí |
+| hasta el 45' | ventaja de 1 | 89 | 81% | 72%–88% | 81% | sí |
+| hasta el 45' | ventaja de 2+ | 36 | 89% | 75%–96% | 81% | sí |
+
+Si todas las filas cuadran, el supuesto se sostiene con esta muestra y la probabilidad de gol de la app vale igual para empate que para ventaja. Si alguna dice NO, ese estado necesita su propio ajuste.
 
 ### ¿Sirven los promedios por equipo (tipo scores24)?
 
@@ -36,10 +51,10 @@ Se probó el modelo con goles a favor y en contra de cada equipo, calculados con
 
 | Predicción | Solo liga | Con equipos |
 |---|---|---|
-| Ganador final (1X2) | 0.360 | 0.412 |
-| Llega al menos un gol más | 0.148 | 0.149 |
+| Ganador final (1X2) | 0.401 | 0.440 |
+| Llega al menos un gol más | 0.159 | 0.156 |
 
-Solo 9 partidos tienen dos o más partidos de cada equipo en la muestra, así que es una señal débil. Para goles no ayudó. Para ganador empeoró: con 2 o 3 partidos por equipo el promedio es puro ruido. Para ganador la cuota prepartido resume mucho mejor la fuerza de los equipos.
+Solo 19 partidos tienen dos o más partidos de cada equipo en la muestra, así que es una señal débil. Para goles ayudó un poco. Para ganador empeoró: con 2 o 3 partidos por equipo el promedio es puro ruido. Para ganador la cuota prepartido resume mucho mejor la fuerza de los equipos.
 
 Uso recomendado en la app: los promedios de la temporada completa (10 partidos o más) sirven para los mercados de goles. Para ganador usa la cuota prepartido.
 
@@ -47,13 +62,13 @@ Uso recomendado en la app: los promedios de la temporada completa (10 partidos o
 
 | Código | Patrón | Backtest | Tu historial | Cuota mínima | Semáforo |
 |---|---|---|---|---|---|
-| P1 | Over con partido abierto | 38/49 (78%) | 7/8 | 1.32 | ambar |
-| P2 | Ganador al equipo que ya gana | 58/68 (85%) | 5/5 | 1.20 | verde |
-| P3 | Roja: apostar a goles | 5/6 (83%) | 7/8 | 1.43 | rojo |
+| P1 | Over con partido abierto | 41/55 (75%) | 7/8 | 1.37 | ambar |
+| P2 | Ganador al equipo que ya gana | 61/75 (81%) | 5/5 | 1.25 | verde |
+| P3 | Roja: apostar a goles | 5/7 (71%) | 7/8 | 1.57 | rojo |
 | P4 | Roja: ganador al que tiene uno más | 3/4 (75%) | 3/8 | 1.60 | rojo |
 | P5 | Primer gol tras el descanso con 0:0 | 15/17 (88%) | 0/1 | 1.24 | rojo |
-| P6 | Ganador con ventaja de 2 desde el 60' | 30/32 (94%) | 1/1 | 1.12 | ambar |
-| A1 | Ganador con el partido empatado | 25/35 (71%) | 6/14 | — | evitar |
+| P6 | Ganador con ventaja de 2 desde el 60' | 32/34 (94%) | 1/1 | 1.12 | ambar |
+| A1 | Ganador con el partido empatado | 26/39 (67%) | 6/14 | — | evitar |
 | A2 | Over que pide 2 goles con 0:0 | 7/17 (41%) | 0/3 | 2.33 | evitar |
 | A3 | Córners | sin datos | — | — | evitar |
 
@@ -74,9 +89,9 @@ El partido ya tiene goles y solo te falta uno para ganar.
 - Te faltan 2 goles o más
 - Ya pasó el minuto 75
 
-**En partidos ajenos:** se cumplió 38 de 49 veces (78%), intervalo 95% de 64% a 87%. El modelo esperaba 73%. De cada 10 veces, unas 8 salen bien.
-**Cuota mínima para entrar:** 1.32. Con una cuota menor pierdes dinero a la larga aunque aciertes seguido.
-**Ligas donde mejor funcionó** (tasa ajustada por tamaño de muestra): Países Bajos Eredivisie 3/3, Bolivia Primera 3/3, Perú Liga 1 12/14, Inglaterra Premier League 1/1.
+**En partidos ajenos:** se cumplió 41 de 55 veces (75%), intervalo 95% de 62% a 84%. El modelo esperaba 72%. De cada 10 veces, unas 7 salen bien.
+**Cuota mínima para entrar:** 1.37. Con una cuota menor pierdes dinero a la larga aunque aciertes seguido.
+**Ligas donde mejor funcionó** (tasa ajustada por tamaño de muestra): Perú Liga 1 12/14, Países Bajos Eredivisie 3/3, Bolivia Primera 3/3, Inglaterra Premier League 1/1.
 **En tus apuestas:** 7 de 8, cuota media 1.44, neto +2.07 unidades.
 
 ### P2 · Ganador al equipo que ya gana
@@ -93,8 +108,8 @@ Apuestas a que gana el equipo que ya va arriba en el marcador.
 - La cuota es menor a la cuota mínima de la tabla
 - El rival acaba de descontar y empuja
 
-**En partidos ajenos:** se cumplió 58 de 68 veces (85%), intervalo 95% de 75% a 92%. El modelo esperaba 75%. De cada 10 veces, unas 9 salen bien.
-**Cuota mínima para entrar:** 1.20. Con una cuota menor pierdes dinero a la larga aunque aciertes seguido.
+**En partidos ajenos:** se cumplió 61 de 75 veces (81%), intervalo 95% de 71% a 89%. El modelo esperaba 74%. De cada 10 veces, unas 8 salen bien.
+**Cuota mínima para entrar:** 1.25. Con una cuota menor pierdes dinero a la larga aunque aciertes seguido.
 **Ligas donde mejor funcionó** (tasa ajustada por tamaño de muestra): Bolivia Primera 3/3, Países Bajos Eerste Divisie 3/3, Perú Liga 1 15/17, Paraguay Primera 1/1.
 **En tus apuestas:** 5 de 5, cuota media 1.51, neto +2.57 unidades.
 
@@ -111,9 +126,9 @@ Tras una expulsión el partido se abre. Se apuesta a que llegan más goles.
 - Te faltan 2 goles o más
 - Quedan menos de 15 minutos
 
-**En partidos ajenos:** se cumplió 5 de 6 veces (83%), intervalo 95% de 44% a 97%. El modelo esperaba 67%. De cada 10 veces, unas 8 salen bien.
-**Cuota mínima para entrar:** 1.43. Con una cuota menor pierdes dinero a la larga aunque aciertes seguido.
-**Ligas donde mejor funcionó** (tasa ajustada por tamaño de muestra): Perú Liga 1 2/2, Paraguay Primera 1/1, Brasil Serie A 1/1, Colombia Primera A 1/2.
+**En partidos ajenos:** se cumplió 5 de 7 veces (71%), intervalo 95% de 36% a 92%. El modelo esperaba 62%. De cada 10 veces, unas 7 salen bien.
+**Cuota mínima para entrar:** 1.57. Con una cuota menor pierdes dinero a la larga aunque aciertes seguido.
+**Ligas donde mejor funcionó** (tasa ajustada por tamaño de muestra): Perú Liga 1 2/2, Paraguay Primera 1/1, Brasil Serie A 1/1, Colombia Primera A 1/3.
 **En tus apuestas:** 7 de 8, cuota media 1.67, neto +3.32 unidades.
 
 ### P4 · Roja: ganador al que tiene uno más
@@ -129,7 +144,7 @@ El rival se quedó con 10 y el partido sigue empatado.
 - Pasó el minuto 70 y sigue 0:0
 - La cuota es menor a la cuota mínima de la tabla
 
-**En partidos ajenos:** se cumplió 3 de 4 veces (75%), intervalo 95% de 30% a 95%. El modelo esperaba 56%. De cada 10 veces, unas 8 salen bien.
+**En partidos ajenos:** se cumplió 3 de 4 veces (75%), intervalo 95% de 30% a 95%. El modelo esperaba 55%. De cada 10 veces, unas 8 salen bien.
 **Cuota mínima para entrar:** 1.60. Con una cuota menor pierdes dinero a la larga aunque aciertes seguido.
 **Ligas donde mejor funcionó** (tasa ajustada por tamaño de muestra): Colombia Primera A 1/1, Paraguay Primera 1/1, Perú Liga 1 1/1, Brasil Serie A 0/1.
 **En tus apuestas:** 3 de 8, cuota media 2.20, neto -1.13 unidades.
@@ -166,9 +181,9 @@ Un equipo gana por 2 goles o más con 30 minutos o menos por jugar.
 - La ventaja es de 1 gol
 - La cuota es menor a la cuota mínima: suele pagar muy poco
 
-**En partidos ajenos:** se cumplió 30 de 32 veces (94%), intervalo 95% de 80% a 98%. El modelo esperaba 97%. De cada 10 veces, unas 9 salen bien.
+**En partidos ajenos:** se cumplió 32 de 34 veces (94%), intervalo 95% de 81% a 98%. El modelo esperaba 97%. De cada 10 veces, unas 9 salen bien.
 **Cuota mínima para entrar:** 1.12. Con una cuota menor pierdes dinero a la larga aunque aciertes seguido.
-**Ligas donde mejor funcionó** (tasa ajustada por tamaño de muestra): Perú Liga 1 7/7, Colombia Primera A 6/6, Brasil Serie A 4/4, Países Bajos Eredivisie 2/2.
+**Ligas donde mejor funcionó** (tasa ajustada por tamaño de muestra): Colombia Primera A 7/7, Perú Liga 1 7/7, Brasil Serie A 4/4, Países Bajos Eredivisie 2/2.
 **En tus apuestas:** 1 de 1, cuota media 1.34, neto +0.34 unidades.
 
 ### A1 · Ganador con el partido empatado
@@ -178,7 +193,7 @@ Apostar a un ganador cuando el marcador está igualado.
 **No entres si:**
 - El marcador está empatado: usa Doble oportunidad o espera el gol
 
-**En partidos ajenos:** se cumplió 25 de 35 veces (71%), intervalo 95% de 55% a 84%. El modelo esperaba 58%. De cada 10 veces, unas 7 salen bien.
+**En partidos ajenos:** se cumplió 26 de 39 veces (67%), intervalo 95% de 51% a 79%. El modelo esperaba 58%. De cada 10 veces, unas 7 salen bien.
 **Ligas donde mejor funcionó** (tasa ajustada por tamaño de muestra): Perú Liga 1 6/7, Países Bajos Eerste Divisie 1/1, Brasil Serie A 3/4, Países Bajos Eredivisie 2/3.
 **En tus apuestas:** 6 de 14, cuota media 2.00, neto -2.19 unidades.
 
@@ -208,16 +223,16 @@ Más de córners sin datos de córners al minuto.
 
 Tu historial es por pata (incluye las de combinadas), con neto a stake 1 como si cada pata fuera simple. Las tasas base salen de partidos terminados verificados gol a gol (tasas con 4 partidos o más). Aparecen las ligas con muestra o con 3 patas tuyas o más.
 
-Referencia de toda la muestra (110 partidos): 2.78 goles por partido, Más de 2.5 en 56%, Ambos marcan en 44%, hubo gol desde el 75' en 48% de los partidos y el 55% de los goles fue en el 2T.
+Referencia de toda la muestra (117 partidos): 2.79 goles por partido, Más de 2.5 en 56%, Ambos marcan en 45%, hubo gol desde el 75' en 47% de los partidos y el 53% de los goles fue en el 2T.
 
 | Liga | Tus patas | Neto | Partidos | Goles/partido | Más de 2.5 | Ambos marcan | Gol desde 75' | Factor modelo |
 |---|---|---|---|---|---|---|---|---|
-| Brasil Serie B | 1/1 | +0.90 | 18 | 2.33 | 56% (34%–75%) | 28% | 28% | 0.90 |
+| Brasil Serie B | 1/1 | +0.90 | 22 | 2.46 | 50% (31%–69%) | 36% | 32% | 0.92 |
+| Colombia Primera A | 3/4 | +0.57 | 19 | 2.32 | 47% (27%–68%) | 32% | 37% | 0.90 |
 | Perú Liga 1 | — | — | 18 | 3.11 | 72% (49%–88%) | 56% | 56% | 1.07 |
-| Colombia Primera A | 3/4 | +0.57 | 16 | 2.19 | 44% (23%–67%) | 25% | 44% | 0.88 |
 | Brasil Serie A | 1/2 | -0.83 | 9 | 2.67 | 56% (27%–81%) | 56% | 44% | 0.98 |
-| Países Bajos Eredivisie | 2/2 | +1.10 | 9 | 2.89 | 56% (27%–81%) | 33% | 44% | 1.02 |
-| Argentina Liga Profesional | 1/1 | +0.40 | 5 | 3.60 | 100% (57%–100%) | 100% | 80% | 1.09 |
+| Países Bajos Eredivisie | 2/2 | +1.10 | 9 | 2.89 | 56% (27%–81%) | 33% | 44% | 1.01 |
+| Argentina Liga Profesional | 1/1 | +0.40 | 5 | 3.60 | 100% (57%–100%) | 100% | 80% | 1.08 |
 | Países Bajos Eerste Divisie | 1/1 | +0.63 | 4 | 3.25 | 50% (15%–85%) | 50% | 50% | 1.04 |
 | Bolivia Primera | — | — | 4 | 5.50 | 100% (51%–100%) | 50% | 100% | 1.24 |
 | UEFA Nations League | 7/8 | +3.27 | 3 | — | — | — | — | 0.97 |
@@ -231,43 +246,44 @@ Frecuencia real en partidos ajenos según minuto, goles y diferencia en el marca
 
 | Minuto | Goles | Diferencia | Partidos | Llega 1 gol más | Llegan 2 más | Líder gana / Empate sigue | Modelo 1 gol más |
 |---|---|---|---|---|---|---|---|
-| 30' | 0 | 0 | 42 | 95% | 69% | 21% | 86% |
-| 30' | 1 | 1 | 21 | 81% | 57% | 76% | 87% |
+| 30' | 0 | 0 | 42 | 95% | 69% | 21% | 87% |
+| 30' | 1 | 1 | 28 | 86% | 54% | 68% | 86% |
 | 30' | 2 | 0 | 6 | 100% | 50% | 0% | 89% |
-| 45' | 0 | 0 | 17 | 88% | 41% | 12% | 76% |
-| 45' | 1 | 1 | 30 | 77% | 57% | 73% | 75% |
-| 45' | 2 | 0 | 10 | 80% | 60% | 50% | 76% |
+| 45' | 0 | 0 | 17 | 88% | 41% | 12% | 75% |
+| 45' | 1 | 1 | 32 | 78% | 53% | 72% | 75% |
+| 45' | 2 | 0 | 13 | 69% | 46% | 54% | 76% |
 | 45' | 2 | 2+ | 9 | 67% | 33% | 100% | 78% |
-| 45' | 3+ | 1 | 4 | 50% | 25% | 100% | 80% |
-| 45' | 3+ | 2+ | 5 | 100% | 40% | 100% | 82% |
-| 60' | 0 | 0 | 14 | 86% | 36% | 14% | 61% |
-| 60' | 1 | 1 | 17 | 53% | 41% | 88% | 62% |
-| 60' | 2 | 0 | 9 | 67% | 33% | 67% | 62% |
-| 60' | 2 | 2+ | 16 | 62% | 25% | 88% | 62% |
-| 60' | 3+ | 1 | 10 | 60% | 10% | 90% | 66% |
-| 60' | 3+ | 2+ | 8 | 75% | 12% | 100% | 67% |
-| 70' | 0 | 0 | 8 | 75% | 25% | 25% | 49% |
-| 70' | 1 | 1 | 18 | 39% | 22% | 94% | 50% |
-| 70' | 2 | 0 | 7 | 57% | 14% | 57% | 50% |
-| 70' | 2 | 2+ | 13 | 54% | 15% | 92% | 50% |
-| 70' | 3+ | 1 | 13 | 62% | 8% | 77% | 53% |
-| 70' | 3+ | 2+ | 14 | 43% | 21% | 100% | 53% |
-| 80' | 1 | 1 | 18 | 22% | 6% | 94% | 34% |
-| 80' | 2 | 0 | 8 | 62% | 0% | 38% | 34% |
-| 80' | 2 | 2+ | 12 | 42% | 0% | 100% | 32% |
-| 80' | 3+ | 1 | 13 | 54% | 8% | 69% | 36% |
-| 80' | 3+ | 2+ | 18 | 39% | 11% | 100% | 36% |
+| 45' | 3+ | 1 | 5 | 60% | 20% | 80% | 78% |
+| 45' | 3+ | 2+ | 6 | 100% | 50% | 100% | 80% |
+| 60' | 0 | 0 | 14 | 86% | 36% | 14% | 60% |
+| 60' | 1 | 1 | 18 | 56% | 39% | 83% | 62% |
+| 60' | 2 | 0 | 11 | 55% | 27% | 73% | 61% |
+| 60' | 2 | 2+ | 17 | 59% | 24% | 88% | 61% |
+| 60' | 3+ | 1 | 11 | 55% | 9% | 91% | 64% |
+| 60' | 3+ | 2+ | 9 | 78% | 22% | 100% | 66% |
+| 70' | 0 | 0 | 8 | 75% | 25% | 25% | 48% |
+| 70' | 1 | 1 | 19 | 42% | 21% | 90% | 50% |
+| 70' | 2 | 0 | 9 | 44% | 11% | 67% | 49% |
+| 70' | 2 | 2+ | 14 | 50% | 14% | 93% | 49% |
+| 70' | 3+ | 1 | 14 | 57% | 7% | 79% | 51% |
+| 70' | 3+ | 2+ | 15 | 47% | 27% | 100% | 53% |
+| 80' | 1 | 1 | 19 | 26% | 5% | 90% | 34% |
+| 80' | 2 | 0 | 10 | 50% | 0% | 50% | 34% |
+| 80' | 2 | 2+ | 13 | 38% | 0% | 100% | 32% |
+| 80' | 3+ | 0 | 4 | 0% | 0% | 100% | 33% |
+| 80' | 3+ | 1 | 14 | 50% | 7% | 71% | 35% |
+| 80' | 3+ | 2+ | 19 | 42% | 16% | 100% | 36% |
 
 ## 5. Búsqueda de patrones nuevos
 
-- Minuto 30, 0+ goles, diferencia None: 34/38 en validación.
-- Minuto 80, 0+ goles, diferencia 2: 13/13 en validación.
-- Minuto 80, 1+ goles, diferencia 2: 13/13 en validación.
-- Minuto 80, 2+ goles, diferencia 2: 13/13 en validación.
+- Minuto 30, 0+ goles, diferencia None: 37/41 en validación.
+- Minuto 80, 0+ goles, diferencia 2: 14/14 en validación.
+- Minuto 80, 1+ goles, diferencia 2: 14/14 en validación.
+- Minuto 80, 2+ goles, diferencia 2: 14/14 en validación.
 - Minuto 30, 0+ goles, diferencia 0: 22/24 en validación.
-- Minuto 70, 0+ goles, diferencia 2: 11/11 en validación.
-- Minuto 70, 1+ goles, diferencia 2: 11/11 en validación.
-- Minuto 70, 2+ goles, diferencia 2: 11/11 en validación.
+- Minuto 70, 0+ goles, diferencia 2: 12/12 en validación.
+- Minuto 70, 1+ goles, diferencia 2: 12/12 en validación.
+- Minuto 70, 2+ goles, diferencia 2: 12/12 en validación.
 
 ## 6. Tus apuestas contra el modelo
 
@@ -275,63 +291,64 @@ La cuota que tomaste implica una probabilidad. Si el modelo base de la liga da m
 
 | Partido | Apuesta | Min | Marcador | Cuota | Prob. implícita | Modelo | Cuota mínima | Resultado |
 |---|---|---|---|---|---|---|---|---|
-| Almirante Brown vs Acassuso | Más de 1.5 | 77' | 0:1 | 1.75 | 57% | 41% | 2.43 | Perdió |
-| Antoniano vs Ciudad de Lucena | Más de 2.5 | 67' | 0:2 | 1.63 | 61% | 45% | 2.22 | Ganó |
-| Atenas vs Plaza Colonia | Atenas | 46' | 0:0 | 1.84 | 54% | 52% | 1.94 | Perdió |
-| Austria vs Kosovo | Más de 3 | 46' | 2:0 | 1.47 | 68% | 42% | 2.39 | Ganó |
-| Bolívar vs Blooming | Más de 1.5 | 66' | 1:0 | 1.85 | 54% | 46% | 2.17 | Ganó |
-| Bournemouth vs Liverpool | Más de 1.5 | 23' | 0:0 | 1.40 | 71% | 71% | 1.42 | Perdió |
-| CD Génesis vs Olancho FC | Olancho FC | 59' | 0:0 | 2.22 | 45% | 42% | 2.39 | Perdió |
-| CS Fola Esch vs FC Juvenil Canach | CS Fola Esch | 46' | 0:0 | 1.90 | 53% | 36% | 2.79 | Ganó |
+| Almirante Brown vs Acassuso | Más de 1.5 | 77' | 0:1 | 1.75 | 57% | 41% | 2.46 | Perdió |
+| Antoniano vs Ciudad de Lucena | Más de 2.5 | 67' | 0:2 | 1.63 | 61% | 44% | 2.29 | Ganó |
+| Atenas vs Plaza Colonia | Atenas | 46' | 0:0 | 1.84 | 54% | 50% | 1.99 | Perdió |
+| Austria vs Kosovo | Más de 3 | 46' | 2:0 | 1.47 | 68% | 41% | 2.44 | Ganó |
+| Bolívar vs Blooming | Más de 1.5 | 66' | 1:0 | 1.85 | 54% | 45% | 2.24 | Ganó |
+| Bournemouth vs Liverpool | Más de 1.5 | 23' | 0:0 | 1.40 | 71% | 71% | 1.41 | Perdió |
+| CD Génesis vs Olancho FC | Olancho FC | 59' | 0:0 | 2.22 | 45% | 40% | 2.47 | Perdió |
+| CS Fola Esch vs FC Juvenil Canach | CS Fola Esch | 46' | 0:0 | 1.90 | 53% | 36% | 2.81 | Ganó |
 | Camacha vs Florgrade | Camacha se clasifica | 32' | 0:0 | 1.63 | 61% | 55% | 1.81 | Perdió |
-| Carlos Mannucci vs Universidad San Martín | Más de 4.5 | 45' | 3:0 | 1.63 | 61% | 45% | 2.24 | Ganó |
-| Casarano vs Monopoli | Casarano gana + Más de 1.5 | 8' | 0:0 | 1.85 | 54% | 32% | 3.09 | Perdió |
-| Cavalry FC vs FC Supra du Québec | Más de 3.5 | 35' | 2:0 | 1.45 | 69% | 57% | 1.74 | Ganó |
-| Chequia vs Inglaterra | Inglaterra gana + Más de 1.5 | 46' | 0:0 | 1.77 | 56% | 22% | 4.60 | Ganó |
-| Club Aurora vs Universitario de Vinto | Club Aurora | 73' | 3:2 | 1.61 | 62% | 80% | 1.24 | Ganó |
-| Comerciantes FC vs Sport Huancayo Reserva | Sport Huancayo Reserva | 14' | 0:0 | 3.00 | 33% | 70% | 1.44 | Ganó |
-| Criciúma vs Avaí | Más de 2 | 65' | 2:0 | 1.90 | 53% | 55% | 1.81 | Ganó |
-| DC United vs Charlotte FC | Más de 2 | 46' | 1:1 | 1.19 | 84% | 77% | 1.29 | Ganó |
-| Deportivo Pasto vs Once Caldas | Más de 1.5 | 39' | 0:0 | 2.05 | 49% | 31% | 3.20 | Perdió |
-| Deportivo San Pedro vs Cobán Imperial | Cobán Imperial | 51' | 0:0 | 2.30 | 43% | 50% | 2.00 | Perdió |
-| Escocia vs Suiza | Más de 2 | 46' | 0:1 | 1.42 | 70% | 28% | 3.63 | Ganó |
-| Eslovenia vs Macedonia del Norte | Eslovenia | 50' | 0:0 | 1.63 | 61% | 34% | 2.93 | Ganó |
-| España vs Croacia | Más de 4.5 | 50' | 2:1 | 1.72 | 58% | 38% | 2.66 | Ganó |
-| Estrela Calheta vs Cinfães | Sí | 41' | 1:0 | 1.47 | 68% | 54% | 1.86 | Ganó |
-| FC Fredericia vs Vejle | Más de 3.5 | 69' | 1:2 | 1.45 | 69% | 55% | 1.82 | Ganó |
+| Carlos Mannucci vs Universidad San Martín | Más de 4.5 | 45' | 3:0 | 1.63 | 61% | 44% | 2.29 | Ganó |
+| Casarano vs Monopoli | Casarano gana + Más de 1.5 | 8' | 0:0 | 1.85 | 54% | 33% | 3.07 | Perdió |
+| Cavalry FC vs FC Supra du Québec | Más de 3.5 | 35' | 2:0 | 1.45 | 69% | 57% | 1.75 | Ganó |
+| Chequia vs Inglaterra | Inglaterra gana + Más de 1.5 | 46' | 0:0 | 1.77 | 56% | 20% | 4.90 | Ganó |
+| Club Aurora vs Universitario de Vinto | Club Aurora | 73' | 3:2 | 1.61 | 62% | 81% | 1.24 | Ganó |
+| Comerciantes FC vs Sport Huancayo Reserva | Sport Huancayo Reserva | 14' | 0:0 | 3.00 | 33% | 69% | 1.45 | Ganó |
+| Criciúma vs Avaí | Más de 2 | 65' | 2:0 | 1.90 | 53% | 55% | 1.82 | Ganó |
+| DC United vs Charlotte FC | Más de 2 | 46' | 1:1 | 1.19 | 84% | 77% | 1.30 | Ganó |
+| Deportivo Pasto vs Once Caldas | Más de 1.5 | 39' | 0:0 | 2.05 | 49% | 31% | 3.26 | Perdió |
+| Deportivo San Pedro vs Cobán Imperial | Cobán Imperial | 51' | 0:0 | 2.30 | 43% | 48% | 2.06 | Perdió |
+| Escocia vs Suiza | Más de 2 | 46' | 0:1 | 1.42 | 70% | 26% | 3.85 | Ganó |
+| Eslovenia vs Macedonia del Norte | Eslovenia | 50' | 0:0 | 1.63 | 61% | 34% | 2.95 | Ganó |
+| España vs Croacia | Más de 4.5 | 50' | 2:1 | 1.72 | 58% | 37% | 2.73 | Ganó |
+| Estrela Calheta vs Cinfães | Sí | 41' | 1:0 | 1.47 | 68% | 54% | 1.87 | Ganó |
+| FC Fredericia vs Vejle | Más de 3.5 | 69' | 1:2 | 1.45 | 69% | 54% | 1.85 | Ganó |
 | Fortaleza vs Atlético Junior | Más de 2.5 | 24' | 0:1 | 1.55 | 65% | 42% | 2.41 | Ganó |
 | Frosinone vs Como | Frosinone | 69' | 2:0 | 1.34 | 75% | 97% | 1.03 | Ganó |
 | General Caballero JLM vs 3 de Noviembre | 3 de Noviembre | 24' | 0:1 | 1.88 | 53% | 58% | 1.72 | Ganó |
 | Gerasdorf Stammersdorf vs Mauer | Mauer | 23' | 0:0 | 1.41 | 71% | 30% | 3.31 | Ganó |
-| Groene Ster vs AFC Amsterdam | Más de 5.5 | 60' | 0:4 | 2.10 | 48% | 28% | 3.62 | Ganó |
-| Grorud vs Moss | Más de 2.5 | 66' | 1:1 | 1.47 | 68% | 57% | 1.76 | Perdió |
-| Grêmio Prudente vs União São João | União São João | 77' | 0:0 | 2.75 | 36% | 25% | 4.03 | Perdió |
+| Groene Ster vs AFC Amsterdam | Más de 5.5 | 60' | 0:4 | 2.10 | 48% | 27% | 3.74 | Ganó |
+| Grorud vs Moss | Más de 2.5 | 66' | 1:1 | 1.47 | 68% | 56% | 1.79 | Perdió |
+| Grêmio Prudente vs União São João | União São João | 77' | 0:0 | 2.75 | 36% | 24% | 4.17 | Perdió |
 | Grêmio vs Palmeiras | Más de 1.5 | 26' | 0:0 | 1.42 | 70% | 64% | 1.57 | Perdió |
-| Karpaty vs Veres | Más de 1.5 | 81' | 1:0 | 2.20 | 45% | 25% | 4.02 | Ganó |
+| Karpaty vs Veres | Más de 1.5 | 81' | 1:0 | 2.20 | 45% | 24% | 4.16 | Ganó |
 | Levanger vs Grorud | Ambos marcan + Más de 2.5 | 32' | 0:1 | 1.40 | 71% | 53% | 1.90 | Perdió |
-| Lexington SC vs Orange County SC | Más de 5.5 | 69' | 5:0 | 1.45 | 69% | 57% | 1.76 | Ganó |
-| Molde vs Aalesunds | Aalesunds | 46' | 0:2 | 1.40 | 71% | 88% | 1.14 | Ganó |
-| O Elvas vs UD Leiria | UD Leiria | 74' | 0:0 | 2.10 | 48% | 29% | 3.46 | Ganó |
-| Odense Boldklub vs FC Midtjylland | Más de 1.5 | 69' | 0:1 | 1.40 | 71% | 43% | 2.35 | Ganó |
+| Lexington SC vs Orange County SC | Más de 5.5 | 69' | 5:0 | 1.45 | 69% | 56% | 1.79 | Ganó |
+| Molde vs Aalesunds | Aalesunds | 46' | 0:2 | 1.40 | 71% | 88% | 1.13 | Ganó |
+| O Elvas vs UD Leiria | UD Leiria | 74' | 0:0 | 2.10 | 48% | 28% | 3.58 | Ganó |
+| Odense Boldklub vs FC Midtjylland | Más de 1.5 | 69' | 0:1 | 1.40 | 71% | 41% | 2.43 | Ganó |
 | Once Caldas vs Bucaramanga | Bucaramanga | 30' | 0:2 | 1.34 | 75% | 85% | 1.18 | Ganó |
-| Pioneros de Cancún vs Tapachula Soconusco | Más de 3.5 | 65' | 3:0 | 1.28 | 78% | 62% | 1.61 | Ganó |
-| River Plate vs Huracán | Sí | 49' | 0:1 | 1.40 | 71% | 56% | 1.78 | Ganó |
-| Rochdale vs Liverpool Sub-21 | Rochdale | 52' | 1:1 | 1.64 | 61% | 50% | 2.01 | Perdió |
-| San Jose Earthquakes vs LAFC | Sí | 46' | 0:1 | 1.27 | 79% | 60% | 1.67 | Ganó |
-| Santa Clara vs SC Braga | Más de 0.5 | 55' | 0:0 | 1.45 | 69% | 67% | 1.50 | Perdió |
-| Sparta Rotterdam vs Heerenveen | Más de 2.5 | 41' | 0:1 | 1.47 | 68% | 52% | 1.92 | Ganó |
-| Tacoma Defiance vs Portland Timbers II | Tacoma gana + Más de 1.5 | 25' | 0:0 | 1.85 | 54% | 27% | 3.66 | Perdió |
-| Twente vs PSV | Más de 3.5 | 81' | 1:2 | 1.63 | 61% | 34% | 2.96 | Ganó |
-| Vasco da Gama vs Coritiba | Más de 2.5 | 46' | 2:0 | 1.17 | 85% | 77% | 1.30 | Ganó |
+| Pioneros de Cancún vs Tapachula Soconusco | Más de 3.5 | 65' | 3:0 | 1.28 | 78% | 61% | 1.64 | Ganó |
+| River Plate vs Huracán | Sí | 49' | 0:1 | 1.40 | 71% | 56% | 1.80 | Ganó |
+| Rochdale vs Liverpool Sub-21 | Rochdale | 52' | 1:1 | 1.64 | 61% | 48% | 2.06 | Perdió |
+| San Jose Earthquakes vs LAFC | Sí | 46' | 0:1 | 1.27 | 79% | 58% | 1.72 | Ganó |
+| Santa Clara vs SC Braga | Más de 0.5 | 55' | 0:0 | 1.45 | 69% | 66% | 1.52 | Perdió |
+| Sparta Rotterdam vs Heerenveen | Más de 2.5 | 41' | 0:1 | 1.47 | 68% | 52% | 1.94 | Ganó |
+| Tacoma Defiance vs Portland Timbers II | Tacoma gana + Más de 1.5 | 25' | 0:0 | 1.85 | 54% | 27% | 3.65 | Perdió |
+| Twente vs PSV | Más de 3.5 | 81' | 1:2 | 1.63 | 61% | 33% | 3.00 | Ganó |
+| Vasco da Gama vs Coritiba | Más de 2.5 | 46' | 2:0 | 1.17 | 85% | 76% | 1.32 | Ganó |
 | Waterside Karori vs Fencibles United (F) | Waterside Karori | 21' | 0:0 | 1.68 | 60% | 41% | 2.43 | Perdió |
-| Wehen Wiesbaden vs Duisburg | Más de 4.5 | 42' | 0:3 | 1.68 | 60% | 53% | 1.88 | Ganó |
+| Wehen Wiesbaden vs Duisburg | Más de 4.5 | 42' | 0:3 | 1.68 | 60% | 53% | 1.90 | Ganó |
 
 ### Reconstrucciones a revisar
 
 La cuota tomada y el modelo difieren más de 35 puntos. O el marcador reconstruido está mal, o el mercado sabía algo que la base de la liga no refleja.
 
-- Escocia vs Suiza: Más de 2 a 1.42 con 0:1 al 46'. Implícita 70%, modelo 28%.
-- Comerciantes FC vs Sport Huancayo Reserva: Sport Huancayo Reserva a 3.00 con 0:0 al 14'. Implícita 33%, modelo 70%.
+- Chequia vs Inglaterra: Inglaterra gana + Más de 1.5 a 1.77 con 0:0 al 46'. Implícita 56%, modelo 20%.
+- Escocia vs Suiza: Más de 2 a 1.42 con 0:1 al 46'. Implícita 70%, modelo 26%.
+- Comerciantes FC vs Sport Huancayo Reserva: Sport Huancayo Reserva a 3.00 con 0:0 al 14'. Implícita 33%, modelo 69%.
 - Gerasdorf Stammersdorf vs Mauer: Mauer a 1.41 con 0:0 al 23'. Implícita 71%, modelo 30%.
 
 ## 7. Límites

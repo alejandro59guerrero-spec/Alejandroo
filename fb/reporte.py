@@ -54,6 +54,7 @@ def generar() -> dict:
     ev = historial.evaluar(m)
     perfil = ligas.perfil(todos, m.factor_liga)
     equipos = backtest.validar_equipos(todos)
+    por_estado = backtest.calibracion_por_estado(todos, m)
     from .hoja import cargar_hoy, hoja
     hoy = cargar_hoy()
     hoy = {"fecha": hoy.get("fecha"), "partidos": [hoja(m, pt) for pt in hoy["partidos"]]}
@@ -104,6 +105,7 @@ def generar() -> dict:
         "ligas": _redondear(perfil),
         "equipos": _redondear(equipos),
         "hoy": _redondear(hoy),
+        "por_estado": _redondear(por_estado),
         "apuestas_modelo": [{k: (round(v, 3) if isinstance(v, float) else v) for k, v in r.items()} for r in ev],
     }
     JSON_APP.write_text(json.dumps(datos, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -177,6 +179,19 @@ def _markdown(d: dict, alertas: list[dict], m: Modelo) -> None:
         w(f"- {nota}")
     w("- Límite: el modelo no conoce la fuerza de cada equipo. En apuestas a ganador subestima al favorito.")
     w("  La app pide la cuota prepartido del favorito para corregirlo.")
+    w("")
+    w("### ¿Importa el marcador para que llegue otro gol?")
+    w("")
+    w("El modelo supone que no: solo mira minuto, liga y rojas. Prueba en todos los partidos:")
+    w("")
+    w("| Momento | Marcador | Casos | Llegó otro gol | Intervalo 95% | Modelo | ¿Cuadra? |")
+    w("|---|---|---|---|---|---|---|")
+    for f in d["por_estado"]:
+        w(f"| {f['fase']} | {f['estado']} | {f['n']} | {pct(f['real'])} | {pct(f['lo'])}–{pct(f['hi'])} | "
+          f"{pct(f['modelo'])} | {'sí' if f['ok'] else 'NO'} |")
+    w("")
+    w("Si todas las filas cuadran, el supuesto se sostiene con esta muestra y la probabilidad de gol de la app "
+      "vale igual para empate que para ventaja. Si alguna dice NO, ese estado necesita su propio ajuste.")
     w("")
     q = d["equipos"]
     w("### ¿Sirven los promedios por equipo (tipo scores24)?")
