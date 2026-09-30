@@ -85,8 +85,14 @@ la PC (`http://localhost:8765/en_vivo.html`) y en el celular en la misma WiFi (l
 imprime al arrancar). Las ligas están en `patterns/ligas.json`. La **cuota en vivo la tecleas tú**
 desde Ecuabet: nunca se usan credenciales de la casa de apuestas.
 
-Límite: el plan gratis da marcador, minuto, goles y tarjetas al minuto, **no** xG ni tiros (eso es
-plan de pago). Espacia el escáner (cada 2–3 min) para no gastar las 100 consultas del día.
+Estadísticas en vivo: el escáner también trae **córners, tiros y tiros a puerta** por equipo (cuando la
+liga tiene cobertura) y guarda una foto de cada partido en `data/snapshots_vivo.csv`, para ir armando la
+base rica al minuto que la historia no da. La API **no** trae "ataques peligrosos" ni xG en el plan
+gratis; el peligro se resume con tiros a puerta + córners, que son objetivos.
+
+Límites del plan gratis: **10 consultas por minuto** y **100 por día**. Cada partido de tus ligas gasta
+2 consultas (eventos + estadísticas), así que el escáner se espacia (cada 120 s por defecto) y solo pide
+datos de tus ligas.
 
 ## Sofascore (datos completos: tiros, xG, presión)
 

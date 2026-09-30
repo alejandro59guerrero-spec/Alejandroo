@@ -128,10 +128,42 @@ def estado_apifootball(fx: dict, eventos: list[dict]) -> dict:
             "minuto": int(elapsed), "rojas_local": rl, "rojas_visita": rv}
 
 
-def escanear_apifootball(cliente, m: Modelo, solo_mis_ligas: bool = True) -> list[dict]:
-    """Escáner en vivo usando API-Football (api-sports.io)."""
+_STATS = {"Total Shots": "tiros", "Shots on Goal": "tiros_puerta", "Corner Kicks": "corners",
+          "Ball Possession": "posesion"}
+
+
+def stats_apifootball(resp: list[dict], id_local: int | None) -> dict:
+    """Normaliza /fixtures/statistics a {local: {...}, visita: {...}}.
+
+    API-Football no da 'ataques peligrosos'; el peligro se resume con tiros a puerta
+    y córners, que son objetivos. Devuelve {} si la liga no tiene cobertura de stats.
+    """
+    out = {}
+    for equipo in resp or []:
+        lado = "local" if (equipo.get("team") or {}).get("id") == id_local else "visita"
+        d = {}
+        for s in equipo.get("statistics", []):
+            k = _STATS.get(s.get("type"))
+            if k:
+                v = s.get("value")
+                d[k] = int(str(v).rstrip("%")) if v not in (None, "") else 0
+        if d:
+            out[lado] = d
+    return out
+
+
+def escanear_apifootball(cliente, m: Modelo, solo_mis_ligas: bool = True, con_stats: bool = True,
+                         snap_path: "Path | None" = None) -> list[dict]:
+    """Escáner en vivo usando API-Football (api-sports.io).
+
+    Para cada partido de tus ligas pide eventos (goles/rojas) y, si `con_stats`,
+    estadísticas (tiros, córners). Guarda una foto por partido en `snap_path`
+    (None = ARCHIVO_SNAP; en pruebas se pasa una ruta temporal para no ensuciar la
+    base real). Ojo con el límite de 10 peticiones/min del plan gratis.
+    """
     ligas = cargar_ligas()
     filas = []
+    snapshots = []
     for fx in cliente.en_vivo():
         mi_liga = liga_apifootball(fx, ligas)
         if solo_mis_ligas and not mi_liga:
@@ -144,13 +176,63 @@ def escanear_apifootball(cliente, m: Modelo, solo_mis_ligas: bool = True) -> lis
         equipos = fx.get("teams") or {}
         casa = (equipos.get("home") or {}).get("name", "?")
         visita = (equipos.get("away") or {}).get("name", "?")
+        id_local = (equipos.get("home") or {}).get("id")
+        stats = stats_apifootball(cliente.estadisticas(fid), id_local) if (con_stats and fid) else {}
+        snapshots.append({"fixture": fid, "liga": mi_liga or "", "fecha": (fx.get("fixture") or {}).get("date", ""),
+                          "minuto": estado["minuto"], "gl": estado["gl"], "gv": estado["gv"],
+                          "rl": estado["rojas_local"], "rv": estado["rojas_visita"],
+                          "corners_l": stats.get("local", {}).get("corners"),
+                          "corners_v": stats.get("visita", {}).get("corners"),
+                          "tiros_l": stats.get("local", {}).get("tiros"), "tiros_v": stats.get("visita", {}).get("tiros"),
+                          "tp_l": stats.get("local", {}).get("tiros_puerta"), "tp_v": stats.get("visita", {}).get("tiros_puerta")})
+        resumen = ""
+        if stats:
+            c = stats.get("local", {}).get("corners", "?"), stats.get("visita", {}).get("corners", "?")
+            tp = stats.get("local", {}).get("tiros_puerta", "?"), stats.get("visita", {}).get("tiros_puerta", "?")
+            resumen = f"córners {c[0]}-{c[1]} · a puerta {tp[0]}-{tp[1]}"
         for o in oportunidades(estado, m, mi_liga):
             rl, rv = estado["rojas_local"], estado["rojas_visita"]
             filas.append({**o, "partido": f"{casa} vs {visita}",
                           "liga": mi_liga or (fx.get("league") or {}).get("name", ""),
                           "marcador": f"{estado['gl']}:{estado['gv']}", "minuto": estado["minuto"],
-                          "rojas": f"{rl}-{rv}" if rl + rv else "", "event_id": fid})
+                          "rojas": f"{rl}-{rv}" if rl + rv else "", "stats": resumen, "event_id": fid})
+    guardar_snapshots(snapshots, snap_path or ARCHIVO_SNAP)
     return sorted(filas, key=lambda f: -f["p"])
+
+
+ARCHIVO_SNAP = RAIZ / "data" / "snapshots_vivo.csv"
+_SNAP_COLS = ["fixture", "liga", "fecha", "minuto", "gl", "gv", "rl", "rv",
+              "corners_l", "corners_v", "tiros_l", "tiros_v", "tp_l", "tp_v"]
+
+
+def guardar_snapshots(filas: list[dict], path: Path = ARCHIVO_SNAP) -> int:
+    """Anexa fotos de partidos, sin duplicar por (fixture, minuto en bloques de 5)."""
+    import csv
+    if not filas:
+        return 0
+    vistos = set()
+    if path.exists():
+        with path.open(encoding="utf-8", newline="") as f:
+            for r in csv.DictReader(f):
+                vistos.add((r["fixture"], str(int(int(r["minuto"]) // 5 * 5))))
+    nuevas = []
+    for r in filas:
+        clave = (str(r["fixture"]), str(int(r["minuto"]) // 5 * 5))
+        if clave in vistos:
+            continue
+        vistos.add(clave)
+        nuevas.append(r)
+    if not nuevas:
+        return 0
+    escribir_cabecera = not path.exists()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=_SNAP_COLS)
+        if escribir_cabecera:
+            w.writeheader()
+        for r in nuevas:
+            w.writerow({k: r.get(k, "") for k in _SNAP_COLS})
+    return len(nuevas)
 
 
 def escanear(cliente, m: Modelo, solo_mis_ligas: bool = True, ahora: float | None = None) -> list[dict]:
@@ -184,8 +266,9 @@ def html_reporte(filas: list[dict], refresco: int = 60) -> str:
     tr = "".join(
         f"<tr class='{'alta' if f['alta'] else ''}'><td>{html.escape(f['partido'])}<br><small>{html.escape(f['liga'])}</small></td>"
         f"<td>{f['minuto']}'</td><td>{f['marcador']}{' R' + f['rojas'] if f['rojas'] else ''}</td>"
-        f"<td>{html.escape(f['mercado'])}</td><td>{f['patron']}</td><td>{f['p'] * 100:.0f}%</td><td><b>{f['cuota_min']:.2f}</b></td></tr>"
-        for f in filas) or "<tr><td colspan='7'>Sin partidos de tus ligas que cumplan un patrón en este momento.</td></tr>"
+        f"<td>{html.escape(f['mercado'])}</td><td>{f['patron']}</td><td>{f['p'] * 100:.0f}%</td><td><b>{f['cuota_min']:.2f}</b></td>"
+        f"<td><small>{html.escape(f.get('stats', ''))}</small></td></tr>"
+        for f in filas) or "<tr><td colspan='8'>Sin partidos de tus ligas que cumplan un patrón en este momento.</td></tr>"
     return f"""<!doctype html><html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="{refresco}">
 <title>Football Brain en vivo</title><style>
@@ -198,5 +281,5 @@ table{{width:100%;border-collapse:collapse}}td,th{{padding:8px;border-bottom:1px
 th{{font-size:12px;text-transform:uppercase;color:var(--mut)}}small{{color:var(--mut)}}tr.alta td{{background:var(--winbg)}}tr.alta td:nth-child(6){{color:var(--win);font-weight:700}}
 </style></head><body><h1>Partidos en vivo</h1>
 <p>Actualizado {hora}. Se recarga cada {refresco} s. Verde: probabilidad del modelo de {UMBRAL_ALTA * 100:.0f}% o más. Entra solo si la cuota de tu casa supera la cuota mínima.</p>
-<div class="t"><table><thead><tr><th>Partido</th><th>Min</th><th>Marcador</th><th>Apuesta</th><th>Patrón</th><th>Prob.</th><th>Cuota mín.</th></tr></thead>
+<div class="t"><table><thead><tr><th>Partido</th><th>Min</th><th>Marcador</th><th>Apuesta</th><th>Patrón</th><th>Prob.</th><th>Cuota mín.</th><th>En vivo</th></tr></thead>
 <tbody>{tr}</tbody></table></div></body></html>"""

@@ -282,17 +282,44 @@ class TestApiFootball(unittest.TestCase):
         self.assertEqual((e["gl"], e["gv"], e["minuto"], e["rojas_visita"]), (2, 0, 65, 1))
 
     def test_escanear_filtra_ligas(self):
+        import tempfile
+        from pathlib import Path
         from fb import envivo
         m = modelo.Modelo.ajustar(partidos.cargar())
         vivos = [
             self.fixture(1, "Cienciano", 1, "Chankas", 2, 2, 0, 65, "Peru", "Liga 1"),
             self.fixture(2, "X", 3, "Y", 4, 1, 0, 70, "Japan", "J1 League"),
         ]
-        filas = envivo.escanear_apifootball(self.ClienteFalso(vivos, {}), m, solo_mis_ligas=True)
+        tmp = Path(tempfile.gettempdir()) / "snap_test_filtra.csv"
+        tmp.unlink(missing_ok=True)
+        filas = envivo.escanear_apifootball(self.ClienteFalso(vivos, {}), m, solo_mis_ligas=True,
+                                            con_stats=False, snap_path=tmp)
         vistos = {f["partido"] for f in filas}
         self.assertIn("Cienciano vs Chankas", vistos)
         self.assertNotIn("X vs Y", vistos)
         self.assertTrue(all("liga" in f and f["p"] is not None for f in filas))
+
+    def test_stats_y_snapshots(self):
+        import tempfile
+        from pathlib import Path
+        from fb import envivo
+        resp = [
+            {"team": {"id": 1}, "statistics": [
+                {"type": "Total Shots", "value": 8}, {"type": "Shots on Goal", "value": 4},
+                {"type": "Corner Kicks", "value": 5}, {"type": "Ball Possession", "value": "58%"}]},
+            {"team": {"id": 2}, "statistics": [
+                {"type": "Total Shots", "value": 3}, {"type": "Corner Kicks", "value": 2}]},
+        ]
+        s = envivo.stats_apifootball(resp, id_local=1)
+        self.assertEqual(s["local"], {"tiros": 8, "tiros_puerta": 4, "corners": 5, "posesion": 58})
+        self.assertEqual(s["visita"]["corners"], 2)
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d) / "snap.csv"
+            filas = [{"fixture": 1, "liga": "Perú Liga 1", "fecha": "", "minuto": 63, "gl": 2, "gv": 0,
+                      "rl": 0, "rv": 0, "corners_l": 5, "corners_v": 2, "tiros_l": 8, "tiros_v": 3,
+                      "tp_l": 4, "tp_v": 1}]
+            self.assertEqual(envivo.guardar_snapshots(filas, p), 1)
+            self.assertEqual(envivo.guardar_snapshots(filas, p), 0)  # mismo bloque de 5 min: no duplica
 
 
 class TestEquipos(unittest.TestCase):

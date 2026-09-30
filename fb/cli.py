@@ -204,7 +204,8 @@ def cmd_en_vivo(a):
         print(f"\n{len(filas)} oportunidades")
         for f in filas[:25]:
             marca = "ALTA" if f["alta"] else "    "
-            print(f"{marca} {f['p'] * 100:3.0f}%  min {f['cuota_min']:.2f}  {f['minuto']:>3}' {f['marcador']:5s} {f['patron']}  {f['mercado']:14s} {f['partido']} [{f['liga']}]")
+            extra = f"  | {f['stats']}" if f.get("stats") else ""
+            print(f"{marca} {f['p'] * 100:3.0f}%  min {f['cuota_min']:.2f}  {f['minuto']:>3}' {f['marcador']:5s} {f['patron']}  {f['mercado']:14s} {f['partido']} [{f['liga']}]{extra}")
         if a.una_vez:
             return 0
         time.sleep(a.cada)

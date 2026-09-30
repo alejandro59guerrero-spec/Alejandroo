@@ -101,6 +101,14 @@ class Cliente:
         """Goles y tarjetas del partido, con minuto."""
         return self.get(f"fixtures/events?fixture={fixture_id}", usar_cache=False).get("response", [])
 
+    def estadisticas(self, fixture_id: int) -> list[dict]:
+        """Estadísticas acumuladas por equipo: tiros, tiros a puerta, córners, posesión.
+
+        No trae 'ataques peligrosos' ni xG en el plan gratis; puede venir vacía en
+        ligas sin cobertura de estadísticas.
+        """
+        return self.get(f"fixtures/statistics?fixture={fixture_id}", usar_cache=False).get("response", [])
+
 
 def probar(clave: str | None = None) -> tuple[bool, str]:
     """Comprueba la clave y el acceso a API-Football."""
