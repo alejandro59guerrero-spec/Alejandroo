@@ -48,6 +48,7 @@ class Modelo:
     ventaja_local: float = 0.55        # parte de los goles del local sin rojas
     n_partidos: int = 0
     notas: list[str] = field(default_factory=list)
+    equipos: tuple[float, float] | None = None  # goles esperados en 90' (local, visitante)
 
     # ------------------------------------------------------------ ajuste
     @classmethod
@@ -104,16 +105,22 @@ class Modelo:
         return m
 
     # ------------------------------------------------------------ uso
-    def lambda_restante(self, minuto: int, liga: str | None = None, aplicar_roja: bool = False) -> float:
-        """Goles esperados desde `minuto` hasta el final."""
+    def _restante_base(self, minuto: int) -> float:
         lam = 0.0
         for i, (a, b, dur) in enumerate(TRAMOS):
             if i == 2 and minuto >= 45:
                 continue  # el primer tiempo ya terminó
             fin_real = a + dur  # incluye el añadido típico del tramo
-            restante = max(0.0, fin_real - max(minuto, a))
-            lam += self.tasa_tramo[i] * restante
-        if liga:
+            lam += self.tasa_tramo[i] * max(0.0, fin_real - max(minuto, a))
+        return lam
+
+    def lambda_restante(self, minuto: int, liga: str | None = None, aplicar_roja: bool = False) -> float:
+        """Goles esperados desde `minuto` hasta el final."""
+        lam = self._restante_base(minuto)
+        if self.equipos:
+            # perfil temporal de la liga escalado a los goles esperados de estos dos equipos
+            lam = lam / self._restante_base(0) * sum(self.equipos)
+        elif liga:
             lam *= self.factor_liga.get(liga, 1.0)
         if aplicar_roja:
             lam *= self.mult_roja
@@ -139,12 +146,13 @@ class Modelo:
     def _lambdas_equipos(self, minuto: int, liga: str | None, rojas_local: int, rojas_visita: int):
         roja = rojas_local + rojas_visita > 0
         lam = self.lambda_restante(minuto, liga, roja)
+        base = self.equipos[0] / sum(self.equipos) if self.equipos else self.ventaja_local
         if rojas_local > rojas_visita:
-            parte_local = 1 - self.reparto_roja
+            parte_local = (base + 1 - self.reparto_roja) / 2 if self.equipos else 1 - self.reparto_roja
         elif rojas_visita > rojas_local:
-            parte_local = self.reparto_roja
+            parte_local = (base + self.reparto_roja) / 2 if self.equipos else self.reparto_roja
         else:
-            parte_local = self.ventaja_local
+            parte_local = base
         return lam * parte_local, lam * (1 - parte_local)
 
     def prob_1x2(self, gl: int, gv: int, minuto: int, liga: str | None = None,
@@ -186,6 +194,19 @@ class Modelo:
         p_l = 1.0 if gl > 0 else 1 - math.exp(-lh)
         p_v = 1.0 if gv > 0 else 1 - math.exp(-la)
         return p_l * p_v
+
+    def con_equipos(self, gf_local: float, gc_local: float, gf_visita: float, gc_visita: float) -> "Modelo":
+        """Copia del modelo con la fuerza de cada equipo.
+
+        Usa los promedios por partido de goles a favor (gf) y en contra (gc) que
+        publican sitios como scores24: goles esperados del local = (gf_local +
+        gc_visita) / 2 y del visitante = (gf_visita + gc_local) / 2. Idealmente,
+        promedios del local jugando en casa y del visitante jugando fuera.
+        """
+        import copy
+        m = copy.copy(self)
+        m.equipos = ((gf_local + gc_visita) / 2, (gf_visita + gc_local) / 2)
+        return m
 
     def con_fuerza(self, p_local_pre: float, liga: str | None = None) -> "Modelo":
         """Copia del modelo cuyo reparto de goles reproduce la probabilidad prepartido del local.

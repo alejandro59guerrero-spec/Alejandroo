@@ -1,0 +1,29 @@
+{
+  "nota": "Ligas donde el historial tiene patas ganadas. 'pais' y 'claves' se comparan con category.name y uniqueTournament.name de Sofascore, sin tildes y en minúsculas.",
+  "ligas": [
+    {"liga": "Brasil Serie B", "pais": "brazil", "claves": ["serie b"]},
+    {"liga": "Brasil Serie A", "pais": "brazil", "claves": ["serie a"]},
+    {"liga": "Colombia Primera A", "pais": "colombia", "claves": ["primera a", "liga betplay"]},
+    {"liga": "Perú Liga 1", "pais": "peru", "claves": ["liga 1"]},
+    {"liga": "Perú Liga 2", "pais": "peru", "claves": ["liga 2"]},
+    {"liga": "Bolivia Primera", "pais": "bolivia", "claves": ["division profesional", "primera division", "copa"]},
+    {"liga": "Paraguay Intermedia", "pais": "paraguay", "claves": ["intermedia"]},
+    {"liga": "Paraguay Primera", "pais": "paraguay", "claves": ["primera division", "division profesional"]},
+    {"liga": "Argentina Liga Profesional", "pais": "argentina", "claves": ["liga profesional", "primera nacional"]},
+    {"liga": "MLS", "pais": "usa", "claves": ["mls", "major league soccer"]},
+    {"liga": "USL Championship", "pais": "usa", "claves": ["usl championship"]},
+    {"liga": "Canadá CPL", "pais": "canada", "claves": ["premier league"]},
+    {"liga": "México Liga Premier", "pais": "mexico", "claves": ["liga premier"]},
+    {"liga": "Países Bajos Eredivisie", "pais": "netherlands", "claves": ["eredivisie"]},
+    {"liga": "Países Bajos Eerste Divisie", "pais": "netherlands", "claves": ["eerste divisie"]},
+    {"liga": "Alemania 3. Liga", "pais": "germany", "claves": ["3. liga"]},
+    {"liga": "Noruega Eliteserien", "pais": "norway", "claves": ["eliteserien"]},
+    {"liga": "Dinamarca Superliga", "pais": "denmark", "claves": ["superliga", "1st division"]},
+    {"liga": "Portugal", "pais": "portugal", "claves": ["taca de portugal", "campeonato de portugal", "liga portugal"]},
+    {"liga": "España RFEF", "pais": "spain", "claves": ["primera federacion", "segunda federacion", "tercera federacion"]},
+    {"liga": "Ucrania Premier", "pais": "ukraine", "claves": ["premier league"]},
+    {"liga": "Suiza Super League", "pais": "switzerland", "claves": ["super league"]},
+    {"liga": "Italia Serie A", "pais": "italy", "claves": ["serie a"]},
+    {"liga": "UEFA Nations League", "pais": "europe", "claves": ["nations league"]}
+  ]
+}

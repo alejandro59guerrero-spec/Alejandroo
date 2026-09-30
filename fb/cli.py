@@ -6,12 +6,14 @@
     python -m fb.cli buscar --fecha 2026-09-27 --equipo Criciuma
     python -m fb.cli descargar --torneo 390 --temporada 72603 --paginas 10
     python -m fb.cli descargar-evento --id 12345678
+    python -m fb.cli en-vivo --servir 8765        escáner en vivo, página en la red local
 
 Todo corre con Python 3.10+ estándar, en esta nube o en C:\\CLOUDE\\PRONOSTICOS.
 """
 from __future__ import annotations
 
 import argparse
+import time
 import json
 import sys
 import unicodedata
@@ -98,6 +100,47 @@ def cmd_descargar(a):
             print(f"[{i}/{len(evs)}] {f['local']} {f['final']} {f['visitante']}  completo={f['completo']}")
 
 
+def cmd_en_vivo(a):
+    """Escanea partidos en vivo cada `--cada` segundos. Ctrl+C para salir."""
+    import socket
+    import threading
+    from functools import partial
+    from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+
+    from . import partidos
+    from .envivo import escanear, html_reporte
+    from .modelo import Modelo
+    from .sofascore import Cliente, SofascoreError
+
+    m = Modelo.ajustar(partidos.cargar())
+    cli = Cliente(pausa=0.5, reintentos=1)
+    salida = RAIZ / "reports" / "en_vivo.html"
+    salida.parent.mkdir(exist_ok=True)
+    if a.servir:
+        handler = partial(SimpleHTTPRequestHandler, directory=str(salida.parent))
+        srv = ThreadingHTTPServer(("0.0.0.0", a.servir), handler)
+        threading.Thread(target=srv.serve_forever, daemon=True).start()
+        try:
+            ip = socket.gethostbyname(socket.gethostname())
+        except OSError:
+            ip = "IP-de-tu-PC"
+        print(f"Abre en la PC http://localhost:{a.servir}/en_vivo.html  y en el celular (misma WiFi) http://{ip}:{a.servir}/en_vivo.html")
+    while True:
+        try:
+            filas = escanear(cli, m, solo_mis_ligas=not a.todas)
+        except SofascoreError as e:
+            print(f"Sofascore no responde: {e}")
+            filas = []
+        salida.write_text(html_reporte(filas, a.cada), encoding="utf-8")
+        print(f"\n{len(filas)} oportunidades")
+        for f in filas[:25]:
+            marca = "ALTA" if f["alta"] else "    "
+            print(f"{marca} {f['p'] * 100:3.0f}%  min {f['cuota_min']:.2f}  {f['minuto']:>3}' {f['marcador']:5s} {f['patron']}  {f['mercado']:14s} {f['partido']} [{f['liga']}]")
+        if a.una_vez:
+            return 0
+        time.sleep(a.cada)
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(prog="fb")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -116,6 +159,12 @@ def main(argv=None):
     e = sub.add_parser("descargar-evento")
     e.add_argument("--id", type=int, required=True)
     e.set_defaults(fn=cmd_descargar_evento)
+    v = sub.add_parser("en-vivo")
+    v.add_argument("--cada", type=int, default=60, help="segundos entre escaneos")
+    v.add_argument("--servir", type=int, default=0, help="puerto para ver la página en la red local")
+    v.add_argument("--todas", action="store_true", help="incluye ligas fuera de tu historial")
+    v.add_argument("--una-vez", action="store_true")
+    v.set_defaults(fn=cmd_en_vivo)
     a = p.parse_args(argv)
     return a.fn(a) or 0
 

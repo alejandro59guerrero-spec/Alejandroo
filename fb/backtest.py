@@ -176,3 +176,50 @@ def descubrir(partidos: list[Partido], min_n: int = 15, q: float = 0.10) -> list
     for f, s in zip(filas, ok):
         f["confirmada"] = s
     return sorted(filas, key=lambda f: (-f["confirmada"], f["p_valor"]))
+
+
+# ------------------------------------------------------------------ fuerza de equipos
+def validar_equipos(partidos: list[Partido], fuerza: float = 3.0) -> dict:
+    """¿Mejora el modelo con goles a favor/en contra de cada equipo?
+
+    Para cada partido, los promedios de cada equipo salen de SUS OTROS partidos de
+    la muestra (sin mirar el que se predice), contraídos hacia la media con
+    `fuerza` partidos equivalentes. Compara Brier del ganador final y de 'llega
+    otro gol' contra el modelo solo de liga, en los checkpoints de patrones.
+    """
+    base = Modelo.ajustar(partidos)
+    media = sum(sum(p.final) for p in partidos) / len(partidos) / 2
+    por_equipo: dict[str, list[tuple[int, int]]] = {}
+    for p in partidos:
+        por_equipo.setdefault(p.local, []).append((p.final[0], p.final[1]))
+        por_equipo.setdefault(p.visitante, []).append((p.final[1], p.final[0]))
+
+    def prom(eq, excluir):
+        gs = list(por_equipo[eq])
+        gs.remove(excluir)
+        n = len(gs)
+        gf = (sum(g for g, _ in gs) + media * fuerza) / (n + fuerza)
+        gc = (sum(c for _, c in gs) + media * fuerza) / (n + fuerza)
+        return gf, gc, n
+
+    res = {"liga_1x2": [], "eq_1x2": [], "liga_gol": [], "eq_gol": [], "n": 0}
+    for p in partidos:
+        gfl, gcl, nl = prom(p.local, (p.final[0], p.final[1]))
+        gfv, gcv, nv = prom(p.visitante, (p.final[1], p.final[0]))
+        if min(nl, nv) < 2:
+            continue
+        res["n"] += 1
+        eq = base.con_equipos(gfl, gcl, gfv, gcv)
+        h, a = p.final
+        real = "local" if h > a else "visitante" if a > h else "empate"
+        for c in (0,) + CHECKPOINTS:
+            e = p.estado(c)
+            for mod, k in ((base, "liga"), (eq, "eq")):
+                r = mod.prob_1x2(e["gl"], e["gv"], c, None if k == "eq" else p.liga, e["rojas_local"], e["rojas_visita"])
+                res[f"{k}_1x2"].append(sum((r[x] - (x == real)) ** 2 for x in r))
+                gh, ga = p.goles_despues(c)
+                res[f"{k}_gol"].append((mod.prob_mas_goles(1, c, None if k == "eq" else p.liga, e["hay_roja"]) - (gh + ga >= 1)) ** 2)
+    prom_ = lambda xs: sum(xs) / len(xs) if xs else float("nan")
+    return {"partidos": res["n"], "predicciones": len(res["liga_1x2"]),
+            "brier_1x2_liga": prom_(res["liga_1x2"]), "brier_1x2_equipos": prom_(res["eq_1x2"]),
+            "brier_gol_liga": prom_(res["liga_gol"]), "brier_gol_equipos": prom_(res["eq_gol"])}

@@ -141,3 +141,58 @@ class TestEtl(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestEnVivo(unittest.TestCase):
+    """Escáner en vivo con un feed simulado con la estructura de Sofascore."""
+    AHORA = 1_790_000_000
+
+    class ClienteFalso:
+        def __init__(self, datos):
+            self.datos = datos
+
+        def get(self, ruta, usar_cache=True):
+            return self.datos.get(ruta)
+
+    def evento(self, eid, casa, visita, gl, gv, desc, inicio_periodo, pais="Brazil", torneo="Brasileirão Série B"):
+        return {"id": eid, "status": {"type": "inprogress", "description": desc},
+                "time": {"currentPeriodStartTimestamp": inicio_periodo},
+                "homeTeam": {"name": casa}, "awayTeam": {"name": visita},
+                "homeScore": {"current": gl}, "awayScore": {"current": gv},
+                "tournament": {"name": torneo, "category": {"name": pais}, "uniqueTournament": {"name": torneo}}}
+
+    def test_minuto(self):
+        from fb import envivo
+        ev = self.evento(1, "A", "B", 0, 0, "2nd half", self.AHORA - 20 * 60)
+        self.assertEqual(envivo.minuto_en_vivo(ev, self.AHORA), 66)
+        ev["status"]["description"] = "Halftime"
+        self.assertEqual(envivo.minuto_en_vivo(ev, self.AHORA), 45)
+
+    def test_escanear_filtra_ligas_y_ordena(self):
+        from fb import envivo
+        m = modelo.Modelo.ajustar(partidos.cargar())
+        datos = {
+            "sport/football/events/live": {"events": [
+                self.evento(1, "Criciúma", "Avaí", 2, 0, "2nd half", self.AHORA - 15 * 60),
+                self.evento(2, "X", "Y", 3, 0, "2nd half", self.AHORA - 20 * 60, "Japan", "J1 League"),
+                self.evento(3, "Vila Nova", "Goiás", 1, 1, "2nd half", self.AHORA - 5 * 60)]},
+            "event/1/incidents": {"incidents": []},
+            "event/3/incidents": {"incidents": [{"incidentType": "card", "incidentClass": "red", "isHome": False, "time": 50}]},
+        }
+        filas = envivo.escanear(self.ClienteFalso(datos), m, True, self.AHORA)
+        partidos_vistos = {f["partido"] for f in filas}
+        self.assertNotIn("X vs Y", partidos_vistos)
+        self.assertIn("Criciúma vs Avaí", partidos_vistos)
+        self.assertEqual({f["patron"] for f in filas if f["partido"] == "Vila Nova vs Goiás"}, {"P1+P3"})
+        self.assertEqual([f["p"] for f in filas], sorted((f["p"] for f in filas), reverse=True))
+        self.assertIn("Criciúma", envivo.html_reporte(filas))
+
+
+class TestEquipos(unittest.TestCase):
+    def test_con_equipos(self):
+        m = modelo.Modelo.ajustar(partidos.cargar())
+        e = m.con_equipos(2.0, 0.8, 0.9, 1.6)  # local fuerte contra visitante flojo
+        self.assertAlmostEqual(e.lambda_restante(0), (2.0 + 1.6) / 2 + (0.9 + 0.8) / 2, places=6)
+        self.assertGreater(e.prob_1x2(0, 0, 0)["local"], m.prob_1x2(0, 0, 0)["local"])
+        self.assertAlmostEqual(e.lambda_restante(45) / e.lambda_restante(0), m.lambda_restante(45) / m.lambda_restante(0), places=6)
+        self.assertIsNone(m.equipos)
