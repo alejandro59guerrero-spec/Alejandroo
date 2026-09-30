@@ -1,8 +1,8 @@
 {
- "generado": "2026-09-30 06:12",
+ "generado": "2026-09-30 11:53",
  "muestra": {
-  "backtest": 72,
-  "total": 107,
+  "backtest": 75,
+  "total": 110,
   "ligas": [
    "Argentina Liga Profesional",
    "Bolivia Primera",
@@ -50,89 +50,89 @@
    ]
   ],
   "tasa_tramo": [
-   0.01971,
-   0.0232,
-   0.03357,
-   0.03258,
-   0.02952,
-   0.03157
+   0.01977,
+   0.02425,
+   0.03465,
+   0.0318,
+   0.02934,
+   0.03124
   ],
   "factor_liga": {
-   "Alemania 3. Liga": 1.062,
-   "Argentina Liga Profesional": 1.089,
-   "Bolivia Copa": 1.09,
-   "Bolivia Primera": 1.247,
-   "Brasil Serie A": 0.985,
-   "Brasil Serie B": 0.912,
-   "Colombia Primera A": 0.88,
+   "Alemania 3. Liga": 1.061,
+   "Argentina Liga Profesional": 1.087,
+   "Bolivia Copa": 1.089,
+   "Bolivia Primera": 1.244,
+   "Brasil Serie A": 0.982,
+   "Brasil Serie B": 0.903,
+   "Colombia Primera A": 0.878,
    "Copa Paulista": 0.923,
-   "Copa de Noruega": 0.979,
+   "Copa de Noruega": 0.978,
    "Dinamarca 1ª": 1.034,
    "España 1ª RFEF": 0.951,
    "España 2ª RFEF": 1.006,
-   "Guatemala Liga Nacional": 0.979,
+   "Guatemala Liga Nacional": 0.978,
    "Honduras Liga Nacional": 0.923,
-   "Inglaterra Premier League": 1.09,
-   "Italia Serie A": 0.979,
+   "Inglaterra Premier League": 1.088,
+   "Italia Serie A": 0.978,
    "MLS": 1.006,
-   "MLS Next Pro": 0.979,
-   "México Liga Premier": 1.09,
+   "MLS Next Pro": 0.978,
+   "México Liga Premier": 1.089,
    "Noruega Eliteserien": 1.006,
    "Nueva Zelanda Femenina": 0.951,
    "Paraguay Intermedia": 1.034,
    "Paraguay Primera": 0.951,
-   "Países Bajos Eerste Divisie": 1.044,
-   "Países Bajos Eredivisie": 1.019,
-   "Perú Liga 1": 1.059,
+   "Países Bajos Eerste Divisie": 1.042,
+   "Países Bajos Eredivisie": 1.016,
+   "Perú Liga 1": 1.071,
    "Portugal Primeira Liga": 0.923,
    "Taça de Portugal": 0.951,
-   "UEFA Nations League": 0.969,
-   "USL Championship": 1.09,
-   "Ucrania Premier": 0.979,
+   "UEFA Nations League": 0.968,
+   "USL Championship": 1.089,
+   "Ucrania Premier": 0.978,
    "Uruguay 2ª División": 0.923
   },
-  "mult_roja": 0.737,
-  "reparto_roja": 0.845,
+  "mult_roja": 0.72,
+  "reparto_roja": 0.85,
   "ventaja_local": 0.55,
-  "n_partidos": 107,
+  "n_partidos": 110,
   "notas": [
-   "Roja: 18 goles observados tras la roja contra 25.9 esperados.",
-   "Tras la roja marcó el equipo con uno más 17 veces y el de 10 1 veces.",
-   "Goles por partido en la muestra: 2.77 en 107 partidos."
+   "Roja: 19 goles observados tras la roja contra 27.9 esperados.",
+   "Tras la roja marcó el equipo con uno más 18 veces y el de 10 1 veces.",
+   "Goles por partido en la muestra: 2.78 en 110 partidos."
   ]
  },
  "calibracion": {
-  "n": 535,
-  "brier": 0.1967,
-  "brier_base": 0.2285,
+  "n": 550,
+  "brier": 0.1963,
+  "brier_base": 0.2294,
   "fiabilidad": [
    [
     0.2,
     0.4,
-    102,
-    0.34,
-    0.382
+    111,
+    0.341,
+    0.369
    ],
    [
     0.4,
     0.6,
-    130,
-    0.513,
-    0.531
+    136,
+    0.521,
+    0.544
    ],
    [
     0.6,
     0.8,
     182,
-    0.704,
-    0.72
+    0.708,
+    0.731
    ],
    [
     0.8,
     1.0,
     121,
-    0.863,
-    0.884
+    0.865,
+    0.876
    ]
   ]
  },
@@ -155,55 +155,55 @@
     "Ya pasó el minuto 75"
    ],
    "backtest": {
-    "n": 46,
-    "k": 35,
-    "tasa": 0.7608695652173914,
-    "lo": 0.6206458383088198,
-    "hi": 0.860879634388686,
-    "p_modelo": 0.7242602063864553,
-    "cuota_min": 1.3513513513513513,
+    "n": 49,
+    "k": 38,
+    "tasa": 0.7755102040816326,
+    "lo": 0.6412094381295426,
+    "hi": 0.8697516228527138,
+    "p_modelo": 0.7280702891690571,
+    "cuota_min": 1.325,
     "ligas": [
      {
       "liga": "Países Bajos Eredivisie",
       "k": 3,
       "n": 3,
       "tasa": 1.0,
-      "tasa_ajustada": 0.826
+      "tasa_ajustada": 0.837
      },
      {
       "liga": "Bolivia Primera",
       "k": 3,
       "n": 3,
       "tasa": 1.0,
-      "tasa_ajustada": 0.826
+      "tasa_ajustada": 0.837
+     },
+     {
+      "liga": "Perú Liga 1",
+      "k": 12,
+      "n": 14,
+      "tasa": 0.857,
+      "tasa_ajustada": 0.827
      },
      {
       "liga": "Inglaterra Premier League",
       "k": 1,
       "n": 1,
       "tasa": 1.0,
-      "tasa_ajustada": 0.787
+      "tasa_ajustada": 0.8
      },
      {
       "liga": "Brasil Serie B",
-      "k": 8,
-      "n": 10,
-      "tasa": 0.8,
-      "tasa_ajustada": 0.783
-     },
-     {
-      "liga": "Perú Liga 1",
-      "k": 8,
-      "n": 10,
-      "tasa": 0.8,
-      "tasa_ajustada": 0.783
+      "k": 7,
+      "n": 9,
+      "tasa": 0.778,
+      "tasa_ajustada": 0.777
      },
      {
       "liga": "Argentina Liga Profesional",
       "k": 3,
       "n": 4,
       "tasa": 0.75,
-      "tasa_ajustada": 0.757
+      "tasa_ajustada": 0.767
      }
     ]
    },
@@ -220,7 +220,7 @@
       "marcador": "0:2",
       "cuota": 1.63,
       "gano": true,
-      "p_modelo": 0.462
+      "p_modelo": 0.451
      },
      {
       "partido": "Criciúma vs Avaí",
@@ -229,7 +229,7 @@
       "marcador": "2:0",
       "cuota": 1.9,
       "gano": true,
-      "p_modelo": 0.558
+      "p_modelo": 0.551
      },
      {
       "partido": "Grorud vs Moss",
@@ -238,7 +238,7 @@
       "marcador": "1:1",
       "cuota": 1.47,
       "gano": false,
-      "p_modelo": 0.571
+      "p_modelo": 0.568
      },
      {
       "partido": "FC Fredericia vs Vejle",
@@ -247,7 +247,7 @@
       "marcador": "1:2",
       "cuota": 1.45,
       "gano": true,
-      "p_modelo": 0.552
+      "p_modelo": 0.549
      },
      {
       "partido": "DC United vs Charlotte FC",
@@ -256,7 +256,7 @@
       "marcador": "1:1",
       "cuota": 1.19,
       "gano": true,
-      "p_modelo": 0.779
+      "p_modelo": 0.774
      },
      {
       "partido": "Vasco da Gama vs Coritiba",
@@ -265,7 +265,7 @@
       "marcador": "2:0",
       "cuota": 1.17,
       "gano": true,
-      "p_modelo": 0.771
+      "p_modelo": 0.766
      },
      {
       "partido": "Lexington SC vs Orange County SC",
@@ -274,7 +274,7 @@
       "marcador": "5:0",
       "cuota": 1.45,
       "gano": true,
-      "p_modelo": 0.571
+      "p_modelo": 0.567
      },
      {
       "partido": "Pioneros de Cancún vs Tapachula Soconusco",
@@ -283,7 +283,7 @@
       "marcador": "3:0",
       "cuota": 1.28,
       "gano": true,
-      "p_modelo": 0.623
+      "p_modelo": 0.619
      }
     ]
    },
@@ -306,55 +306,55 @@
     "El rival acaba de descontar y empuja"
    ],
    "backtest": {
-    "n": 65,
-    "k": 56,
-    "tasa": 0.8615384615384616,
-    "lo": 0.7573167852534054,
-    "hi": 0.9254099381231576,
-    "p_modelo": 0.7526991745170835,
-    "cuota_min": 1.1896551724137931,
+    "n": 68,
+    "k": 58,
+    "tasa": 0.8529411764705882,
+    "lo": 0.7500238655053635,
+    "hi": 0.9181127016089545,
+    "p_modelo": 0.7521448583575543,
+    "cuota_min": 1.2,
     "ligas": [
-     {
-      "liga": "Perú Liga 1",
-      "k": 12,
-      "n": 13,
-      "tasa": 0.923,
-      "tasa_ajustada": 0.9
-     },
      {
       "liga": "Bolivia Primera",
       "k": 3,
       "n": 3,
       "tasa": 1.0,
-      "tasa_ajustada": 0.899
+      "tasa_ajustada": 0.893
      },
      {
       "liga": "Países Bajos Eerste Divisie",
       "k": 3,
       "n": 3,
       "tasa": 1.0,
-      "tasa_ajustada": 0.899
+      "tasa_ajustada": 0.893
+     },
+     {
+      "liga": "Perú Liga 1",
+      "k": 15,
+      "n": 17,
+      "tasa": 0.882,
+      "tasa_ajustada": 0.873
      },
      {
       "liga": "Paraguay Primera",
       "k": 1,
       "n": 1,
       "tasa": 1.0,
-      "tasa_ajustada": 0.877
+      "tasa_ajustada": 0.869
      },
      {
       "liga": "Inglaterra Premier League",
       "k": 1,
       "n": 1,
       "tasa": 1.0,
-      "tasa_ajustada": 0.877
+      "tasa_ajustada": 0.869
      },
      {
       "liga": "Brasil Serie B",
-      "k": 13,
-      "n": 15,
-      "tasa": 0.867,
-      "tasa_ajustada": 0.865
+      "k": 12,
+      "n": 14,
+      "tasa": 0.857,
+      "tasa_ajustada": 0.856
      }
     ]
    },
@@ -398,7 +398,7 @@
       "marcador": "3:2",
       "cuota": 1.61,
       "gano": true,
-      "p_modelo": 0.802
+      "p_modelo": 0.804
      },
      {
       "partido": "Molde vs Aalesunds",
@@ -407,7 +407,7 @@
       "marcador": "0:2",
       "cuota": 1.4,
       "gano": true,
-      "p_modelo": 0.879
+      "p_modelo": 0.88
      }
     ]
    },
@@ -429,41 +429,41 @@
     "Quedan menos de 15 minutos"
    ],
    "backtest": {
-    "n": 5,
-    "k": 4,
-    "tasa": 0.8,
-    "lo": 0.3755282641185388,
-    "hi": 0.9637768390302125,
-    "p_modelo": 0.6749812244698511,
-    "cuota_min": 1.5,
+    "n": 6,
+    "k": 5,
+    "tasa": 0.8333333333333334,
+    "lo": 0.43649056343635395,
+    "hi": 0.9699474141282697,
+    "p_modelo": 0.6684652678630046,
+    "cuota_min": 1.4285714285714286,
     "ligas": [
      {
       "liga": "Perú Liga 1",
-      "k": 1,
-      "n": 1,
+      "k": 2,
+      "n": 2,
       "tasa": 1.0,
-      "tasa_ajustada": 0.822
+      "tasa_ajustada": 0.867
      },
      {
       "liga": "Paraguay Primera",
       "k": 1,
       "n": 1,
       "tasa": 1.0,
-      "tasa_ajustada": 0.822
+      "tasa_ajustada": 0.852
      },
      {
       "liga": "Brasil Serie A",
       "k": 1,
       "n": 1,
       "tasa": 1.0,
-      "tasa_ajustada": 0.822
+      "tasa_ajustada": 0.852
      },
      {
       "liga": "Colombia Primera A",
       "k": 1,
       "n": 2,
       "tasa": 0.5,
-      "tasa_ajustada": 0.74
+      "tasa_ajustada": 0.767
      }
     ]
    },
@@ -480,7 +480,7 @@
       "marcador": "0:1",
       "cuota": 1.42,
       "gano": true,
-      "p_modelo": 0.29
+      "p_modelo": 0.276
      },
      {
       "partido": "Bolívar vs Blooming",
@@ -489,7 +489,7 @@
       "marcador": "1:0",
       "cuota": 1.85,
       "gano": true,
-      "p_modelo": 0.472
+      "p_modelo": 0.461
      },
      {
       "partido": "Antoniano vs Ciudad de Lucena",
@@ -498,7 +498,7 @@
       "marcador": "0:2",
       "cuota": 1.63,
       "gano": true,
-      "p_modelo": 0.462
+      "p_modelo": 0.451
      },
      {
       "partido": "Fortaleza vs Atlético Junior",
@@ -507,7 +507,7 @@
       "marcador": "0:1",
       "cuota": 1.55,
       "gano": true,
-      "p_modelo": 0.427
+      "p_modelo": 0.415
      },
      {
       "partido": "Karpaty vs Veres",
@@ -516,7 +516,7 @@
       "marcador": "1:0",
       "cuota": 2.2,
       "gano": true,
-      "p_modelo": 0.256
+      "p_modelo": 0.249
      },
      {
       "partido": "Deportivo Pasto vs Once Caldas",
@@ -525,7 +525,7 @@
       "marcador": "0:0",
       "cuota": 2.05,
       "gano": false,
-      "p_modelo": 0.326
+      "p_modelo": 0.312
      },
      {
       "partido": "San Jose Earthquakes vs LAFC",
@@ -534,7 +534,7 @@
       "marcador": "0:1",
       "cuota": 1.27,
       "gano": true,
-      "p_modelo": 0.609
+      "p_modelo": 0.598
      },
      {
       "partido": "Odense Boldklub vs FC Midtjylland",
@@ -543,7 +543,7 @@
       "marcador": "0:1",
       "cuota": 1.4,
       "gano": true,
-      "p_modelo": 0.436
+      "p_modelo": 0.426
      }
     ]
    },
@@ -565,34 +565,41 @@
     "La cuota es menor a la cuota mínima de la tabla"
    ],
    "backtest": {
-    "n": 3,
-    "k": 2,
-    "tasa": 0.6666666666666666,
-    "lo": 0.2076549551264879,
-    "hi": 0.9385096847238394,
-    "p_modelo": 0.5591849244271498,
-    "cuota_min": 1.75,
+    "n": 4,
+    "k": 3,
+    "tasa": 0.75,
+    "lo": 0.3006360524426366,
+    "hi": 0.9544139373553637,
+    "p_modelo": 0.5585324638465138,
+    "cuota_min": 1.6,
     "ligas": [
      {
       "liga": "Colombia Primera A",
       "k": 1,
       "n": 1,
       "tasa": 1.0,
-      "tasa_ajustada": 0.704
+      "tasa_ajustada": 0.778
      },
      {
       "liga": "Paraguay Primera",
       "k": 1,
       "n": 1,
       "tasa": 1.0,
-      "tasa_ajustada": 0.704
+      "tasa_ajustada": 0.778
+     },
+     {
+      "liga": "Perú Liga 1",
+      "k": 1,
+      "n": 1,
+      "tasa": 1.0,
+      "tasa_ajustada": 0.778
      },
      {
       "liga": "Brasil Serie A",
       "k": 0,
       "n": 1,
       "tasa": 0.0,
-      "tasa_ajustada": 0.593
+      "tasa_ajustada": 0.667
      }
     ]
    },
@@ -609,7 +616,7 @@
       "marcador": "0:0",
       "cuota": 1.77,
       "gano": true,
-      "p_modelo": 0.227
+      "p_modelo": 0.217
      },
      {
       "partido": "Atenas vs Plaza Colonia",
@@ -618,7 +625,7 @@
       "marcador": "0:0",
       "cuota": 1.84,
       "gano": false,
-      "p_modelo": 0.522
+      "p_modelo": 0.516
      },
      {
       "partido": "Grêmio Prudente vs União São João",
@@ -627,7 +634,7 @@
       "marcador": "0:0",
       "cuota": 2.75,
       "gano": false,
-      "p_modelo": 0.253
+      "p_modelo": 0.248
      },
      {
       "partido": "Comerciantes FC vs Sport Huancayo Reserva",
@@ -636,7 +643,7 @@
       "marcador": "0:0",
       "cuota": 3.0,
       "gano": true,
-      "p_modelo": 0.695
+      "p_modelo": 0.696
      },
      {
       "partido": "Rochdale vs Liverpool Sub-21",
@@ -645,7 +652,7 @@
       "marcador": "1:1",
       "cuota": 1.64,
       "gano": false,
-      "p_modelo": 0.504
+      "p_modelo": 0.498
      },
      {
       "partido": "Deportivo San Pedro vs Cobán Imperial",
@@ -654,7 +661,7 @@
       "marcador": "0:0",
       "cuota": 2.3,
       "gano": false,
-      "p_modelo": 0.505
+      "p_modelo": 0.499
      },
      {
       "partido": "CD Génesis vs Olancho FC",
@@ -663,7 +670,7 @@
       "marcador": "0:0",
       "cuota": 2.22,
       "gano": false,
-      "p_modelo": 0.424
+      "p_modelo": 0.419
      },
      {
       "partido": "O Elvas vs UD Leiria",
@@ -672,7 +679,7 @@
       "marcador": "0:0",
       "cuota": 2.1,
       "gano": true,
-      "p_modelo": 0.294
+      "p_modelo": 0.289
      }
     ]
    },
@@ -695,55 +702,55 @@
     "La cuota es menor a la cuota mínima de la tabla"
    ],
    "backtest": {
-    "n": 18,
-    "k": 16,
-    "tasa": 0.8888888888888888,
-    "lo": 0.6719975513339578,
-    "hi": 0.9689811315464172,
-    "p_modelo": 0.7603266934873567,
-    "cuota_min": 1.222222222222222,
+    "n": 17,
+    "k": 15,
+    "tasa": 0.8823529411764706,
+    "lo": 0.6566315750229009,
+    "hi": 0.967120919987079,
+    "p_modelo": 0.7547304132784967,
+    "cuota_min": 1.2352941176470589,
     "ligas": [
      {
       "liga": "Brasil Serie A",
       "k": 3,
       "n": 3,
       "tasa": 1.0,
-      "tasa_ajustada": 0.919
+      "tasa_ajustada": 0.914
      },
      {
       "liga": "Países Bajos Eredivisie",
       "k": 2,
       "n": 2,
       "tasa": 1.0,
-      "tasa_ajustada": 0.911
+      "tasa_ajustada": 0.906
      },
      {
       "liga": "Perú Liga 1",
       "k": 2,
       "n": 2,
       "tasa": 1.0,
-      "tasa_ajustada": 0.911
+      "tasa_ajustada": 0.906
      },
      {
       "liga": "Argentina Liga Profesional",
       "k": 1,
       "n": 1,
       "tasa": 1.0,
-      "tasa_ajustada": 0.901
-     },
-     {
-      "liga": "Brasil Serie B",
-      "k": 4,
-      "n": 5,
-      "tasa": 0.8,
-      "tasa_ajustada": 0.855
+      "tasa_ajustada": 0.895
      },
      {
       "liga": "Colombia Primera A",
       "k": 4,
       "n": 5,
       "tasa": 0.8,
-      "tasa_ajustada": 0.855
+      "tasa_ajustada": 0.851
+     },
+     {
+      "liga": "Brasil Serie B",
+      "k": 3,
+      "n": 4,
+      "tasa": 0.75,
+      "tasa_ajustada": 0.838
      }
     ]
    },
@@ -760,7 +767,7 @@
       "marcador": "0:0",
       "cuota": 1.45,
       "gano": false,
-      "p_modelo": 0.671
+      "p_modelo": 0.667
      }
     ]
    },
@@ -787,18 +794,18 @@
     "tasa": 0.9375,
     "lo": 0.7985253275199642,
     "hi": 0.9826897968048427,
-    "p_modelo": 0.9681611353688676,
+    "p_modelo": 0.9697168168264009,
     "cuota_min": 1.125,
     "ligas": [
      {
-      "liga": "Colombia Primera A",
-      "k": 6,
-      "n": 6,
+      "liga": "Perú Liga 1",
+      "k": 7,
+      "n": 7,
       "tasa": 1.0,
-      "tasa_ajustada": 0.964
+      "tasa_ajustada": 0.967
      },
      {
-      "liga": "Perú Liga 1",
+      "liga": "Colombia Primera A",
       "k": 6,
       "n": 6,
       "tasa": 1.0,
@@ -864,55 +871,55 @@
     "El marcador está empatado: usa Doble oportunidad o espera el gol"
    ],
    "backtest": {
-    "n": 34,
-    "k": 24,
-    "tasa": 0.7058823529411765,
-    "lo": 0.5383077411853625,
-    "hi": 0.8316554739006805,
-    "p_modelo": 0.5885890838311407,
+    "n": 35,
+    "k": 25,
+    "tasa": 0.7142857142857143,
+    "lo": 0.5494475193017891,
+    "hi": 0.8367363660170444,
+    "p_modelo": 0.5820537777145998,
     "cuota_min": null,
     "ligas": [
      {
       "liga": "Perú Liga 1",
-      "k": 4,
-      "n": 5,
-      "tasa": 0.8,
-      "tasa_ajustada": 0.742
+      "k": 6,
+      "n": 7,
+      "tasa": 0.857,
+      "tasa_ajustada": 0.781
      },
      {
       "liga": "Países Bajos Eerste Divisie",
       "k": 1,
       "n": 1,
       "tasa": 1.0,
-      "tasa_ajustada": 0.739
+      "tasa_ajustada": 0.746
      },
      {
       "liga": "Brasil Serie A",
       "k": 3,
       "n": 4,
       "tasa": 0.75,
-      "tasa_ajustada": 0.721
-     },
-     {
-      "liga": "Brasil Serie B",
-      "k": 7,
-      "n": 10,
-      "tasa": 0.7,
-      "tasa_ajustada": 0.703
+      "tasa_ajustada": 0.726
      },
      {
       "liga": "Países Bajos Eredivisie",
       "k": 2,
       "n": 3,
       "tasa": 0.667,
-      "tasa_ajustada": 0.695
+      "tasa_ajustada": 0.701
      },
      {
       "liga": "Argentina Liga Profesional",
       "k": 2,
       "n": 3,
       "tasa": 0.667,
-      "tasa_ajustada": 0.695
+      "tasa_ajustada": 0.701
+     },
+     {
+      "liga": "Brasil Serie B",
+      "k": 6,
+      "n": 9,
+      "tasa": 0.667,
+      "tasa_ajustada": 0.689
      }
     ]
    },
@@ -929,7 +936,7 @@
       "marcador": "0:0",
       "cuota": 1.63,
       "gano": true,
-      "p_modelo": 0.343
+      "p_modelo": 0.342
      },
      {
       "partido": "Chequia vs Inglaterra",
@@ -938,7 +945,7 @@
       "marcador": "0:0",
       "cuota": 1.77,
       "gano": true,
-      "p_modelo": 0.227
+      "p_modelo": 0.217
      },
      {
       "partido": "Casarano vs Monopoli",
@@ -947,7 +954,7 @@
       "marcador": "0:0",
       "cuota": 1.85,
       "gano": false,
-      "p_modelo": 0.323
+      "p_modelo": 0.324
      },
      {
       "partido": "Atenas vs Plaza Colonia",
@@ -956,7 +963,7 @@
       "marcador": "0:0",
       "cuota": 1.84,
       "gano": false,
-      "p_modelo": 0.522
+      "p_modelo": 0.516
      },
      {
       "partido": "CS Fola Esch vs FC Juvenil Canach",
@@ -965,7 +972,7 @@
       "marcador": "0:0",
       "cuota": 1.9,
       "gano": true,
-      "p_modelo": 0.361
+      "p_modelo": 0.359
      },
      {
       "partido": "Grêmio Prudente vs União São João",
@@ -974,7 +981,7 @@
       "marcador": "0:0",
       "cuota": 2.75,
       "gano": false,
-      "p_modelo": 0.253
+      "p_modelo": 0.248
      },
      {
       "partido": "Waterside Karori vs Fencibles United (F)",
@@ -992,7 +999,7 @@
       "marcador": "0:0",
       "cuota": 3.0,
       "gano": true,
-      "p_modelo": 0.695
+      "p_modelo": 0.696
      },
      {
       "partido": "Gerasdorf Stammersdorf vs Mauer",
@@ -1010,7 +1017,7 @@
       "marcador": "1:1",
       "cuota": 1.64,
       "gano": false,
-      "p_modelo": 0.504
+      "p_modelo": 0.498
      },
      {
       "partido": "Deportivo San Pedro vs Cobán Imperial",
@@ -1019,7 +1026,7 @@
       "marcador": "0:0",
       "cuota": 2.3,
       "gano": false,
-      "p_modelo": 0.505
+      "p_modelo": 0.499
      },
      {
       "partido": "Tacoma Defiance vs Portland Timbers II",
@@ -1037,7 +1044,7 @@
       "marcador": "0:0",
       "cuota": 2.22,
       "gano": false,
-      "p_modelo": 0.424
+      "p_modelo": 0.419
      },
      {
       "partido": "O Elvas vs UD Leiria",
@@ -1046,7 +1053,7 @@
       "marcador": "0:0",
       "cuota": 2.1,
       "gano": true,
-      "p_modelo": 0.294
+      "p_modelo": 0.289
      }
     ]
    },
@@ -1064,55 +1071,55 @@
     "Si quieres entrar con 0:0, la línea debe pedir 1 solo gol (Más de 0.5) y la cuota superar la mínima"
    ],
    "backtest": {
-    "n": 18,
-    "k": 8,
-    "tasa": 0.4444444444444444,
-    "lo": 0.24559231101389126,
-    "hi": 0.6628393057174837,
-    "p_modelo": 0.4209620858583989,
-    "cuota_min": 2.2,
+    "n": 17,
+    "k": 7,
+    "tasa": 0.4117647058823529,
+    "lo": 0.21610786039131383,
+    "hi": 0.6399492561448447,
+    "p_modelo": 0.41351257526145874,
+    "cuota_min": 2.3333333333333335,
     "ligas": [
      {
       "liga": "Brasil Serie A",
       "k": 3,
       "n": 3,
       "tasa": 1.0,
-      "tasa_ajustada": 0.596
-     },
-     {
-      "liga": "Argentina Liga Profesional",
-      "k": 1,
-      "n": 1,
-      "tasa": 1.0,
-      "tasa_ajustada": 0.506
+      "tasa_ajustada": 0.572
      },
      {
       "liga": "Colombia Primera A",
       "k": 3,
       "n": 5,
       "tasa": 0.6,
-      "tasa_ajustada": 0.504
+      "tasa_ajustada": 0.484
+     },
+     {
+      "liga": "Argentina Liga Profesional",
+      "k": 1,
+      "n": 1,
+      "tasa": 1.0,
+      "tasa_ajustada": 0.477
      },
      {
       "liga": "Países Bajos Eredivisie",
       "k": 0,
       "n": 2,
       "tasa": 0.0,
-      "tasa_ajustada": 0.356
+      "tasa_ajustada": 0.329
      },
      {
       "liga": "Perú Liga 1",
       "k": 0,
       "n": 2,
       "tasa": 0.0,
-      "tasa_ajustada": 0.356
+      "tasa_ajustada": 0.329
      },
      {
       "liga": "Brasil Serie B",
-      "k": 1,
-      "n": 5,
-      "tasa": 0.2,
-      "tasa_ajustada": 0.35
+      "k": 0,
+      "n": 4,
+      "tasa": 0.0,
+      "tasa_ajustada": 0.275
      }
     ]
    },
@@ -1129,7 +1136,7 @@
       "marcador": "0:0",
       "cuota": 1.42,
       "gano": false,
-      "p_modelo": 0.636
+      "p_modelo": 0.635
      },
      {
       "partido": "Bournemouth vs Liverpool",
@@ -1147,7 +1154,7 @@
       "marcador": "0:0",
       "cuota": 2.05,
       "gano": false,
-      "p_modelo": 0.326
+      "p_modelo": 0.312
      }
     ]
    },
@@ -1188,12 +1195,12 @@
    "minuto": 30,
    "goles": 0,
    "dif": 0,
-   "n": 41,
-   "mas1": 0.951,
-   "mas2": 0.683,
+   "n": 42,
+   "mas1": 0.952,
+   "mas2": 0.69,
    "p_mod_mas1": 0.864,
-   "empate_sigue": 0.22,
-   "lo_mas1": 0.839,
+   "empate_sigue": 0.214,
+   "lo_mas1": 0.842,
    "hi_mas1": 0.987
   },
   {
@@ -1203,7 +1210,7 @@
    "n": 21,
    "mas1": 0.81,
    "mas2": 0.571,
-   "p_mod_mas1": 0.867,
+   "p_mod_mas1": 0.866,
    "lider_gana": 0.762,
    "lo_mas1": 0.6,
    "hi_mas1": 0.923
@@ -1212,12 +1219,12 @@
    "minuto": 30,
    "goles": 2,
    "dif": 0,
-   "n": 4,
+   "n": 6,
    "mas1": 1.0,
-   "mas2": 0.75,
-   "p_mod_mas1": 0.883,
+   "mas2": 0.5,
+   "p_mod_mas1": 0.887,
    "empate_sigue": 0.0,
-   "lo_mas1": 0.51,
+   "lo_mas1": 0.61,
    "hi_mas1": 1.0
   },
   {
@@ -1239,7 +1246,7 @@
    "n": 2,
    "mas1": 1.0,
    "mas2": 1.0,
-   "p_mod_mas1": 0.894,
+   "p_mod_mas1": 0.893,
    "lider_gana": 1.0,
    "lo_mas1": 0.342,
    "hi_mas1": 1.0
@@ -1251,7 +1258,7 @@
    "n": 1,
    "mas1": 1.0,
    "mas2": 0.0,
-   "p_mod_mas1": 0.892,
+   "p_mod_mas1": 0.894,
    "lider_gana": 1.0,
    "lo_mas1": 0.207,
    "hi_mas1": 1.0
@@ -1260,61 +1267,61 @@
    "minuto": 45,
    "goles": 0,
    "dif": 0,
-   "n": 18,
-   "mas1": 0.889,
-   "mas2": 0.444,
-   "p_mod_mas1": 0.76,
-   "empate_sigue": 0.111,
-   "lo_mas1": 0.672,
-   "hi_mas1": 0.969
+   "n": 17,
+   "mas1": 0.882,
+   "mas2": 0.412,
+   "p_mod_mas1": 0.755,
+   "empate_sigue": 0.118,
+   "lo_mas1": 0.657,
+   "hi_mas1": 0.967
   },
   {
    "minuto": 45,
    "goles": 1,
    "dif": 1,
-   "n": 29,
-   "mas1": 0.759,
-   "mas2": 0.552,
-   "p_mod_mas1": 0.758,
-   "lider_gana": 0.759,
-   "lo_mas1": 0.579,
-   "hi_mas1": 0.878
+   "n": 30,
+   "mas1": 0.767,
+   "mas2": 0.567,
+   "p_mod_mas1": 0.754,
+   "lider_gana": 0.733,
+   "lo_mas1": 0.591,
+   "hi_mas1": 0.882
   },
   {
    "minuto": 45,
    "goles": 2,
    "dif": 0,
-   "n": 9,
-   "mas1": 0.778,
-   "mas2": 0.667,
-   "p_mod_mas1": 0.778,
-   "empate_sigue": 0.556,
-   "lo_mas1": 0.453,
-   "hi_mas1": 0.937
+   "n": 10,
+   "mas1": 0.8,
+   "mas2": 0.6,
+   "p_mod_mas1": 0.764,
+   "empate_sigue": 0.5,
+   "lo_mas1": 0.49,
+   "hi_mas1": 0.943
   },
   {
    "minuto": 45,
    "goles": 2,
    "dif": 2,
-   "n": 8,
-   "mas1": 0.625,
-   "mas2": 0.25,
-   "p_mod_mas1": 0.785,
+   "n": 9,
+   "mas1": 0.667,
+   "mas2": 0.333,
+   "p_mod_mas1": 0.783,
    "lider_gana": 1.0,
-   "lo_mas1": 0.306,
-   "hi_mas1": 0.863
+   "lo_mas1": 0.354,
+   "hi_mas1": 0.879
   },
   {
    "minuto": 45,
    "goles": 3,
    "dif": 1,
-   "n": 3,
-   "mas1": 0.667,
-   "mas2": 0.333,
-   "p_mod_mas1": 0.806,
+   "n": 4,
+   "mas1": 0.5,
+   "mas2": 0.25,
+   "p_mod_mas1": 0.803,
    "lider_gana": 1.0,
-   "lo_mas1": 0.208,
-   "hi_mas1": 0.939
+   "lo_mas1": 0.15,
+   "hi_mas1": 0.85
   },
   {
    "minuto": 45,
@@ -1323,7 +1330,7 @@
    "n": 5,
    "mas1": 1.0,
    "mas2": 0.4,
-   "p_mod_mas1": 0.819,
+   "p_mod_mas1": 0.815,
    "lider_gana": 1.0,
    "lo_mas1": 0.566,
    "hi_mas1": 1.0
@@ -1335,7 +1342,7 @@
    "n": 14,
    "mas1": 0.857,
    "mas2": 0.357,
-   "p_mod_mas1": 0.615,
+   "p_mod_mas1": 0.61,
    "empate_sigue": 0.143,
    "lo_mas1": 0.601,
    "hi_mas1": 0.96
@@ -1344,13 +1351,13 @@
    "minuto": 60,
    "goles": 1,
    "dif": 1,
-   "n": 16,
-   "mas1": 0.5,
-   "mas2": 0.375,
-   "p_mod_mas1": 0.626,
-   "lider_gana": 0.938,
-   "lo_mas1": 0.28,
-   "hi_mas1": 0.72
+   "n": 17,
+   "mas1": 0.529,
+   "mas2": 0.412,
+   "p_mod_mas1": 0.625,
+   "lider_gana": 0.882,
+   "lo_mas1": 0.31,
+   "hi_mas1": 0.738
   },
   {
    "minuto": 60,
@@ -1359,7 +1366,7 @@
    "n": 9,
    "mas1": 0.667,
    "mas2": 0.333,
-   "p_mod_mas1": 0.624,
+   "p_mod_mas1": 0.62,
    "empate_sigue": 0.667,
    "lo_mas1": 0.354,
    "hi_mas1": 0.879
@@ -1368,13 +1375,13 @@
    "minuto": 60,
    "goles": 2,
    "dif": 2,
-   "n": 17,
-   "mas1": 0.647,
-   "mas2": 0.235,
-   "p_mod_mas1": 0.622,
-   "lider_gana": 0.882,
-   "lo_mas1": 0.413,
-   "hi_mas1": 0.827
+   "n": 16,
+   "mas1": 0.625,
+   "mas2": 0.25,
+   "p_mod_mas1": 0.618,
+   "lider_gana": 0.875,
+   "lo_mas1": 0.386,
+   "hi_mas1": 0.815
   },
   {
    "minuto": 60,
@@ -1383,7 +1390,7 @@
    "n": 1,
    "mas1": 0.0,
    "mas2": 0.0,
-   "p_mod_mas1": 0.614,
+   "p_mod_mas1": 0.607,
    "empate_sigue": 1.0,
    "lo_mas1": 0.0,
    "hi_mas1": 0.793
@@ -1392,25 +1399,25 @@
    "minuto": 60,
    "goles": 3,
    "dif": 1,
-   "n": 8,
-   "mas1": 0.75,
-   "mas2": 0.125,
-   "p_mod_mas1": 0.672,
-   "lider_gana": 0.875,
-   "lo_mas1": 0.409,
-   "hi_mas1": 0.929
+   "n": 10,
+   "mas1": 0.6,
+   "mas2": 0.1,
+   "p_mod_mas1": 0.657,
+   "lider_gana": 0.9,
+   "lo_mas1": 0.313,
+   "hi_mas1": 0.832
   },
   {
    "minuto": 60,
    "goles": 3,
    "dif": 2,
-   "n": 7,
-   "mas1": 0.714,
-   "mas2": 0.143,
-   "p_mod_mas1": 0.675,
+   "n": 8,
+   "mas1": 0.75,
+   "mas2": 0.125,
+   "p_mod_mas1": 0.672,
    "lider_gana": 1.0,
-   "lo_mas1": 0.359,
-   "hi_mas1": 0.918
+   "lo_mas1": 0.409,
+   "hi_mas1": 0.929
   },
   {
    "minuto": 70,
@@ -1419,7 +1426,7 @@
    "n": 8,
    "mas1": 0.75,
    "mas2": 0.25,
-   "p_mod_mas1": 0.492,
+   "p_mod_mas1": 0.487,
    "empate_sigue": 0.25,
    "lo_mas1": 0.409,
    "hi_mas1": 0.929
@@ -1431,7 +1438,7 @@
    "n": 18,
    "mas1": 0.389,
    "mas2": 0.222,
-   "p_mod_mas1": 0.504,
+   "p_mod_mas1": 0.499,
    "lider_gana": 0.944,
    "lo_mas1": 0.203,
    "hi_mas1": 0.614
@@ -1440,25 +1447,25 @@
    "minuto": 70,
    "goles": 2,
    "dif": 0,
-   "n": 6,
-   "mas1": 0.5,
-   "mas2": 0.167,
-   "p_mod_mas1": 0.493,
-   "empate_sigue": 0.667,
-   "lo_mas1": 0.188,
-   "hi_mas1": 0.812
+   "n": 7,
+   "mas1": 0.571,
+   "mas2": 0.143,
+   "p_mod_mas1": 0.498,
+   "empate_sigue": 0.571,
+   "lo_mas1": 0.25,
+   "hi_mas1": 0.842
   },
   {
    "minuto": 70,
    "goles": 2,
    "dif": 2,
-   "n": 14,
-   "mas1": 0.571,
-   "mas2": 0.143,
-   "p_mod_mas1": 0.5,
-   "lider_gana": 0.929,
-   "lo_mas1": 0.326,
-   "hi_mas1": 0.786
+   "n": 13,
+   "mas1": 0.538,
+   "mas2": 0.154,
+   "p_mod_mas1": 0.496,
+   "lider_gana": 0.923,
+   "lo_mas1": 0.291,
+   "hi_mas1": 0.768
   },
   {
    "minuto": 70,
@@ -1467,7 +1474,7 @@
    "n": 2,
    "mas1": 0.0,
    "mas2": 0.0,
-   "p_mod_mas1": 0.514,
+   "p_mod_mas1": 0.508,
    "empate_sigue": 1.0,
    "lo_mas1": 0.0,
    "hi_mas1": 0.658
@@ -1476,25 +1483,25 @@
    "minuto": 70,
    "goles": 3,
    "dif": 1,
-   "n": 11,
-   "mas1": 0.727,
-   "mas2": 0.091,
-   "p_mod_mas1": 0.541,
-   "lider_gana": 0.727,
-   "lo_mas1": 0.434,
-   "hi_mas1": 0.903
+   "n": 13,
+   "mas1": 0.615,
+   "mas2": 0.077,
+   "p_mod_mas1": 0.53,
+   "lider_gana": 0.769,
+   "lo_mas1": 0.355,
+   "hi_mas1": 0.823
   },
   {
    "minuto": 70,
    "goles": 3,
    "dif": 2,
-   "n": 13,
-   "mas1": 0.385,
-   "mas2": 0.231,
-   "p_mod_mas1": 0.536,
+   "n": 14,
+   "mas1": 0.429,
+   "mas2": 0.214,
+   "p_mod_mas1": 0.534,
    "lider_gana": 1.0,
-   "lo_mas1": 0.177,
-   "hi_mas1": 0.645
+   "lo_mas1": 0.214,
+   "hi_mas1": 0.674
   },
   {
    "minuto": 80,
@@ -1503,7 +1510,7 @@
    "n": 3,
    "mas1": 0.333,
    "mas2": 0.0,
-   "p_mod_mas1": 0.329,
+   "p_mod_mas1": 0.324,
    "empate_sigue": 0.667,
    "lo_mas1": 0.061,
    "hi_mas1": 0.792
@@ -1515,7 +1522,7 @@
    "n": 18,
    "mas1": 0.222,
    "mas2": 0.056,
-   "p_mod_mas1": 0.341,
+   "p_mod_mas1": 0.337,
    "lider_gana": 0.944,
    "lo_mas1": 0.09,
    "hi_mas1": 0.452
@@ -1524,25 +1531,25 @@
    "minuto": 80,
    "goles": 2,
    "dif": 0,
-   "n": 7,
-   "mas1": 0.571,
+   "n": 8,
+   "mas1": 0.625,
    "mas2": 0.0,
-   "p_mod_mas1": 0.343,
-   "empate_sigue": 0.429,
-   "lo_mas1": 0.25,
-   "hi_mas1": 0.842
+   "p_mod_mas1": 0.345,
+   "empate_sigue": 0.375,
+   "lo_mas1": 0.306,
+   "hi_mas1": 0.863
   },
   {
    "minuto": 80,
    "goles": 2,
    "dif": 2,
-   "n": 13,
-   "mas1": 0.462,
+   "n": 12,
+   "mas1": 0.417,
    "mas2": 0.0,
-   "p_mod_mas1": 0.325,
+   "p_mod_mas1": 0.32,
    "lider_gana": 1.0,
-   "lo_mas1": 0.232,
-   "hi_mas1": 0.709
+   "lo_mas1": 0.193,
+   "hi_mas1": 0.68
   },
   {
    "minuto": 80,
@@ -1551,7 +1558,7 @@
    "n": 3,
    "mas1": 0.0,
    "mas2": 0.0,
-   "p_mod_mas1": 0.342,
+   "p_mod_mas1": 0.337,
    "empate_sigue": 1.0,
    "lo_mas1": 0.0,
    "hi_mas1": 0.562
@@ -1560,25 +1567,25 @@
    "minuto": 80,
    "goles": 3,
    "dif": 1,
-   "n": 11,
-   "mas1": 0.636,
-   "mas2": 0.091,
-   "p_mod_mas1": 0.368,
-   "lider_gana": 0.636,
-   "lo_mas1": 0.354,
-   "hi_mas1": 0.848
+   "n": 13,
+   "mas1": 0.538,
+   "mas2": 0.077,
+   "p_mod_mas1": 0.359,
+   "lider_gana": 0.692,
+   "lo_mas1": 0.291,
+   "hi_mas1": 0.768
   },
   {
    "minuto": 80,
    "goles": 3,
    "dif": 2,
-   "n": 17,
-   "mas1": 0.353,
-   "mas2": 0.118,
-   "p_mod_mas1": 0.362,
+   "n": 18,
+   "mas1": 0.389,
+   "mas2": 0.111,
+   "p_mod_mas1": 0.36,
    "lider_gana": 1.0,
-   "lo_mas1": 0.173,
-   "hi_mas1": 0.587
+   "lo_mas1": 0.203,
+   "hi_mas1": 0.614
   }
  ],
  "descubrimiento": [
@@ -1587,11 +1594,11 @@
    "goles_min": 0,
    "dif": null,
    "objetivo": "mas1",
-   "k_desc": 34,
-   "n_desc": 36,
-   "k_val": 32,
-   "n_val": 36,
-   "p_valor": 0.007110349543889321,
+   "k_desc": 35,
+   "n_desc": 37,
+   "k_val": 34,
+   "n_val": 38,
+   "p_valor": 0.004288739001681877,
    "confirmada": true
   },
   {
@@ -1628,42 +1635,6 @@
    "k_val": 13,
    "n_val": 13,
    "p_valor": 0.009688901040699992,
-   "confirmada": true
-  },
-  {
-   "minuto": 70,
-   "goles_min": 0,
-   "dif": 2,
-   "objetivo": "lider_gana",
-   "k_desc": 15,
-   "n_desc": 16,
-   "k_val": 11,
-   "n_val": 11,
-   "p_valor": 0.019773267429999988,
-   "confirmada": true
-  },
-  {
-   "minuto": 70,
-   "goles_min": 1,
-   "dif": 2,
-   "objetivo": "lider_gana",
-   "k_desc": 15,
-   "n_desc": 16,
-   "k_val": 11,
-   "n_val": 11,
-   "p_valor": 0.019773267429999988,
-   "confirmada": true
-  },
-  {
-   "minuto": 70,
-   "goles_min": 2,
-   "dif": 2,
-   "objetivo": "lider_gana",
-   "k_desc": 15,
-   "n_desc": 16,
-   "k_val": 11,
-   "n_val": 11,
-   "p_valor": 0.019773267429999988,
    "confirmada": true
   },
   {
@@ -1671,19 +1642,91 @@
    "goles_min": 0,
    "dif": 0,
    "objetivo": "mas1",
-   "k_desc": 23,
-   "n_desc": 23,
-   "k_val": 20,
-   "n_val": 22,
-   "p_valor": 0.020666196971081484,
+   "k_desc": 24,
+   "n_desc": 24,
+   "k_val": 22,
+   "n_val": 24,
+   "p_valor": 0.011874126524546521,
    "confirmada": true
+  },
+  {
+   "minuto": 70,
+   "goles_min": 0,
+   "dif": 2,
+   "objetivo": "lider_gana",
+   "k_desc": 15,
+   "n_desc": 16,
+   "k_val": 11,
+   "n_val": 11,
+   "p_valor": 0.019773267429999988,
+   "confirmada": true
+  },
+  {
+   "minuto": 70,
+   "goles_min": 1,
+   "dif": 2,
+   "objetivo": "lider_gana",
+   "k_desc": 15,
+   "n_desc": 16,
+   "k_val": 11,
+   "n_val": 11,
+   "p_valor": 0.019773267429999988,
+   "confirmada": true
+  },
+  {
+   "minuto": 70,
+   "goles_min": 2,
+   "dif": 2,
+   "objetivo": "lider_gana",
+   "k_desc": 15,
+   "n_desc": 16,
+   "k_val": 11,
+   "n_val": 11,
+   "p_valor": 0.019773267429999988,
+   "confirmada": true
+  },
+  {
+   "minuto": 60,
+   "goles_min": 0,
+   "dif": 1,
+   "objetivo": "lider_gana",
+   "k_desc": 13,
+   "n_desc": 15,
+   "k_val": 11,
+   "n_val": 12,
+   "p_valor": 0.08502504994899995,
+   "confirmada": false
+  },
+  {
+   "minuto": 60,
+   "goles_min": 1,
+   "dif": 1,
+   "objetivo": "lider_gana",
+   "k_desc": 13,
+   "n_desc": 15,
+   "k_val": 11,
+   "n_val": 12,
+   "p_valor": 0.08502504994899995,
+   "confirmada": false
   },
   {
    "minuto": 30,
    "goles_min": 1,
    "dif": null,
    "objetivo": "mas1",
-   "k_desc": 14,
+   "k_desc": 15,
+   "n_desc": 17,
+   "k_val": 14,
+   "n_val": 16,
+   "p_valor": 0.09935968017237844,
+   "confirmada": false
+  },
+  {
+   "minuto": 80,
+   "goles_min": 0,
+   "dif": 1,
+   "objetivo": "lider_gana",
+   "k_desc": 13,
    "n_desc": 16,
    "k_val": 13,
    "n_val": 15,
@@ -1692,26 +1735,14 @@
   },
   {
    "minuto": 80,
-   "goles_min": 0,
-   "dif": 1,
-   "objetivo": "lider_gana",
-   "k_desc": 12,
-   "n_desc": 15,
-   "k_val": 12,
-   "n_val": 14,
-   "p_valor": 0.1608357572756199,
-   "confirmada": false
-  },
-  {
-   "minuto": 80,
    "goles_min": 1,
    "dif": 1,
    "objetivo": "lider_gana",
-   "k_desc": 12,
-   "n_desc": 15,
-   "k_val": 12,
-   "n_val": 14,
-   "p_valor": 0.1608357572756199,
+   "k_desc": 13,
+   "n_desc": 16,
+   "k_val": 13,
+   "n_val": 15,
+   "p_valor": 0.1268277146227629,
    "confirmada": false
   },
   {
@@ -1719,11 +1750,11 @@
    "goles_min": 0,
    "dif": 1,
    "objetivo": "lider_gana",
-   "k_desc": 14,
-   "n_desc": 16,
-   "k_val": 11,
-   "n_val": 13,
-   "p_valor": 0.20247825848319992,
+   "k_desc": 15,
+   "n_desc": 17,
+   "k_val": 12,
+   "n_val": 14,
+   "p_valor": 0.1608357572756199,
    "confirmada": false
   },
   {
@@ -1731,11 +1762,11 @@
    "goles_min": 1,
    "dif": 1,
    "objetivo": "lider_gana",
-   "k_desc": 14,
-   "n_desc": 16,
-   "k_val": 11,
-   "n_val": 13,
-   "p_valor": 0.20247825848319992,
+   "k_desc": 15,
+   "n_desc": 17,
+   "k_val": 12,
+   "n_val": 14,
+   "p_valor": 0.1608357572756199,
    "confirmada": false
   },
   {
@@ -1743,11 +1774,11 @@
    "goles_min": 0,
    "dif": null,
    "objetivo": "mas1",
-   "k_desc": 31,
-   "n_desc": 36,
-   "k_val": 26,
-   "n_val": 36,
-   "p_valor": 0.4663448420702013,
+   "k_desc": 32,
+   "n_desc": 37,
+   "k_val": 27,
+   "n_val": 38,
+   "p_valor": 0.5236019641139863,
    "confirmada": false
   },
   {
@@ -1755,11 +1786,11 @@
    "goles_min": 1,
    "dif": null,
    "objetivo": "mas1",
-   "k_desc": 23,
-   "n_desc": 28,
-   "k_val": 18,
-   "n_val": 26,
-   "p_valor": 0.6274042507634102,
+   "k_desc": 24,
+   "n_desc": 29,
+   "k_val": 20,
+   "n_val": 29,
+   "p_valor": 0.6359959189280554,
    "confirmada": false
   },
   {
@@ -1769,9 +1800,9 @@
    "objetivo": "mas1",
    "k_desc": 14,
    "n_desc": 17,
-   "k_val": 10,
-   "n_val": 15,
-   "p_valor": 0.7216214402043638,
+   "k_val": 11,
+   "n_val": 17,
+   "p_valor": 0.7752153392585194,
    "confirmada": false
   },
   {
@@ -1781,40 +1812,28 @@
    "objetivo": "mas1",
    "k_desc": 14,
    "n_desc": 17,
-   "k_val": 10,
-   "n_val": 15,
-   "p_valor": 0.7216214402043638,
-   "confirmada": false
-  },
-  {
-   "minuto": 60,
-   "goles_min": 0,
-   "dif": null,
-   "objetivo": "mas1",
-   "k_desc": 27,
-   "n_desc": 36,
-   "k_val": 21,
-   "n_val": 36,
-   "p_valor": 0.9529617595470061,
+   "k_val": 11,
+   "n_val": 17,
+   "p_valor": 0.7752153392585194,
    "confirmada": false
   }
  ],
  "ligas": {
   "global": {
-   "n": 107,
-   "goles_partido": 2.766,
-   "over25": 0.551,
+   "n": 110,
+   "goles_partido": 2.782,
+   "over25": 0.564,
    "over25_ic": [
-    0.457,
-    0.642
+    0.47,
+    0.653
    ],
-   "btts": 0.421,
-   "gol_desde_75": 0.486,
+   "btts": 0.436,
+   "gol_desde_75": 0.482,
    "gol_desde_75_ic": [
-    0.393,
-    0.58
+    0.391,
+    0.574
    ],
-   "parte_2t": 0.557
+   "parte_2t": 0.546
   },
   "ligas": [
    {
@@ -1826,22 +1845,43 @@
      "cuota_media": 1.9
     },
     "base": {
-     "n": 19,
-     "goles_partido": 2.368,
-     "over25": 0.579,
+     "n": 18,
+     "goles_partido": 2.333,
+     "over25": 0.556,
      "over25_ic": [
-      0.363,
-      0.769
+      0.337,
+      0.754
      ],
-     "btts": 0.263,
-     "gol_desde_75": 0.316,
+     "btts": 0.278,
+     "gol_desde_75": 0.278,
      "gol_desde_75_ic": [
-      0.154,
-      0.54
+      0.125,
+      0.509
      ],
-     "parte_2t": 0.667
+     "parte_2t": 0.643
     },
-    "factor": 0.912
+    "factor": 0.903
+   },
+   {
+    "liga": "Perú Liga 1",
+    "tuyo": null,
+    "base": {
+     "n": 18,
+     "goles_partido": 3.111,
+     "over25": 0.722,
+     "over25_ic": [
+      0.491,
+      0.875
+     ],
+     "btts": 0.556,
+     "gol_desde_75": 0.556,
+     "gol_desde_75_ic": [
+      0.337,
+      0.754
+     ],
+     "parte_2t": 0.5
+    },
+    "factor": 1.071
    },
    {
     "liga": "Colombia Primera A",
@@ -1867,28 +1907,7 @@
      ],
      "parte_2t": 0.571
     },
-    "factor": 0.88
-   },
-   {
-    "liga": "Perú Liga 1",
-    "tuyo": null,
-    "base": {
-     "n": 14,
-     "goles_partido": 3.071,
-     "over25": 0.643,
-     "over25_ic": [
-      0.388,
-      0.837
-     ],
-     "btts": 0.5,
-     "gol_desde_75": 0.571,
-     "gol_desde_75_ic": [
-      0.326,
-      0.786
-     ],
-     "parte_2t": 0.535
-    },
-    "factor": 1.059
+    "factor": 0.878
    },
    {
     "liga": "Brasil Serie A",
@@ -1914,7 +1933,7 @@
      ],
      "parte_2t": 0.667
     },
-    "factor": 0.985
+    "factor": 0.982
    },
    {
     "liga": "Países Bajos Eredivisie",
@@ -1940,7 +1959,7 @@
      ],
      "parte_2t": 0.462
     },
-    "factor": 1.019
+    "factor": 1.016
    },
    {
     "liga": "Argentina Liga Profesional",
@@ -1966,7 +1985,7 @@
      ],
      "parte_2t": 0.667
     },
-    "factor": 1.089
+    "factor": 1.087
    },
    {
     "liga": "Países Bajos Eerste Divisie",
@@ -1992,7 +2011,7 @@
      ],
      "parte_2t": 0.308
     },
-    "factor": 1.044
+    "factor": 1.042
    },
    {
     "liga": "Bolivia Primera",
@@ -2013,7 +2032,7 @@
      ],
      "parte_2t": 0.545
     },
-    "factor": 1.247
+    "factor": 1.244
    },
    {
     "liga": "UEFA Nations League",
@@ -2026,7 +2045,7 @@
     "base": {
      "n": 3
     },
-    "factor": 0.969
+    "factor": 0.968
    },
    {
     "liga": "MLS",
@@ -2045,12 +2064,12 @@
   "min_partidos": 4
  },
  "equipos": {
-  "partidos": 11,
-  "predicciones": 66,
-  "brier_1x2_liga": 0.344,
-  "brier_1x2_equipos": 0.393,
-  "brier_gol_liga": 0.142,
-  "brier_gol_equipos": 0.138
+  "partidos": 9,
+  "predicciones": 54,
+  "brier_1x2_liga": 0.36,
+  "brier_1x2_equipos": 0.412,
+  "brier_gol_liga": 0.148,
+  "brier_gol_equipos": 0.149
  },
  "hoy": {
   "fecha": "2026-09-30",
@@ -2077,11 +2096,11 @@
       "marcador": "0:0",
       "over": {
        "linea": 0.5,
-       "p": 0.887,
-       "cuota_min": 1.128
+       "p": 0.885,
+       "cuota_min": 1.13
       },
       "lider": null,
-      "empate_sigue": 0.241,
+      "empate_sigue": 0.243,
       "patrones": [],
       "alta": false
      },
@@ -2090,8 +2109,8 @@
       "marcador": "1:0",
       "over": {
        "linea": 1.5,
-       "p": 0.887,
-       "cuota_min": 1.128
+       "p": 0.885,
+       "cuota_min": 1.13
       },
       "lider": {
        "lado": "local",
@@ -2109,13 +2128,13 @@
       "marcador": "0:1",
       "over": {
        "linea": 1.5,
-       "p": 0.887,
-       "cuota_min": 1.128
+       "p": 0.885,
+       "cuota_min": 1.13
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.366,
-       "cuota_min": 2.735
+       "p": 0.367,
+       "cuota_min": 2.724
       },
       "empate_sigue": null,
       "patrones": [
@@ -2128,11 +2147,11 @@
       "marcador": "1:1",
       "over": {
        "linea": 2.5,
-       "p": 0.887,
-       "cuota_min": 1.128
+       "p": 0.885,
+       "cuota_min": 1.13
       },
       "lider": null,
-      "empate_sigue": 0.241,
+      "empate_sigue": 0.243,
       "patrones": [
        "P1"
       ],
@@ -2143,8 +2162,8 @@
       "marcador": "2:0",
       "over": {
        "linea": 2.5,
-       "p": 0.887,
-       "cuota_min": 1.128
+       "p": 0.885,
+       "cuota_min": 1.13
       },
       "lider": {
        "lado": "local",
@@ -2163,13 +2182,13 @@
       "marcador": "0:2",
       "over": {
        "linea": 2.5,
-       "p": 0.887,
-       "cuota_min": 1.128
+       "p": 0.885,
+       "cuota_min": 1.13
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.646,
-       "cuota_min": 1.549
+       "p": 0.648,
+       "cuota_min": 1.544
       },
       "empate_sigue": null,
       "patrones": [
@@ -2183,11 +2202,11 @@
       "marcador": "0:0",
       "over": {
        "linea": 0.5,
-       "p": 0.795,
-       "cuota_min": 1.257
+       "p": 0.789,
+       "cuota_min": 1.267
       },
       "lider": null,
-      "empate_sigue": 0.315,
+      "empate_sigue": 0.32,
       "patrones": [
        "P5"
       ],
@@ -2198,8 +2217,8 @@
       "marcador": "1:0",
       "over": {
        "linea": 1.5,
-       "p": 0.795,
-       "cuota_min": 1.257
+       "p": 0.789,
+       "cuota_min": 1.267
       },
       "lider": {
        "lado": "local",
@@ -2217,13 +2236,13 @@
       "marcador": "0:1",
       "over": {
        "linea": 1.5,
-       "p": 0.795,
-       "cuota_min": 1.257
+       "p": 0.789,
+       "cuota_min": 1.267
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.442,
-       "cuota_min": 2.261
+       "p": 0.447,
+       "cuota_min": 2.237
       },
       "empate_sigue": null,
       "patrones": [
@@ -2236,11 +2255,11 @@
       "marcador": "1:1",
       "over": {
        "linea": 2.5,
-       "p": 0.795,
-       "cuota_min": 1.257
+       "p": 0.789,
+       "cuota_min": 1.267
       },
       "lider": null,
-      "empate_sigue": 0.315,
+      "empate_sigue": 0.32,
       "patrones": [
        "P1"
       ],
@@ -2251,12 +2270,12 @@
       "marcador": "2:0",
       "over": {
        "linea": 2.5,
-       "p": 0.795,
-       "cuota_min": 1.257
+       "p": 0.789,
+       "cuota_min": 1.267
       },
       "lider": {
        "lado": "local",
-       "p": 0.977,
+       "p": 0.978,
        "cuota_min": 1.023
       },
       "empate_sigue": null,
@@ -2271,13 +2290,13 @@
       "marcador": "0:2",
       "over": {
        "linea": 2.5,
-       "p": 0.795,
-       "cuota_min": 1.257
+       "p": 0.789,
+       "cuota_min": 1.267
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.747,
-       "cuota_min": 1.339
+       "p": 0.752,
+       "cuota_min": 1.33
       },
       "empate_sigue": null,
       "patrones": [
@@ -2291,11 +2310,11 @@
       "marcador": "0:0",
       "over": {
        "linea": 0.5,
-       "p": 0.713,
-       "cuota_min": 1.402
+       "p": 0.707,
+       "cuota_min": 1.413
       },
       "lider": null,
-      "empate_sigue": 0.379,
+      "empate_sigue": 0.383,
       "patrones": [
        "P5"
       ],
@@ -2306,13 +2325,13 @@
       "marcador": "1:0",
       "over": {
        "linea": 1.5,
-       "p": 0.713,
-       "cuota_min": 1.402
+       "p": 0.707,
+       "cuota_min": 1.413
       },
       "lider": {
        "lado": "local",
        "p": 0.876,
-       "cuota_min": 1.142
+       "cuota_min": 1.141
       },
       "empate_sigue": null,
       "patrones": [
@@ -2325,13 +2344,13 @@
       "marcador": "0:1",
       "over": {
        "linea": 1.5,
-       "p": 0.713,
-       "cuota_min": 1.402
+       "p": 0.707,
+       "cuota_min": 1.413
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.503,
-       "cuota_min": 1.99
+       "p": 0.507,
+       "cuota_min": 1.974
       },
       "empate_sigue": null,
       "patrones": [
@@ -2344,11 +2363,11 @@
       "marcador": "1:1",
       "over": {
        "linea": 2.5,
-       "p": 0.713,
-       "cuota_min": 1.402
+       "p": 0.707,
+       "cuota_min": 1.413
       },
       "lider": null,
-      "empate_sigue": 0.379,
+      "empate_sigue": 0.383,
       "patrones": [
        "P1"
       ],
@@ -2359,8 +2378,8 @@
       "marcador": "2:0",
       "over": {
        "linea": 2.5,
-       "p": 0.713,
-       "cuota_min": 1.402
+       "p": 0.707,
+       "cuota_min": 1.413
       },
       "lider": {
        "lado": "local",
@@ -2379,13 +2398,13 @@
       "marcador": "0:2",
       "over": {
        "linea": 2.5,
-       "p": 0.713,
-       "cuota_min": 1.402
+       "p": 0.707,
+       "cuota_min": 1.413
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.811,
-       "cuota_min": 1.234
+       "p": 0.814,
+       "cuota_min": 1.228
       },
       "empate_sigue": null,
       "patrones": [
@@ -2399,11 +2418,11 @@
       "marcador": "0:0",
       "over": {
        "linea": 0.5,
-       "p": 0.604,
-       "cuota_min": 1.655
+       "p": 0.599,
+       "cuota_min": 1.669
       },
       "lider": null,
-      "empate_sigue": 0.463,
+      "empate_sigue": 0.467,
       "patrones": [],
       "alta": false
      },
@@ -2412,12 +2431,12 @@
       "marcador": "1:0",
       "over": {
        "linea": 1.5,
-       "p": 0.604,
-       "cuota_min": 1.655
+       "p": 0.599,
+       "cuota_min": 1.669
       },
       "lider": {
        "lado": "local",
-       "p": 0.885,
+       "p": 0.886,
        "cuota_min": 1.129
       },
       "empate_sigue": null,
@@ -2431,13 +2450,13 @@
       "marcador": "0:1",
       "over": {
        "linea": 1.5,
-       "p": 0.604,
-       "cuota_min": 1.655
+       "p": 0.599,
+       "cuota_min": 1.669
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.578,
-       "cuota_min": 1.731
+       "p": 0.581,
+       "cuota_min": 1.721
       },
       "empate_sigue": null,
       "patrones": [
@@ -2450,11 +2469,11 @@
       "marcador": "1:1",
       "over": {
        "linea": 2.5,
-       "p": 0.604,
-       "cuota_min": 1.655
+       "p": 0.599,
+       "cuota_min": 1.669
       },
       "lider": null,
-      "empate_sigue": 0.463,
+      "empate_sigue": 0.467,
       "patrones": [
        "P1"
       ],
@@ -2465,8 +2484,8 @@
       "marcador": "2:0",
       "over": {
        "linea": 2.5,
-       "p": 0.604,
-       "cuota_min": 1.655
+       "p": 0.599,
+       "cuota_min": 1.669
       },
       "lider": {
        "lado": "local",
@@ -2485,13 +2504,13 @@
       "marcador": "0:2",
       "over": {
        "linea": 2.5,
-       "p": 0.604,
-       "cuota_min": 1.655
+       "p": 0.599,
+       "cuota_min": 1.669
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.874,
-       "cuota_min": 1.145
+       "p": 0.876,
+       "cuota_min": 1.141
       },
       "empate_sigue": null,
       "patrones": [
@@ -2505,12 +2524,12 @@
       "marcador": "2:1",
       "over": {
        "linea": 3.5,
-       "p": 0.604,
-       "cuota_min": 1.655
+       "p": 0.599,
+       "cuota_min": 1.669
       },
       "lider": {
        "lado": "local",
-       "p": 0.885,
+       "p": 0.886,
        "cuota_min": 1.129
       },
       "empate_sigue": null,
@@ -2525,13 +2544,13 @@
       "marcador": "1:2",
       "over": {
        "linea": 3.5,
-       "p": 0.604,
-       "cuota_min": 1.655
+       "p": 0.599,
+       "cuota_min": 1.669
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.578,
-       "cuota_min": 1.731
+       "p": 0.581,
+       "cuota_min": 1.721
       },
       "empate_sigue": null,
       "patrones": [
@@ -2545,8 +2564,8 @@
       "marcador": "3:0",
       "over": {
        "linea": 3.5,
-       "p": 0.604,
-       "cuota_min": 1.655
+       "p": 0.599,
+       "cuota_min": 1.669
       },
       "lider": {
        "lado": "local",
@@ -2565,13 +2584,13 @@
       "marcador": "0:3",
       "over": {
        "linea": 3.5,
-       "p": 0.604,
-       "cuota_min": 1.655
+       "p": 0.599,
+       "cuota_min": 1.669
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.973,
-       "cuota_min": 1.028
+       "p": 0.974,
+       "cuota_min": 1.027
       },
       "empate_sigue": null,
       "patrones": [
@@ -2585,11 +2604,11 @@
       "marcador": "0:0",
       "over": {
        "linea": 0.5,
-       "p": 0.463,
-       "cuota_min": 2.16
+       "p": 0.458,
+       "cuota_min": 2.185
       },
       "lider": null,
-      "empate_sigue": 0.577,
+      "empate_sigue": 0.582,
       "patrones": [],
       "alta": false
      },
@@ -2598,13 +2617,13 @@
       "marcador": "1:0",
       "over": {
        "linea": 1.5,
-       "p": 0.463,
-       "cuota_min": 2.16
+       "p": 0.458,
+       "cuota_min": 2.185
       },
       "lider": {
        "lado": "local",
-       "p": 0.904,
-       "cuota_min": 1.106
+       "p": 0.905,
+       "cuota_min": 1.105
       },
       "empate_sigue": null,
       "patrones": [
@@ -2617,13 +2636,13 @@
       "marcador": "0:1",
       "over": {
        "linea": 1.5,
-       "p": 0.463,
-       "cuota_min": 2.16
+       "p": 0.458,
+       "cuota_min": 2.185
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.673,
-       "cuota_min": 1.485
+       "p": 0.677,
+       "cuota_min": 1.477
       },
       "empate_sigue": null,
       "patrones": [
@@ -2636,11 +2655,11 @@
       "marcador": "1:1",
       "over": {
        "linea": 2.5,
-       "p": 0.463,
-       "cuota_min": 2.16
+       "p": 0.458,
+       "cuota_min": 2.185
       },
       "lider": null,
-      "empate_sigue": 0.577,
+      "empate_sigue": 0.582,
       "patrones": [
        "P1"
       ],
@@ -2651,8 +2670,8 @@
       "marcador": "2:0",
       "over": {
        "linea": 2.5,
-       "p": 0.463,
-       "cuota_min": 2.16
+       "p": 0.458,
+       "cuota_min": 2.185
       },
       "lider": {
        "lado": "local",
@@ -2671,13 +2690,13 @@
       "marcador": "0:2",
       "over": {
        "linea": 2.5,
-       "p": 0.463,
-       "cuota_min": 2.16
+       "p": 0.458,
+       "cuota_min": 2.185
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.931,
-       "cuota_min": 1.074
+       "p": 0.933,
+       "cuota_min": 1.072
       },
       "empate_sigue": null,
       "patrones": [
@@ -2691,13 +2710,13 @@
       "marcador": "2:1",
       "over": {
        "linea": 3.5,
-       "p": 0.463,
-       "cuota_min": 2.16
+       "p": 0.458,
+       "cuota_min": 2.185
       },
       "lider": {
        "lado": "local",
-       "p": 0.904,
-       "cuota_min": 1.106
+       "p": 0.905,
+       "cuota_min": 1.105
       },
       "empate_sigue": null,
       "patrones": [
@@ -2711,13 +2730,13 @@
       "marcador": "1:2",
       "over": {
        "linea": 3.5,
-       "p": 0.463,
-       "cuota_min": 2.16
+       "p": 0.458,
+       "cuota_min": 2.185
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.673,
-       "cuota_min": 1.485
+       "p": 0.677,
+       "cuota_min": 1.477
       },
       "empate_sigue": null,
       "patrones": [
@@ -2731,8 +2750,8 @@
       "marcador": "3:0",
       "over": {
        "linea": 3.5,
-       "p": 0.463,
-       "cuota_min": 2.16
+       "p": 0.458,
+       "cuota_min": 2.185
       },
       "lider": {
        "lado": "local",
@@ -2751,8 +2770,8 @@
       "marcador": "0:3",
       "over": {
        "linea": 3.5,
-       "p": 0.463,
-       "cuota_min": 2.16
+       "p": 0.458,
+       "cuota_min": 2.185
       },
       "lider": {
        "lado": "visitante",
@@ -2792,11 +2811,11 @@
       "marcador": "0:0",
       "over": {
        "linea": 0.5,
-       "p": 0.929,
-       "cuota_min": 1.077
+       "p": 0.928,
+       "cuota_min": 1.078
       },
       "lider": null,
-      "empate_sigue": 0.256,
+      "empate_sigue": 0.257,
       "patrones": [],
       "alta": false
      },
@@ -2805,13 +2824,13 @@
       "marcador": "1:0",
       "over": {
        "linea": 1.5,
-       "p": 0.929,
-       "cuota_min": 1.077
+       "p": 0.928,
+       "cuota_min": 1.078
       },
       "lider": {
        "lado": "local",
        "p": 0.541,
-       "cuota_min": 1.85
+       "cuota_min": 1.847
       },
       "empate_sigue": null,
       "patrones": [
@@ -2824,12 +2843,12 @@
       "marcador": "0:1",
       "over": {
        "linea": 1.5,
-       "p": 0.929,
-       "cuota_min": 1.077
+       "p": 0.928,
+       "cuota_min": 1.078
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.715,
+       "p": 0.716,
        "cuota_min": 1.398
       },
       "empate_sigue": null,
@@ -2843,11 +2862,11 @@
       "marcador": "1:1",
       "over": {
        "linea": 2.5,
-       "p": 0.929,
-       "cuota_min": 1.077
+       "p": 0.928,
+       "cuota_min": 1.078
       },
       "lider": null,
-      "empate_sigue": 0.256,
+      "empate_sigue": 0.257,
       "patrones": [
        "P1"
       ],
@@ -2858,13 +2877,13 @@
       "marcador": "2:0",
       "over": {
        "linea": 2.5,
-       "p": 0.929,
-       "cuota_min": 1.077
+       "p": 0.928,
+       "cuota_min": 1.078
       },
       "lider": {
        "lado": "local",
-       "p": 0.77,
-       "cuota_min": 1.298
+       "p": 0.772,
+       "cuota_min": 1.296
       },
       "empate_sigue": null,
       "patrones": [
@@ -2878,13 +2897,13 @@
       "marcador": "0:2",
       "over": {
        "linea": 2.5,
-       "p": 0.929,
-       "cuota_min": 1.077
+       "p": 0.928,
+       "cuota_min": 1.078
       },
       "lider": {
        "lado": "visitante",
        "p": 0.888,
-       "cuota_min": 1.127
+       "cuota_min": 1.126
       },
       "empate_sigue": null,
       "patrones": [
@@ -2898,11 +2917,11 @@
       "marcador": "0:0",
       "over": {
        "linea": 0.5,
-       "p": 0.854,
-       "cuota_min": 1.171
+       "p": 0.849,
+       "cuota_min": 1.178
       },
       "lider": null,
-      "empate_sigue": 0.312,
+      "empate_sigue": 0.315,
       "patrones": [
        "P5"
       ],
@@ -2913,13 +2932,13 @@
       "marcador": "1:0",
       "over": {
        "linea": 1.5,
-       "p": 0.854,
-       "cuota_min": 1.171
+       "p": 0.849,
+       "cuota_min": 1.178
       },
       "lider": {
        "lado": "local",
-       "p": 0.583,
-       "cuota_min": 1.716
+       "p": 0.585,
+       "cuota_min": 1.708
       },
       "empate_sigue": null,
       "patrones": [
@@ -2932,13 +2951,13 @@
       "marcador": "0:1",
       "over": {
        "linea": 1.5,
-       "p": 0.854,
-       "cuota_min": 1.171
+       "p": 0.849,
+       "cuota_min": 1.178
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.729,
-       "cuota_min": 1.372
+       "p": 0.73,
+       "cuota_min": 1.37
       },
       "empate_sigue": null,
       "patrones": [
@@ -2951,11 +2970,11 @@
       "marcador": "1:1",
       "over": {
        "linea": 2.5,
-       "p": 0.854,
-       "cuota_min": 1.171
+       "p": 0.849,
+       "cuota_min": 1.178
       },
       "lider": null,
-      "empate_sigue": 0.312,
+      "empate_sigue": 0.315,
       "patrones": [
        "P1"
       ],
@@ -2966,13 +2985,13 @@
       "marcador": "2:0",
       "over": {
        "linea": 2.5,
-       "p": 0.854,
-       "cuota_min": 1.171
+       "p": 0.849,
+       "cuota_min": 1.178
       },
       "lider": {
        "lado": "local",
-       "p": 0.828,
-       "cuota_min": 1.208
+       "p": 0.831,
+       "cuota_min": 1.203
       },
       "empate_sigue": null,
       "patrones": [
@@ -2986,13 +3005,13 @@
       "marcador": "0:2",
       "over": {
        "linea": 2.5,
-       "p": 0.854,
-       "cuota_min": 1.171
+       "p": 0.849,
+       "cuota_min": 1.178
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.913,
-       "cuota_min": 1.096
+       "p": 0.914,
+       "cuota_min": 1.094
       },
       "empate_sigue": null,
       "patrones": [
@@ -3006,11 +3025,11 @@
       "marcador": "0:0",
       "over": {
        "linea": 0.5,
-       "p": 0.78,
-       "cuota_min": 1.282
+       "p": 0.775,
+       "cuota_min": 1.29
       },
       "lider": null,
-      "empate_sigue": 0.362,
+      "empate_sigue": 0.365,
       "patrones": [
        "P5"
       ],
@@ -3021,13 +3040,13 @@
       "marcador": "1:0",
       "over": {
        "linea": 1.5,
-       "p": 0.78,
-       "cuota_min": 1.282
+       "p": 0.775,
+       "cuota_min": 1.29
       },
       "lider": {
        "lado": "local",
-       "p": 0.618,
-       "cuota_min": 1.619
+       "p": 0.62,
+       "cuota_min": 1.612
       },
       "empate_sigue": null,
       "patrones": [
@@ -3040,13 +3059,13 @@
       "marcador": "0:1",
       "over": {
        "linea": 1.5,
-       "p": 0.78,
-       "cuota_min": 1.282
+       "p": 0.775,
+       "cuota_min": 1.29
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.744,
-       "cuota_min": 1.344
+       "p": 0.745,
+       "cuota_min": 1.342
       },
       "empate_sigue": null,
       "patrones": [
@@ -3059,11 +3078,11 @@
       "marcador": "1:1",
       "over": {
        "linea": 2.5,
-       "p": 0.78,
-       "cuota_min": 1.282
+       "p": 0.775,
+       "cuota_min": 1.29
       },
       "lider": null,
-      "empate_sigue": 0.362,
+      "empate_sigue": 0.365,
       "patrones": [
        "P1"
       ],
@@ -3074,13 +3093,13 @@
       "marcador": "2:0",
       "over": {
        "linea": 2.5,
-       "p": 0.78,
-       "cuota_min": 1.282
+       "p": 0.775,
+       "cuota_min": 1.29
       },
       "lider": {
        "lado": "local",
-       "p": 0.867,
-       "cuota_min": 1.154
+       "p": 0.869,
+       "cuota_min": 1.15
       },
       "empate_sigue": null,
       "patrones": [
@@ -3094,13 +3113,13 @@
       "marcador": "0:2",
       "over": {
        "linea": 2.5,
-       "p": 0.78,
-       "cuota_min": 1.282
+       "p": 0.775,
+       "cuota_min": 1.29
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.931,
-       "cuota_min": 1.074
+       "p": 0.932,
+       "cuota_min": 1.073
       },
       "empate_sigue": null,
       "patrones": [
@@ -3114,11 +3133,11 @@
       "marcador": "0:0",
       "over": {
        "linea": 0.5,
-       "p": 0.675,
-       "cuota_min": 1.481
+       "p": 0.67,
+       "cuota_min": 1.492
       },
       "lider": null,
-      "empate_sigue": 0.433,
+      "empate_sigue": 0.437,
       "patrones": [],
       "alta": false
      },
@@ -3127,13 +3146,13 @@
       "marcador": "1:0",
       "over": {
        "linea": 1.5,
-       "p": 0.675,
-       "cuota_min": 1.481
+       "p": 0.67,
+       "cuota_min": 1.492
       },
       "lider": {
        "lado": "local",
-       "p": 0.665,
-       "cuota_min": 1.505
+       "p": 0.667,
+       "cuota_min": 1.5
       },
       "empate_sigue": null,
       "patrones": [
@@ -3146,13 +3165,13 @@
       "marcador": "0:1",
       "over": {
        "linea": 1.5,
-       "p": 0.675,
-       "cuota_min": 1.481
+       "p": 0.67,
+       "cuota_min": 1.492
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.769,
-       "cuota_min": 1.301
+       "p": 0.77,
+       "cuota_min": 1.299
       },
       "empate_sigue": null,
       "patrones": [
@@ -3165,11 +3184,11 @@
       "marcador": "1:1",
       "over": {
        "linea": 2.5,
-       "p": 0.675,
-       "cuota_min": 1.481
+       "p": 0.67,
+       "cuota_min": 1.492
       },
       "lider": null,
-      "empate_sigue": 0.433,
+      "empate_sigue": 0.437,
       "patrones": [
        "P1"
       ],
@@ -3180,13 +3199,13 @@
       "marcador": "2:0",
       "over": {
        "linea": 2.5,
-       "p": 0.675,
-       "cuota_min": 1.481
+       "p": 0.67,
+       "cuota_min": 1.492
       },
       "lider": {
        "lado": "local",
-       "p": 0.907,
-       "cuota_min": 1.102
+       "p": 0.909,
+       "cuota_min": 1.1
       },
       "empate_sigue": null,
       "patrones": [
@@ -3200,13 +3219,13 @@
       "marcador": "0:2",
       "over": {
        "linea": 2.5,
-       "p": 0.675,
-       "cuota_min": 1.481
+       "p": 0.67,
+       "cuota_min": 1.492
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.951,
-       "cuota_min": 1.052
+       "p": 0.952,
+       "cuota_min": 1.051
       },
       "empate_sigue": null,
       "patrones": [
@@ -3220,13 +3239,13 @@
       "marcador": "2:1",
       "over": {
        "linea": 3.5,
-       "p": 0.675,
-       "cuota_min": 1.481
+       "p": 0.67,
+       "cuota_min": 1.492
       },
       "lider": {
        "lado": "local",
-       "p": 0.665,
-       "cuota_min": 1.505
+       "p": 0.667,
+       "cuota_min": 1.5
       },
       "empate_sigue": null,
       "patrones": [
@@ -3240,13 +3259,13 @@
       "marcador": "1:2",
       "over": {
        "linea": 3.5,
-       "p": 0.675,
-       "cuota_min": 1.481
+       "p": 0.67,
+       "cuota_min": 1.492
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.769,
-       "cuota_min": 1.301
+       "p": 0.77,
+       "cuota_min": 1.299
       },
       "empate_sigue": null,
       "patrones": [
@@ -3260,13 +3279,13 @@
       "marcador": "3:0",
       "over": {
        "linea": 3.5,
-       "p": 0.675,
-       "cuota_min": 1.481
+       "p": 0.67,
+       "cuota_min": 1.492
       },
       "lider": {
        "lado": "local",
        "p": 0.982,
-       "cuota_min": 1.019
+       "cuota_min": 1.018
       },
       "empate_sigue": null,
       "patrones": [
@@ -3280,8 +3299,8 @@
       "marcador": "0:3",
       "over": {
        "linea": 3.5,
-       "p": 0.675,
-       "cuota_min": 1.481
+       "p": 0.67,
+       "cuota_min": 1.492
       },
       "lider": {
        "lado": "visitante",
@@ -3300,11 +3319,11 @@
       "marcador": "0:0",
       "over": {
        "linea": 0.5,
-       "p": 0.53,
-       "cuota_min": 1.889
+       "p": 0.524,
+       "cuota_min": 1.909
       },
       "lider": null,
-      "empate_sigue": 0.538,
+      "empate_sigue": 0.543,
       "patrones": [],
       "alta": false
      },
@@ -3313,13 +3332,13 @@
       "marcador": "1:0",
       "over": {
        "linea": 1.5,
-       "p": 0.53,
-       "cuota_min": 1.889
+       "p": 0.524,
+       "cuota_min": 1.909
       },
       "lider": {
        "lado": "local",
-       "p": 0.73,
-       "cuota_min": 1.37
+       "p": 0.732,
+       "cuota_min": 1.365
       },
       "empate_sigue": null,
       "patrones": [
@@ -3332,13 +3351,13 @@
       "marcador": "0:1",
       "over": {
        "linea": 1.5,
-       "p": 0.53,
-       "cuota_min": 1.889
+       "p": 0.524,
+       "cuota_min": 1.909
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.808,
-       "cuota_min": 1.237
+       "p": 0.81,
+       "cuota_min": 1.234
       },
       "empate_sigue": null,
       "patrones": [
@@ -3351,11 +3370,11 @@
       "marcador": "1:1",
       "over": {
        "linea": 2.5,
-       "p": 0.53,
-       "cuota_min": 1.889
+       "p": 0.524,
+       "cuota_min": 1.909
       },
       "lider": null,
-      "empate_sigue": 0.538,
+      "empate_sigue": 0.543,
       "patrones": [
        "P1"
       ],
@@ -3366,13 +3385,13 @@
       "marcador": "2:0",
       "over": {
        "linea": 2.5,
-       "p": 0.53,
-       "cuota_min": 1.889
+       "p": 0.524,
+       "cuota_min": 1.909
       },
       "lider": {
        "lado": "local",
-       "p": 0.947,
-       "cuota_min": 1.056
+       "p": 0.948,
+       "cuota_min": 1.055
       },
       "empate_sigue": null,
       "patrones": [
@@ -3386,13 +3405,13 @@
       "marcador": "0:2",
       "over": {
        "linea": 2.5,
-       "p": 0.53,
-       "cuota_min": 1.889
+       "p": 0.524,
+       "cuota_min": 1.909
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.971,
-       "cuota_min": 1.03
+       "p": 0.972,
+       "cuota_min": 1.029
       },
       "empate_sigue": null,
       "patrones": [
@@ -3406,13 +3425,13 @@
       "marcador": "2:1",
       "over": {
        "linea": 3.5,
-       "p": 0.53,
-       "cuota_min": 1.889
+       "p": 0.524,
+       "cuota_min": 1.909
       },
       "lider": {
        "lado": "local",
-       "p": 0.73,
-       "cuota_min": 1.37
+       "p": 0.732,
+       "cuota_min": 1.365
       },
       "empate_sigue": null,
       "patrones": [
@@ -3426,13 +3445,13 @@
       "marcador": "1:2",
       "over": {
        "linea": 3.5,
-       "p": 0.53,
-       "cuota_min": 1.889
+       "p": 0.524,
+       "cuota_min": 1.909
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.808,
-       "cuota_min": 1.237
+       "p": 0.81,
+       "cuota_min": 1.234
       },
       "empate_sigue": null,
       "patrones": [
@@ -3446,8 +3465,8 @@
       "marcador": "3:0",
       "over": {
        "linea": 3.5,
-       "p": 0.53,
-       "cuota_min": 1.889
+       "p": 0.524,
+       "cuota_min": 1.909
       },
       "lider": {
        "lado": "local",
@@ -3466,8 +3485,8 @@
       "marcador": "0:3",
       "over": {
        "linea": 3.5,
-       "p": 0.53,
-       "cuota_min": 1.889
+       "p": 0.524,
+       "cuota_min": 1.909
       },
       "lider": {
        "lado": "visitante",
@@ -3498,7 +3517,7 @@
      "empate": 0.226,
      "visitante": 0.173,
      "over25": null,
-     "goles_esperados": 2.418
+     "goles_esperados": 2.423
     },
     "filas": [
      {
@@ -3506,11 +3525,11 @@
       "marcador": "0:0",
       "over": {
        "linea": 0.5,
-       "p": 0.843,
-       "cuota_min": 1.186
+       "p": 0.842,
+       "cuota_min": 1.188
       },
       "lider": null,
-      "empate_sigue": 0.293,
+      "empate_sigue": 0.294,
       "patrones": [],
       "alta": false
      },
@@ -3519,13 +3538,13 @@
       "marcador": "1:0",
       "over": {
        "linea": 1.5,
-       "p": 0.843,
-       "cuota_min": 1.186
+       "p": 0.842,
+       "cuota_min": 1.188
       },
       "lider": {
        "lado": "local",
        "p": 0.838,
-       "cuota_min": 1.193
+       "cuota_min": 1.194
       },
       "empate_sigue": null,
       "patrones": [
@@ -3538,13 +3557,13 @@
       "marcador": "0:1",
       "over": {
        "linea": 1.5,
-       "p": 0.843,
-       "cuota_min": 1.186
+       "p": 0.842,
+       "cuota_min": 1.188
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.455,
-       "cuota_min": 2.197
+       "p": 0.456,
+       "cuota_min": 2.191
       },
       "empate_sigue": null,
       "patrones": [
@@ -3557,11 +3576,11 @@
       "marcador": "1:1",
       "over": {
        "linea": 2.5,
-       "p": 0.843,
-       "cuota_min": 1.186
+       "p": 0.842,
+       "cuota_min": 1.188
       },
       "lider": null,
-      "empate_sigue": 0.293,
+      "empate_sigue": 0.294,
       "patrones": [
        "P1"
       ],
@@ -3572,8 +3591,8 @@
       "marcador": "2:0",
       "over": {
        "linea": 2.5,
-       "p": 0.843,
-       "cuota_min": 1.186
+       "p": 0.842,
+       "cuota_min": 1.188
       },
       "lider": {
        "lado": "local",
@@ -3592,13 +3611,13 @@
       "marcador": "0:2",
       "over": {
        "linea": 2.5,
-       "p": 0.843,
-       "cuota_min": 1.186
+       "p": 0.842,
+       "cuota_min": 1.188
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.74,
-       "cuota_min": 1.351
+       "p": 0.742,
+       "cuota_min": 1.348
       },
       "empate_sigue": null,
       "patrones": [
@@ -3612,11 +3631,11 @@
       "marcador": "0:0",
       "over": {
        "linea": 0.5,
-       "p": 0.74,
-       "cuota_min": 1.351
+       "p": 0.735,
+       "cuota_min": 1.361
       },
       "lider": null,
-      "empate_sigue": 0.369,
+      "empate_sigue": 0.374,
       "patrones": [
        "P5"
       ],
@@ -3627,8 +3646,8 @@
       "marcador": "1:0",
       "over": {
        "linea": 1.5,
-       "p": 0.74,
-       "cuota_min": 1.351
+       "p": 0.735,
+       "cuota_min": 1.361
       },
       "lider": {
        "lado": "local",
@@ -3646,13 +3665,13 @@
       "marcador": "0:1",
       "over": {
        "linea": 1.5,
-       "p": 0.74,
-       "cuota_min": 1.351
+       "p": 0.735,
+       "cuota_min": 1.361
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.526,
-       "cuota_min": 1.902
+       "p": 0.53,
+       "cuota_min": 1.888
       },
       "empate_sigue": null,
       "patrones": [
@@ -3665,11 +3684,11 @@
       "marcador": "1:1",
       "over": {
        "linea": 2.5,
-       "p": 0.74,
-       "cuota_min": 1.351
+       "p": 0.735,
+       "cuota_min": 1.361
       },
       "lider": null,
-      "empate_sigue": 0.369,
+      "empate_sigue": 0.374,
       "patrones": [
        "P1"
       ],
@@ -3680,8 +3699,8 @@
       "marcador": "2:0",
       "over": {
        "linea": 2.5,
-       "p": 0.74,
-       "cuota_min": 1.351
+       "p": 0.735,
+       "cuota_min": 1.361
       },
       "lider": {
        "lado": "local",
@@ -3700,13 +3719,13 @@
       "marcador": "0:2",
       "over": {
        "linea": 2.5,
-       "p": 0.74,
-       "cuota_min": 1.351
+       "p": 0.735,
+       "cuota_min": 1.361
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.82,
-       "cuota_min": 1.22
+       "p": 0.823,
+       "cuota_min": 1.214
       },
       "empate_sigue": null,
       "patrones": [
@@ -3720,11 +3739,11 @@
       "marcador": "0:0",
       "over": {
        "linea": 0.5,
-       "p": 0.654,
-       "cuota_min": 1.529
+       "p": 0.649,
+       "cuota_min": 1.541
       },
       "lider": null,
-      "empate_sigue": 0.433,
+      "empate_sigue": 0.437,
       "patrones": [
        "P5"
       ],
@@ -3735,12 +3754,12 @@
       "marcador": "1:0",
       "over": {
        "linea": 1.5,
-       "p": 0.654,
-       "cuota_min": 1.529
+       "p": 0.649,
+       "cuota_min": 1.541
       },
       "lider": {
        "lado": "local",
-       "p": 0.853,
+       "p": 0.854,
        "cuota_min": 1.172
       },
       "empate_sigue": null,
@@ -3754,13 +3773,13 @@
       "marcador": "0:1",
       "over": {
        "linea": 1.5,
-       "p": 0.654,
-       "cuota_min": 1.529
+       "p": 0.649,
+       "cuota_min": 1.541
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.58,
-       "cuota_min": 1.724
+       "p": 0.584,
+       "cuota_min": 1.713
       },
       "empate_sigue": null,
       "patrones": [
@@ -3773,11 +3792,11 @@
       "marcador": "1:1",
       "over": {
        "linea": 2.5,
-       "p": 0.654,
-       "cuota_min": 1.529
+       "p": 0.649,
+       "cuota_min": 1.541
       },
       "lider": null,
-      "empate_sigue": 0.433,
+      "empate_sigue": 0.437,
       "patrones": [
        "P1"
       ],
@@ -3788,12 +3807,12 @@
       "marcador": "2:0",
       "over": {
        "linea": 2.5,
-       "p": 0.654,
-       "cuota_min": 1.529
+       "p": 0.649,
+       "cuota_min": 1.541
       },
       "lider": {
        "lado": "local",
-       "p": 0.978,
+       "p": 0.979,
        "cuota_min": 1.022
       },
       "empate_sigue": null,
@@ -3808,13 +3827,13 @@
       "marcador": "0:2",
       "over": {
        "linea": 2.5,
-       "p": 0.654,
-       "cuota_min": 1.529
+       "p": 0.649,
+       "cuota_min": 1.541
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.868,
-       "cuota_min": 1.152
+       "p": 0.87,
+       "cuota_min": 1.149
       },
       "empate_sigue": null,
       "patrones": [
@@ -3828,11 +3847,11 @@
       "marcador": "0:0",
       "over": {
        "linea": 0.5,
-       "p": 0.545,
-       "cuota_min": 1.834
+       "p": 0.541,
+       "cuota_min": 1.848
       },
       "lider": null,
-      "empate_sigue": 0.516,
+      "empate_sigue": 0.52,
       "patrones": [],
       "alta": false
      },
@@ -3841,12 +3860,12 @@
       "marcador": "1:0",
       "over": {
        "linea": 1.5,
-       "p": 0.545,
-       "cuota_min": 1.834
+       "p": 0.541,
+       "cuota_min": 1.848
       },
       "lider": {
        "lado": "local",
-       "p": 0.869,
+       "p": 0.87,
        "cuota_min": 1.15
       },
       "empate_sigue": null,
@@ -3860,13 +3879,13 @@
       "marcador": "0:1",
       "over": {
        "linea": 1.5,
-       "p": 0.545,
-       "cuota_min": 1.834
+       "p": 0.541,
+       "cuota_min": 1.848
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.647,
-       "cuota_min": 1.545
+       "p": 0.65,
+       "cuota_min": 1.538
       },
       "empate_sigue": null,
       "patrones": [
@@ -3879,11 +3898,11 @@
       "marcador": "1:1",
       "over": {
        "linea": 2.5,
-       "p": 0.545,
-       "cuota_min": 1.834
+       "p": 0.541,
+       "cuota_min": 1.848
       },
       "lider": null,
-      "empate_sigue": 0.516,
+      "empate_sigue": 0.52,
       "patrones": [
        "P1"
       ],
@@ -3894,8 +3913,8 @@
       "marcador": "2:0",
       "over": {
        "linea": 2.5,
-       "p": 0.545,
-       "cuota_min": 1.834
+       "p": 0.541,
+       "cuota_min": 1.848
       },
       "lider": {
        "lado": "local",
@@ -3914,13 +3933,13 @@
       "marcador": "0:2",
       "over": {
        "linea": 2.5,
-       "p": 0.545,
-       "cuota_min": 1.834
+       "p": 0.541,
+       "cuota_min": 1.848
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.913,
-       "cuota_min": 1.095
+       "p": 0.915,
+       "cuota_min": 1.093
       },
       "empate_sigue": null,
       "patrones": [
@@ -3934,12 +3953,12 @@
       "marcador": "2:1",
       "over": {
        "linea": 3.5,
-       "p": 0.545,
-       "cuota_min": 1.834
+       "p": 0.541,
+       "cuota_min": 1.848
       },
       "lider": {
        "lado": "local",
-       "p": 0.869,
+       "p": 0.87,
        "cuota_min": 1.15
       },
       "empate_sigue": null,
@@ -3954,13 +3973,13 @@
       "marcador": "1:2",
       "over": {
        "linea": 3.5,
-       "p": 0.545,
-       "cuota_min": 1.834
+       "p": 0.541,
+       "cuota_min": 1.848
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.647,
-       "cuota_min": 1.545
+       "p": 0.65,
+       "cuota_min": 1.538
       },
       "empate_sigue": null,
       "patrones": [
@@ -3974,8 +3993,8 @@
       "marcador": "3:0",
       "over": {
        "linea": 3.5,
-       "p": 0.545,
-       "cuota_min": 1.834
+       "p": 0.541,
+       "cuota_min": 1.848
       },
       "lider": {
        "lado": "local",
@@ -3994,12 +4013,12 @@
       "marcador": "0:3",
       "over": {
        "linea": 3.5,
-       "p": 0.545,
-       "cuota_min": 1.834
+       "p": 0.541,
+       "cuota_min": 1.848
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.985,
+       "p": 0.986,
        "cuota_min": 1.015
       },
       "empate_sigue": null,
@@ -4014,11 +4033,11 @@
       "marcador": "0:0",
       "over": {
        "linea": 0.5,
-       "p": 0.41,
-       "cuota_min": 2.437
+       "p": 0.406,
+       "cuota_min": 2.462
       },
       "lider": null,
-      "empate_sigue": 0.625,
+      "empate_sigue": 0.628,
       "patrones": [],
       "alta": false
      },
@@ -4027,13 +4046,13 @@
       "marcador": "1:0",
       "over": {
        "linea": 1.5,
-       "p": 0.41,
-       "cuota_min": 2.437
+       "p": 0.406,
+       "cuota_min": 2.462
       },
       "lider": {
        "lado": "local",
        "p": 0.895,
-       "cuota_min": 1.118
+       "cuota_min": 1.117
       },
       "empate_sigue": null,
       "patrones": [
@@ -4046,13 +4065,13 @@
       "marcador": "0:1",
       "over": {
        "linea": 1.5,
-       "p": 0.41,
-       "cuota_min": 2.437
+       "p": 0.406,
+       "cuota_min": 2.462
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.73,
-       "cuota_min": 1.369
+       "p": 0.733,
+       "cuota_min": 1.364
       },
       "empate_sigue": null,
       "patrones": [
@@ -4065,11 +4084,11 @@
       "marcador": "1:1",
       "over": {
        "linea": 2.5,
-       "p": 0.41,
-       "cuota_min": 2.437
+       "p": 0.406,
+       "cuota_min": 2.462
       },
       "lider": null,
-      "empate_sigue": 0.625,
+      "empate_sigue": 0.628,
       "patrones": [
        "P1"
       ],
@@ -4080,8 +4099,8 @@
       "marcador": "2:0",
       "over": {
        "linea": 2.5,
-       "p": 0.41,
-       "cuota_min": 2.437
+       "p": 0.406,
+       "cuota_min": 2.462
       },
       "lider": {
        "lado": "local",
@@ -4100,13 +4119,13 @@
       "marcador": "0:2",
       "over": {
        "linea": 2.5,
-       "p": 0.41,
-       "cuota_min": 2.437
+       "p": 0.406,
+       "cuota_min": 2.462
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.954,
-       "cuota_min": 1.048
+       "p": 0.955,
+       "cuota_min": 1.047
       },
       "empate_sigue": null,
       "patrones": [
@@ -4120,13 +4139,13 @@
       "marcador": "2:1",
       "over": {
        "linea": 3.5,
-       "p": 0.41,
-       "cuota_min": 2.437
+       "p": 0.406,
+       "cuota_min": 2.462
       },
       "lider": {
        "lado": "local",
        "p": 0.895,
-       "cuota_min": 1.118
+       "cuota_min": 1.117
       },
       "empate_sigue": null,
       "patrones": [
@@ -4140,13 +4159,13 @@
       "marcador": "1:2",
       "over": {
        "linea": 3.5,
-       "p": 0.41,
-       "cuota_min": 2.437
+       "p": 0.406,
+       "cuota_min": 2.462
       },
       "lider": {
        "lado": "visitante",
-       "p": 0.73,
-       "cuota_min": 1.369
+       "p": 0.733,
+       "cuota_min": 1.364
       },
       "empate_sigue": null,
       "patrones": [
@@ -4160,8 +4179,8 @@
       "marcador": "3:0",
       "over": {
        "linea": 3.5,
-       "p": 0.41,
-       "cuota_min": 2.437
+       "p": 0.406,
+       "cuota_min": 2.462
       },
       "lider": {
        "lado": "local",
@@ -4180,8 +4199,8 @@
       "marcador": "0:3",
       "over": {
        "linea": 3.5,
-       "p": 0.41,
-       "cuota_min": 2.437
+       "p": 0.406,
+       "cuota_min": 2.462
       },
       "lider": {
        "lado": "visitante",
@@ -4201,10 +4220,10 @@
  },
  "apuestas_modelo": [
   {
-   "p": 0.343,
+   "p": 0.342,
    "p_nula": 0.0,
-   "cuota_min": 2.912,
-   "ev": -0.44,
+   "cuota_min": 2.928,
+   "ev": -0.443,
    "cuota": 1.63,
    "gano": true,
    "partido": "Eslovenia vs Macedonia del Norte",
@@ -4220,10 +4239,10 @@
    "liga": "UEFA Nations League"
   },
   {
-   "p": 0.382,
+   "p": 0.376,
    "p_nula": 0.0,
-   "cuota_min": 2.616,
-   "ev": -0.343,
+   "cuota_min": 2.659,
+   "ev": -0.353,
    "cuota": 1.72,
    "gano": true,
    "partido": "España vs Croacia",
@@ -4237,10 +4256,10 @@
    "liga": "UEFA Nations League"
   },
   {
-   "p": 0.227,
+   "p": 0.217,
    "p_nula": 0.0,
-   "cuota_min": 4.41,
-   "ev": -0.599,
+   "cuota_min": 4.602,
+   "ev": -0.615,
    "cuota": 1.77,
    "gano": true,
    "partido": "Chequia vs Inglaterra",
@@ -4257,10 +4276,10 @@
    "liga": "UEFA Nations League"
   },
   {
-   "p": 0.29,
-   "p_nula": 0.367,
-   "cuota_min": 3.449,
-   "ev": -0.221,
+   "p": 0.276,
+   "p_nula": 0.368,
+   "cuota_min": 3.627,
+   "ev": -0.241,
    "cuota": 1.42,
    "gano": true,
    "partido": "Escocia vs Suiza",
@@ -4276,10 +4295,10 @@
    "liga": "UEFA Nations League"
   },
   {
-   "p": 0.472,
+   "p": 0.461,
    "p_nula": 0.0,
-   "cuota_min": 2.121,
-   "ev": -0.128,
+   "cuota_min": 2.17,
+   "ev": -0.147,
    "cuota": 1.85,
    "gano": true,
    "partido": "Bolívar vs Blooming",
@@ -4295,10 +4314,10 @@
    "liga": "Bolivia"
   },
   {
-   "p": 0.323,
+   "p": 0.324,
    "p_nula": 0.0,
-   "cuota_min": 3.1,
-   "ev": -0.403,
+   "cuota_min": 3.086,
+   "ev": -0.4,
    "cuota": 1.85,
    "gano": false,
    "partido": "Casarano vs Monopoli",
@@ -4314,10 +4333,10 @@
    "liga": "Italia Serie C"
   },
   {
-   "p": 0.462,
+   "p": 0.451,
    "p_nula": 0.0,
-   "cuota_min": 2.164,
-   "ev": -0.247,
+   "cuota_min": 2.216,
+   "ev": -0.264,
    "cuota": 1.63,
    "gano": true,
    "partido": "Antoniano vs Ciudad de Lucena",
@@ -4334,10 +4353,10 @@
    "liga": "España 2ª RFEF"
   },
   {
-   "p": 0.522,
+   "p": 0.516,
    "p_nula": 0.0,
-   "cuota_min": 1.915,
-   "ev": -0.039,
+   "cuota_min": 1.939,
+   "ev": -0.051,
    "cuota": 1.84,
    "gano": false,
    "partido": "Atenas vs Plaza Colonia",
@@ -4354,10 +4373,10 @@
    "liga": "Uruguay 2ª División"
   },
   {
-   "p": 0.361,
+   "p": 0.359,
    "p_nula": 0.0,
-   "cuota_min": 2.771,
-   "ev": -0.314,
+   "cuota_min": 2.785,
+   "ev": -0.318,
    "cuota": 1.9,
    "gano": true,
    "partido": "CS Fola Esch vs FC Juvenil Canach",
@@ -4373,10 +4392,10 @@
    "liga": "Luxemburgo"
   },
   {
-   "p": 0.426,
-   "p_nula": 0.34,
-   "cuota_min": 2.348,
-   "ev": -0.034,
+   "p": 0.419,
+   "p_nula": 0.342,
+   "cuota_min": 2.387,
+   "ev": -0.042,
    "cuota": 1.47,
    "gano": true,
    "partido": "Austria vs Kosovo",
@@ -4390,10 +4409,10 @@
    "liga": "UEFA Nations League"
   },
   {
-   "p": 0.558,
-   "p_nula": 0.442,
-   "cuota_min": 1.792,
-   "ev": 0.502,
+   "p": 0.551,
+   "p_nula": 0.449,
+   "cuota_min": 1.814,
+   "ev": 0.496,
    "cuota": 1.9,
    "gano": true,
    "partido": "Criciúma vs Avaí",
@@ -4412,7 +4431,7 @@
    "p": 0.551,
    "p_nula": 0.0,
    "cuota_min": 1.814,
-   "ev": -0.101,
+   "ev": -0.102,
    "cuota": 1.63,
    "gano": false,
    "partido": "Camacha vs Florgrade",
@@ -4426,10 +4445,10 @@
    "liga": "Taça de Portugal"
   },
   {
-   "p": 0.527,
+   "p": 0.526,
    "p_nula": 0.0,
-   "cuota_min": 1.897,
-   "ev": -0.262,
+   "cuota_min": 1.901,
+   "ev": -0.264,
    "cuota": 1.4,
    "gano": false,
    "partido": "Levanger vs Grorud",
@@ -4443,10 +4462,10 @@
    "liga": "Noruega 2ª"
   },
   {
-   "p": 0.542,
+   "p": 0.539,
    "p_nula": 0.0,
-   "cuota_min": 1.847,
-   "ev": -0.204,
+   "cuota_min": 1.857,
+   "ev": -0.208,
    "cuota": 1.47,
    "gano": true,
    "partido": "Estrela Calheta vs Cinfães",
@@ -4460,10 +4479,10 @@
    "liga": "Campeonato de Portugal"
   },
   {
-   "p": 0.253,
+   "p": 0.248,
    "p_nula": 0.0,
-   "cuota_min": 3.956,
-   "ev": -0.305,
+   "cuota_min": 4.034,
+   "ev": -0.318,
    "cuota": 2.75,
    "gano": false,
    "partido": "Grêmio Prudente vs União São João",
@@ -4480,10 +4499,10 @@
    "liga": "Copa Paulista"
   },
   {
-   "p": 0.415,
+   "p": 0.412,
    "p_nula": 0.0,
-   "cuota_min": 2.408,
-   "ev": -0.273,
+   "cuota_min": 2.427,
+   "ev": -0.279,
    "cuota": 1.75,
    "gano": false,
    "partido": "Almirante Brown vs Acassuso",
@@ -4499,7 +4518,7 @@
   {
    "p": 0.411,
    "p_nula": 0.0,
-   "cuota_min": 2.435,
+   "cuota_min": 2.433,
    "ev": -0.31,
    "cuota": 1.68,
    "gano": false,
@@ -4518,8 +4537,8 @@
   {
    "p": 0.849,
    "p_nula": 0.0,
-   "cuota_min": 1.178,
-   "ev": 0.137,
+   "cuota_min": 1.177,
+   "ev": 0.138,
    "cuota": 1.34,
    "gano": true,
    "partido": "Once Caldas vs Bucaramanga",
@@ -4535,10 +4554,10 @@
    "liga": "Colombia Primera A"
   },
   {
-   "p": 0.576,
+   "p": 0.574,
    "p_nula": 0.0,
-   "cuota_min": 1.736,
-   "ev": -0.165,
+   "cuota_min": 1.743,
+   "ev": -0.168,
    "cuota": 1.45,
    "gano": true,
    "partido": "Cavalry FC vs FC Supra du Québec",
@@ -4552,10 +4571,10 @@
    "liga": "Canadá CPL"
   },
   {
-   "p": 0.453,
+   "p": 0.446,
    "p_nula": 0.0,
-   "cuota_min": 2.209,
-   "ev": -0.262,
+   "cuota_min": 2.243,
+   "ev": -0.273,
    "cuota": 1.63,
    "gano": true,
    "partido": "Carlos Mannucci vs Universidad San Martín",
@@ -4571,7 +4590,7 @@
   {
    "p": 0.583,
    "p_nula": 0.0,
-   "cuota_min": 1.715,
+   "cuota_min": 1.716,
    "ev": 0.096,
    "cuota": 1.88,
    "gano": true,
@@ -4588,10 +4607,10 @@
    "liga": "Paraguay Intermedia"
   },
   {
-   "p": 0.695,
+   "p": 0.696,
    "p_nula": 0.0,
-   "cuota_min": 1.439,
-   "ev": 1.084,
+   "cuota_min": 1.438,
+   "ev": 1.087,
    "cuota": 3.0,
    "gano": true,
    "partido": "Comerciantes FC vs Sport Huancayo Reserva",
@@ -4608,10 +4627,10 @@
    "liga": "Perú Liga 2"
   },
   {
-   "p": 0.571,
+   "p": 0.568,
    "p_nula": 0.0,
-   "cuota_min": 1.75,
-   "ev": -0.16,
+   "cuota_min": 1.761,
+   "ev": -0.165,
    "cuota": 1.47,
    "gano": false,
    "partido": "Grorud vs Moss",
@@ -4629,7 +4648,7 @@
   {
    "p": 0.302,
    "p_nula": 0.0,
-   "cuota_min": 3.313,
+   "cuota_min": 3.312,
    "ev": -0.574,
    "cuota": 1.41,
    "gano": true,
@@ -4646,10 +4665,10 @@
    "liga": "Austria Wiener Stadtliga"
   },
   {
-   "p": 0.28,
+   "p": 0.277,
    "p_nula": 0.0,
-   "cuota_min": 3.572,
-   "ev": -0.412,
+   "cuota_min": 3.615,
+   "ev": -0.419,
    "cuota": 2.1,
    "gano": true,
    "partido": "Groene Ster vs AFC Amsterdam",
@@ -4663,10 +4682,10 @@
    "liga": "Copa KNVB"
   },
   {
-   "p": 0.504,
+   "p": 0.498,
    "p_nula": 0.0,
-   "cuota_min": 1.983,
-   "ev": -0.173,
+   "cuota_min": 2.008,
+   "ev": -0.183,
    "cuota": 1.64,
    "gano": false,
    "partido": "Rochdale vs Liverpool Sub-21",
@@ -4683,10 +4702,10 @@
    "liga": "EFL Trophy"
   },
   {
-   "p": 0.505,
+   "p": 0.499,
    "p_nula": 0.0,
-   "cuota_min": 1.98,
-   "ev": 0.162,
+   "cuota_min": 2.005,
+   "ev": 0.147,
    "cuota": 2.3,
    "gano": false,
    "partido": "Deportivo San Pedro vs Cobán Imperial",
@@ -4705,7 +4724,7 @@
   {
    "p": 0.273,
    "p_nula": 0.0,
-   "cuota_min": 3.664,
+   "cuota_min": 3.66,
    "ev": -0.495,
    "cuota": 1.85,
    "gano": false,
@@ -4722,10 +4741,10 @@
    "liga": "MLS Next Pro"
   },
   {
-   "p": 0.427,
+   "p": 0.415,
    "p_nula": 0.0,
-   "cuota_min": 2.343,
-   "ev": -0.339,
+   "cuota_min": 2.409,
+   "ev": -0.357,
    "cuota": 1.55,
    "gano": true,
    "partido": "Fortaleza vs Atlético Junior",
@@ -4741,10 +4760,10 @@
    "liga": "Colombia Primera A"
   },
   {
-   "p": 0.671,
+   "p": 0.667,
    "p_nula": 0.0,
-   "cuota_min": 1.489,
-   "ev": -0.026,
+   "cuota_min": 1.498,
+   "ev": -0.032,
    "cuota": 1.45,
    "gano": false,
    "partido": "Santa Clara vs SC Braga",
@@ -4760,10 +4779,10 @@
    "liga": "Portugal Primeira Liga"
   },
   {
-   "p": 0.539,
+   "p": 0.533,
    "p_nula": 0.0,
-   "cuota_min": 1.857,
-   "ev": -0.095,
+   "cuota_min": 1.875,
+   "ev": -0.104,
    "cuota": 1.68,
    "gano": true,
    "partido": "Wehen Wiesbaden vs Duisburg",
@@ -4797,10 +4816,10 @@
    "liga": "Italia Serie A"
   },
   {
-   "p": 0.636,
+   "p": 0.635,
    "p_nula": 0.0,
-   "cuota_min": 1.573,
-   "ev": -0.097,
+   "cuota_min": 1.575,
+   "ev": -0.098,
    "cuota": 1.42,
    "gano": false,
    "partido": "Grêmio vs Palmeiras",
@@ -4816,10 +4835,10 @@
    "liga": "Brasil Serie A"
   },
   {
-   "p": 0.552,
+   "p": 0.549,
    "p_nula": 0.0,
-   "cuota_min": 1.811,
-   "ev": -0.199,
+   "cuota_min": 1.823,
+   "ev": -0.204,
    "cuota": 1.45,
    "gano": true,
    "partido": "FC Fredericia vs Vejle",
@@ -4835,10 +4854,10 @@
    "liga": "Dinamarca 1ª"
   },
   {
-   "p": 0.256,
+   "p": 0.249,
    "p_nula": 0.0,
-   "cuota_min": 3.903,
-   "ev": -0.436,
+   "cuota_min": 4.017,
+   "ev": -0.452,
    "cuota": 2.2,
    "gano": true,
    "partido": "Karpaty vs Veres",
@@ -4854,10 +4873,10 @@
    "liga": "Ucrania Premier"
   },
   {
-   "p": 0.342,
+   "p": 0.338,
    "p_nula": 0.0,
-   "cuota_min": 2.926,
-   "ev": -0.443,
+   "cuota_min": 2.957,
+   "ev": -0.449,
    "cuota": 1.63,
    "gano": true,
    "partido": "Twente vs PSV",
@@ -4873,8 +4892,8 @@
   {
    "p": 0.706,
    "p_nula": 0.0,
-   "cuota_min": 1.417,
-   "ev": -0.012,
+   "cuota_min": 1.416,
+   "ev": -0.011,
    "cuota": 1.4,
    "gano": false,
    "partido": "Bournemouth vs Liverpool",
@@ -4890,10 +4909,10 @@
    "liga": "Inglaterra Premier League"
   },
   {
-   "p": 0.326,
+   "p": 0.312,
    "p_nula": 0.0,
-   "cuota_min": 3.07,
-   "ev": -0.332,
+   "cuota_min": 3.203,
+   "ev": -0.36,
    "cuota": 2.05,
    "gano": false,
    "partido": "Deportivo Pasto vs Once Caldas",
@@ -4910,10 +4929,10 @@
    "liga": "Colombia Primera A"
   },
   {
-   "p": 0.609,
+   "p": 0.598,
    "p_nula": 0.0,
-   "cuota_min": 1.642,
-   "ev": -0.227,
+   "cuota_min": 1.672,
+   "ev": -0.24,
    "cuota": 1.27,
    "gano": true,
    "partido": "San Jose Earthquakes vs LAFC",
@@ -4929,10 +4948,10 @@
    "liga": "MLS"
   },
   {
-   "p": 0.779,
-   "p_nula": 0.221,
-   "cuota_min": 1.284,
-   "ev": 0.148,
+   "p": 0.774,
+   "p_nula": 0.226,
+   "cuota_min": 1.292,
+   "ev": 0.147,
    "cuota": 1.19,
    "gano": true,
    "partido": "DC United vs Charlotte FC",
@@ -4948,10 +4967,10 @@
    "liga": "MLS"
   },
   {
-   "p": 0.771,
+   "p": 0.766,
    "p_nula": 0.0,
-   "cuota_min": 1.296,
-   "ev": -0.097,
+   "cuota_min": 1.305,
+   "ev": -0.104,
    "cuota": 1.17,
    "gano": true,
    "partido": "Vasco da Gama vs Coritiba",
@@ -4967,10 +4986,10 @@
    "liga": "Brasil Serie A"
   },
   {
-   "p": 0.571,
+   "p": 0.567,
    "p_nula": 0.0,
-   "cuota_min": 1.751,
-   "ev": -0.172,
+   "cuota_min": 1.762,
+   "ev": -0.177,
    "cuota": 1.45,
    "gano": true,
    "partido": "Lexington SC vs Orange County SC",
@@ -4986,10 +5005,10 @@
    "liga": "USL Championship"
   },
   {
-   "p": 0.568,
+   "p": 0.563,
    "p_nula": 0.0,
-   "cuota_min": 1.761,
-   "ev": -0.205,
+   "cuota_min": 1.778,
+   "ev": -0.212,
    "cuota": 1.4,
    "gano": true,
    "partido": "River Plate vs Huracán",
@@ -5003,10 +5022,10 @@
    "liga": "Argentina Liga Profesional"
   },
   {
-   "p": 0.623,
+   "p": 0.619,
    "p_nula": 0.0,
-   "cuota_min": 1.605,
-   "ev": -0.203,
+   "cuota_min": 1.615,
+   "ev": -0.207,
    "cuota": 1.28,
    "gano": true,
    "partido": "Pioneros de Cancún vs Tapachula Soconusco",
@@ -5022,10 +5041,10 @@
    "liga": "México Liga Premier"
   },
   {
-   "p": 0.802,
+   "p": 0.804,
    "p_nula": 0.0,
-   "cuota_min": 1.246,
-   "ev": 0.292,
+   "cuota_min": 1.244,
+   "ev": 0.294,
    "cuota": 1.61,
    "gano": true,
    "partido": "Club Aurora vs Universitario de Vinto",
@@ -5041,10 +5060,10 @@
    "liga": "Bolivia Copa"
   },
   {
-   "p": 0.424,
+   "p": 0.419,
    "p_nula": 0.0,
-   "cuota_min": 2.356,
-   "ev": -0.058,
+   "cuota_min": 2.387,
+   "ev": -0.07,
    "cuota": 2.22,
    "gano": false,
    "partido": "CD Génesis vs Olancho FC",
@@ -5061,10 +5080,10 @@
    "liga": "Honduras Liga Nacional"
   },
   {
-   "p": 0.294,
+   "p": 0.289,
    "p_nula": 0.0,
-   "cuota_min": 3.403,
-   "ev": -0.383,
+   "cuota_min": 3.465,
+   "ev": -0.394,
    "cuota": 2.1,
    "gano": true,
    "partido": "O Elvas vs UD Leiria",
@@ -5081,10 +5100,10 @@
    "liga": "Taça de Portugal"
   },
   {
-   "p": 0.436,
+   "p": 0.426,
    "p_nula": 0.0,
-   "cuota_min": 2.294,
-   "ev": -0.39,
+   "cuota_min": 2.35,
+   "ev": -0.404,
    "cuota": 1.4,
    "gano": true,
    "partido": "Odense Boldklub vs FC Midtjylland",
@@ -5100,10 +5119,10 @@
    "liga": "Dinamarca Superliga"
   },
   {
-   "p": 0.527,
+   "p": 0.521,
    "p_nula": 0.0,
-   "cuota_min": 1.898,
-   "ev": -0.225,
+   "cuota_min": 1.919,
+   "ev": -0.234,
    "cuota": 1.47,
    "gano": true,
    "partido": "Sparta Rotterdam vs Heerenveen",
@@ -5117,10 +5136,10 @@
    "liga": "Países Bajos Eredivisie"
   },
   {
-   "p": 0.879,
+   "p": 0.88,
    "p_nula": 0.0,
-   "cuota_min": 1.138,
-   "ev": 0.23,
+   "cuota_min": 1.136,
+   "ev": 0.233,
    "cuota": 1.4,
    "gano": true,
    "partido": "Molde vs Aalesunds",

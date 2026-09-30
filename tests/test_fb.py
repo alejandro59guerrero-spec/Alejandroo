@@ -49,6 +49,14 @@ class TestPartidos(unittest.TestCase):
             self.assertEqual((sum(1 for _, s in p.goles if s == "H"), sum(1 for _, s in p.goles if s == "A")), p.final)
 
 
+    def test_sin_duplicados(self):
+        # un partido aparece una sola vez: si apostaste en él es 'historial' y no valida patrones
+        import csv
+        filas = list(csv.DictReader(open(partidos.CSV_PARTIDOS, encoding="utf-8")))
+        claves = [(f["fecha"], f["local"], f["visitante"]) for f in filas]
+        self.assertEqual(len(claves), len(set(claves)))
+
+
 class TestModelo(unittest.TestCase):
     def setUp(self):
         self.m = modelo.Modelo.ajustar(partidos.cargar())

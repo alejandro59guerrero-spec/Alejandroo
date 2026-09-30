@@ -7,7 +7,6 @@ Brasil Serie B,2026-09-27,CRB,Cuiabá,3:0,H6;H50;H75,,1,futebolinterior.com.br,b
 Brasil Serie B,2026-09-27,Fortaleza,Athletic Club,2:2,A42;H45;H50;A60,,1,vavel.com,backtest
 Brasil Serie B,2026-09-28,América-MG,Juventude,0:1,A61,,1,vavel.com,backtest
 Brasil Serie B,2026-09-25,Novorizontino,São Bernardo,0:0,,,1,brasil247.com,backtest
-Brasil Serie B,2026-09-27,Criciúma,Avaí,3:0,H48;H58;H81,,1,vavel.com,backtest
 Brasil Serie B,2026-09-18,Vila Nova,América-MG,1:0,H13,,1,revistafactual.com.br,backtest
 Brasil Serie B,2026-09-18,Ceará,Novorizontino,2:1,A45;H48;H61,,1,fifa.com,backtest
 Brasil Serie B,2026-09-18,Atlético-GO,São Bernardo,0:1,A19,,1,ocuriosodofutebol.com.br,backtest
@@ -139,3 +138,7 @@ Brasil Serie B,2026-09-09,Fortaleza,Avaí,1:0,H66,,1,ogol.com.br,backtest
 Colombia Primera A,2026-09-03,América de Cali,Alianza Valledupar,3:0,H29;H45;H63,,1,infobae.com,backtest
 Colombia Primera A,2026-09-04,Boyacá Chicó,Once Caldas,2:0,H2;H45,A54,1,futbolred.com,backtest
 Colombia Primera A,2026-09-05,Santa Fe,Fortaleza CEIF,2:2,H17;H23;A90,,0,futbolred.com,backtest
+Perú Liga 1,2026-09-18,Alianza Atlético,Comerciantes Unidos,2:1,A10;H19;H56,A33,1,rpp.pe,backtest
+Perú Liga 1,2026-09-19,FC Cajamarca,Cusco FC,1:2,A16;H26;A45,,1,dsn.pe,backtest
+Perú Liga 1,2026-09-20,Juan Pablo II,Deportivo Moquegua,4:0,H33;H45;H57;H85,,1,dsn.pe,backtest
+Perú Liga 1,2026-09-23,ADT,Cienciano,2:1,A44;H67;H90,,1,rpp.pe,backtest
