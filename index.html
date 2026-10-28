@@ -523,6 +523,122 @@ html.ram-lock,html.ram-lock body{overflow:hidden}
 .ram-sec .metal[style]{fill:none;stroke:#8a8a8f}
 .ram-corner span{background:rgba(19,19,19,.82);padding:2px 5px;border-radius:5px}
 
+/* ===== vista horizontal ===== */
+.ram-hz{justify-self:end;font-size:18px}
+.ram-landbtn{appearance:none;border:1px solid rgba(255,159,10,.45);background:linear-gradient(135deg,rgba(255,159,10,.18),rgba(255,159,10,.06));color:#fff;border-radius:16px;padding:14px;display:flex;align-items:center;gap:12px;text-align:left;cursor:pointer;width:100%}
+.ram-landbtn:active{transform:scale(.99)}
+.ram-landbtn b{display:block;font-size:16px}.ram-landbtn small{display:block;font-size:13px;color:#c7c7cc;margin-top:2px}
+.ram-landic{flex:none;width:42px;height:42px;border-radius:12px;background:#ff9f0a;color:#000;display:grid;place-items:center;font-size:22px;font-weight:700}
+.ram-h2{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px}.ram-h2 .ram-h{margin:0}
+.ram-h2 .ram-full{appearance:none;border:0;cursor:pointer}
+.ram-zoom button[data-ram="land"]{font-size:16px;color:#ff9f0a}
+.rl{position:fixed;inset:0;z-index:95;background:#050505;opacity:0;transition:opacity .2s ease;overflow:hidden;touch-action:none}
+.rl.in{opacity:1}.rl[hidden]{display:none}
+.rl-frame{position:absolute;top:0;left:0;transform-origin:0 0;display:flex;flex-direction:column;background:#0b0b0b;color:#e6e6e6;box-sizing:border-box}
+.rl[data-rot="0"] .rl-frame{padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
+.rl[data-rot="1"] .rl-frame{padding:0 env(safe-area-inset-top,0px) 0 0}
+.rl-bar{flex:none;display:flex;align-items:center;gap:6px;padding:5px 8px;border-bottom:.5px solid #2a2a2a;background:#0e0e0e}
+.rl-b{appearance:none;flex:none;border:0;height:30px;min-width:30px;border-radius:9px;background:#2c2c2e;color:#e6e6e6;font-size:14px;font-weight:600;cursor:pointer;padding:0 10px}
+.rl-x{font-size:20px;border-radius:50%;padding:0;width:30px}
+.rl-seg{flex:none;display:flex;background:#1c1c1e;border-radius:10px;padding:2px}
+.rl-seg button{appearance:none;border:0;background:none;color:#a3a3a3;font-size:13px;font-weight:600;padding:7px 12px;border-radius:8px;cursor:pointer}
+.rl-seg button[aria-pressed="true"]{background:#3a3a3c;color:#fff}
+.rl-phs{flex:1;min-width:0}
+.rl-bar .ram-play,.rl-bar .ram-speed{height:30px;min-width:38px;font-size:13px;border-radius:9px}
+.rl-bar .ram-phs button{padding:5px 9px;font-size:12px}
+.rl-seg button{padding:5px 10px}
+.rl-stage{flex:1;position:relative;overflow:hidden;touch-action:none;cursor:grab;min-height:0}
+.rl-stage[data-z="1"]{cursor:move}
+.rl-pan{position:absolute;inset:0;transform-origin:0 0;will-change:transform}
+.rl-v{position:absolute;inset:0}
+.rl-v>svg{display:block;width:100%;height:100%}
+.rl-v.iso{padding:14px;box-sizing:border-box;background:#131313}
+.rl-ph{flex:none;font-size:12.5px;line-height:1.35;color:#c7c7cc;background:#0e0e0e;border-top:.5px solid #2a2a2a;padding:6px 12px;min-height:36px;box-sizing:border-box}
+.rl-ph b{color:#fff}
+.rl-info{position:absolute;right:10px;top:46px;width:min(300px,40%);max-height:calc(100% - 130px);overflow:auto;background:rgba(28,28,30,.96);border:1px solid #3a3a3c;border-radius:14px;padding:10px 12px;font-size:12.5px;line-height:1.4;color:#c7c7cc;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.rl-info p{margin:6px 0 0}.rl-info .spec{color:#e6e6e6}.rl-info a{display:inline-block;margin-top:8px;font-size:12.5px;color:#ff9f0a;text-decoration:none}
+.rl-info[hidden]{display:none}
+.rl-turn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(28,28,30,.95);border:1px solid #3a3a3c;border-radius:16px;padding:14px 18px;font-size:15px;font-weight:600;color:#fff;pointer-events:none;transition:opacity .5s ease;display:flex;gap:10px;align-items:center}
+.rl-turn span{font-size:26px;color:#ff9f0a;display:inline-block;animation:rlturn 1.4s ease-in-out infinite}
+@keyframes rlturn{0%,100%{transform:rotate(0)}50%{transform:rotate(-90deg)}}
+.rl-turn.gone,.rl[data-rot="0"] .rl-turn{opacity:0}
+/* lámina */
+.rl-svg{font-family:-apple-system,system-ui,sans-serif}
+.rl-svg .lframe{stroke:#3a3a3c;stroke-width:1}
+.rl-svg .lh{font:700 13px ui-monospace,"SF Mono",Menlo,monospace;fill:#e6e6e6;letter-spacing:.06em}
+.rl-svg .lhb{font:700 16px ui-monospace,"SF Mono",Menlo,monospace;fill:#fff;letter-spacing:.03em}
+.rl-svg .ls{font-size:11.5px;fill:#a3a3a3}
+.rl-svg .lk{font-size:13px;font-weight:700;fill:#e6e6e6;letter-spacing:.04em}
+.rl-svg .lv{font:600 12px ui-monospace,Menlo,monospace;fill:#7cc4ff}
+.rl-svg .c{text-anchor:middle}.rl-svg .r{text-anchor:end}
+.rl-svg .lground{fill:none;stroke:#6a6a6a;stroke-width:1.4}
+.rl-svg .lground-f{fill:url(#learth);stroke:none}
+.rl-svg .lwall{fill:#38383b;stroke:#8a8a8f;stroke-width:.8}
+.rl-svg .lconc,.rl-svg .lbase{fill:url(#lhatch);stroke:#6a6a6a;stroke-width:1}
+.rl-svg .lwater{fill:rgba(70,150,255,.26)}
+.rl-svg .lair{fill:rgba(255,255,255,.035)}
+.rl-svg .lwl{fill:none;stroke:#7cc4ff;stroke-width:1.2}
+.rl-svg .lgrate{fill:none;stroke:#c7c7cc;stroke-width:2;stroke-dasharray:4 3}
+.rl-svg .lpipe-o{fill:none;stroke:#6e6e73;stroke-width:24;stroke-linejoin:round}
+.rl-svg .lpipe-i{fill:none;stroke:#10263c;stroke-width:16;stroke-linejoin:round}
+.rl-svg .lpipe-o2{fill:none;stroke:#6e6e73;stroke-width:14}
+.rl-svg .lpipe-i2{fill:none;stroke:#10263c;stroke-width:8}
+.rl-svg .lpipe-s{fill:none;stroke:#6e6e73;stroke-width:5}
+.rl-svg .lhose{fill:none;stroke:#2b2b2e;stroke-width:9;stroke-linejoin:round;stroke-linecap:round}
+.rl-svg .lflow{fill:none;stroke:#7cc4ff;stroke-width:2.6;stroke-dasharray:7 9;stroke-linecap:round}
+.rl-svg .lflow2{fill:none;stroke:#7cc4ff;stroke-width:2;stroke-dasharray:5 8;stroke-linecap:round}
+.rl-svg .lflowd{fill:none;stroke:#7cc4ff;stroke-width:1.8;stroke-dasharray:4 6;stroke-linecap:round}
+.rl-svg .lspray{fill:none;stroke:#9fd4ff;stroke-width:2;stroke-dasharray:3 5;stroke-linecap:round}
+.rl-svg .lfit{fill:#2c2c2e;stroke:#a3a3a8;stroke-width:1}
+.rl-svg .lnut{fill:none;stroke:#a3a3a8;stroke-width:1}
+.rl-svg .lball{fill:#48484a;stroke:#c7c7cc;stroke-width:1}
+.rl-svg .lbore{fill:#10263c}
+.rl-svg .lhandle{fill:none;stroke:#ff9f0a;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.rl-svg .lgasket{stroke:#111;stroke-width:2}
+.rl-svg .lbolt{fill:none;stroke:#c7c7cc;stroke-width:1.6}
+.rl-svg .lmetal{fill:#55555a;stroke:#b0b0b5;stroke-width:.8}
+.rl-svg .lseat{fill:#8a8a8f;stroke:#d4d4d4;stroke-width:.8}
+.rl-svg .lplate{fill:#d4d4d4}
+.rl-svg .lplate2{fill:#8a8a8f;stroke:#d4d4d4;stroke-width:.6}
+.rl-svg .lrubber{fill:#151515;stroke:#e6e6e6;stroke-width:.9}
+.rl-svg .lstem{fill:#fff}
+.rl-svg .lweight{fill:#6e6e73;stroke:#e6e6e6;stroke-width:.9}
+.rl-svg .lnut2{fill:#8a8a8f;stroke:#fff;stroke-width:.8}
+.rl-svg .lhole{stroke:#0b0b0b;stroke-width:3}
+.rl-svg .lbub{fill:#fff;stroke:#7cc4ff;stroke-width:1}
+.rl-svg .lgauge{fill:#161616;stroke:#e6e6e6;stroke-width:1.4}
+.rl-svg .lgtick{stroke:#8e8e93;stroke-width:1.4}
+.rl-svg .lneedle{stroke:#ff9f0a;stroke-width:2.2;stroke-linecap:round}
+.rl-svg .lbrk{fill:none;stroke:#e6e6e6;stroke-width:1.6}
+.rl-svg .lref{fill:none;stroke:#3a3a3c;stroke-width:1;stroke-dasharray:4 5}
+.rl-svg .ldim,.rl-svg .ldimt{fill:none;stroke:#8e8e93;stroke-width:1}
+.rl-svg .ldima{fill:#8e8e93}
+.rl-svg .lb{cursor:pointer}
+.rl-svg .ll{stroke:#8e8e93;stroke-width:1;fill:none}
+.rl-svg .ld{fill:#e6e6e6}
+.rl-svg .lc{fill:#0b0b0b;stroke:#e6e6e6;stroke-width:1.3}
+.rl-svg .lt{font:700 12px ui-monospace,Menlo,monospace;fill:#fff;text-anchor:middle}
+.rl-svg .lb.on .lc{fill:#ff9f0a;stroke:#ff9f0a}.rl-svg .lb.on .lt{fill:#000}
+.rl-svg .lbox>rect{fill:#101010;stroke:#3a3a3c}
+.rl-svg .lsep{stroke:#3a3a3c;fill:none}
+.rl-svg .lnum{font:700 11px ui-monospace,Menlo,monospace;fill:#ff9f0a;text-anchor:middle}
+.rl-svg .lrow{cursor:pointer}.rl-svg .lrow.on text{fill:#fff}
+.rl-svg .lcbg{fill:#131313;stroke:#2a2a2a}
+.rl-svg .lband{fill:transparent}.rl-svg .lband.alt{fill:rgba(255,255,255,.03)}
+.rl-svg .lbn{font:600 9.5px ui-monospace,Menlo,monospace;fill:#6e6e6e;text-anchor:middle}
+.rl-svg .lcz{stroke:#6a6a6a;stroke-width:1;stroke-dasharray:2 3}
+.rl-svg .lch{stroke:#ff9f0a;stroke-width:1;stroke-dasharray:4 3;opacity:.7}
+.rl-svg .lcurve{fill:none;stroke:#fff;stroke-width:1.5;stroke-linejoin:round}
+.rl-svg .lcursor{stroke:#7cc4ff;stroke-width:1.4}
+.rl-svg [data-pick]:not(.lb):not(.lrow){cursor:pointer}
+.rl-svg g.hot .lwall,.rl-svg g.hot .lfit,.rl-svg g.hot .lmetal,.rl-svg g.hot .lseat,.rl-svg g.hot .lrubber,.rl-svg g.hot .lweight,.rl-svg g.hot .lpipe-o{stroke:#ff9f0a}
+.rl-svg g.hot{filter:url(#lglow)}
+.rl-svg g.on:not(.lb):not(.lrow) .lwall,.rl-svg g.on:not(.lb):not(.lrow) .lfit,.rl-svg g.on:not(.lb):not(.lrow) .lmetal,.rl-svg g.on:not(.lb):not(.lrow) .lpipe-o,.rl-svg g.on:not(.lb):not(.lrow) .lweight,.rl-svg g.on:not(.lb):not(.lrow) .lconc{stroke:#fff;stroke-width:2}
+@media (prefers-reduced-motion:reduce){.rl,.rl-turn span{transition:none;animation:none}}
+.rl-svg .lk2{font-size:11.5px;font-weight:700;fill:#e6e6e6;letter-spacing:.04em}
+.rl-svg .lrow>rect{fill:transparent}.rl-svg .lrow.on>rect{fill:rgba(255,159,10,.16)}
+.rl-info .ram-pn{font-size:14px}.rl-info .ram-pn button{width:24px;height:24px;font-size:15px}
+
 
 /* ===== conteo de matas ===== */
 .cnt-ov .ram-body{gap:12px}
@@ -820,14 +936,15 @@ ${pin(1, 112, 30, "caja")}${pin(2, 182, 236, "impulso")}${pin(3, 190, 322, "llav
   function shell() {
     const m = model();
     const chips = [...new Map(Object.entries(PARTS).map(([id, p]) => [p.name, [id, p]])).values()].sort((a, b) => a[1].n - b[1].n);
-    return `<div class="ram-top"><button class="ram-x" data-ram="close" aria-label="Cerrar">×</button><div class="ram-tt"><div class="ram-k">Castillo · riego</div><div class="ram-t">Bomba de ariete</div></div><span></span></div>
+    return `<div class="ram-top"><button class="ram-x" data-ram="close" aria-label="Cerrar">×</button><div class="ram-tt"><div class="ram-k">Castillo · riego</div><div class="ram-t">Bomba de ariete</div></div><button class="ram-x ram-hz" data-ram="land" data-v="plano" aria-label="Ver en horizontal">⤢</button></div>
 <div class="ram-body">
   <figure class="ram-card iso">
     <div class="ram-corner"><span>Fig 1</span><span>Ariete 1½" × 1"</span></div>
     <div class="ram-stage" data-zoom="1"><div class="ram-pan">${FIG.svg}</div></div>
     <div class="ram-corner b"><span data-out="hint">Toca una pieza</span><span data-out="readout"></span></div>
-    <div class="ram-zoom"><button data-ram="zout" aria-label="Alejar">−</button><button data-ram="zin" aria-label="Acercar">+</button></div>
+    <div class="ram-zoom"><button data-ram="zout" aria-label="Alejar">−</button><button data-ram="zin" aria-label="Acercar">+</button><button data-ram="land" data-v="iso" aria-label="3D en horizontal">⤢</button></div>
   </figure>
+  <button class="ram-landbtn" data-ram="land" data-v="plano"><span class="ram-landic">⤢</span><span><b>Ver en horizontal · pantalla completa</b><small>Corte de toda la instalación con cada pieza numerada</small></span></button>
   <div class="ram-ctl">
     <button class="ram-play" data-ram="play" aria-pressed="true"><span data-out="playIco">❚❚</span></button>
     <div class="ram-phs">${PHASES.map((p, i) => `<button data-ram="ph" data-i="${i}"><b>${i + 1}</b>${p.name}</button>`).join("")}</div>
@@ -837,7 +954,7 @@ ${pin(1, 112, 30, "caja")}${pin(2, 182, 236, "impulso")}${pin(3, 190, 322, "llav
   <div class="ram-part" data-out="part" hidden></div>
   <div class="ram-chips">${chips.map(([id, p]) => `<button data-pick="${id}"><b>${p.n}</b>${p.name}</button>`).join("")}</div>
 
-  <h3 class="ram-h">Corte: por dónde va el agua</h3>
+  <div class="ram-h2"><h3 class="ram-h">Corte: por dónde va el agua</h3><button class="ram-full" data-ram="land" data-v="plano">⤢ Horizontal</button></div>
   <figure class="ram-card ram-sec-card">${sectionSvg()}</figure>
   <ol class="ram-steps">${PHASES.map((p, i) => `<li data-i="${i}"><b>${p.name}.</b> ${p.txt}</li>`).join("")}</ol>
 
@@ -871,6 +988,319 @@ ${pin(1, 112, 30, "caja")}${pin(2, 182, 236, "impulso")}${pin(3, 190, 322, "llav
 </div>`;
   }
 
+  /* ---------- lámina horizontal: corte de toda la instalación ---------- */
+  const LW = 1592, LH = 608, LCW = 268, LCH = 84;
+  const HOT = [["caja", "impulso", "impulso-v", "pileta"], ["impulso-v", "pesas"], ["cuerpo", "entrega", "camara"], ["aire", "entrega"], ["impulso-v", "pesas", "salida"]];
+  function bal(n, x, y, tx, ty, part) {
+    const d = Math.hypot(tx - x, ty - y) || 1, sx = x + ((tx - x) * 12) / d, sy = y + ((ty - y) * 12) / d;
+    return `<g class="lb" data-pick="${part}"><path class="ll" d="M${sx.toFixed(1)} ${sy.toFixed(1)} L${tx} ${ty}"/><circle class="ld" cx="${tx}" cy="${ty}" r="2.2"/><circle class="lc" cx="${x}" cy="${y}" r="12"/><text class="lt" x="${x}" y="${y + 4.5}">${n}</text></g>`;
+  }
+  const LIST = [[1, "Caja de carga y rejilla", "caja"], [2, "Tubo de impulso 1½\" galv. y soportes", "impulso"], [3, "Llave de bola y unión universal", "llave"], [4, "Brida, cuerpo, silletas y base", "cuerpo"], [5, "Válvula de impulso y guía", "impulso-v"], [6, "Vástago, pesas y contratuerca", "pesas"], [7, "Válvula de entrega (caucho)", "entrega"], [8, "Válvula de aire Ø 1–2 mm", "aire"], [9, "Cámara de aire 4\" × 1,2 m y purga", "camara"], [10, "Manómetro 0–6 bar", "manometro"], [11, "Salida, manguera PEAD 1\" y camisa", "salida"], [12, "Pileta de desagüe", "pileta"]];
+  function planoSvg() {
+    const drive = "M200 290 H250 L470 500 H560";
+    const hose = "M1000 360 H1006 Q1016 360 1016 372 V540 L1150 184 H1156 Q1162 184 1162 176 V100 Q1162 92 1170 92 H1184";
+    const tri = (x, y, dir) => dir === "d" ? `M${x - 5} ${y - 8} L${x + 5} ${y - 8} L${x} ${y} Z` : `M${x - 5} ${y + 8} L${x + 5} ${y + 8} L${x} ${y} Z`;
+    return `<svg class="rl-svg" viewBox="0 0 ${LW} ${LH}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Lámina: corte longitudinal de la bomba de ariete y toda la instalación, con el agua en movimiento">
+<defs>
+<pattern id="lgrid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0 H0 V20" fill="none" stroke="#161616" stroke-width="1"/></pattern>
+<pattern id="lhatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0 V8" stroke="#4a4a4e" stroke-width="1.4"/></pattern>
+<pattern id="learth" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><path d="M0 0 V10" stroke="#2a2a2c" stroke-width="1.2"/></pattern>
+<filter id="lglow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect x="0" y="0" width="${LW}" height="${LH}" fill="#0b0b0b"/>
+<rect x="12" y="12" width="${LW - 24}" height="${LH - 24}" fill="url(#lgrid)" class="lframe"/>
+<text class="lh" x="30" y="40">LÁMINA 1 · CORTE LONGITUDINAL DE LA INSTALACIÓN</text>
+<text class="ls" x="30" y="58">Toca una pieza o un número · pellizca para acercar · el agua se mueve como en un ciclo real</text>
+
+<!-- terreno -->
+<path class="lground-f" d="M12 330 H214 L456 574 H1000 L1150 172 H1268 V596 H12 Z"/>
+<path class="lsep" d="M1280 12 V596"/>
+<path class="lground" d="M12 330 H214 L456 574 H1000 L1150 172 H1268"/>
+
+<!-- río -->
+<g data-pick="caja">
+<path class="lwater" d="M14 186 H90 V318 H14 Z"/>
+<path class="lwl" d="M14 186 q6 -4 12 0 t12 0 t12 0 t12 0 t12 0 t16 0"/>
+<text class="ls" x="20" y="176">RÍO</text><text class="ls" x="20" y="348">aguas arriba</text>
+<!-- caja de carga -->
+<path class="lwall" d="M90 150 H98 V312 H202 V150 H210 V320 H90 Z"/>
+<path class="lwater" d="M98 186 H202 V312 H98 Z"/>
+<path class="lwl" d="M98 186 H202"/>
+<path class="lgrate" d="M136 160 V312 M128 160 H144"/>
+<path class="lpipe-s" d="M210 172 H244"/><path class="lflowd" data-lf="over" d="M244 172 V214"/>
+<text class="ls" x="214" y="164">rebose</text>
+<text class="ls" x="100" y="140">CAJA DE CARGA</text>
+<text class="ls" x="140" y="228">rejilla</text>
+<path class="ldim" d="M190 186 V280"/><path class="ldimt" d="M186 186 H194 M186 280 H194"/><text class="ls r" x="184" y="244">≥ 30 cm</text>
+</g>
+
+<!-- referencias de alturas -->
+<path class="lref" d="M202 186 H588 M600 412 H1262 M1184 96 H1262"/>
+<path class="ldim" d="M584 186 V412"/><path class="ldimt" d="M578 186 H590 M578 412 H590"/><path class="ldima" d="${tri(584, 412, "d")} ${tri(584, 186, "u")}"/>
+<text class="lk" transform="translate(574 318) rotate(-90)" text-anchor="middle">caída H</text>
+<path class="ldim" d="M1258 96 V412"/><path class="ldimt" d="M1252 96 H1264 M1252 412 H1264"/><path class="ldima" d="${tri(1258, 412, "d")} ${tri(1258, 96, "u")}"/>
+<text class="lk" transform="translate(1250 300) rotate(-90)" text-anchor="middle">altura de entrega h</text>
+
+<!-- tubo de impulso -->
+<g data-pick="impulso">
+<path class="lpipe-o" d="${drive}"/><path class="lpipe-i" d="${drive}"/><path class="lflow" data-lf="drive" d="M98 300 H250 L470 500 H700"/>
+<path class="lbrk" d="M427.6 484 L452.4 458 M433.4 489.5 L458.2 463.5"/>
+<text class="lk2" transform="translate(286 276) rotate(43.7)">TUBO DE IMPULSO 1½" GALV.</text>
+<text class="ls" transform="translate(275 289) rotate(43.7)">recto · L = 5–7 × H · ≥ 100 × D</text>
+</g>
+<g data-pick="pila">
+<path class="lconc" d="M286 352 H314 V417 H286 Z M396 457 H424 V528 H396 Z"/>
+<path class="lmetal" d="M286 352 L300 338 L314 352 M396 457 L410 443 L424 457"/>
+</g>
+<!-- llave de bola y unión -->
+<g data-pick="llave">
+<rect class="lfit" x="474" y="486" width="28" height="28" rx="5"/><circle class="lball" cx="488" cy="500" r="9"/><rect class="lbore" x="479" y="496" width="18" height="8"/>
+<path class="lhandle" d="M488 486 V474 H516"/>
+</g>
+<g data-pick="union"><path class="lfit" d="M514 482 H534 V518 H514 Z"/><path class="lnut" d="M518 482 V518 M530 482 V518"/></g>
+<!-- brida -->
+<g data-pick="brida"><rect class="lfit" x="544" y="472" width="7" height="56"/><rect class="lfit" x="553" y="472" width="7" height="56"/><path class="lgasket" d="M552 474 V526"/><path class="lbolt" d="M540 478 H564 M540 522 H564"/></g>
+
+<!-- cuerpo de la bomba -->
+<g data-pick="cuerpo">
+<path class="lwall" d="M560 470 H620 V478 H560 Z M690 470 H760 V478 H690 Z M860 470 H880 V530 H560 V522 H872 V478 H860 Z"/>
+<path class="lwater" d="M560 478 H872 V522 H560 Z"/>
+<text class="lv" x="716" y="512" data-out="lp">0,0 bar</text>
+</g>
+<g data-pick="silleta"><path class="lconc" d="M630 530 H660 V540 H630 Z M800 530 H830 V540 H800 Z"/></g>
+<path class="lbase" d="M590 540 H900 V566 H590 Z"/><path class="lbolt" d="M645 540 V560 M815 540 V560"/>
+<g data-pick="pileta">
+<path class="lwall" d="M572 548 H580 V566 H908 V548 H916 V574 H572 Z"/><path class="lwater" d="M580 566 H908 V570 H580 Z"/>
+<path class="lflowd" data-lf="drain" d="M600 568 H520"/><path class="ldima" d="${`M520 568 l10 -5 v10 Z`}"/>
+<text class="ls" x="440" y="588">vuelve al río</text>
+</g>
+
+<!-- válvula de impulso -->
+<g data-pick="impulso-v">
+<path class="lwall" d="M620 412 H628 V470 H620 Z M682 412 H690 V470 H682 Z"/>
+<path class="lwater" d="M628 412 H682 V478 H628 Z"/>
+<rect class="lseat" x="620" y="404" width="20" height="8"/><rect class="lseat" x="670" y="404" width="20" height="8"/>
+<path class="lspray" data-lf="waste" d="M640 402 C628 378 604 380 594 468"/><path class="lspray" data-lf="waste" d="M670 402 C682 378 706 380 714 468"/>
+</g>
+<g data-pick="guia"><rect class="lmetal" x="616" y="324" width="78" height="8" rx="1"/><rect class="lmetal" x="622" y="332" width="6" height="72"/><rect class="lmetal" x="682" y="332" width="6" height="72"/></g>
+<g data-pick="pesas"><g data-lmv="stem">
+<rect class="lplate" x="634" y="424" width="42" height="6" rx="1"/><rect class="lrubber" x="636" y="420" width="38" height="4"/>
+<rect class="lstem" x="653" y="282" width="4" height="142"/>
+<rect class="lmetal" x="644" y="316" width="22" height="8"/>
+<rect class="lweight" x="628" y="304" width="54" height="11" rx="2"/><rect class="lweight" x="628" y="292" width="54" height="11" rx="2"/>
+<path class="lnut2" d="M646 280 H664 L667 286 L664 292 H646 L643 286 Z"/>
+</g></g>
+<path class="ldimt" d="M700 412 H708 M700 427 H708"/><path class="ldim" d="M704 412 V427"/><text class="ls" x="712" y="424">carrera</text>
+
+<!-- válvula de entrega y válvula de aire -->
+<g data-pick="entrega">
+<path class="lwall" d="M760 430 H768 V470 H760 Z M852 430 H860 V470 H852 Z"/>
+<path class="lwater" d="M768 430 H852 V478 H768 Z"/>
+<path class="lplate2" d="M760 424 H778 V430 H760 Z M786 424 H806 V430 H786 Z M814 424 H834 V430 H814 Z M842 424 H860 V430 H842 Z"/>
+<g data-lmv="flapL"><rect class="lrubber" x="772" y="418" width="38" height="5" rx="1"/></g>
+<g data-lmv="flapR"><rect class="lrubber" x="810" y="418" width="38" height="5" rx="1"/></g>
+<rect class="lmetal" x="806" y="412" width="8" height="18"/>
+<path class="lflowd" data-lf="up" d="M790 470 V436 M830 470 V436"/>
+</g>
+<g data-pick="aire">
+<path class="lhole" d="M760 446 H768"/>
+<circle class="lbub" data-lmv="bubIn" r="3.5" cx="752" cy="446"/>
+</g>
+<!-- cámara de aire -->
+<g data-pick="camara">
+<path class="lwall" d="M760 418 V170 Q760 140 810 140 Q860 140 860 170 V418 H852 V170 Q852 148 810 148 Q768 148 768 170 V418 Z"/>
+<path class="lair" d="M768 170 Q768 148 810 148 Q852 148 852 170 V418 H768 Z"/>
+<rect class="lwater" data-lmv="cwater" x="768" y="300" width="84" height="118"/>
+<path class="lwl" data-lmv="cwl" d="M768 300 H852"/>
+<circle class="lbub" data-lmv="bubUp" r="3.5" cx="790" cy="410"/>
+<text class="lk c" x="810" y="214">AIRE</text><text class="ls c" x="810" y="230">comprimido:</text><text class="ls c" x="810" y="244">empuja sin parar</text>
+<path class="ldimt" d="M760 132 V124 M860 132 V124"/><path class="ldim" d="M760 128 H860"/><text class="ls c" x="810" y="120">Ø 4" · alto 1,2 m</text>
+</g>
+<g data-pick="purga"><path class="lpipe-s" d="M860 400 H876"/><rect class="lfit" x="876" y="394" width="12" height="12" rx="2"/><path class="lhandle" d="M882 394 V386 H894"/><text class="ls" x="898" y="404">purga</text></g>
+<!-- manómetro -->
+<g data-pick="manometro">
+<path class="lpipe-s" d="M860 200 H890"/><circle class="lgauge" cx="912" cy="200" r="22"/>
+<path class="lgtick" d="M896 216 l4 -4 M912 182 v5 M928 216 l-4 -4 M893 200 h5 M931 200 h-5"/>
+<path class="lneedle" data-lmv="needle" d="M912 200 L912 184"/><circle cx="912" cy="200" r="3" fill="#fff"/>
+<text class="lk" x="940" y="196">MANÓMETRO</text><text class="lv" x="940" y="214" data-out="lbar">0,0 bar</text>
+</g>
+<!-- salida y manguera -->
+<g data-pick="salida">
+<path class="lpipe-o2" d="M860 360 H1000"/><path class="lpipe-i2" d="M860 360 H1000"/>
+<rect class="lfit" x="910" y="349" width="22" height="22" rx="3"/><path class="lhandle" d="M921 349 V336 M913 336 H929"/>
+<path class="lfit" d="M956 350 H972 V370 H956 Z"/><path class="lnut" d="M960 350 V370 M968 350 V370"/>
+</g>
+<g data-pick="manguera">
+<path class="lhose" d="${hose}"/><path class="lflow2" data-lf="out" d="M860 360 H1006 Q1016 360 1016 372 V540 L1150 184 H1156 Q1162 184 1162 176 V100 Q1162 92 1170 92 H1196"/>
+<path class="lbrk" d="M1108.8 259.5 L1131.2 268 M1111.6 252 L1134 260.5"/>
+<text class="ls" transform="translate(1027 471) rotate(-69.4)">MANGUERA PEAD 1" · enterrada · ~350 m</text>
+</g>
+<g data-pick="camisa"><rect class="lfit" x="1009" y="508" width="14" height="40" rx="2"/><text class="ls" x="1030" y="540">camisa</text></g>
+<!-- tanque -->
+<path class="lwall" d="M1176 100 H1184 V164 H1244 V100 H1252 V172 H1176 Z"/>
+<path class="lwater" d="M1184 118 H1244 V164 H1184 Z"/><path class="lwl" d="M1184 118 H1244"/>
+<text class="ls" x="1176" y="84">TANQUE EN LA LOMA</text>
+
+<!-- globos -->
+${bal(1, 232, 118, 208, 150, "caja")}${bal(2, 372, 452, 372, 418, "impulso")}${bal(3, 462, 446, 482, 486, "llave")}${bal(4, 930, 500, 880, 500, "cuerpo")}
+${bal(5, 598, 392, 620, 408, "impulso-v")}${bal(6, 600, 298, 628, 298, "pesas")}${bal(7, 732, 400, 772, 420, "entrega")}${bal(8, 726, 448, 760, 446, "aire")}
+${bal(9, 900, 280, 860, 280, "camara")}${bal(10, 966, 160, 928, 186, "manometro")}${bal(11, 990, 326, 966, 350, "salida")}${bal(12, 940, 560, 916, 562, "pileta")}
+
+<!-- lista de piezas -->
+<g class="lbox"><rect x="1292" y="24" width="284" height="244" rx="4"/>
+<text class="lh" x="1304" y="46">LISTA DE PIEZAS</text>
+${LIST.map(([n, t, p], i) => `<g class="lrow" data-pick="${p}"><rect x="1296" y="${56 + i * 17}" width="276" height="16" rx="3"/><text class="lnum" x="1310" y="${68 + i * 17}">${n}</text><text class="ls" x="1324" y="${68 + i * 17}">${t}</text></g>`).join("")}
+</g>
+<!-- gráfica -->
+<g class="lchart" transform="translate(1300 306)">
+<rect class="lcbg" x="0" y="0" width="${LCW}" height="${LCH}" rx="4"/>
+<g data-out="lbands"></g>
+<path class="lcz" data-out="lzero" d=""/><path class="lch" data-out="lhline" d=""/>
+<path class="lcurve" data-out="lcurve" d=""/><path class="lcursor" data-lmv="cursor" d="M0 0 V${LCH}"/>
+<text class="ls" x="0" y="-9">Presión dentro del cuerpo · 1 ciclo</text>
+<text class="ls" x="0" y="${LCH + 14}">tiempo →</text><text class="ls r" x="${LCW}" y="${LCH + 14}" data-out="ltlab"></text>
+<text class="ls r" data-out="lhlab" x="${LCW}" y="${LCH + 28}"></text>
+</g>
+<!-- cajetín -->
+<g class="lbox"><rect x="1292" y="436" width="284" height="148" rx="4"/>
+<path class="lsep" d="M1292 478 H1576 M1292 512 H1576 M1292 546 H1576"/>
+<text class="lhb" x="1304" y="464">BOMBA DE ARIETE 1½" × 1"</text>
+<text class="ls" x="1304" y="499">Finca Castillo · bombeo a la loma</text>
+<text class="ls" x="1304" y="533">Lámina 1 · corte longitudinal · sin escala</text>
+<text class="ls" x="1304" y="562">Base: ACF 2009 · Practical Action</text>
+<text class="ls" x="1304" y="577">NC State Extension · Lansford y Dugan</text>
+</g>
+</svg>`;
+  }
+  /* visor horizontal: gira el contenido si el teléfono está vertical */
+  let land = null, lv = "plano", LT = { s: 1, x: 0, y: 0 }, lrot = false, isoClone = null;
+  function landShell() {
+    return `<div class="rl-frame">
+  <div class="rl-bar">
+    <button class="rl-b rl-x" data-ram="landx" aria-label="Cerrar vista horizontal">×</button>
+    <div class="rl-seg" role="group" aria-label="Vista"><button data-ram="lview" data-v="plano" aria-pressed="true">Corte</button><button data-ram="lview" data-v="iso" aria-pressed="false">3D</button></div>
+    <button class="ram-play rl-b" data-ram="play" aria-pressed="true"><span data-out="playIco">❚❚</span></button>
+    <div class="ram-phs rl-phs">${PHASES.map((p, i) => `<button data-ram="ph" data-i="${i}"><b>${i + 1}</b>${p.name}</button>`).join("")}</div>
+    <button class="ram-speed rl-b" data-ram="speed" aria-pressed="true">Lento</button>
+    <button class="rl-b" data-ram="lz" data-v="out" aria-label="Alejar">−</button><button class="rl-b" data-ram="lz" data-v="in" aria-label="Acercar">+</button><button class="rl-b" data-ram="lz" data-v="fit" aria-label="Ver todo">⤢</button>
+  </div>
+  <div class="rl-stage"><div class="rl-pan"><div class="rl-v" data-lv="plano">${planoSvg()}</div><div class="rl-v iso" data-lv="iso" hidden></div></div></div>
+  <div class="rl-ph" data-out="lphtxt"></div>
+  <div class="rl-info" data-out="linfo" hidden></div>
+  <div class="rl-turn" data-out="lturn"><span>↺</span> Gira el teléfono para verla en grande</div>
+</div>`;
+  }
+  function landLayout() {
+    if (!land) return;
+    const w = innerWidth, h = innerHeight, f = land.firstElementChild;
+    lrot = h > w;
+    f.style.width = (lrot ? h : w) + "px"; f.style.height = (lrot ? w : h) + "px";
+    f.style.transform = lrot ? `translate(${w}px,0) rotate(90deg)` : "none";
+    land.dataset.rot = lrot ? "1" : "0";
+    lApply();
+  }
+  const lStage = () => land.querySelector(".rl-stage");
+  function lApply() {
+    const st = lStage(), W = st.clientWidth, H = st.clientHeight;
+    LT.s = clamp(LT.s, 1, 6);
+    LT.x = clamp(LT.x, W - W * LT.s, 0); LT.y = clamp(LT.y, H - H * LT.s, 0);
+    land.querySelector(".rl-pan").style.transform = `translate(${LT.x.toFixed(1)}px,${LT.y.toFixed(1)}px) scale(${LT.s.toFixed(3)})`;
+    land.querySelector(".rl-stage").dataset.z = LT.s > 1.01 ? "1" : "0";
+  }
+  function lZoomAt(s1, px, py) { const s0 = LT.s; s1 = clamp(s1, 1, 6); LT.x = px - ((px - LT.x) * s1) / s0; LT.y = py - ((py - LT.y) * s1) / s0; LT.s = s1; lApply(); }
+  // punto de pantalla -> coordenadas dentro del escenario (sin girar)
+  function lLocal(cx, cy) {
+    const st = lStage();
+    if (lrot) { const xl = cy, yl = innerWidth - cx; return [xl - st.offsetLeft, yl - st.offsetTop]; }
+    const r = st.getBoundingClientRect(); return [cx - r.left, cy - r.top];
+  }
+  function landBuild() {
+    land = document.createElement("div");
+    land.className = "rl"; land.hidden = true;
+    land.setAttribute("role", "dialog"); land.setAttribute("aria-label", "Bomba de ariete en horizontal");
+    land.innerHTML = landShell();
+    root.appendChild(land);
+    // gestos: arrastrar, pellizcar, doble toque
+    const st = lStage(), P = new Map(); let g = null, moved = false, lastTap = 0;
+    st.addEventListener("pointerdown", (e) => { P.set(e.pointerId, [e.clientX, e.clientY]); moved = false;
+      if (P.size === 2) { const [a, b] = [...P.values()]; g = { d: Math.hypot(a[0] - b[0], a[1] - b[1]), s: LT.s, m: lLocal((a[0] + b[0]) / 2, (a[1] + b[1]) / 2) }; } });
+    st.addEventListener("pointermove", (e) => { if (!P.has(e.pointerId)) return; const prev = P.get(e.pointerId); P.set(e.pointerId, [e.clientX, e.clientY]);
+      if (P.size === 2 && g) { try { st.setPointerCapture(e.pointerId); } catch (er) {} const [a, b] = [...P.values()]; const d = Math.hypot(a[0] - b[0], a[1] - b[1]); lZoomAt((g.s * d) / g.d, g.m[0], g.m[1]); moved = true; return; }
+      let dx = e.clientX - prev[0], dy = e.clientY - prev[1]; if (Math.abs(dx) + Math.abs(dy) > 0.5 && (Math.hypot(e.clientX - prev[0], e.clientY - prev[1]) > 0)) {}
+      if (lrot) [dx, dy] = [dy, -dx];
+      if (LT.s > 1.01) { LT.x += dx; LT.y += dy; lApply(); }
+      if (Math.abs(dx) + Math.abs(dy) > 2) { moved = true; try { st.setPointerCapture(e.pointerId); } catch (er) {} } });
+    const up = (e) => { P.delete(e.pointerId); if (P.size < 2) g = null;
+      if (!moved && e.type === "pointerup") { const now = Date.now(); if (now - lastTap < 300) { const [px, py] = lLocal(e.clientX, e.clientY); lZoomAt(LT.s > 1.5 ? 1 : 2.6, px, py); lastTap = 0; } else lastTap = now; } };
+    st.addEventListener("pointerup", up); st.addEventListener("pointercancel", up);
+    st.addEventListener("click", (e) => { if (moved) { e.stopPropagation(); e.preventDefault(); } }, true);
+    st.addEventListener("wheel", (e) => { e.preventDefault(); const [px, py] = lLocal(e.clientX, e.clientY); lZoomAt(LT.s * (e.deltaY < 0 ? 1.15 : 0.87), px, py); }, { passive: false });
+    addEventListener("resize", landLayout); addEventListener("orientationchange", () => setTimeout(landLayout, 250));
+    drawLandChart();
+  }
+  function landView(v) {
+    lv = v;
+    land.querySelectorAll(".rl-seg button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.v === v));
+    land.querySelectorAll(".rl-v").forEach((d) => (d.hidden = d.dataset.lv !== v));
+    if (v === "iso" && !isoClone) {
+      const host = land.querySelector('[data-lv="iso"]');
+      host.innerHTML = FIG.svg.replace(/rr-b/g, "rr-bl").replace('class="iso-svg ram-iso"', 'class="iso-svg ram-iso ram-iso-l"');
+      isoClone = host.querySelector("svg"); tight(isoClone);
+      moving = QA(".ram-iso .it[data-move]"); needle = QA(".ram-iso [data-needle]"); flows = QA(".ram-iso .flowln");
+      if (sel) setPart(sel);
+    }
+    LT = { s: 1, x: 0, y: 0 }; lApply();
+  }
+  function landOpen(v) {
+    if (!land) landBuild();
+    land.hidden = false; landLayout(); landView(v || lv);
+    requestAnimationFrame(() => land.classList.add("in"));
+    const tn = land.querySelector('[data-out="lturn"]'); tn.classList.remove("gone"); setTimeout(() => tn.classList.add("gone"), 3200);
+    kick();
+  }
+  function landClose() { if (!land) return; land.classList.remove("in"); setTimeout(() => { land.hidden = true; }, 200); }
+  function drawLandChart() {
+    if (!land) return;
+    const m = model(), lo = -0.25 * S.h - 0.8, hi = 1.4 * S.h;
+    const Y = (p) => LCH - 5 - ((p - lo) / (hi - lo)) * (LCH - 10);
+    let d = ""; for (let i = 0; i <= 160; i++) { const tt = i / 160; d += (i ? "L" : "M") + (tt * LCW).toFixed(1) + " " + Y(pres(tt, S.H, S.h)).toFixed(1); }
+    const q = (k) => land.querySelector(`[data-out="${k}"]`);
+    q("lcurve").setAttribute("d", d); q("lzero").setAttribute("d", `M0 ${Y(0)} H${LCW}`); q("lhline").setAttribute("d", `M0 ${Y(S.h)} H${LCW}`);
+    q("lbands").innerHTML = PHASES.map((p, i) => { const x0 = p.t * LCW, x1 = (PHASES[i + 1] ? PHASES[i + 1].t : 1) * LCW; return `<rect class="lband${i % 2 ? " alt" : ""}" x="${x0}" y="0" width="${x1 - x0}" height="${LCH}"/><text class="lbn" x="${(x0 + x1) / 2}" y="11">${i + 1}</text>`; }).join("");
+    q("lhlab").textContent = `pico ≈ ${fmt((1.25 * S.h) / 10.2)} bar`; q("ltlab").textContent = `un ciclo ≈ ${fmt(60 / m.bpm, 2)} s`;
+  }
+  function landFrame(c, tt, m) {
+    if (!land || land.hidden) return;
+    const mv = (k) => land.querySelector(`[data-lmv="${k}"]`);
+    mv("stem").setAttribute("transform", `translate(0 ${(-11 * (1 - c.open)).toFixed(1)})`);
+    mv("flapL").setAttribute("transform", `rotate(${(16 * c.del).toFixed(1)} 810 421)`);
+    mv("flapR").setAttribute("transform", `rotate(${(-16 * c.del).toFixed(1)} 810 421)`);
+    const wy = 300 - 14 * c.del;
+    mv("cwater").setAttribute("y", wy.toFixed(1)); mv("cwater").setAttribute("height", (418 - wy).toFixed(1)); mv("cwl").setAttribute("d", `M768 ${wy.toFixed(1)} H852`);
+    const bi = mv("bubIn"), bu = mv("bubUp");
+    if (tt >= 0.73 && tt < 0.95) { const u = clamp((tt - 0.73) / 0.12, 0, 1); bi.setAttribute("cx", (750 + 30 * u).toFixed(1)); bi.style.opacity = "1"; }
+    else if (tt < 0.59) { bi.setAttribute("cx", "780"); bi.style.opacity = "1"; } else bi.style.opacity = "0";
+    if (tt >= 0.59 && tt < 0.9) { const u = clamp((tt - 0.59) / 0.3, 0, 1); bu.setAttribute("cy", (440 - (440 - wy - 4) * u).toFixed(1)); bu.setAttribute("cx", (790 + 8 * Math.sin(u * 10)).toFixed(1)); bu.style.opacity = (u < 0.92 ? 1 : (1 - u) / 0.08).toFixed(2); }
+    else bu.style.opacity = "0";
+    const bar = m.lifts ? m.bar * (1 + 0.04 * c.del) : 0, ga = ((-135 + (270 * clamp(bar, 0, 6)) / 6) * Math.PI) / 180;
+    mv("needle").setAttribute("d", `M912 200 L${(912 + 16 * Math.sin(ga)).toFixed(1)} ${(200 - 16 * Math.cos(ga)).toFixed(1)}`);
+    mv("cursor").setAttribute("transform", `translate(${(tt * LCW).toFixed(1)} 0)`);
+    land.querySelector('[data-out="lbar"]').textContent = `${fmt(bar)} bar`;
+    land.querySelector('[data-out="lp"]').textContent = `presión: ${fmt(Math.max(-0.1, pres(tt, S.H, S.h)) / 10.2, 2)} bar`;
+    for (const f of land.querySelectorAll("[data-lf]")) {
+      const k = f.dataset.lf;
+      const off = k === "drive" ? flowT.drive : k === "waste" || k === "drain" ? flowT.waste : k === "over" ? flowT.waste * 0.5 : flowT.out;
+      f.style.strokeDashoffset = (-off * 1.6).toFixed(1);
+      f.style.opacity = k === "waste" ? (c.open * Math.max(0, c.v)).toFixed(2) : k === "up" ? c.del.toFixed(2) : k === "out" ? (m.lifts ? "0.95" : "0") : k === "drive" ? (0.3 + 0.7 * Math.abs(c.v)).toFixed(2) : "0.7";
+    }
+    const hot = new Set(HOT[c.ph]);
+    if (land.dataset.ph !== String(c.ph)) {
+      land.dataset.ph = c.ph;
+      land.querySelectorAll(".rl-svg [data-pick]").forEach((g) => g.classList.toggle("hot", hot.has(g.dataset.pick) && !g.classList.contains("lb") && !g.classList.contains("lrow")));
+      land.querySelector('[data-out="lphtxt"]').innerHTML = `<b>${c.ph + 1} · ${PHASES[c.ph].name}.</b> ${PHASES[c.ph].txt}`;
+    }
+  }
+
   /* ---------- estado y animación ---------- */
   let root, svg, stage, pan, sec, raf = 0, last = 0, t = 0, playing = true, slow = true, hold = null, sel = null, zoom = 1;
   const Q = (s, r = root) => r.querySelector(s);
@@ -881,7 +1311,8 @@ ${pin(1, 112, 30, "caja")}${pin(2, 182, 236, "impulso")}${pin(3, 190, 322, "llav
     const group = sel ? new Set(Object.keys(PARTS).filter((k) => PARTS[k].name === PARTS[sel].name)) : null;
     QA(".ram-iso .it").forEach((g) => g.classList.toggle("dim", !!group && !group.has(g.dataset.part)));
     QA("[data-pick]").forEach((g) => g.classList.toggle("on", !!group && group.has(g.dataset.pick)));
-    const box = Q('[data-out="part"]');
+    const box = Q('[data-out="part"]'), lbx = land && land.querySelector('[data-out="linfo"]');
+    if (lbx) { if (!sel) lbx.hidden = true; else { const p = PARTS[sel], s2 = SRC[p.src]; lbx.hidden = false; lbx.innerHTML = `<div class="ram-pn"><b>${p.n}</b><span>${p.name}</span><button data-ram="unsel" aria-label="Quitar selección">×</button></div><p>${p.what}</p><p class="spec">${p.spec}</p><a href="${s2[1]}" target="_blank" rel="noopener">Fuente: ${s2[0]}</a>`; } }
     if (!sel) { box.hidden = true; Q('[data-out="hint"]').textContent = "Toca una pieza"; return; }
     const p = PARTS[sel], s = SRC[p.src];
     box.hidden = false;
@@ -916,6 +1347,7 @@ ${pin(1, 112, 30, "caja")}${pin(2, 182, 236, "impulso")}${pin(3, 190, 322, "llav
       <div><span>Golpes por minuto</span><b>~${m.bpm}</b><em>normal entre 25 y 100</em></div>`;
     Q('[data-out="gbar"]', sec).textContent = `${fmt(m.bar)} bar`;
     drawChart();
+    drawLandChart();
   }
   const WATER_Y0 = 250;
   function frame(now) {
@@ -936,7 +1368,8 @@ ${pin(1, 112, 30, "caja")}${pin(2, 182, 236, "impulso")}${pin(3, 190, 322, "llav
     const G0 = FIG.gauge, a = ((135 - (270 * clamp(bar, 0, G0.max)) / G0.max) * Math.PI) / 180;
     const tip = [G0.c[0] + G0.r * (Math.cos(a) * G0.U[0] + Math.sin(a) * G0.Vv[0]), G0.c[1] + G0.r * (Math.cos(a) * G0.U[1] + Math.sin(a) * G0.Vv[1])];
     const tail = [G0.c[0] - 0.9 * (Math.cos(a) * G0.U[0] + Math.sin(a) * G0.Vv[0]), G0.c[1] - 0.9 * (Math.cos(a) * G0.U[1] + Math.sin(a) * G0.Vv[1])];
-    needle.setAttribute("d", `M${tail[0].toFixed(2)} ${tail[1].toFixed(2)}L${tip[0].toFixed(2)} ${tip[1].toFixed(2)}`);
+    for (const nd of needle) nd.setAttribute("d", `M${tail[0].toFixed(2)} ${tail[1].toFixed(2)}L${tip[0].toFixed(2)} ${tip[1].toFixed(2)}`);
+    landFrame(c, tt, m);
     // flujos
     flowT.drive += dt * (hold != null ? 0 : 1) * 26 * c.v * (slow ? 0.5 : 1.4);
     flowT.waste += dt * (hold != null ? 0 : 1) * 30 * (slow ? 0.5 : 1.4);
@@ -972,7 +1405,7 @@ ${pin(1, 112, 30, "caja")}${pin(2, 182, 236, "impulso")}${pin(3, 190, 322, "llav
     if (c.ph !== lastPh) {
       lastPh = c.ph;
       Q('[data-out="phtxt"]').innerHTML = `<b>${c.ph + 1} · ${PHASES[c.ph].name}.</b> ${PHASES[c.ph].txt}`;
-      QA(".ram-phs button").forEach((b, i) => b.classList.toggle("on", i === c.ph));
+      QA(".ram-phs button").forEach((b) => b.classList.toggle("on", +b.dataset.i === c.ph));
       QA(".ram-steps li").forEach((b, i) => b.classList.toggle("on", i === c.ph));
     }
     Q('[data-out="readout"]').textContent = m.lifts ? `${PHASES[c.ph].name} · sube ${fmt(m.q)} L/min` : "sin bomba: llega por gravedad";
@@ -1003,7 +1436,7 @@ ${pin(1, 112, 30, "caja")}${pin(2, 182, 236, "impulso")}${pin(3, 190, 322, "llav
     svg = Q(".ram-iso"); stage = Q(".ram-stage"); pan = Q(".ram-pan"); sec = Q(".ram-sec");
     tight(svg);
     moving = QA(".ram-iso .it[data-move]");
-    needle = Q(".ram-iso [data-needle]");
+    needle = QA(".ram-iso [data-needle]");
     flows = QA(".ram-iso .flowln");
     secFlows = QA("[data-sf]", sec);
     drawCalc();
@@ -1012,19 +1445,23 @@ ${pin(1, 112, 30, "caja")}${pin(2, 182, 236, "impulso")}${pin(3, 190, 322, "llav
       if (b) {
         const a = b.dataset.ram;
         if (a === "close") return close();
-        if (a === "play") { playing = !playing; hold = null; b.setAttribute("aria-pressed", playing); Q('[data-out="playIco"]').textContent = playing ? "❚❚" : "▶"; kick(); return; }
-        if (a === "speed") { slow = !slow; b.setAttribute("aria-pressed", slow); b.textContent = slow ? "Lento" : "Real"; return; }
-        if (a === "ph") { const i = +b.dataset.i; hold = (PHASES[i].t + (PHASES[i + 1] ? PHASES[i + 1].t : 1)) / 2; playing = false; Q(".ram-play").setAttribute("aria-pressed", "false"); Q('[data-out="playIco"]').textContent = "▶"; kick(); return; }
+        if (a === "play") { playing = !playing; hold = null; QA(".ram-play").forEach((x) => x.setAttribute("aria-pressed", playing)); QA('[data-out="playIco"]').forEach((x) => (x.textContent = playing ? "❚❚" : "▶")); kick(); return; }
+        if (a === "speed") { slow = !slow; QA(".ram-speed").forEach((x) => { x.setAttribute("aria-pressed", slow); x.textContent = slow ? "Lento" : "Real"; }); return; }
+        if (a === "land") return landOpen(b.dataset.v);
+        if (a === "landx") return landClose();
+        if (a === "lview") return landView(b.dataset.v);
+        if (a === "lz") { const st = lStage(), cx = st.clientWidth / 2, cy = st.clientHeight / 2; if (b.dataset.v === "fit") { LT = { s: 1, x: 0, y: 0 }; lApply(); } else lZoomAt(LT.s * (b.dataset.v === "in" ? 1.6 : 1 / 1.6), cx, cy); return; }
+        if (a === "ph") { const i = +b.dataset.i; hold = (PHASES[i].t + (PHASES[i + 1] ? PHASES[i + 1].t : 1)) / 2; playing = false; QA(".ram-play").forEach((x) => x.setAttribute("aria-pressed", "false")); QA('[data-out="playIco"]').forEach((x) => (x.textContent = "▶")); kick(); return; }
         if (a === "zin") return setZoom(zoom * 1.6);
         if (a === "zout") return setZoom(zoom / 1.6);
         if (a === "unsel") return setPart(null);
         if (a === "preset") { const [H, h, Qv, L] = b.dataset.v.split(",").map(Number); Object.assign(S, { H, h, Q: Qv, L }); QA("[data-in]").forEach((i) => (i.value = S[i.dataset.in])); drawCalc(); return; }
       }
       const pk = e.target.closest("[data-pick]");
-      if (pk) { setPart(pk.dataset.pick === sel ? null : pk.dataset.pick); if (pk.closest(".ram-chips") || pk.closest(".ram-sec")) Q(".ram-card").scrollIntoView({ behavior: "smooth", block: "start" }); return; }
+      if (pk) { setPart(pk.dataset.pick === sel ? null : pk.dataset.pick); if (!pk.closest(".rl") && (pk.closest(".ram-chips") || pk.closest(".ram-sec"))) Q(".ram-card").scrollIntoView({ behavior: "smooth", block: "start" }); return; }
       const it = e.target.closest(".ram-iso .it");
       if (it) { const id = it.dataset.part; if (PARTS[id]) setPart(id === sel ? null : id); return; }
-      if (e.target.closest(".ram-stage")) setPart(null);
+      if (e.target.closest(".ram-stage") || e.target.closest(".rl-stage")) setPart(null);
     });
     root.addEventListener("input", (e) => { const k = e.target.dataset.in; if (!k) return; S[k] = +e.target.value; drawCalc(); });
     // pellizco para acercar
@@ -1044,6 +1481,7 @@ ${pin(1, 112, 30, "caja")}${pin(2, 182, 236, "impulso")}${pin(3, 190, 322, "llav
   }
   function close() {
     if (!root) return;
+    landClose();
     root.classList.remove("in");
     document.documentElement.classList.remove("ram-lock");
     setTimeout(() => { root.hidden = true; }, 220);
