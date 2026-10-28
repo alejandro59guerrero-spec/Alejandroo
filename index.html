@@ -636,6 +636,13 @@ html.ram-lock,html.ram-lock body{overflow:hidden}
 .cp-stat b{color:#fff}
 .cp-big{font-size:22px;font-weight:700;color:var(--or2)}
 .cp-ov .btn[disabled]{opacity:.4}
+.cp-main{font-size:19px;padding:18px 16px}
+.cp-how{margin:0 4px;font-size:15px;line-height:1.45;color:#aeaeb2}.cp-how b{color:#fff}
+.cp-msg{background:#1c1c1e;border-left:3px solid var(--green);border-radius:10px;padding:10px 12px;font-size:15px;color:#e6e6e6}
+.cp-inst{background:#1c1c1e;border-radius:14px;padding:12px 14px;margin-top:10px}
+.cp-inst summary{cursor:pointer;font-weight:600;color:var(--or);font-size:15px}
+.cp-inst ol{margin:10px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.45;color:#c7c7cc}
+.cp-inst li{display:flex;flex-direction:column;gap:8px}.cp-inst li{display:list-item}.cp-inst .cp-url,.cp-inst .btn{margin-top:8px}
 
 </style>
 
@@ -2001,12 +2008,13 @@ const PLN = (() => {
 })();
 
 /* ===== Modo campo: copia instalable que funciona sin internet =====
-   La app de Claude necesita internet para abrir. La copia de campo (en GitHub Pages, instalada en
-   la pantalla de inicio) se abre sin señal; los datos pasan de una a otra con un código que se copia y pega. */
+   La app de Claude necesita internet para abrir. La copia de campo (GitHub Pages, en la pantalla de inicio)
+   abre sin señal. Se ponen al día con un botón en cada app: lo que una copia, la otra lo pega. */
 const CAMPO = (() => {
   const URL_CAMPO = "https://alejandro59guerrero-spec.github.io/Alejandroo/";
+  const URL_APP = "https://claude.ai/artifact/2qciGbMouNhG982LEz6aPt";
   const K_IMP = "mm-imp-v1", K_DAT = "mm-campo-datos";
-  let root = null, codeOut = "", step = "";
+  let root = null, msg = "", manual = false;
   const n = () => OB.length;
   const nTx = (k) => (k === 1 ? "1 registro" : k + " registros");
   const h32 = (s) => { let h = 5381; for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0; return (h >>> 0).toString(36); };
@@ -2025,123 +2033,134 @@ const CAMPO = (() => {
   async function unpack(prefix, code) {
     code = (code || "").replace(/\s+/g, "");
     const i = code.indexOf(prefix);
-    if (i < 0) throw new Error("tipo");
-    const kind = code[i + prefix.length], b64 = code.slice(i + prefix.length + 1);
-    const bin = atob(b64);
-    if (kind === "J") return JSON.parse(decodeURIComponent(escape(bin)));
-    const bytes = new Uint8Array(bin.length); for (let j = 0; j < bin.length; j++) bytes[j] = bin.charCodeAt(j);
-    const st = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("gzip"));
-    return JSON.parse(await new Response(st).text());
+    if (i < 0) return null;
+    try {
+      const kind = code[i + prefix.length], bin = atob(code.slice(i + prefix.length + 1));
+      if (kind === "J") return JSON.parse(decodeURIComponent(escape(bin)));
+      const bytes = new Uint8Array(bin.length); for (let j = 0; j < bin.length; j++) bytes[j] = bin.charCodeAt(j);
+      const st = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("gzip"));
+      return JSON.parse(await new Response(st).text());
+    } catch (e) { return null; }
   }
-  async function copy(text, ta) {
-    try { await navigator.clipboard.writeText(text); return true; } catch (e) {}
-    try { if (ta) { ta.focus(); ta.select(); ta.setSelectionRange(0, text.length); } return document.execCommand("copy"); } catch (e) { return false; }
+  /* copiar: se arranca dentro del toque (Safari lo exige) con el texto como promesa */
+  function copyNow(makeText) {
+    const p = Promise.resolve().then(makeText);
+    try {
+      if (navigator.clipboard && window.ClipboardItem) {
+        return navigator.clipboard.write([new ClipboardItem({ "text/plain": p.then((t) => new Blob([t], { type: "text/plain" })) })]).then(() => p.then((t) => ({ ok: true, t })), () => p.then((t) => fallbackCopy(t)));
+      }
+    } catch (e) {}
+    return p.then((t) => (navigator.clipboard ? navigator.clipboard.writeText(t).then(() => ({ ok: true, t }), () => fallbackCopy(t)) : fallbackCopy(t)));
   }
-  async function readClip() { try { return await navigator.clipboard.readText(); } catch (e) { return ""; } }
-  const fecha = (t) => { if (!t) return ""; const d = new Date(t); return d.getDate() + " " + MES[d.getMonth()] + " · " + String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0"); };
+  function fallbackCopy(t) {
+    try { const ta = document.createElement("textarea"); ta.value = t; ta.setAttribute("readonly", ""); ta.style.cssText = "position:fixed;top:0;left:0;opacity:0"; document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, t.length); const ok = document.execCommand("copy"); ta.remove(); return { ok, t }; } catch (e) { return { ok: false, t }; }
+  }
+  async function readClip() { try { return await navigator.clipboard.readText(); } catch (e) { return null; } }
+  const fecha = (t) => { if (!t) return ""; const d = new Date(t); return d.getDate() + " " + MES[d.getMonth()] + ", " + String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0"); };
 
-  /* ---------- cuerpo de la pantalla ---------- */
-  function bodyMain() {
-    return `
-      <p class="cp-lead">Esta app vive en tu cuenta de Claude y necesita internet para abrir. Para el terreno tienes <b>Mis Metas · Campo</b>, una copia que se instala en tu iPhone y abre sin señal.</p>
-      <div class="cp-step"><div class="cp-n">1</div><div class="cp-c">
-        <h3>Instálala una sola vez (con internet)</h3>
-        <p>Copia el enlace, ábrelo en <b>Safari</b>, toca <b>Compartir</b> <span class="cp-ic">⬆︎</span> y luego <b>Agregar a pantalla de inicio</b>. Ábrela una vez desde el ícono mientras tengas señal.</p>
-        <div class="cp-url">${esc(URL_CAMPO)}</div>
-        <button class="btn sec" data-cp="url">Copiar enlace</button>
-      </div></div>
-      <div class="cp-step"><div class="cp-n">2</div><div class="cp-c">
-        <h3>Antes de ir al terreno: lleva tus datos</h3>
-        <p>Copia tus metas, tareas, conteo y finanzas. En la app de campo toca <b>Pegar datos</b>.</p>
-        <button class="btn" data-cp="export">Copiar mis datos</button>
-        ${step === "export" ? outBox("Si no se copió solo, mantén presionado el código y elige Seleccionar todo → Copiar.") : ""}
-      </div></div>
-      <div class="cp-step"><div class="cp-n">3</div><div class="cp-c">
-        <h3>Al volver con señal: sube lo del campo</h3>
-        <p>En la app de campo toca <b>Copiar registros</b> y pégalos aquí.</p>
-        <textarea class="cp-ta" id="cp-in" rows="3" placeholder="Pega aquí el código MMR…" autocomplete="off" autocorrect="off" spellcheck="false"></textarea>
-        <div class="cp-row"><button class="btn sec" data-cp="paste">Pegar</button><button class="btn" data-cp="import">Subir registros</button></div>
-      </div></div>
-      <p class="cp-note">No edites lo mismo en las dos apps mientras estás en el campo: al subir, lo del campo reemplaza esa parte.</p>`;
+  /* ---------- qué hace cada app con lo que pega ---------- */
+  async function takeIn(text) {
+    if (IS_CAMPO) {
+      const o = await unpack("MMC1", text);
+      if (!o || !o.S) return false;
+      const done = new Set(o.imp || []);
+      const before = n();
+      OB = OB.filter((x) => !done.has(keyOf(x))); saveQ();
+      ls.set(LS_C, { t: o.t || Date.now(), S: o.S }); ls.set(K_DAT, { t: o.t || Date.now() });
+      msg = before && !n() ? "Listo: Mis Metas ya tiene todo lo del campo." : n() ? `Datos al día. Aún quedan ${nTx(n())} por pasar.` : "Listo: datos al día.";
+      setTimeout(() => location.reload(), 900);
+      return true;
+    }
+    const o = await unpack("MMR1", text);
+    if (!o) return false;
+    const items = (o.items || []).filter((x) => x && x.path && x.op);
+    const done = new Set(ls.get(K_IMP) || []); let k = 0;
+    items.forEach((x) => { const id = keyOf(x); if (done.has(id)) return; put(x.path, x.op, x.data); done.add(id); k++; });
+    ls.set(K_IMP, [...done].slice(-3000));
+    sched(true);
+    msg = k ? (k === 1 ? "Se guardó 1 registro del campo." : `Se guardaron ${k} registros del campo.`) : "Eso ya estaba guardado.";
+    return true;
   }
-  function bodyCampo() {
-    const C = ls.get(LS_C), d = ls.get(K_DAT) || {};
-    return `
-      <div class="cp-stat ${C ? "ok" : "warn"}">${C ? `Datos de tu app copiados el <b>${fecha(d.t || C.t)}</b>` : "Aún no tiene tus datos. Hazlo con señal: paso 1."}</div>
-      <div class="cp-step"><div class="cp-n">1</div><div class="cp-c">
-        <h3>Pegar datos de tu app</h3>
-        <p>En Mis Metas (con internet) toca <b>Sin señal en el campo → Copiar mis datos</b> y pégalos aquí.</p>
-        <textarea class="cp-ta" id="cp-in" rows="3" placeholder="Pega aquí el código MMC…" autocomplete="off" autocorrect="off" spellcheck="false"></textarea>
-        <div class="cp-row"><button class="btn sec" data-cp="paste">Pegar</button><button class="btn" data-cp="load">Cargar datos</button></div>
-        ${n() ? `<p class="cp-note">Lo que tienes sin pasar (${nTx(n())}) se conserva al cargar.</p>` : ""}
-      </div></div>
-      <div class="cp-step"><div class="cp-n">2</div><div class="cp-c">
-        <h3>En el terreno: usa la app normal</h3>
-        <p>Todo lo que registres queda guardado en este iPhone, aunque no haya señal ni cierres la app.</p>
-        <div class="cp-big">${n() ? nTx(n()) + " por pasar" : "Sin registros nuevos"}</div>
-      </div></div>
-      <div class="cp-step"><div class="cp-n">3</div><div class="cp-c">
-        <h3>Con señal: pasa los registros</h3>
-        <p>Cópialos y pégalos en Mis Metas → <b>Sin señal en el campo → Subir registros</b>.</p>
-        <button class="btn" data-cp="export" ${n() ? "" : "disabled"}>Copiar registros</button>
-        ${step === "export" ? outBox("Si no se copió solo, mantén presionado el código y elige Seleccionar todo → Copiar.") + `<button class="btn danger" data-cp="clear">Ya los subí: limpiar</button>` : ""}
-      </div></div>`;
-  }
-  const outBox = (tip) => `<textarea class="cp-ta out" id="cp-out" rows="3" readonly>${esc(codeOut)}</textarea><p class="cp-note">${tip}</p>`;
+  const mainCode = () => pack("MMC1", { t: Date.now(), imp: (ls.get(K_IMP) || []).slice(-3000), S: (({ largo, corto, habitos, movs, lotes, ctareas, fin, pl, cfg, dias }) => clone({ largo, corto, habitos, movs, lotes, ctareas, fin, pl, cfg, dias }))(S) });
+  const campoCode = () => pack("MMR1", { t: Date.now(), items: OB.map(({ sending, ...x }) => x) });
 
+  /* ---------- pantalla ---------- */
   function draw() {
     if (!root) return;
-    root.querySelector(".ram-body").innerHTML = `<div class="cp-wrap">${IS_CAMPO ? bodyCampo() : bodyMain()}</div>`;
+    const C = ls.get(LS_C);
+    let o = "";
+    if (IS_CAMPO) {
+      o += `<div class="cp-stat ${!C ? "warn" : n() ? "warn" : "ok"}">${!C ? "Esta app aún no tiene tus datos." : n() ? (n() === 1 ? "<b>1 registro</b> guardado aquí, falta pasarlo a Mis Metas." : `<b>${n()} registros</b> guardados aquí, falta pasarlos a Mis Metas.`) : `Todo al día · datos del <b>${fecha((ls.get(K_DAT) || {}).t || C.t)}</b>`}</div>`;
+      o += `<button class="btn cp-main" data-cp="go">${n() ? "Pasar a Mis Metas" : "Traer mis datos"}</button>`;
+      o += `<p class="cp-how">${n() ? "Se copian tus registros y se abre Mis Metas: ahí toca <b>Sincronizar con el campo</b>. Luego vuelve aquí y toca <b>Traer mis datos</b>." : "Primero, en Mis Metas toca <b>Sincronizar con el campo</b>. Luego vuelve aquí y toca este botón."}</p>`;
+      if (n()) o += `<button class="btn sec" data-cp="pull">Traer mis datos</button>`;
+    } else {
+      o += `<div class="cp-stat ok">Abre <b>Campo</b> en el terreno: registra sin señal. Al volver, un botón en cada app y listo.</div>`;
+      o += `<button class="btn cp-main" data-cp="go">Sincronizar con el campo</button>`;
+      o += `<p class="cp-how">Guarda lo que hayas copiado en Campo y deja tus datos listos para llevar. Luego abre <b>Campo</b> y toca <b>Traer mis datos</b>.</p>`;
+    }
+    if (msg) o += `<div class="cp-msg">${esc(msg)}</div>`;
+    if (manual) o += `<textarea class="cp-ta" id="cp-in" rows="3" placeholder="Mantén presionado aquí y elige Pegar" autocomplete="off" autocorrect="off" spellcheck="false"></textarea>`;
+    o += `<details class="cp-inst"${!IS_CAMPO && !ls.get("mm-campo-visto") ? " open" : ""}><summary>${IS_CAMPO ? "Ayuda" : "Instalar la app Campo (una sola vez)"}</summary>
+      <ol><li>Abre este enlace en <b>Safari</b>:<div class="cp-url">${esc(URL_CAMPO)}</div><button class="btn sec" data-cp="url">Copiar enlace</button></li>
+      <li>Toca <b>Compartir</b> (el cuadro con flecha) y luego <b>Agregar a pantalla de inicio</b>.</li>
+      <li>Ábrela una vez con señal. Desde ahí funciona sin internet.</li></ol></details>`;
+    root.querySelector(".ram-body").innerHTML = `<div class="cp-wrap">${o}</div>`;
+    const ta = root.querySelector("#cp-in");
+    if (ta) ta.addEventListener("input", async () => { if (await takeIn(ta.value)) { manual = false; afterIn(); } });
   }
+  function afterIn() { paintSync(); chip(); draw(); toast(msg); }
   function build() {
     root = document.createElement("div");
     root.className = "ram-ov cp-ov"; root.hidden = true;
-    root.setAttribute("role", "dialog"); root.setAttribute("aria-label", "Modo campo");
-    root.innerHTML = `<div class="ram-top"><button class="ram-x" data-cp="close" aria-label="Cerrar">×</button><div class="ram-tt"><div class="ram-k">${IS_CAMPO ? "Mis Metas · Campo" : "Sin internet"}</div><div class="ram-t">${IS_CAMPO ? "Pasar datos" : "Modo campo"}</div></div><span></span></div><div class="ram-body"></div>`;
+    root.setAttribute("role", "dialog"); root.setAttribute("aria-label", "Sincronizar con el campo");
+    root.innerHTML = `<div class="ram-top"><button class="ram-x" data-cp="close" aria-label="Cerrar">×</button><div class="ram-tt"><div class="ram-k">${IS_CAMPO ? "Campo" : "Mis Metas"}</div><div class="ram-t">${IS_CAMPO ? "Sin internet" : "Campo sin internet"}</div></div><span></span></div><div class="ram-body"></div>`;
     document.body.appendChild(root);
     root.addEventListener("click", onTap);
     root.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
   }
+  async function pull() {
+    const t = await readClip();
+    if (t && (await takeIn(t))) { manual = false; afterIn(); return true; }
+    if (t !== null && t) { msg = IS_CAMPO ? "Lo copiado no es de Mis Metas. En Mis Metas toca Sincronizar con el campo." : ""; }
+    return false;
+  }
   async function onTap(e) {
     const b = e.target.closest("[data-cp]"); if (!b) return;
-    const a = b.dataset.cp, inp = root.querySelector("#cp-in");
+    const a = b.dataset.cp;
     if (a === "close") return close();
-    if (a === "url") { toast((await copy(URL_CAMPO)) ? "Enlace copiado: ábrelo en Safari" : "Mantén presionado el enlace para copiarlo"); return; }
-    if (a === "paste") { const t = await readClip(); if (t && inp) { inp.value = t; toast("Pegado"); } else { inp && inp.focus(); toast("Mantén presionado el cuadro y elige Pegar"); } return; }
-    if (a === "export") {
-      b.disabled = true;
-      codeOut = IS_CAMPO
-        ? await pack("MMR1", { t: Date.now(), items: OB.map(({ sending, ...x }) => x) })
-        : await pack("MMC1", { t: Date.now(), S: (({ largo, corto, habitos, movs, lotes, ctareas, fin, pl, cfg, dias }) => clone({ largo, corto, habitos, movs, lotes, ctareas, fin, pl, cfg, dias }))(S) });
-      step = "export"; draw();
-      const ta = root.querySelector("#cp-out");
-      toast((await copy(codeOut, ta)) ? (IS_CAMPO ? "Registros copiados" : "Datos copiados: pégalos en la app de campo") : "Copia el código del cuadro");
+    if (a === "url") { const r = await copyNow(() => URL_CAMPO); toast(r.ok ? "Enlace copiado: pégalo en Safari" : "Mantén presionado el enlace para copiarlo"); return; }
+    if (IS_CAMPO && a === "go" && n()) {
+      const r = await copyNow(campoCode);
+      msg = r.ok ? "Copiado. Ahora en Mis Metas toca Sincronizar con el campo." : "No se pudo copiar solo.";
+      draw();
+      if (r.ok) setTimeout(() => { location.href = URL_APP; }, 700);
       return;
     }
-    if (a === "clear") {
-      OB = []; saveQ(); step = ""; codeOut = ""; paintSync(); sched(true); draw();
-      toast("Listo: la app de campo quedó al día"); return;
+    if (IS_CAMPO && (a === "go" || a === "pull")) {
+      msg = ""; if (!(await pull())) { manual = true; if (!msg) msg = "Pega aquí lo que copió Mis Metas:"; draw(); const ta = root.querySelector("#cp-in"); ta && ta.focus(); }
+      return;
     }
-    if (a === "load") {
-      let o; try { o = await unpack("MMC1", inp && inp.value); } catch (er) { toast("Ese código no es de Mis Metas. Usa Copiar mis datos."); return; }
-      if (!o || !o.S) { toast("El código está incompleto. Cópialo otra vez."); return; }
-      ls.set(LS_C, { t: o.t || Date.now(), S: o.S }); ls.set(K_DAT, { t: o.t || Date.now() });
-      toast("Datos cargados"); setTimeout(() => location.reload(), 500); return;
+    if (!IS_CAMPO && a === "go") {
+      // 1) copiar los datos dentro del toque  2) leer lo que trajo Campo
+      msg = "";
+      const rp = readClip(); // los dos arrancan dentro del toque
+      let got = false;
+      const r = await copyNow(async () => { const t = await rp; if (t && t.includes("MMR1")) got = await takeIn(t); return mainCode(); });
+      try { ls.set("mm-campo-visto", 1); } catch (er) {}
+      msg = (got ? msg + " " : "") + (r.ok ? "Tus datos quedaron copiados: abre Campo y toca Traer mis datos." : "");
+      if (!r.ok) { manual = false; showCode(r.t); }
+      draw(); toast(got ? "Registros del campo guardados" : "Listo para el campo");
+      return;
     }
-    if (a === "import") {
-      let o; try { o = await unpack("MMR1", inp && inp.value); } catch (er) { toast("Ese código no es de la app de campo. Usa Copiar registros."); return; }
-      const items = (o && o.items || []).filter((x) => x && x.path && x.op);
-      const done = new Set(ls.get(K_IMP) || []); let k = 0;
-      items.forEach((x) => { const id = keyOf(x); if (done.has(id)) return; put(x.path, x.op, x.data); done.add(id); k++; });
-      ls.set(K_IMP, [...done].slice(-3000));
-      if (inp) inp.value = "";
-      sched(true);
-      toast(k ? `Subiendo ${nTx(k)} del campo…` : "Esos registros ya estaban subidos"); return;
-    }
+  }
+  function showCode(t) {
+    msg = "Copia este código (mantén presionado → Seleccionar todo → Copiar) y pégalo en Campo:";
+    setTimeout(() => { const w = root.querySelector(".cp-wrap"); if (!w) return; const ta = document.createElement("textarea"); ta.className = "cp-ta out"; ta.readOnly = true; ta.rows = 3; ta.value = t; w.insertBefore(ta, w.querySelector(".cp-inst")); }, 0);
   }
   function open() {
     if (!root) build();
-    step = ""; draw(); root.hidden = false;
+    msg = ""; manual = false; draw(); root.hidden = false;
     document.documentElement.classList.add("ram-lock");
     requestAnimationFrame(() => root.classList.add("in"));
   }
@@ -2150,16 +2169,15 @@ const CAMPO = (() => {
     root.classList.remove("in"); document.documentElement.classList.remove("ram-lock");
     setTimeout(() => { root.hidden = true; }, 220);
   }
-  /* chip bajo el título */
   function chip() {
     const el = document.getElementById("campo"); if (!el) return;
     if (IS_CAMPO) {
       const C = ls.get(LS_C);
-      el.className = "campo-chip on" + (n() ? " pend" : "");
-      el.innerHTML = `<i></i><span>${!C ? "Modo campo · pega tus datos" : n() ? "Modo campo · " + nTx(n()) + " por pasar" : "Modo campo · todo pasado"}</span>`;
+      el.className = "campo-chip on" + (n() || !C ? " pend" : "");
+      el.innerHTML = `<i></i><span>${!C ? "Toca para traer tus datos" : n() ? nTx(n()) + " por pasar · Sin internet OK" : "Al día · funciona sin internet"}</span>`;
     } else {
       el.className = "campo-chip";
-      el.innerHTML = `<i></i><span>Sin señal en el campo</span>`;
+      el.innerHTML = `<i></i><span>Sincronizar con el campo</span>`;
     }
     el.hidden = false;
   }
