@@ -760,6 +760,39 @@ html.ram-lock,html.ram-lock body{overflow:hidden}
 .cp-inst ol{margin:10px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.45;color:#c7c7cc}
 .cp-inst li{display:flex;flex-direction:column;gap:8px}.cp-inst li{display:list-item}.cp-inst .cp-url,.cp-inst .btn{margin-top:8px}
 
+/* dinero */
+.dn-hero{display:flex;flex-direction:column;gap:14px}
+.dn-two{display:grid;grid-template-columns:1.2fr 1fr;gap:14px;align-items:start}
+.dn-two .big-money{font-size:32px;white-space:nowrap}
+.dn-fo{font-family:var(--round);font-size:26px;font-weight:700;color:var(--blue);font-variant-numeric:tabular-nums;line-height:1.1}
+.dn-fo-s{font-size:12px;color:var(--ink2);margin:2px 0 6px}
+.dn-where{border-top:.5px solid var(--sep);padding-top:12px;display:flex;flex-direction:column;gap:7px}
+.dn-row{display:flex;align-items:center;gap:8px;font-size:15px}
+.dn-row b{font-weight:600}
+.dn-tot{border-top:.5px solid var(--sep);padding-top:7px;font-weight:600}
+.dn-tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 7px;border-radius:99px;margin-left:4px;vertical-align:1px}
+.dn-tag.f{background:rgba(100,210,255,.15);color:var(--blue)}.dn-tag.c{background:var(--or-soft);color:var(--or)}.dn-tag.e{background:rgba(48,209,88,.14);color:var(--green)}
+.dn-check{font-size:13px;border-radius:10px;padding:8px 10px;line-height:1.4}
+.dn-check.ok{background:rgba(48,209,88,.12);color:#a6f0b8}.dn-check.warn{background:var(--or-soft);color:var(--or2)}
+.dn-since{color:var(--ink2);margin-top:4px}.dn-since b{color:var(--ink)}
+.dn-q{display:flex;flex-direction:column;gap:12px}
+.dn-amt{display:flex;align-items:center;gap:4px;border-bottom:1px solid var(--sep);padding-bottom:6px}
+.dn-amt span{font-family:var(--round);font-size:30px;font-weight:700;color:var(--ink2)}
+.dn-amt input{flex:1;min-width:0;background:none;border:0;outline:none;font-family:var(--round);font-size:34px;font-weight:700;color:var(--ink);padding:0}
+.dn-cats{display:flex;flex-wrap:wrap;gap:6px}
+.dn-cats button{appearance:none;border:0;background:var(--card-hi);color:var(--ink2);border-radius:99px;padding:8px 12px;font-size:14px;cursor:pointer}
+.dn-cats button[aria-pressed="true"]{background:var(--or);color:#000;font-weight:600}
+.dn-note{background:var(--card-hi);border:0;border-radius:12px;padding:11px 12px;font-size:15px;color:var(--ink);outline:none}
+.dn-wrap{display:flex;flex-direction:column;gap:12px;max-width:560px;width:100%;margin:0 auto}
+.dn-help{margin:4px 2px;font-size:15px;line-height:1.45;color:#c7c7cc}.dn-help b{color:#fff}
+.dn-list{display:flex;flex-direction:column;gap:8px}
+.dn-er{display:grid;grid-template-columns:1fr 92px 96px 32px;gap:6px;align-items:center;background:#1c1c1e;border-radius:12px;padding:8px}
+.dn-er input,.dn-er select{background:#2c2c2e;border:0;border-radius:8px;padding:9px 8px;font-size:15px;color:#fff;min-width:0;outline:none}
+.dn-er .dn-em{text-align:right}
+.dn-ex{appearance:none;border:0;background:none;color:var(--red);font-size:22px;cursor:pointer}
+.dn-sum{background:#1c1c1e;border-radius:12px;padding:12px;font-size:15px;line-height:1.5;color:#c7c7cc}.dn-sum b{color:#fff}
+@media (max-width:380px){.dn-er{grid-template-columns:1fr 80px 32px}.dn-er select{grid-column:1/3}}
+
 </style>
 
 <div class="navbar" id="navbar"><div class="nb-in"><i></i><span id="nb-t">Hoy</span><button class="icon-btn" data-aj aria-label="Ajustes"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></div></div>
@@ -1754,7 +1787,8 @@ function rDinero(){
   const seg=[[R.gas,'#8e8e93','Gastos'],[R.inv,'#ff9f0a','Invertido'],[Math.max(0,R.aho),'#64d2ff','Ahorrado']];
   let o=`<div class="month"><button data-act="mes" data-v="-1" aria-label="Mes anterior"><svg viewBox="0 0 10 16"><path d="M8 2L2 8l6 6"/></svg></button><h2>${label}</h2><button data-act="mes" data-v="1" aria-label="Mes siguiente"><svg viewBox="0 0 10 16"><path d="M2 2l6 6-6 6"/></svg></button></div>`;
   const mesN=label.split(' ')[0].toLowerCase();
-  o+=`<div class="card" style="display:flex;flex-direction:column;gap:14px">${mesOff===0?(d=>`<div><div class="lg-k">Disponible para gastar</div><div class="big-money" style="color:${d<0?'var(--red)':'var(--ink)'}">${money(d)}</div><div class="xs muted" style="margin-top:4px">Tu fondo de emergencia (${money0(fo)}) va aparte y no se cuenta aquí.</div></div>`)(saldo()):`<div><div class="lg-k">Resultado de ${mesN}</div><div class="big-money" style="color:${R.queda<0?'var(--red)':'var(--ink)'}">${money(R.queda)}</div></div>`}
+  if(mesOff===0)o+=DIN.hero()+DIN.quick();
+  o+=`<div class="card" style="display:flex;flex-direction:column;gap:14px">${false?(d=>`<div><div class="lg-k">Disponible para gastar</div><div class="big-money" style="color:${d<0?'var(--red)':'var(--ink)'}">${money(d)}</div><div class="xs muted" style="margin-top:4px">Tu fondo de emergencia (${money0(fo)}) va aparte y no se cuenta aquí.</div></div>`)(saldo()):`<div><div class="lg-k">Resultado de ${mesN}</div><div class="big-money" style="color:${R.queda<0?'var(--red)':'var(--ink)'}">${money(R.queda)}</div></div>`}
     <div style="border-top:.5px solid var(--sep);padding-top:12px;display:flex;flex-direction:column;gap:10px"><div class="sh"><span class="small muted">En ${mesN} entró</span><span class="num small" style="color:var(--green);font-weight:600">${money(R.ing)}</span></div><div class="sh"><span class="small muted">Salió o apartaste</span><span class="num small" style="font-weight:600">${money(R.gas+R.inv+Math.max(0,R.aho))}</span></div>
     <div class="stack">${seg.filter(x=>x[0]>0).map(x=>`<i style="width:${(x[0]/base*100).toFixed(1)}%;background:${x[1]}"></i>`).join('')}</div>
     <div class="leg">${seg.map(x=>`<div><span class="dot" style="background:${x[1]}"></span><span class="muted">${x[2]}</span><b>${money0(x[0])}</b></div>`).join('')}</div></div></div>`;
@@ -2626,6 +2660,102 @@ const CAMPO = (() => {
   }
   document.addEventListener("click", (e) => { if (e.target.closest("#campo")) open(); });
   return { open, close, chip, boot };
+})();
+
+/* ===== Dinero: dónde está mi plata, cuadre y gasto rápido ===== */
+const DIN = (() => {
+  const TIPOS = [["cuenta", "Cuenta"], ["efectivo", "Efectivo"], ["fondo", "Fondo"], ["cobrar", "Me deben"]];
+  const QCATS = ["Comida", "Transporte", "Otros gastos", "Ropa y calzado", "Salud", "Casa (cama, cocina)"];
+  let qcat = "Comida", root = null, rows = [];
+  const lugares = () => (Array.isArray(F().lugares) ? F().lugares : []);
+  const sumL = (pred) => lugares().filter(pred).reduce((a, x) => a + (+x.m || 0), 0);
+  const tag = (t) => ({ fondo: '<span class="dn-tag f">Fondo</span>', cobrar: '<span class="dn-tag c">Me deben</span>', efectivo: '<span class="dn-tag e">Efectivo</span>' }[t] || "");
+  function hero() {
+    const disp = saldo(), fo = fondo(), fm = +F().fondoMeta || 0, L = lugares();
+    const tot = sumL(() => true), now = disp + fo, ref = F().lugaresRef != null ? +F().lugaresRef : now;
+    const dif = tot - ref, ok = Math.abs(dif) < 0.5, delta = Math.round((now - ref) * 100) / 100;
+    const cuando = F().lugaresT ? fmtFc(iso(new Date(F().lugaresT))) : "";
+    let o = `<div class="card dn-hero">
+      <div class="dn-two">
+        <div><div class="lg-k">Para gastar</div><div class="big-money" style="color:${disp < 0 ? "var(--red)" : "var(--ink)"}">${money(disp)}</div></div>
+        <div><div class="lg-k">Fondo de emergencia</div><div class="dn-fo">${money0(fo)}</div><div class="dn-fo-s">meta ${money0(fm)}</div>${bar(fm ? fo / fm : 0, "g")}</div>
+      </div>`;
+    if (L.length) {
+      o += `<div class="dn-where"><div class="sh"><span class="lg-k">¿Dónde está tu dinero?</span><button class="link" data-din="edit">Actualizar</button></div>
+        ${L.map((x) => `<div class="dn-row"><span class="grow">${esc(x.n)} ${tag(x.t)}</span><b class="num">${money(x.m)}</b></div>`).join("")}
+        <div class="dn-row dn-tot"><span class="grow">Total</span><b class="num">${money(tot)}</b></div>
+        <div class="dn-check ${ok ? "ok" : "warn"}">${ok ? `✓ Cuadraba con tus registros${cuando ? ` el ${cuando}` : ""}` : `Diferencia de ${money(Math.abs(dif))}${cuando ? ` el ${cuando}` : ""}: ${dif < 0 ? "falta registrar un gasto" : "falta registrar un ingreso"}.`}${Math.abs(delta) >= 0.01 ? `<div class="dn-since">Desde entonces registraste ${delta < 0 ? "gastos por " + money(-delta) : "ingresos por " + money(delta)}: hoy deberías tener <b>${money(tot + delta)}</b> en total.</div>` : ""}</div></div>`;
+    } else o += `<button class="btn sec" data-din="edit">Anotar dónde está tu dinero</button>`;
+    return o + `</div>`;
+  }
+  function quick() {
+    return `<div class="card dn-q"><div class="lg-k">Gasto rápido</div>
+      <div class="dn-amt"><span>$</span><input id="dn-m" type="number" inputmode="decimal" step="0.01" min="0" placeholder="0.00" aria-label="Monto del gasto"></div>
+      <div class="dn-cats">${QCATS.map((c) => `<button data-din="cat" data-c="${esc(c)}" aria-pressed="${c === qcat}">${esc(c.replace(" (cama, cocina)", ""))}</button>`).join("")}</div>
+      <input id="dn-n" class="dn-note" type="text" placeholder="Nota (opcional): pasaje, almuerzo…" autocomplete="off">
+      <button class="btn" data-din="save">Guardar gasto</button></div>`;
+  }
+  /* editor de saldos */
+  function rowH(x, i) {
+    return `<div class="dn-er" data-i="${i}"><input class="dn-en" value="${esc(x.n || "")}" placeholder="Ej.: Pichincha ahorro" aria-label="Nombre"><input class="dn-em" type="number" inputmode="decimal" step="0.01" value="${x.m ?? ""}" placeholder="0.00" aria-label="Monto"><select class="dn-et" aria-label="Tipo">${TIPOS.map(([k, t]) => `<option value="${k}"${x.t === k ? " selected" : ""}>${t}</option>`).join("")}</select><button class="dn-ex" data-din="del" aria-label="Quitar">×</button></div>`;
+  }
+  function openEd() {
+    rows = lugares().map((x) => ({ ...x }));
+    if (!rows.length) rows = [{ n: "Cuenta de ahorro", m: "", t: "cuenta" }, { n: "Efectivo", m: "", t: "efectivo" }];
+    if (!root) {
+      root = document.createElement("div"); root.className = "ram-ov dn-ov"; root.hidden = true;
+      root.setAttribute("role", "dialog"); root.setAttribute("aria-label", "Dónde está tu dinero");
+      document.body.appendChild(root); root.addEventListener("click", onTap);
+    }
+    root.innerHTML = `<div class="ram-top"><button class="ram-x" data-din="x" aria-label="Cerrar">×</button><div class="ram-tt"><div class="ram-k">Dinero</div><div class="ram-t">Tus saldos de hoy</div></div><span></span></div>
+      <div class="ram-body"><div class="dn-wrap"><p class="dn-help">Anota lo que tienes hoy en cada lugar, mirando tu banco y tu billetera. Marca como <b>Fondo</b> lo que es del fondo de emergencia y como <b>Me deben</b> lo que te tienen que devolver. La app te dice si cuadra con lo que registraste.</p>
+      <div class="dn-list">${rows.map(rowH).join("")}</div>
+      <button class="btn sec" data-din="add">+ Agregar lugar</button>
+      <div class="dn-sum" data-out="dnsum"></div>
+      <button class="btn" data-din="ok">Guardar saldos</button></div></div>`;
+    root.querySelector(".dn-list").addEventListener("input", sumUp);
+    sumUp();
+    root.hidden = false; document.documentElement.classList.add("ram-lock"); requestAnimationFrame(() => root.classList.add("in"));
+  }
+  function read() {
+    return [...root.querySelectorAll(".dn-er")].map((r) => ({ n: r.querySelector(".dn-en").value.trim(), m: Math.round((+r.querySelector(".dn-em").value || 0) * 100) / 100, t: r.querySelector(".dn-et").value })).filter((x) => x.n || x.m);
+  }
+  function sumUp() {
+    const L = read(), tot = L.reduce((a, x) => a + x.m, 0), dif = tot - (saldo() + fondo());
+    root.querySelector('[data-out="dnsum"]').innerHTML = `Total: <b>${money(tot)}</b> · Según tus registros: <b>${money(saldo() + fondo())}</b><br>${Math.abs(dif) < 0.5 ? '<span style="color:var(--green)">✓ Cuadra</span>' : `<span style="color:var(--or)">Diferencia de ${money(Math.abs(dif))}</span>`}`;
+  }
+  function closeEd() { if (!root) return; root.classList.remove("in"); document.documentElement.classList.remove("ram-lock"); setTimeout(() => { root.hidden = true; }, 220); }
+  function onTap(e) {
+    const b = e.target.closest("[data-din]"); if (!b) return;
+    const a = b.dataset.din;
+    if (a === "x") return closeEd();
+    if (a === "add") { root.querySelector(".dn-list").insertAdjacentHTML("beforeend", rowH({ n: "", m: "", t: "cuenta" }, 99)); root.querySelector(".dn-list").lastElementChild.querySelector("input").focus(); return; }
+    if (a === "del") { b.closest(".dn-er").remove(); sumUp(); return; }
+    if (a === "ok") {
+      if (!needDb()) return;
+      const L = read(), data = { lugares: L, lugaresT: Date.now(), lugaresRef: Math.round((saldo() + fondo()) * 100) / 100 };
+      S.fin = { ...(S.fin || {}), ...data }; sched(true); put("config/finanzas", "update", data);
+      closeEd(); toast("Saldos guardados"); return;
+    }
+  }
+  // clics dentro de la pestaña
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("#view [data-din]"); if (!b) return;
+    const a = b.dataset.din;
+    if (a === "edit") return openEd();
+    if (a === "cat") { qcat = b.dataset.c; b.parentElement.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", x === b)); return; }
+    if (a === "save") {
+      const mi = document.getElementById("dn-m"), ni = document.getElementById("dn-n");
+      const m = Math.round((+mi.value || 0) * 100) / 100;
+      if (!(m > 0)) { toast("Escribe el monto"); mi.focus(); return; }
+      if (!needDb()) return;
+      const nota = ni.value.trim();
+      const mid = addMov({ tipo: "gasto", cat: qcat, monto: m, fecha: iso(new Date()), nota });
+      mi.value = ""; ni.value = ""; mi.blur(); ni.blur();
+      toast(`${qcat}: ${money(m)} guardado`, () => { quitarMov(mid); toast("Se deshizo"); });
+    }
+  });
+  return { hero, quick, open: openEd };
 })();
 
 window.__cp=1;CAMPO.chip();
