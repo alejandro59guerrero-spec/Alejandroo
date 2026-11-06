@@ -793,6 +793,7 @@ html.ram-lock,html.ram-lock body{overflow:hidden}
 .dn-sum{background:#1c1c1e;border-radius:12px;padding:12px;font-size:15px;line-height:1.5;color:#c7c7cc}.dn-sum b{color:#fff}
 @media (max-width:380px){.dn-er{grid-template-columns:1fr 80px 32px}.dn-er select{grid-column:1/3}}
 
+.ct-seg button{font-size:13px;padding:8px 4px}.ct-seg .ct-n{display:inline-block;min-width:18px;font-size:11px;font-weight:700;color:var(--or);margin-left:2px}
 </style>
 
 <div class="navbar" id="navbar"><div class="nb-in"><i></i><span id="nb-t">Hoy</span><button class="icon-btn" data-aj aria-label="Ajustes"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></div></div>
@@ -1731,9 +1732,9 @@ function rHoy(){
   const days=[];for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);days.push(d)}
   o+=`<section>${T('Esta semana')}<div class="card"><div class="week">${days.map((d,i)=>`<div class="wd ${i===6?'today':''}">${ring(dayPct(d)||0,38,6,['#ff9f0a','#ffd60a'])}${DIASL[d.getDay()]}</div>`).join('')}</div></div></section>`;
   const act=S.corto.filter(c=>c.estado!=='hecha'&&c.estado!=='pausada').map(c=>({c,i:(c.pasos||[]).findIndex(x=>!x.hecho)})).filter(x=>x.i>=0).sort((a,b)=>(a.c.fecha||'9999').localeCompare(b.c.fecha||'9999')||byOrden(a.c,b.c)).slice(0,4);
-  const cfa=+CT().faseActual||1,ctNext=S.ctareas.filter(t=>!t.hecho&&+t.fase===cfa).sort(ctSort).slice(0,3);
+  const cfa=+CT().faseActual||1,ctNext=ctPorLugar(3);
   o+=`<section>${T('Enfoque de hoy')}`;
-  if(ctNext.length)o+=`<div class="lg-k" style="margin:2px 4px 0">Castillo · Fase ${cfa}</div><div class="gl">${ctNext.map(t=>ctRow(t,{hoy:1})).join('')}<button class="add-row" data-tab-go="castillo"><span class="plus">›</span>Ver el plan de Castillo</button></div>`;
+  if(ctNext.length)o+=`<div class="lg-k" style="margin:2px 4px 0">Castillo · ${LUGAR[ctLugar]}</div><div class="gl">${ctNext.map(t=>ctRow(t,{hoy:1})).join('')}<button class="add-row" data-tab-go="castillo"><span class="plus">›</span>Ver el plan de Castillo</button></div>`;
   if(act.length)o+=`<div class="lg-k" style="margin:8px 4px 0">Otras metas</div>`;
   o+=act.length?`<div class="gl">${act.map(({c,i})=>{const n=diasRest(c.fecha);return `<div class="gr"><button class="chk" role="checkbox" aria-checked="false" data-act="paso" data-id="${esc(c.id)}" data-i="${i}" aria-label="Completar: ${esc(c.pasos[i].t)}" style="flex:none"><span class="ck"></span></button><button class="tap" data-open="corto" data-id="${esc(c.id)}"><span class="grow"><span class="t">${esc(c.pasos[i].t)}</span><div class="sub">${esc(c.titulo)}</div></span>${c.fecha&&n<=14?`<span class="pill ${n<0?'red':'or'}">${n<0?'vencida':n===0?'hoy':n+' d'}</span>`:''}${CHEV}</button></div>`}).join('')}</div>`:ctNext.length?'':`<div class="empty">Todo al día. No hay pasos pendientes.</div>`;
   o+=`</section>`;
@@ -1816,6 +1817,12 @@ function rDinero(){
 /* ---------- CASTILLO ---------- */
 const PRIO_N={alta:0,media:1,baja:2};
 const ctSort=(a,b)=>(PRIO_N[a.prioridad]??1)-(PRIO_N[b.prioridad]??1)||byOrden(a,b);
+const LUGAR={casa:'Desde casa',finca:'En la finca',encargar:'Encargar'};
+const LUGAR_S={casa:'Llamadas, trámites, compras y planear',finca:'Lo haces tú en tu visita',encargar:'Lo hace el trabajador o tu mamá'};
+const ctLug=t=>LUGAR[t.lugar]?t.lugar:'finca';
+let ctLugar=(()=>{const v=ls.get('mm-ct-lugar');if(v&&LUGAR[v])return v;const d=new Date().getDay();return d===0||d===6?'finca':'casa'})();
+function ctPorLugar(n){const fa=+CT().faseActual||1;return S.ctareas.filter(t=>!t.hecho&&ctLug(t)===ctLugar&&+t.fase<=fa+1).sort((a,b)=>(+a.fase-+b.fase)||ctSort(a,b)).slice(0,n)}
+function lugarSeg(){const fa=+CT().faseActual||1;const cnt=k=>S.ctareas.filter(t=>!t.hecho&&ctLug(t)===k&&+t.fase<=fa+1).length;return `<div class="seg ct-seg" role="group" aria-label="Dónde estás">${Object.keys(LUGAR).map(k=>`<button data-act="ct-lugar" data-v="${k}" aria-pressed="${k===ctLugar}">${LUGAR[k]} <span class="ct-n">${cnt(k)}</span></button>`).join('')}</div><div class="xs muted" style="margin:6px 4px 0">${LUGAR_S[ctLugar]}</div>`}
 function ctRow(t,opts={}){
   const z=t.zona&&t.zona!=='general'?ZN[t.zona]:'';
   const sub=(opts.hoy?[z,t.cuando]:[opts.fase?`Fase ${t.fase}`:'',z,t.cuando,t.recurso]).filter(Boolean).join(' · ');
@@ -1852,8 +1859,8 @@ function rCastillo(){
     <div class="tile"><span class="k">Avance del plan</span><span class="v" style="color:var(--or)">${Math.round(p*100)}%</span><span style="margin-top:4px">${bar(p)}</span></div><div class="tile"><span class="k">Invertido</span><span class="v">${money0(inv)}</span><span class="xs muted">en “Terreno Castillo”</span></div></div>`;
   o+=CNT.card();
   o+=PLN.card();
-  const sig=all.filter(t=>!t.hecho&&+t.fase===fa).sort(ctSort).slice(0,4);
-  o+=`<section>${T('Lo siguiente',`<span class="small muted">Fase ${fa}</span>`)}${sig.length?`<div class="gl">${sig.map(t=>t.tipo==='medir'?medRow(t):ctRow(t)).join('')}</div>`:`<div class="empty">No hay pendientes en la fase ${fa}. Pasa a la siguiente en Editar finca.</div>`}</section>`;
+  const sig=ctPorLugar(6);
+  o+=`<section>${T('Lo siguiente',`<span class="small muted">Fase ${fa}</span>`)}${lugarSeg()}${sig.length?`<div class="gl">${sig.map(t=>t.tipo==='medir'?medRow(t):ctRow(t,{fase:+t.fase!==fa})).join('')}</div>`:`<div class="empty">Nada pendiente aquí por ahora.</div>`}</section>`;
   o+=`<section>${T('Escritura a tu nombre')}<div class="card" style="display:flex;flex-direction:column;gap:10px"><div class="sh"><span class="small muted">Ahorrado</span><span class="num small">${money0(esc_)} de ${money0(em)}</span></div>${bar(em?esc_/em:0,'g')}<div class="note">Protege todo lo que ya invertiste. Aparta un poco cada mes sin vaciar tu fondo de emergencia.</div><button class="btn sec" style="background:var(--card-hi)" data-act="ct-escr">Apartar para la escritura</button></div></section>`;
   o+=`<section>${T('Mediciones',`<span class="small muted">${meds.filter(t=>t.valor).length} de ${meds.length}</span>`)}<div class="gl">${meds.map(medRow).join('')}<button class="add-row" data-act="ct-new" data-v="${fa}" data-tipo="medir"><span class="plus">+</span>Añadir medición</button></div><div class="fg-f" style="margin:0 16px">Toca una medición para anotar el resultado. Con estos datos se calcula el tanque y la bomba.</div></section>`;
   o+=`<section>${T('Plan por fases',`<button class="link" data-act="ct-edit">Editar finca</button>`)}`;
@@ -2155,6 +2162,7 @@ function onClick(e){
   if(a==='aj-sub'){SH.sub=v;['habitos','finanzas'].forEach(k=>document.getElementById('aj-'+k).hidden=k!==v);b.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));return}
   if(a==='tipo'){document.getElementById('em-tipo').value=v;b.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));document.getElementById('em-cat').innerHTML=catsFor(v).map(c=>`<option>${esc(c)}</option>`).join('');return}
   if(a==='mes'){mesOff+=+v;render();return}
+  if(a==='ct-lugar'){ctLugar=v;ls.set('mm-ct-lugar',v);render();return}
   if(a==='ajustes'){openSheet('ajustes',null,{edit:true,sub:v||'habitos'});return}
   if(a==='new-corto'){openSheet('corto',null,{edit:true,largoId:id||''});return}
   if(a==='new-largo'){openSheet('largo',null,{edit:true});return}
