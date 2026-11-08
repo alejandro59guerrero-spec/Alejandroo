@@ -761,6 +761,10 @@ html.ram-lock,html.ram-lock body{overflow:hidden}
 .cp-inst li{display:flex;flex-direction:column;gap:8px}.cp-inst li{display:list-item}.cp-inst .cp-url,.cp-inst .btn{margin-top:8px}
 
 /* dinero */
+.dn-src{display:flex;flex-direction:column;gap:6px}.dn-src-k{font-size:13px;font-weight:600;color:var(--ink2)}
+.dn-tag.t{background:rgba(255,69,58,.16);color:#ff6961}
+.dn-row b.neg{color:#ff6961}
+.dn-where .sh span .link{font-size:15px}
 .dn-hero{display:flex;flex-direction:column;gap:14px}
 .dn-two{display:grid;grid-template-columns:1.2fr 1fr;gap:14px;align-items:start}
 .dn-two .big-money{font-size:32px;white-space:nowrap}
@@ -1907,8 +1911,8 @@ function rPlacas(){
     ${pend.length?`<div class="small muted">${pend.length} ${pend.length===1?'lote':'lotes'} por vender: ${pend.reduce((a,l)=>a+ +l.kg,0).toFixed(2)} kg y ${money(pend.reduce((a,l)=>a+ +l.costo+ +(l.transporte||0),0))} invertidos.</div>`:''}
     ${plKg?`<div class="sh small" style="align-items:center"><span class="muted">Tus lotes dan ${plKg.toFixed(0)} placas por kg.</span><button class="link" data-act="usar-plkg" data-v="${plKg.toFixed(0)}">Usar en cálculo</button></div>`:''}</div>`;
   o+=`<button class="btn" data-act="new-lote">Registrar lote</button>`;
-  o+=`<section>${T('Lotes')}${L.length?`<div class="gl">${L.map(l=>{const c=+l.costo+ +(l.transporte||0),g=has(l)?+l.venta-c:null;return `<div class="gr" style="flex-direction:column;align-items:stretch;gap:10px"><button class="tap" data-open="lote" data-id="${esc(l.id)}"><span class="ico ${has(l)?'in':'inv'}">${IC.kg}</span><span class="grow"><span class="t">${esc(l.lugar)}</span><div class="sub">${fmtFc(l.fecha)} · ${(+l.kg).toFixed(2)} kg · costo ${money(c)}${l.placas?' · '+l.placas+' placas':''}</div></span>${has(l)?`<span class="amt" style="color:${g<0?'var(--red)':'var(--green)'}">${g<0?'':'+'}${money(g)}</span>`:'<span class="pill or">por vender</span>'}${CHEV}</button>${has(l)?'':`<form class="fg" style="display:flex;align-items:center;padding-right:6px;background:var(--card-hi)" data-form="venta" data-id="${esc(l.id)}"><label class="fr grow"><span class="fl" style="width:auto">Vendido en $</span><input id="vt-${esc(l.id)}" name="venta" type="number" step="0.01" min="0" inputmode="decimal" placeholder="0.00" required></label><button class="btn sm">Guardar</button></form>`}</div>`}).join('')}</div>`:`<div class="empty">Cuando compres tu primer kilo, regístralo arriba.</div>`}</section>`;
-  const fr=(lbl,key,val,step,id)=>`<label class="fr"><span class="fl" style="width:auto;flex:1">${lbl}</span><input id="${id}" data-pl="${key}" type="number" step="${step}" min="0" inputmode="decimal" value="${val}" style="flex:0 0 96px"></label>`;
+  o+=`<section>${T('Lotes')}${L.length?`<div class="gl">${L.map(l=>{const c=+l.costo+ +(l.transporte||0),g=has(l)?+l.venta-c:null;return `<div class="gr" style="flex-direction:column;align-items:stretch;gap:10px"><button class="tap" data-open="lote" data-id="${esc(l.id)}"><span class="ico ${has(l)?'in':'inv'}">${IC.kg}</span><span class="grow"><span class="t">${esc(l.lugar)}</span><div class="sub">${fmtFc(l.fecha)} · ${(+l.kg).toFixed(2)} kg · costo ${money(c)}${l.placas?' · '+l.placas+' placas':''}</div></span>${has(l)?`<span class="amt" style="color:${g<0?'var(--red)':'var(--green)'}">${g<0?'':'+'}${money(g)}</span>`:'<span class="pill or">por vender</span>'}${CHEV}</button>${has(l)?'':`<form class="fg" style="display:flex;align-items:center;padding-right:6px;background:var(--card-hi)" data-form="venta" data-id="${esc(l.id)}"><label class="fr grow"><span class="fl" style="width:auto">Vendido en $</span><input id="vt-${esc(l.id)}" name="venta" type="text" step="0.01" min="0" inputmode="decimal" placeholder="0.00" required></label><button class="btn sm">Guardar</button></form>`}</div>`}).join('')}</div>`:`<div class="empty">Cuando compres tu primer kilo, regístralo arriba.</div>`}</section>`;
+  const fr=(lbl,key,val,step,id)=>`<label class="fr"><span class="fl" style="width:auto;flex:1">${lbl}</span><input id="${id}" data-pl="${key}" type="text" step="${step}" min="0" inputmode="decimal" value="${val}" style="flex:0 0 96px"></label>`;
   o+=`<section>${T('Antes de comprar')}<div class="tiles" id="calc-out">${rCalcOut(v)}</div>
     <div class="form calc-g" style="gap:20px;margin-top:6px">
     <div class="fg-h">Compra y viaje</div><div class="fg">${fr('Costo por kg ($)','costoKg',v.costoKg,'0.5','pl-costo')}${fr('Kg a comprar','kgViaje',v.kgViaje,'0.5','pl-kg')}${fr('Pasajes y comida ($)','transporte',v.transporte,'0.5','pl-trans')}${fr('Margen mínimo (%)','margen',v.margen,'5','pl-marg')}</div>
@@ -2018,7 +2022,7 @@ function shLargo(){
     <label class="fr col"><span class="fl">Visión</span><textarea id="el-vision" name="vision" rows="2" placeholder="Para qué la quieres">${esc(d.vision)}</textarea></label>
     <label class="fr"><span class="fl">Rol</span><input id="el-rol" name="rol" value="${esc(d.rol)}" placeholder="Ej.: Planificador patrimonial"></label></div>
     <div class="fg"><label class="fr col"><span class="fl">Criterio o reglas</span><textarea id="el-crit" name="criterio" rows="3" placeholder="Ej.: comprar sin deuda que ahogue">${esc(d.criterio||'')}</textarea></label></div>
-    <div class="fg-h">Ahorro</div><div class="fg"><label class="fr"><span class="fl">Monto objetivo</span><input id="el-monto" name="montoMeta" type="number" step="1" min="0" inputmode="decimal" value="${esc(d.montoMeta??'')}" placeholder="$0"></label>
+    <div class="fg-h">Ahorro</div><div class="fg"><label class="fr"><span class="fl">Monto objetivo</span><input id="el-monto" name="montoMeta" type="text" step="1" min="0" inputmode="decimal" value="${esc(d.montoMeta??'')}" placeholder="$0"></label>
     <label class="fr"><span class="fl">Categoría</span><input id="el-cat" name="ahorroCat" value="${esc(d.ahorroCat||'')}" placeholder="Ej.: Meta casa"></label></div>
     <div class="fg-f">Cada movimiento de tipo Ahorro con esta categoría suma al monto de la meta.</div>
     ${fotoEd(d.foto)}
@@ -2032,9 +2036,10 @@ function shMov(){
   return {left:'Cancelar',right:'Guardar',title:m?'Movimiento':'Nuevo movimiento',body:`<form class="form" id="ed" data-form="ed-mov">
     <input type="hidden" id="em-tipo" name="tipo" value="${esc(d.tipo)}">
     <div class="seg" role="group" aria-label="Tipo">${Object.keys(TIPO).map(t=>`<button type="button" data-act="tipo" data-v="${t}" aria-pressed="${d.tipo===t}">${TIPO[t]}</button>`).join('')}</div>
-    <label class="amount-in" for="em-monto"><span>$</span><input id="em-monto" name="monto" type="number" step="0.01" min="0" inputmode="decimal" placeholder="0" value="${esc(d.monto)}" required aria-label="Monto"></label>
+    <label class="amount-in" for="em-monto"><span>$</span><input id="em-monto" name="monto" type="text" step="0.01" min="0" inputmode="decimal" placeholder="0" value="${esc(d.monto)}" required aria-label="Monto"></label>
     <div class="fg"><label class="fr"><span class="fl">Categoría</span><select id="em-cat" name="cat">${cats.map(c=>`<option ${c===d.cat?'selected':''}>${esc(c)}</option>`).join('')}</select></label>
     <label class="fr"><span class="fl">Fecha</span><input id="em-fecha" name="fecha" type="date" value="${esc(d.fecha)}" required></label>
+    ${DIN.movField(m||d)}
     <label class="fr"><span class="fl">Nota</span><input id="em-nota" name="nota" value="${esc(d.nota||'')}" placeholder="Opcional"></label></div>
     ${m?delBtn('Eliminar movimiento'):''}</form>`};
 }
@@ -2045,27 +2050,27 @@ function shLote(){
   return {left:'Cancelar',right:'Guardar',title:l?'Lote':'Nuevo lote',body:`<form class="form" id="ed" data-form="ed-lote">
     <div class="fg"><label class="fr"><span class="fl">Pueblo / local</span><input id="lt-lugar" name="lugar" value="${v(d.lugar)}" required placeholder="Ej.: Ventanas"></label>
     <label class="fr"><span class="fl">Fecha</span><input id="lt-fecha" name="fecha" type="date" value="${v(d.fecha)}" required></label></div>
-    <div class="fg-h">Compra</div><div class="fg"><label class="fr"><span class="fl">Kilos</span><input id="lt-kg" name="kg" type="number" step="0.01" min="0" inputmode="decimal" value="${v(d.kg)}" required placeholder="0.00"></label>
-    <label class="fr"><span class="fl">Pagaste ($)</span><input id="lt-costo" name="costo" type="number" step="0.01" min="0" inputmode="decimal" value="${v(d.costo)}" required placeholder="0.00"></label>
-    <label class="fr"><span class="fl">Pasajes ($)</span><input id="lt-trans" name="transporte" type="number" step="0.01" min="0" inputmode="decimal" value="${v(d.transporte)}" placeholder="0.00"></label>
+    <div class="fg-h">Compra</div><div class="fg"><label class="fr"><span class="fl">Kilos</span><input id="lt-kg" name="kg" type="text" step="0.01" min="0" inputmode="decimal" value="${v(d.kg)}" required placeholder="0.00"></label>
+    <label class="fr"><span class="fl">Pagaste ($)</span><input id="lt-costo" name="costo" type="text" step="0.01" min="0" inputmode="decimal" value="${v(d.costo)}" required placeholder="0.00"></label>
+    <label class="fr"><span class="fl">Pasajes ($)</span><input id="lt-trans" name="transporte" type="text" step="0.01" min="0" inputmode="decimal" value="${v(d.transporte)}" placeholder="0.00"></label>
     <label class="fr"><span class="fl">N.º de placas</span><input id="lt-placas" name="placas" type="number" step="1" min="0" inputmode="numeric" value="${v(d.placas)}" placeholder="Opcional"></label></div>
-    <div class="fg-h">Venta</div><div class="fg"><label class="fr"><span class="fl">Vendido en ($)</span><input id="lt-venta" name="venta" type="number" step="0.01" min="0" inputmode="decimal" value="${v(d.venta)}" placeholder="Aún no"></label></div>
+    <div class="fg-h">Venta</div><div class="fg"><label class="fr"><span class="fl">Vendido en ($)</span><input id="lt-venta" name="venta" type="text" step="0.01" min="0" inputmode="decimal" value="${v(d.venta)}" placeholder="Aún no"></label></div>
     <div class="fg"><label class="fr col"><span class="fl">Notas</span><textarea id="lt-notas" name="notas" rows="3" placeholder="Contacto del local, marcas, qué rechazaron…">${v(d.notas)}</textarea></label></div>
     ${l?'':`<div class="fg"><label class="fr"><span class="fl" style="width:auto;flex:1">Anotar la compra en Dinero</span><input id="lt-reg" name="registrar" type="checkbox" checked style="flex:none;width:22px;height:22px;accent-color:#ff9f0a"></label></div>`}
     ${l?delBtn('Eliminar lote'):''}</form>`};
 }
 function habRow(h){const ds=Array.isArray(h.dias)?h.dias:[0,1,2,3,4,5,6];return `<div class="fg hab-ed" data-hid="${esc(h.id||'')}"><div class="fr pe-row"><input id="hb-${nid()}" class="hb-in" value="${esc(h.nombre||'')}" placeholder="Nombre del hábito" aria-label="Hábito"><button type="button" class="mini" data-act="pe-up" aria-label="Subir">${IC.up}</button><button type="button" class="mini" data-act="pe-down" aria-label="Bajar">${IC.down}</button><button type="button" class="mini del" data-act="hb-del" aria-label="Borrar hábito">${IC.x}</button></div><div class="fr" style="min-height:0"><div class="days">${[1,2,3,4,5,6,0].map(n=>`<button type="button" data-act="dia" data-v="${n}" aria-pressed="${ds.includes(n)}" aria-label="${DIASL[n]}">${DIAS[n]}</button>`).join('')}</div></div></div>`}
-function fijRow(x){return `<div class="fr fj" style="gap:8px"><select class="fj-t" aria-label="Tipo" style="flex:0 0 auto;text-align:left;text-align-last:left;color:var(--ink)">${Object.keys(TIPO).map(t=>`<option value="${t}" ${(x.tipo||'gasto')===t?'selected':''}>${TIPO[t]}</option>`).join('')}</select><input class="fj-c" value="${esc(x.cat||'')}" placeholder="Categoría" aria-label="Categoría" style="text-align:left;color:var(--ink)"><input class="fj-m" type="number" step="0.01" min="0" inputmode="decimal" value="${esc(x.monto??'')}" placeholder="$" aria-label="Monto" style="flex:0 0 70px"><button type="button" class="mini del" data-act="fj-del" aria-label="Quitar">${IC.x}</button></div>`}
+function fijRow(x){return `<div class="fr fj" style="gap:8px"><select class="fj-t" aria-label="Tipo" style="flex:0 0 auto;text-align:left;text-align-last:left;color:var(--ink)">${Object.keys(TIPO).map(t=>`<option value="${t}" ${(x.tipo||'gasto')===t?'selected':''}>${TIPO[t]}</option>`).join('')}</select><input class="fj-c" value="${esc(x.cat||'')}" placeholder="Categoría" aria-label="Categoría" style="text-align:left;color:var(--ink)"><input class="fj-m" type="text" step="0.01" min="0" inputmode="decimal" value="${esc(x.monto??'')}" placeholder="$" aria-label="Monto" style="flex:0 0 70px"><button type="button" class="mini del" data-act="fj-del" aria-label="Quitar">${IC.x}</button></div>`}
 function shAjustes(){
   const f=F(),sub=SH.sub||'habitos',H2=[...S.habitos].sort(byOrden);
-  const nf=(lbl,name,val,step,id)=>`<label class="fr"><span class="fl" style="width:auto;flex:1">${lbl}</span><input id="${id}" name="${name}" type="number" step="${step}" inputmode="decimal" value="${esc(val)}" style="flex:0 0 110px"></label>`;
+  const nf=(lbl,name,val,step,id)=>`<label class="fr"><span class="fl" style="width:auto;flex:1">${lbl}</span><input id="${id}" name="${name}" type="text" step="${step}" inputmode="decimal" value="${esc(val)}" style="flex:0 0 110px"></label>`;
   return {left:'Cancelar',right:'Guardar',title:'Ajustes',body:`<div class="seg" role="group" aria-label="Sección">${[['habitos','Hábitos'],['finanzas','Finanzas']].map(([k,t])=>`<button type="button" data-act="aj-sub" data-v="${k}" aria-pressed="${sub===k}">${t}</button>`).join('')}</div>
   <form class="form" id="ed" data-form="ed-ajustes">
    <div id="aj-habitos" ${sub==='habitos'?'':'hidden'} class="form"><div class="note" style="margin:0 4px">Elige los días en que aplica cada hábito. Los días apagados no cuentan para tu racha.</div><div id="hb-list" style="display:flex;flex-direction:column;gap:12px">${H2.map(habRow).join('')}</div><button type="button" class="btn sec" data-act="hb-add">Añadir hábito</button></div>
    <div id="aj-finanzas" ${sub==='finanzas'?'':'hidden'} class="form">
     <div class="fg-h">Ingreso y fondo</div><div class="fg">${nf('Sueldo neto','sueldo',f.sueldo,'0.01','af-sueldo')}${nf('Fondo inicial','fondoBase',f.fondoBase,'0.01','af-base')}${nf('Meta del fondo','fondoMeta',f.fondoMeta,'1','af-meta')}</div>
     <div class="fg-h">Crédito</div><div class="fg">${nf('Cuota','cuota',f.cuota,'0.01','af-cuota')}${nf('Letras que faltan','letrasRestantes',f.letrasRestantes,'1','af-letras')}${nf('Total de letras','letrasTotal',f.letrasTotal,'1','af-total')}</div>
-    <div class="fg-h">Presupuesto mensual</div><div class="fg">${CATS.gasto.map((c,i)=>`<label class="fr"><span class="fl" style="width:auto;flex:1">${esc(c)}</span><input id="ap-${i}" data-pres="${esc(c)}" type="number" step="0.01" min="0" inputmode="decimal" value="${esc((f.presupuesto||{})[c]??'')}" placeholder="$0" style="flex:0 0 96px"></label>`).join('')}</div>
+    <div class="fg-h">Presupuesto mensual</div><div class="fg">${CATS.gasto.map((c,i)=>`<label class="fr"><span class="fl" style="width:auto;flex:1">${esc(c)}</span><input id="ap-${i}" data-pres="${esc(c)}" type="text" step="0.01" min="0" inputmode="decimal" value="${esc((f.presupuesto||{})[c]??'')}" placeholder="$0" style="flex:0 0 96px"></label>`).join('')}</div>
     <div class="fg-h">Botones de un toque</div><div class="fg"><div id="fj-list">${(f.fijos||[]).map(fijRow).join('')}</div><button type="button" class="add-row" data-act="fj-add"><span class="plus">+</span>Añadir botón</button></div>
     <div class="fg-f">Aparecen en Dinero para registrar con un toque lo que pagas o recibes cada mes.</div>
    </div></form>`};
@@ -2108,7 +2113,7 @@ function shFinca(){
     <label class="fr"><span class="fl">Área</span><input id="fc-area" name="area" value="${esc(c.area||'')}"></label>
     <label class="fr"><span class="fl">Río</span><input id="fc-rio" name="rio" value="${esc(c.rio||'')}"></label></div>
     <div class="fg"><label class="fr"><span class="fl">Fase actual</span><select id="fc-fase" name="faseActual">${opts(fases,c.faseActual)}</select></label>
-    <label class="fr"><span class="fl" style="width:auto;flex:1">Costo de la escritura ($)</span><input id="fc-escr" name="escrituraMeta" type="number" step="1" min="0" inputmode="decimal" value="${esc(c.escrituraMeta??'')}" style="flex:0 0 96px"></label></div>
+    <label class="fr"><span class="fl" style="width:auto;flex:1">Costo de la escritura ($)</span><input id="fc-escr" name="escrituraMeta" type="text" step="1" min="0" inputmode="decimal" value="${esc(c.escrituraMeta??'')}" style="flex:0 0 96px"></label></div>
     <div class="fg-f">Cambia el costo cuando tengas la cotización de la notaría.</div>
     ${fotoEd(c.foto)}</form>`};
 }
@@ -2137,7 +2142,7 @@ function saveCfg(patch){const c={...CT(),...patch};S.cfg=c;sched(true);return pu
 function addMov(m){const ref=newRef('movs');const body={...m,creado:Date.now()};S.movs=[...S.movs,{id:ref.id,...body}];sched(true);put('movs/'+ref.id,'set',body);return ref.id}
 function quitarMov(id){S.movs=S.movs.filter(m=>m.id!==id);sched(true);put('movs/'+id,'delete')}
 function go(t){if(t===tab){window.scrollTo({top:0,behavior:'smooth'});return}tab=t;try{history.replaceState(null,'','#'+t)}catch(e){}window.scrollTo(0,0);render();view.classList.remove('enter');void view.offsetWidth;view.classList.add('enter')}
-const num=x=>{const n=parseFloat(x);return isFinite(n)?n:null};
+const num=x=>{const n=parseFloat(String(x??'').replace(',','.'));return isFinite(n)?n:null};
 function withPop(key,fn){popKey=key;fn();popKey=null}
 
 function onClick(e){
@@ -2160,7 +2165,7 @@ function onClick(e){
   if(a==='fj-add'){document.getElementById('fj-list').insertAdjacentHTML('beforeend',fijRow({tipo:'gasto',cat:'',monto:''}));return}
   if(a==='fj-del'){b.closest('.fj').remove();return}
   if(a==='aj-sub'){SH.sub=v;['habitos','finanzas'].forEach(k=>document.getElementById('aj-'+k).hidden=k!==v);b.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));return}
-  if(a==='tipo'){document.getElementById('em-tipo').value=v;b.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));document.getElementById('em-cat').innerHTML=catsFor(v).map(c=>`<option>${esc(c)}</option>`).join('');return}
+  if(a==='tipo'){document.getElementById('em-tipo').value=v;b.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));document.getElementById('em-cat').innerHTML=catsFor(v).map(c=>`<option>${esc(c)}</option>`).join('');const sl=document.getElementById('em-src-l');if(sl)sl.textContent=v==='ingreso'?'¿A dónde entró?':'¿De dónde salió?';return}
   if(a==='mes'){mesOff+=+v;render();return}
   if(a==='ct-lugar'){ctLugar=v;ls.set('mm-ct-lugar',v);render();return}
   if(a==='ajustes'){openSheet('ajustes',null,{edit:true,sub:v||'habitos'});return}
@@ -2225,7 +2230,7 @@ function saveCurrent(){
   }
   if(k==='mov'){
     const m=num(d.monto);if(!(m>0)){toast('Escribe un monto mayor a 0.');return}
-    const body={tipo:d.tipo,cat:d.cat,monto:m,fecha:d.fecha,nota:(d.nota||'').trim()};
+    const body={tipo:d.tipo,cat:d.cat,monto:m,fecha:d.fecha,nota:(d.nota||'').trim(),fuente:d.fuente||''};
     if(SH.id){const x=S.movs.find(y=>y.id===SH.id);if(x)Object.assign(x,body);((i)=>put('movs/'+i,'update',body))(SH.id)}else addMov(body);
     toast('Movimiento guardado');finishSave();return;
   }
@@ -2670,80 +2675,144 @@ const CAMPO = (() => {
   return { open, close, chip, boot };
 })();
 
-/* ===== Dinero: dónde está mi plata, cuadre y gasto rápido ===== */
+/* ===== Dinero: dónde está mi plata, de dónde sale cada gasto, cuadre y gasto rápido ===== */
 const DIN = (() => {
-  const TIPOS = [["cuenta", "Cuenta"], ["efectivo", "Efectivo"], ["fondo", "Fondo"], ["cobrar", "Me deben"]];
+  const TIPOS = [["cuenta", "Cuenta"], ["efectivo", "Efectivo"], ["tarjeta", "Tarjeta (deuda)"], ["fondo", "Fondo"], ["cobrar", "Me deben"]];
   const QCATS = ["Comida", "Transporte", "Otros gastos", "Ropa y calzado", "Salud", "Casa (cama, cocina)"];
-  let qcat = "Comida", root = null, rows = [];
+  let qcat = "Comida", root = null;
   const lugares = () => (Array.isArray(F().lugares) ? F().lugares : []);
-  const sumL = (pred) => lugares().filter(pred).reduce((a, x) => a + (+x.m || 0), 0);
-  const tag = (t) => ({ fondo: '<span class="dn-tag f">Fondo</span>', cobrar: '<span class="dn-tag c">Me deben</span>', efectivo: '<span class="dn-tag e">Efectivo</span>' }[t] || "");
+  const fuentes = () => lugares().filter((x) => ["cuenta", "efectivo", "tarjeta"].includes(x.t));
+  const r2 = (x) => Math.round(x * 100) / 100;
+  let qsrc = (() => { const v = ls.get("mm-src"); return v || ""; })();
+  const tag = (t) => ({ fondo: '<span class="dn-tag f">Fondo</span>', cobrar: '<span class="dn-tag c">Me deben</span>', efectivo: '<span class="dn-tag e">Efectivo</span>', tarjeta: '<span class="dn-tag t">Tarjeta</span>' }[t] || "");
+  const when = (m) => +m.creado || Date.parse((m.fecha || "1970-01-01") + "T12:00:00");
+  /* saldo vivo de cada lugar: lo anotado + lo registrado después con su "de dónde" */
+  function live() {
+    const T = +F().lugaresT || 0, L = lugares().map((x) => ({ ...x, v: +x.m || 0 })), by = {};
+    L.forEach((x) => (by[x.n] = x));
+    const fo = L.find((x) => x.t === "fondo");
+    let sin = 0;
+    for (const m of S.movs) {
+      if (when(m) <= T) continue;
+      const amt = +m.monto || 0, src = by[m.fuente];
+      if (!src) sin++;
+      if (m.tipo === "ingreso") { if (src) src.v += amt; }
+      else if (m.tipo === "ahorro") {
+        const retiro = m.cat === "Retiro del fondo";
+        if (fo) fo.v += retiro ? -amt : amt;
+        if (src) src.v += retiro ? amt : -amt;
+        if (!fo) sin++;
+      } else if (src) src.v -= amt;
+    }
+    L.forEach((x) => (x.v = r2(x.v)));
+    return { L, sin };
+  }
   function hero() {
-    const disp = saldo(), fo = fondo(), fm = +F().fondoMeta || 0, L = lugares();
-    const tot = sumL(() => true), now = disp + fo, ref = F().lugaresRef != null ? +F().lugaresRef : now;
-    const dif = tot - ref, ok = Math.abs(dif) < 0.5, delta = Math.round((now - ref) * 100) / 100;
-    const cuando = F().lugaresT ? fmtFc(iso(new Date(F().lugaresT))) : "";
+    const disp = saldo(), fo = fondo(), fm = +F().fondoMeta || 0;
     let o = `<div class="card dn-hero">
       <div class="dn-two">
         <div><div class="lg-k">Para gastar</div><div class="big-money" style="color:${disp < 0 ? "var(--red)" : "var(--ink)"}">${money(disp)}</div></div>
         <div><div class="lg-k">Fondo de emergencia</div><div class="dn-fo">${money0(fo)}</div><div class="dn-fo-s">meta ${money0(fm)}</div>${bar(fm ? fo / fm : 0, "g")}</div>
       </div>`;
-    if (L.length) {
-      o += `<div class="dn-where"><div class="sh"><span class="lg-k">¿Dónde está tu dinero?</span><button class="link" data-din="edit">Actualizar</button></div>
-        ${L.map((x) => `<div class="dn-row"><span class="grow">${esc(x.n)} ${tag(x.t)}</span><b class="num">${money(x.m)}</b></div>`).join("")}
+    if (lugares().length) {
+      const { L, sin } = live(), tot = r2(L.reduce((a, x) => a + x.v, 0)), dif = r2(tot - (disp + fo)), ok = Math.abs(dif) < 0.5;
+      const cuando = F().lugaresT ? fmtFc(iso(new Date(+F().lugaresT))) : "";
+      o += `<div class="dn-where"><div class="sh"><span class="lg-k">¿Dónde está tu dinero?</span><span><button class="link" data-din="move">Mover</button> · <button class="link" data-din="edit">Actualizar</button></span></div>
+        ${L.map((x) => `<div class="dn-row"><span class="grow">${esc(x.n)} ${tag(x.t)}</span><b class="num${x.v < 0 ? " neg" : ""}">${money(x.v)}</b></div>`).join("")}
         <div class="dn-row dn-tot"><span class="grow">Total</span><b class="num">${money(tot)}</b></div>
-        <div class="dn-check ${ok ? "ok" : "warn"}">${ok ? `✓ Cuadraba con tus registros${cuando ? ` el ${cuando}` : ""}` : `Diferencia de ${money(Math.abs(dif))}${cuando ? ` el ${cuando}` : ""}: ${dif < 0 ? "falta registrar un gasto" : "falta registrar un ingreso"}.`}${Math.abs(delta) >= 0.01 ? `<div class="dn-since">Desde entonces registraste ${delta < 0 ? "gastos por " + money(-delta) : "ingresos por " + money(delta)}: hoy deberías tener <b>${money(tot + delta)}</b> en total.</div>` : ""}</div></div>`;
+        <div class="dn-check ${ok ? "ok" : "warn"}">${ok ? `✓ Cuadra con lo que registraste${cuando ? ` · saldos anotados el ${cuando}` : ""}` : `Diferencia de ${money(Math.abs(dif))}${sin ? `: ${sin === 1 ? "hay 1 movimiento" : `hay ${sin} movimientos`} sin “¿de dónde?”. Ábrelos y elige el lugar, o toca Actualizar con los saldos del banco.` : `: falta registrar ${dif > 0 ? "un gasto" : "un ingreso"}, o toca Actualizar con los saldos del banco.`}`}</div></div>`;
     } else o += `<button class="btn sec" data-din="edit">Anotar dónde está tu dinero</button>`;
     return o + `</div>`;
   }
+  function srcChips(sel, attr) {
+    const F_ = fuentes();
+    if (!F_.length) return "";
+    if (!F_.some((x) => x.n === sel)) sel = F_[0].n;
+    return `<div class="dn-src"><span class="dn-src-k">¿De dónde salió?</span><div class="dn-cats">${F_.map((x) => `<button type="button" data-din="${attr}" data-s="${esc(x.n)}" aria-pressed="${x.n === sel}">${esc(x.n)}</button>`).join("")}</div></div>`;
+  }
   function quick() {
     return `<div class="card dn-q"><div class="lg-k">Gasto rápido</div>
-      <div class="dn-amt"><span>$</span><input id="dn-m" type="number" inputmode="decimal" step="0.01" min="0" placeholder="0.00" aria-label="Monto del gasto"></div>
+      <div class="dn-amt"><span>$</span><input id="dn-m" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" aria-label="Monto del gasto"></div>
       <div class="dn-cats">${QCATS.map((c) => `<button data-din="cat" data-c="${esc(c)}" aria-pressed="${c === qcat}">${esc(c.replace(" (cama, cocina)", ""))}</button>`).join("")}</div>
+      ${srcChips(qsrc, "src")}
       <input id="dn-n" class="dn-note" type="text" placeholder="Nota (opcional): pasaje, almuerzo…" autocomplete="off">
       <button class="btn" data-din="save">Guardar gasto</button></div>`;
   }
-  /* editor de saldos */
-  function rowH(x, i) {
-    return `<div class="dn-er" data-i="${i}"><input class="dn-en" value="${esc(x.n || "")}" placeholder="Ej.: Pichincha ahorro" aria-label="Nombre"><input class="dn-em" type="number" inputmode="decimal" step="0.01" value="${x.m ?? ""}" placeholder="0.00" aria-label="Monto"><select class="dn-et" aria-label="Tipo">${TIPOS.map(([k, t]) => `<option value="${k}"${x.t === k ? " selected" : ""}>${t}</option>`).join("")}</select><button class="dn-ex" data-din="del" aria-label="Quitar">×</button></div>`;
+  /* campo "¿de dónde?" para el formulario completo de movimientos */
+  function movField(m) {
+    const F_ = fuentes();
+    if (!F_.length) return "";
+    const tipo = (m && m.tipo) || "gasto", cur = (m && m.fuente) || (m && m.id ? "" : qsrc || F_[0].n);
+    return `<label class="fr"><span class="fl" id="em-src-l">${tipo === "ingreso" ? "¿A dónde entró?" : "¿De dónde salió?"}</span><select id="em-src" name="fuente"><option value="">Sin indicar</option>${F_.map((x) => `<option value="${esc(x.n)}"${x.n === cur ? " selected" : ""}>${esc(x.n)}</option>`).join("")}</select></label>`;
   }
-  function openEd() {
-    rows = lugares().map((x) => ({ ...x }));
-    if (!rows.length) rows = [{ n: "Cuenta de ahorro", m: "", t: "cuenta" }, { n: "Efectivo", m: "", t: "efectivo" }];
+  /* overlays: actualizar saldos y mover dinero */
+  function shell(title, body) {
     if (!root) {
       root = document.createElement("div"); root.className = "ram-ov dn-ov"; root.hidden = true;
-      root.setAttribute("role", "dialog"); root.setAttribute("aria-label", "Dónde está tu dinero");
+      root.setAttribute("role", "dialog");
       document.body.appendChild(root); root.addEventListener("click", onTap);
     }
-    root.innerHTML = `<div class="ram-top"><button class="ram-x" data-din="x" aria-label="Cerrar">×</button><div class="ram-tt"><div class="ram-k">Dinero</div><div class="ram-t">Tus saldos de hoy</div></div><span></span></div>
-      <div class="ram-body"><div class="dn-wrap"><p class="dn-help">Anota lo que tienes hoy en cada lugar, mirando tu banco y tu billetera. Marca como <b>Fondo</b> lo que es del fondo de emergencia y como <b>Me deben</b> lo que te tienen que devolver. La app te dice si cuadra con lo que registraste.</p>
+    root.setAttribute("aria-label", title);
+    root.innerHTML = `<div class="ram-top"><button class="ram-x" data-din="x" aria-label="Cerrar">×</button><div class="ram-tt"><div class="ram-k">Dinero</div><div class="ram-t">${title}</div></div><span></span></div><div class="ram-body"><div class="dn-wrap">${body}</div></div>`;
+    root.hidden = false; document.documentElement.classList.add("ram-lock"); requestAnimationFrame(() => root.classList.add("in"));
+  }
+  function rowH(x) {
+    return `<div class="dn-er"><input class="dn-en" value="${esc(x.n || "")}" placeholder="Ej.: Pichincha ahorro" aria-label="Nombre"><input class="dn-em" type="text" inputmode="decimal" value="${x.m ?? ""}" placeholder="0,00" aria-label="Monto"><select class="dn-et" aria-label="Tipo">${TIPOS.map(([k, t]) => `<option value="${k}"${x.t === k ? " selected" : ""}>${t}</option>`).join("")}</select><button class="dn-ex" data-din="del" aria-label="Quitar">×</button></div>`;
+  }
+  function openEd() {
+    let rows = live().L.map((x) => ({ n: x.n, m: x.v, t: x.t }));
+    if (!rows.length) rows = [{ n: "Cuenta de ahorro", m: "", t: "cuenta" }, { n: "Efectivo", m: "", t: "efectivo" }];
+    shell("Tus saldos de hoy", `<p class="dn-help">Mira tu banco y tu billetera y anota lo que tienes <b>hoy</b> en cada lugar. Marca como <b>Fondo</b> lo del fondo de emergencia, <b>Me deben</b> lo que te tienen que devolver y <b>Tarjeta</b> lo que debes en la tarjeta de crédito, en negativo (por ejemplo −30). Los montos ya vienen con lo que la app calcula.</p>
       <div class="dn-list">${rows.map(rowH).join("")}</div>
       <button class="btn sec" data-din="add">+ Agregar lugar</button>
       <div class="dn-sum" data-out="dnsum"></div>
-      <button class="btn" data-din="ok">Guardar saldos</button></div></div>`;
+      <button class="btn" data-din="ok">Guardar saldos</button>`);
     root.querySelector(".dn-list").addEventListener("input", sumUp);
     sumUp();
-    root.hidden = false; document.documentElement.classList.add("ram-lock"); requestAnimationFrame(() => root.classList.add("in"));
   }
   function read() {
-    return [...root.querySelectorAll(".dn-er")].map((r) => ({ n: r.querySelector(".dn-en").value.trim(), m: Math.round((+r.querySelector(".dn-em").value || 0) * 100) / 100, t: r.querySelector(".dn-et").value })).filter((x) => x.n || x.m);
+    return [...root.querySelectorAll(".dn-er")].map((r) => ({ n: r.querySelector(".dn-en").value.trim(), m: r2(num(r.querySelector(".dn-em").value) || 0), t: r.querySelector(".dn-et").value })).filter((x) => x.n);
   }
   function sumUp() {
-    const L = read(), tot = L.reduce((a, x) => a + x.m, 0), dif = tot - (saldo() + fondo());
-    root.querySelector('[data-out="dnsum"]').innerHTML = `Total: <b>${money(tot)}</b> · Según tus registros: <b>${money(saldo() + fondo())}</b><br>${Math.abs(dif) < 0.5 ? '<span style="color:var(--green)">✓ Cuadra</span>' : `<span style="color:var(--or)">Diferencia de ${money(Math.abs(dif))}</span>`}`;
+    const L = read(), tot = L.reduce((a, x) => a + x.m, 0), reg = saldo() + fondo(), dif = tot - reg;
+    root.querySelector('[data-out="dnsum"]').innerHTML = `Total: <b>${money(tot)}</b> · Según tus registros: <b>${money(reg)}</b><br>${Math.abs(dif) < 0.5 ? '<span style="color:var(--green)">✓ Cuadra</span>' : `<span style="color:var(--or)">Diferencia de ${money(Math.abs(dif))}: ${dif < 0 ? "falta registrar un gasto" : "falta registrar un ingreso"}</span>`}`;
+  }
+  function saveL(L, msg) {
+    if (!needDb()) return;
+    const data = { lugares: L, lugaresT: Date.now(), lugaresRef: r2(saldo() + fondo()) };
+    S.fin = { ...(S.fin || {}), ...data }; sched(true); put("config/finanzas", "update", data);
+    closeEd(); toast(msg);
+  }
+  function openMove() {
+    const L = live().L.filter((x) => x.t !== "cobrar");
+    if (L.length < 2) { toast("Primero anota al menos dos lugares"); return; }
+    const opt = (sel) => L.map((x, i) => `<option value="${i}"${i === sel ? " selected" : ""}>${esc(x.n)} (${money(x.v)})</option>`).join("");
+    const iTar = L.findIndex((x) => x.t === "tarjeta");
+    shell("Mover dinero", `<p class="dn-help">Para cuando pasas plata de un lugar a otro: un retiro del cajero (cuenta → efectivo), pasar de la Flexible a la de ahorro, o <b>pagar la tarjeta</b> (cuenta → tarjeta). No es gasto, así que no cambia tu disponible.</p>
+      <div class="fg"><label class="fr"><span class="fl">Desde</span><select id="mv-de">${opt(0)}</select></label>
+      <label class="fr"><span class="fl">Hacia</span><select id="mv-a">${opt(iTar > 0 ? iTar : 1)}</select></label>
+      <label class="fr"><span class="fl">Monto</span><input id="mv-m" type="text" inputmode="decimal" placeholder="0,00" autocomplete="off"></label></div>
+      <button class="btn" data-din="mvok">Mover</button>`);
+    root._L = L;
   }
   function closeEd() { if (!root) return; root.classList.remove("in"); document.documentElement.classList.remove("ram-lock"); setTimeout(() => { root.hidden = true; }, 220); }
   function onTap(e) {
     const b = e.target.closest("[data-din]"); if (!b) return;
     const a = b.dataset.din;
     if (a === "x") return closeEd();
-    if (a === "add") { root.querySelector(".dn-list").insertAdjacentHTML("beforeend", rowH({ n: "", m: "", t: "cuenta" }, 99)); root.querySelector(".dn-list").lastElementChild.querySelector("input").focus(); return; }
+    if (a === "add") { root.querySelector(".dn-list").insertAdjacentHTML("beforeend", rowH({ n: "", m: "", t: "cuenta" })); root.querySelector(".dn-list").lastElementChild.querySelector("input").focus(); return; }
     if (a === "del") { b.closest(".dn-er").remove(); sumUp(); return; }
-    if (a === "ok") {
-      if (!needDb()) return;
-      const L = read(), data = { lugares: L, lugaresT: Date.now(), lugaresRef: Math.round((saldo() + fondo()) * 100) / 100 };
-      S.fin = { ...(S.fin || {}), ...data }; sched(true); put("config/finanzas", "update", data);
-      closeEd(); toast("Saldos guardados"); return;
+    if (a === "ok") return saveL(read(), "Saldos guardados");
+    if (a === "mvok") {
+      const L = root._L, de = +root.querySelector("#mv-de").value, aa = +root.querySelector("#mv-a").value, m = r2(num(root.querySelector("#mv-m").value) || 0);
+      if (de === aa) { toast("Elige dos lugares distintos"); return; }
+      if (!(m > 0)) { toast("Escribe el monto"); return; }
+      L[de].v = r2(L[de].v - m); L[aa].v = r2(L[aa].v + m);
+      const keep = live().L.filter((x) => x.t === "cobrar");
+      const out = [...L, ...keep].map((x) => ({ n: x.n, m: x.v, t: x.t }));
+      const orden = lugares().map((x) => x.n);
+      out.sort((p, q) => orden.indexOf(p.n) - orden.indexOf(q.n));
+      return saveL(out, `Movido: ${money(m)} de ${L[de].n} a ${L[aa].n}`);
     }
   }
   // clics dentro de la pestaña
@@ -2751,19 +2820,29 @@ const DIN = (() => {
     const b = e.target.closest("#view [data-din]"); if (!b) return;
     const a = b.dataset.din;
     if (a === "edit") return openEd();
+    if (a === "move") return openMove();
     if (a === "cat") { qcat = b.dataset.c; b.parentElement.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", x === b)); return; }
+    if (a === "src") { qsrc = b.dataset.s; ls.set("mm-src", qsrc); b.parentElement.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", x === b)); return; }
     if (a === "save") {
       const mi = document.getElementById("dn-m"), ni = document.getElementById("dn-n");
-      const m = Math.round((+mi.value || 0) * 100) / 100;
+      const m = r2(num(mi.value) || 0);
       if (!(m > 0)) { toast("Escribe el monto"); mi.focus(); return; }
       if (!needDb()) return;
+      const F_ = fuentes(), fuente = F_.length ? (F_.some((x) => x.n === qsrc) ? qsrc : F_[0].n) : "";
       const nota = ni.value.trim();
-      const mid = addMov({ tipo: "gasto", cat: qcat, monto: m, fecha: iso(new Date()), nota });
+      const mid = addMov({ tipo: "gasto", cat: qcat, monto: m, fecha: iso(new Date()), nota, ...(fuente ? { fuente } : {}) });
       mi.value = ""; ni.value = ""; mi.blur(); ni.blur();
-      toast(`${qcat}: ${money(m)} guardado`, () => { quitarMov(mid); toast("Se deshizo"); });
+      toast(`${qcat}: ${money(m)}${fuente ? " · " + fuente : ""}`, () => { quitarMov(mid); toast("Se deshizo"); });
     }
   });
-  return { hero, quick, open: openEd };
+  // coma decimal: en todos los campos de montos, la coma se convierte en punto
+  document.addEventListener("input", (e) => {
+    const t = e.target;
+    if (!t || t.tagName !== "INPUT" || t.getAttribute("inputmode") !== "decimal") return;
+    const v = t.value, c = v.replace(/,/g, ".").replace(/[^0-9.\-]/g, "").replace(/(\..*)\./g, "$1");
+    if (c !== v) { const p = t.selectionStart; t.value = c; try { t.setSelectionRange(p, p); } catch (er) {} }
+  }, true);
+  return { hero, quick, open: openEd, movField };
 })();
 
 window.__cp=1;CAMPO.chip();
