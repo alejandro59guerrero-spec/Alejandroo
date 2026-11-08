@@ -816,6 +816,7 @@ html.ram-lock,html.ram-lock body{overflow:hidden}
 .fx-e2 label{display:flex;flex-direction:column;gap:3px}.fx-e2 label span{font-size:11px;color:var(--ink3)}
 .fx-e2 input,.fx-e2 select,.fx-e1 input{background:var(--card-hi);border:0;border-radius:9px;padding:8px 9px;font:inherit;font-size:15px;color:var(--ink);min-width:0;width:100%;box-sizing:border-box}
 .fx-e2 select{text-align:left;text-align-last:left}
+.fx-var{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--ink2);flex:none}.fx-var input{width:18px;height:18px;accent-color:var(--or);margin:0}
 </style>
 
 <div class="navbar" id="navbar"><div class="nb-in"><i></i><span id="nb-t">Hoy</span><button class="icon-btn" data-aj aria-label="Ajustes"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></div></div>
@@ -2046,7 +2047,7 @@ function shLargo(){
 function shMov(){
   const m=SH.id?S.movs.find(x=>x.id===SH.id):null;if(SH.id&&!m)return null;
   const pr=SH.preset||{};
-  const d=m||{tipo:pr.tipo||'gasto',cat:pr.cat||'',monto:'',fecha:iso(new Date()),nota:''};
+  const d=m||{tipo:pr.tipo||'gasto',cat:pr.cat||'',monto:'',fecha:iso(new Date()),nota:pr.nota||''};
   const cats=catsFor(d.tipo);if(d.cat&&!cats.includes(d.cat))cats.push(d.cat);
   return {left:'Cancelar',right:'Guardar',title:m?'Movimiento':'Nuevo movimiento',body:`<form class="form" id="ed" data-form="ed-mov">
     <input type="hidden" id="em-tipo" name="tipo" value="${esc(d.tipo)}">
@@ -2181,6 +2182,7 @@ function onClick(e){
   if(a==='fx-add'){document.getElementById('fx-list').insertAdjacentHTML('beforeend',FIJ.editRow({}));return}
   if(a==='fx-del'){b.closest('.fx-e').remove();return}
   if(a==='fij-ok'){FIJ.toggle(i);return}
+  if(a==='pagar-var'){const p=(F().pagos||[])[i];if(p)openSheet('mov',null,{edit:true,preset:{tipo:'gasto',cat:p.cat,nota:p.nombre}});return}
   if(a==='fj-add'){document.getElementById('fj-list').insertAdjacentHTML('beforeend',fijRow({tipo:'gasto',cat:'',monto:''}));return}
   if(a==='fj-del'){b.closest('.fj').remove();return}
   if(a==='aj-sub'){SH.sub=v;['habitos','finanzas'].forEach(k=>document.getElementById('aj-'+k).hidden=k!==v);b.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));return}
@@ -2706,14 +2708,14 @@ const FIJ=(()=>{
     if(p.aviso){const h=((F().hechos||{})[key]||[]).includes(p.nombre);return {pagado:h,due,pag:0,m:null}}
     const gs=S.movs.filter(x=>x.tipo==='gasto'&&x.cat===p.cat&&(x.fecha||'').startsWith(key)).sort((a,b)=>(b.fecha||'').localeCompare(a.fecha||''));
     const pag=r2(gs.reduce((a,x)=>a+ +x.monto,0));
-    return {pagado:gs.length>0&&pag>=+p.monto*0.95,due,pag,m:gs[0]||null};
+    return {pagado:gs.length>0&&(p.variable||pag>=+p.monto*0.95),due,pag,m:gs[0]||null};
   }
   const fc=d=>d.getDate()+' '+M3[d.getMonth()];
   function section(key,mesN,off){
     const ps=lista();
     const hoy=new Date();hoy.setHours(0,0,0,0);
     const rows=ps.map(p=>({p,e:estado(p,key)})).sort((a,b)=>(+a.p.dia||99)-(+b.p.dia||99));
-    const cuenta=rows.filter(r=>!r.p.aviso),tot=r2(cuenta.reduce((a,r)=>a+ +r.p.monto,0)),pag=r2(cuenta.filter(r=>r.e.pagado).reduce((a,r)=>a+ +r.p.monto,0)),falta=r2(tot-pag);
+    const val=r=>r.p.variable&&r.e.pagado?r.e.pag:(+r.p.monto||0);const cuenta=rows.filter(r=>!r.p.aviso),tot=r2(cuenta.reduce((a,r)=>a+val(r),0)),pag=r2(cuenta.filter(r=>r.e.pagado).reduce((a,r)=>a+val(r),0)),falta=r2(tot-pag);
     const nP=rows.filter(r=>r.e.pagado).length;
     const head=ps.length?`<div class="gr fx-sum"><div class="sh"><span class="small muted">${nP} de ${rows.length} listos</span><span class="num small"><b>${money(pag)}</b> <span class="muted">de ${money(tot)}</span></span></div>${bar(tot?pag/tot:0,'g')}<span class="small ${falta>0?'':'fx-ok'}">${falta>0?(off<0?'Quedó sin registrar ':'Te falta pagar ')+'<b>'+money(falta)+'</b>':'Todo pagado este mes ✓'}</span></div>`:'';
     const body=rows.map(({p,e})=>{
@@ -2724,10 +2726,10 @@ const FIJ=(()=>{
       else if(off>0||n===null)st=e.due?`Vence el ${fc(e.due)}`:'Este mes · sin fecha';
       else if(n<0)st=`Venció hace ${-n===1?'1 día':-n+' días'}`,cls='late';
       else st=n===0?'Vence hoy':n===1?'Vence mañana':`Faltan ${n} días`,cls=n<=3?'soon':'';
-      if(!e.pagado&&e.pag>0&&off===0)st+=` · llevas ${money(e.pag)}`;
+      if(p.variable&&!e.pagado&&off>=0)st+=' · el monto varía';if(!e.pagado&&e.pag>0&&off===0)st+=` · llevas ${money(e.pag)}`;
       const dd=e.due?`<span class="fx-d"><b>${e.due.getDate()}</b><i>${M3[e.due.getMonth()]}</i></span>`:`<span class="fx-d nd"><b>–</b><i>sin día</i></span>`;
-      const amt=p.aviso?(p.monto?`<span class="num small muted">${money(p.monto)}</span>`:''):`<span class="num small" style="font-weight:600">${money(p.monto)}</span>`;
-      const act=off!==0?'':e.pagado?`<span class="fx-chk" aria-label="Pagado"><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4 8-9"/></svg></span>`:p.aviso?`<button class="btn sm sec" data-act="fij-ok" data-i="${p.i}">Listo</button>`:`<button class="btn sm" data-act="pagar" data-i="${p.i}">Pagar</button>`;
+      const amt=p.variable?(e.pagado?`<span class="num small" style="font-weight:600">${money(e.pag)}</span>`:`<span class="num small muted">${+p.monto?'≈ '+money(p.monto):'Varía'}</span>`):p.aviso?(p.monto?`<span class="num small muted">${money(p.monto)}</span>`:''):`<span class="num small" style="font-weight:600">${money(p.monto)}</span>`;
+      const act=off!==0?'':e.pagado?`<span class="fx-chk" aria-label="Pagado"><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4 8-9"/></svg></span>`:p.aviso?`<button class="btn sm sec" data-act="fij-ok" data-i="${p.i}">Listo</button>`:`<button class="btn sm" data-act="${p.variable?'pagar-var':'pagar'}" data-i="${p.i}">Pagar</button>`;
       return `<div class="gr fx-r ${cls}">${dd}<span class="grow"><span class="t">${esc(p.nombre||p.cat)}</span><div class="sub fx-st">${st}</div>${p.nota&&!e.pagado?`<div class="sub">${esc(p.nota)}</div>`:''}</span><span class="fx-rt">${amt}${act}</span></div>`;
     }).join('');
     return `<section>${T('Gastos fijos de '+mesN,`<button class="link" data-act="ajustes" data-v="finanzas">Editar</button>`)}<div class="gl">${ps.length?head+body:'<div class="gr muted small">Añade tus gastos fijos en Editar.</div>'}</div></section>`;
@@ -2741,8 +2743,8 @@ const FIJ=(()=>{
   const ROW_CATS=()=>[...CATS.gasto,'__aviso'];
   function editRow(p){
     const c=p.aviso?'__aviso':(p.cat||'');
-    return `<div class="fx-e"><div class="fx-e1"><input class="fx-n" value="${esc(p.nombre||p.cat||'')}" placeholder="Nombre (p. ej. Alquiler)" aria-label="Nombre"><button type="button" class="fx-del" data-act="fx-del" aria-label="Quitar">×</button></div>
-      <div class="fx-e2"><label><span>Día</span><input class="fx-dia" type="text" inputmode="numeric" value="${esc(p.dia??'')}" placeholder="—" aria-label="Día del mes"></label><label><span>Monto</span><input class="fx-m" type="text" inputmode="decimal" value="${esc(p.monto??'')}" placeholder="0" aria-label="Monto"></label>
+    return `<div class="fx-e"><div class="fx-e1"><input class="fx-n" value="${esc(p.nombre||p.cat||'')}" placeholder="Nombre (p. ej. Alquiler)" aria-label="Nombre"><label class="fx-var"><input type="checkbox" class="fx-v"${p.variable?' checked':''}>Varía</label><button type="button" class="fx-del" data-act="fx-del" aria-label="Quitar">×</button></div>
+      <div class="fx-e2"><label><span>Día</span><input class="fx-dia" type="text" inputmode="numeric" value="${esc(p.dia??'')}" placeholder="—" aria-label="Día del mes"></label><label><span>Monto (aprox.)</span><input class="fx-m" type="text" inputmode="decimal" value="${esc(p.monto??'')}" placeholder="0" aria-label="Monto"></label>
       <select class="fx-c" aria-label="Categoría">${ROW_CATS().map(x=>`<option value="${esc(x)}"${x===c?' selected':''}>${x==='__aviso'?'Solo recordatorio':esc(x)}</option>`).join('')}${c&&!ROW_CATS().includes(c)?`<option value="${esc(c)}" selected>${esc(c)}</option>`:''}</select></div></div>`;
   }
   function editor(){return `<div class="fg-h">Gastos fijos del mes</div><div class="fg"><div id="fx-list">${(F().pagos||[]).map(editRow).join('')}</div><button type="button" class="add-row" data-act="fx-add"><span class="plus">+</span>Añadir gasto fijo</button></div><div class="fg-f">Pon el día del mes en que vence cada uno. Se marca pagado solo cuando registras un gasto de esa categoría en el mes. "Solo recordatorio" sirve para cosas como pagar la tarjeta: no suma como gasto, solo lo marcas como listo.</div>`}
@@ -2752,9 +2754,9 @@ const FIJ=(()=>{
       const nombre=r.querySelector('.fx-n').value.trim(),c=r.querySelector('.fx-c').value,dia=Math.round(num(r.querySelector('.fx-dia').value)||0),monto=num(r.querySelector('.fx-m').value)||0;
       if(!nombre)return null;
       const o={nombre,monto};if(dia>=1&&dia<=31)o.dia=dia;
-      if(c==='__aviso'){o.aviso=true;o.cat=''}else o.cat=c;
+      if(c==='__aviso'){o.aviso=true;o.cat=''}else o.cat=c;if(r.querySelector('.fx-v').checked&&!o.aviso)o.variable=true;
       const prev=old.find(x=>(x.nombre||x.cat)===nombre);if(prev&&prev.nota)o.nota=prev.nota;
-      return (o.aviso||o.monto>0)?o:null;
+      return (o.aviso||o.variable||o.monto>0)?o:null;
     }).filter(Boolean);
   }
   return {section,toggle,editor,editRow,read,fixedCats,estado};
