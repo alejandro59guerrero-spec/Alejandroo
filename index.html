@@ -9,6 +9,7 @@
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" href="icon-192.png">
 <style>html,body{margin:0;background:#000}</style>
+<script>window.CAMPO_VER='27e0e1'</script>
 </head><body>
 
 
@@ -2319,14 +2320,16 @@ queueMicrotask(()=>{render();view.classList.add('enter');paintSync()});
 /* 2) conexión con la nube; si se cae, se vuelve a conectar sola */
 let unsubs=[],resubT=null;
 function banner(t){const bn=document.getElementById('banner');bn.hidden=!t;bn.textContent=t||''}
+const FRESH=new Set();
+const freshOK=()=>[...COLS,...Object.values(CFGK)].every(k=>FRESH.has(k));
 function subscribeAll(){
   unsubs.forEach(u=>{try{u()}catch(e){}});unsubs=[];
   const fail=e=>{if(e&&e.code==='revoked'){banner('Ya no tienes acceso a estos datos.');return}
     offline=true;paintSync();clearTimeout(resubT);resubT=setTimeout(subscribeAll,20000)};
   const got=()=>{overlay();saveCache();sched()};
-  const sub=(name,col)=>unsubs.push(db.collection(col).onSnapshot(s=>{S[name]=s.docs.map(x=>({id:x.id,...clone(x.data())}));loaded.add(name);if(!s.metadata||!s.metadata.fromCache){if(offline&&!OB.length){offline=false;paintSync()}}got()},fail));
+  const sub=(name,col)=>unsubs.push(db.collection(col).onSnapshot(s=>{S[name]=s.docs.map(x=>({id:x.id,...clone(x.data())}));loaded.add(name);FRESH.add(name);if(!s.metadata||!s.metadata.fromCache){if(offline&&!OB.length){offline=false;paintSync()}}got()},fail));
   COLS.forEach(n=>sub(n,n));
-  Object.entries(CFGK).forEach(([p,k])=>unsubs.push(db.doc(p).onSnapshot(x=>{S[k]=x.exists?clone(x.data()):null;got()},fail)));
+  Object.entries(CFGK).forEach(([p,k])=>unsubs.push(db.doc(p).onSnapshot(x=>{S[k]=x.exists?clone(x.data()):null;FRESH.add(k);got()},fail)));
   const desde=new Date();desde.setDate(desde.getDate()-95);
   unsubs.push(db.collection('dias').where('fecha','>=',iso(desde)).onSnapshot(s=>{const m={};s.docs.forEach(x=>m[x.id]={id:x.id,...clone(x.data())});S.dias=m;got()},fail));
 }
@@ -2571,11 +2574,13 @@ const CAMPO = (() => {
     if (IS_CAMPO) {
       const o = await unpack("MMC1", text);
       if (!o || !o.S) return false;
+      const cur = ls.get(K_DAT); // fecha de los últimos datos traídos de Mis Metas
+      if (cur && cur.t && o.t && o.t < cur.t - 1000) { msg = `Lo copiado es más viejo (del ${fecha(o.t)}) que lo que ya tienes. En Mis Metas toca Sincronizar con el campo otra vez y vuelve.`; return "old"; }
       const done = new Set(o.imp || []);
       const before = n();
       OB = OB.filter((x) => !done.has(keyOf(x))); OB.forEach((x) => delete x.sent); saveQ();
       ls.set(LS_C, { t: o.t || Date.now(), S: o.S }); ls.set(K_DAT, { t: o.t || Date.now() });
-      msg = before && !n() ? "Listo: Mis Metas ya tiene todo lo del campo." : n() ? `Datos al día. Aún quedan ${nTx(n())} por pasar.` : "Listo: datos al día.";
+      msg = o.fresh === false ? "Ojo: Mis Metas copió sin conexión; puede que falten datos recientes." : before && !n() ? "Listo: Mis Metas ya tiene todo lo del campo." : n() ? `Datos al día. Aún quedan ${nTx(n())} por pasar.` : "Listo: datos al día.";
       setTimeout(() => location.reload(), 900);
       return true;
     }
@@ -2590,7 +2595,9 @@ const CAMPO = (() => {
     msg = k ? (k === 1 ? "Se guardó 1 registro del campo." : `Se guardaron ${k} registros del campo.`) : "Eso ya estaba guardado.";
     return true;
   }
-  const mainCode = () => pack("MMC1", { t: Date.now(), imp: [...new Set([...(ls.get(K_IMP) || []), ...IMPMEM])].slice(-3000), S: (({ largo, corto, habitos, movs, lotes, ctareas, fin, pl, cfg, dias }) => clone({ largo, corto, habitos, movs, lotes, ctareas, fin, pl, cfg, dias }))(S) });
+  const waitFresh = (ms) => new Promise((ok) => { const t0 = Date.now(); (function w() { if (typeof freshOK === "function" && db && freshOK()) return ok(true); if (Date.now() - t0 > ms) return ok(false); setTimeout(w, 150); })(); });
+  let lastFresh = true;
+  const mainCode = () => pack("MMC1", { t: Date.now(), fresh: lastFresh, imp: [...new Set([...(ls.get(K_IMP) || []), ...IMPMEM])].slice(-3000), S: (({ largo, corto, habitos, movs, lotes, ctareas, fin, pl, cfg, dias }) => clone({ largo, corto, habitos, movs, lotes, ctareas, fin, pl, cfg, dias }))(S) });
   const campoCode = () => pack("MMR1", { t: Date.now(), items: OB.map(({ sending, ...x }) => x) });
 
   /* ---------- pantalla ---------- */
@@ -2599,7 +2606,7 @@ const CAMPO = (() => {
     const C = ls.get(LS_C);
     let o = "";
     if (IS_CAMPO) {
-      o += `<div class="cp-stat ${!C ? "warn" : n() ? "warn" : "ok"}">${!C ? "Esta app aún no tiene tus datos." : sentAll() ? "Tus registros ya se copiaron para Mis Metas." : n() ? (n() === 1 ? "<b>1 registro</b> guardado aquí, falta pasarlo a Mis Metas." : `<b>${n()} registros</b> guardados aquí, falta pasarlos a Mis Metas.`) : `Todo al día · datos del <b>${fecha((ls.get(K_DAT) || {}).t || C.t)}</b>`}</div>`;
+      o += `<div class="cp-stat ${!C ? "warn" : n() ? "warn" : "ok"}">${!C ? "Esta app aún no tiene tus datos." : sentAll() ? "Tus registros ya se copiaron para Mis Metas." : n() ? (n() === 1 ? "<b>1 registro</b> guardado aquí, falta pasarlo a Mis Metas." : `<b>${n()} registros</b> guardados aquí, falta pasarlos a Mis Metas.`) : `Datos de Mis Metas del <b>${fecha((ls.get(K_DAT) || {}).t || C.t)}</b>`}</div>`;
       if (sentAll()) {
         o += `<button class="btn cp-main" data-cp="pull">Traer mis datos</button>`;
         o += `<p class="cp-how">Tus registros ya se copiaron. Si en Mis Metas ya tocaste <b>Sincronizar con el campo</b>, toca <b>Traer mis datos</b> y queda todo al día.</p>`;
@@ -2616,13 +2623,13 @@ const CAMPO = (() => {
     }
     if (msg) o += `<div class="cp-msg">${esc(msg)}</div>`;
     if (manual) o += `<textarea class="cp-ta" id="cp-in" rows="3" placeholder="Mantén presionado aquí y elige Pegar" autocomplete="off" autocorrect="off" spellcheck="false"></textarea>`;
-    o += `<details class="cp-inst"${!IS_CAMPO && !ls.get("mm-campo-visto") ? " open" : ""}><summary>${IS_CAMPO ? "Ayuda" : "Instalar la app Campo (una sola vez)"}</summary>
+    o += `<details class="cp-inst"${!IS_CAMPO && !ls.get("mm-campo-visto") ? " open" : ""}><summary>${IS_CAMPO ? "Ayuda" : "Instalar la app Campo (una sola vez)"}</summary>${IS_CAMPO && window.CAMPO_VER ? `<p class="cp-note">Versión ${esc(window.CAMPO_VER)}</p>` : ""}
       <ol><li>Abre este enlace en <b>Safari</b>:<div class="cp-url">${esc(URL_CAMPO)}</div><button class="btn sec" data-cp="url">Copiar enlace</button></li>
       <li>Toca <b>Compartir</b> (el cuadro con flecha) y luego <b>Agregar a pantalla de inicio</b>.</li>
       <li>Ábrela una vez con señal. Desde ahí funciona sin internet.</li></ol></details>`;
     root.querySelector(".ram-body").innerHTML = `<div class="cp-wrap">${o}</div>`;
     const ta = root.querySelector("#cp-in");
-    if (ta) ta.addEventListener("input", async () => { if (await takeIn(ta.value)) { manual = false; afterIn(); } });
+    if (ta) ta.addEventListener("input", async () => { const rr = await takeIn(ta.value); if (rr === "old") { manual = false; draw(); } else if (rr) { manual = false; afterIn(); } });
   }
   function afterIn() { paintSync(); chip(); draw(); toast(msg); }
   function build() {
@@ -2636,7 +2643,9 @@ const CAMPO = (() => {
   }
   async function pull() {
     const t = await readClip();
-    if (t && (await takeIn(t))) { manual = false; afterIn(); return true; }
+    const rr = t ? await takeIn(t) : false;
+    if (rr === "old") { manual = false; draw(); toast("Lo copiado está atrasado"); return true; }
+    if (rr) { manual = false; afterIn(); return true; }
     if (t !== null && t) { msg = IS_CAMPO ? "Lo copiado no es de Mis Metas. En Mis Metas toca Sincronizar con el campo." : ""; }
     return false;
   }
@@ -2662,9 +2671,9 @@ const CAMPO = (() => {
       msg = "";
       const rp = readClip(); // los dos arrancan dentro del toque
       let got = false;
-      const r = await copyNow(async () => { const t = await rp; if (t && t.includes("MMR1")) got = await takeIn(t); return mainCode(); });
+      const r = await copyNow(async () => { const t = await rp; if (t && t.includes("MMR1")) got = await takeIn(t); lastFresh = await waitFresh(8000); return mainCode(); });
       try { ls.set("mm-campo-visto", 1); } catch (er) {}
-      msg = (got ? msg + " " : "") + (r.ok ? "Tus datos quedaron copiados: abre Campo y toca Traer mis datos." : "");
+      msg = (got ? msg + " " : "") + (r.ok ? (lastFresh ? "Tus datos quedaron copiados: abre Campo y toca Traer mis datos." : "Ojo: no hay conexión con la nube y se copiaron los datos guardados en este teléfono, que pueden estar atrasados. Prueba otra vez con internet.") : "");
       if (!r.ok) { manual = false; showCode(r.t); }
       draw(); toast(got ? "Registros del campo guardados" : "Listo para el campo");
       return;
