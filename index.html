@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" href="icon-192.png">
 <style>html,body{margin:0;background:#000}</style>
-<script>window.CAMPO_VER='27e0e1'</script>
+<script>window.CAMPO_VER='a3e434'</script>
 </head><body>
 
 
@@ -818,6 +818,10 @@ html.ram-lock,html.ram-lock body{overflow:hidden}
 .fx-e2 input,.fx-e2 select,.fx-e1 input{background:var(--card-hi);border:0;border-radius:9px;padding:8px 9px;font:inherit;font-size:15px;color:var(--ink);min-width:0;width:100%;box-sizing:border-box}
 .fx-e2 select{text-align:left;text-align-last:left}
 .fx-var{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--ink2);flex:none}.fx-var input{width:18px;height:18px;accent-color:var(--or);margin:0}
+.cp-pend{background:#1c1c1e;border-radius:14px;padding:10px 14px;display:flex;flex-direction:column}
+.cp-pend-h{font-size:13px;color:#8e8e93;margin-bottom:4px}
+.cp-pend-r{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:.5px solid #2c2c2e;font-size:14px;color:#e5e5ea}.cp-pend-h+.cp-pend-r{border-top:0}
+.cp-pend-r span{flex:1;min-width:0}.cp-pend-r .link{flex:none;color:#ff6961}
 </style>
 
 <div class="navbar" id="navbar"><div class="nb-in"><i></i><span id="nb-t">Hoy</span><button class="icon-btn" data-aj aria-label="Ajustes"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></div></div>
@@ -1668,10 +1672,18 @@ async function flush(){
   if(!OB.length&&hadPend){hadPend=false;if(offline===false&&document.getElementById('sync').dataset.shown==='1')toast('Listo: tus cambios ya están en la nube')}
 }
 const COLS=['largo','corto','habitos','movs','lotes','ctareas'],CFGK={'config/finanzas':'fin','config/placas':'pl','config/castillo':'cfg'};
+/* unos saldos de "¿dónde está mi dinero?" más viejos nunca reemplazan a unos más nuevos */
+function finFresh(x){
+  if(x.path!=='config/finanzas'||!x.data||!S.fin||!('lugares' in x.data))return x.data;
+  if((+x.data.lugaresT||0)>=(+S.fin.lugaresT||0))return x.data;
+  const d={...x.data};delete d.lugares;delete d.lugaresT;delete d.lugaresRef;
+  if(x.op==='set'){d.lugares=S.fin.lugares;d.lugaresT=S.fin.lugaresT;d.lugaresRef=S.fin.lugaresRef}
+  return d;
+}
 function overlay(){
   const now=Date.now();RECENT=RECENT.filter(x=>now-x.done<20000);
   [...RECENT,...OB].forEach(x=>{const [col,id]=x.path.split('/');
-    if(CFGK[x.path]){const k=CFGK[x.path];S[k]=x.op==='delete'?null:x.op==='set'?clone(x.data):{...(S[k]||{}),...clone(x.data)};return}
+    if(CFGK[x.path]){const k=CFGK[x.path];let dd=finFresh(x),op=x.op;if(IS_CAMPO&&op==='set'&&dd){op='update';dd=Object.fromEntries(Object.entries(dd).filter(([q])=>['lugares','lugaresT','lugaresRef','conteo','zonas'].includes(q)))}S[k]=op==='delete'?null:op==='set'?clone(dd):{...(S[k]||{}),...clone(dd)};return}
     if(col==='dias'){if(x.op==='delete')delete S.dias[id];else S.dias={...S.dias,[id]:{id,...(x.op==='update'?(S.dias[id]||{}):{}),...clone(x.data)}};return}
     if(!COLS.includes(col))return;
     const cur=S[col].find(d=>d.id===id),rest=S[col].filter(d=>d.id!==id);
@@ -2155,8 +2167,10 @@ function fotoRapida(k,id){
 function needDb(){if(IS_CAMPO){if(!cacheT){toast('Primero pega los datos de tu app: toca Modo campo.');return false}return true}if(!db&&!cacheT){toast('Abre esta app desde tu cuenta de Claude para guardar.');return false}return true}
 function setPasos(cid,fn){const c=S.corto.find(x=>x.id===cid);if(!c)return;const pasos=clone(c.pasos||[]);fn(pasos);c.pasos=pasos;sched(true);put('corto/'+cid,'update',{pasos})}
 function saveDia(patch){const id=iso(new Date());const cur=S.dias[id]||{};const body={fecha:id,hechos:{...(cur.hechos||{})},animo:cur.animo??null,...patch(cur)};S.dias[id]={id,...body};sched(true);put('dias/'+id,'set',body)}
-function saveFin(patch){const f={...F(),...patch};S.fin=f;sched(true);return put('config/finanzas','set',f)}
-function saveCfg(patch){const c={...CT(),...patch};S.cfg=c;sched(true);return put('config/castillo','set',c)}
+/* en Campo solo se envía lo que cambió: así unos datos viejos del teléfono no pisan lo nuevo de Mis Metas */
+function cfgPut(path,old,neu,keys){if(!IS_CAMPO)return put(path,'set',neu);const d={};keys.forEach(k=>{if(JSON.stringify(old[k])!==JSON.stringify(neu[k]))d[k]=neu[k]});return Object.keys(d).length?put(path,'update',d):Promise.resolve()}
+function saveFin(patch){const old=F(),f={...old,...patch};S.fin=f;sched(true);return cfgPut('config/finanzas',old,f,Object.keys(patch))}
+function saveCfg(patch){const old=CT(),c={...old,...patch};S.cfg=c;sched(true);return cfgPut('config/castillo',old,c,Object.keys(patch))}
 function addMov(m){const ref=newRef('movs');const body={...m,creado:Date.now()};S.movs=[...S.movs,{id:ref.id,...body}];sched(true);put('movs/'+ref.id,'set',body);return ref.id}
 function quitarMov(id){S.movs=S.movs.filter(m=>m.id!==id);sched(true);put('movs/'+id,'delete')}
 function go(t){if(t===tab){window.scrollTo({top:0,behavior:'smooth'});return}tab=t;try{history.replaceState(null,'','#'+t)}catch(e){}window.scrollTo(0,0);render();view.classList.remove('enter');void view.offsetWidth;view.classList.add('enter')}
@@ -2368,8 +2382,8 @@ const CNT = (() => {
     clearTimeout(saveT);
     const go = () => {
       const conteo = { fecha: data.fecha, z: Object.fromEntries(data.z.map((z, i) => [i, z])) };
-      S.cfg = { ...CT(), conteo };
-      put("config/castillo", "set", S.cfg);
+      const old = CT(); S.cfg = { ...old, conteo };
+      cfgPut("config/castillo", old, S.cfg, ["conteo"]);
     };
     if (now) go(); else saveT = setTimeout(go, 1200);
   }
@@ -2454,7 +2468,7 @@ const CNT = (() => {
   function apply() {
     const zs = CT().zonas.map((z, i) => (data.z[i] && tot(data.z[i]) > 0 ? { ...z, cacao: estim(data.z[i]).vivas, confirmado: true } : z));
     const c = { ...CT(), zonas: zs, conteo: { fecha: data.fecha, z: Object.fromEntries(data.z.map((z, i) => [i, z])) } };
-    S.cfg = c; put("config/castillo", "set", c); sched(true);
+    const old = CT(); S.cfg = c; cfgPut("config/castillo", old, c, ["zonas", "conteo"]); sched(true);
     toast("Zonas actualizadas con tu conteo");
   }
   function build() {
@@ -2588,7 +2602,14 @@ const CAMPO = (() => {
     if (!o) return false;
     const items = (o.items || []).filter((x) => x && x.path && x.op);
     const done = new Set(ls.get(K_IMP) || []); let k = 0;
-    items.forEach((x) => { const id = keyOf(x); IMPMEM.add(id); if (done.has(id)) return; put(x.path, x.op, x.data); done.add(id); k++; });
+    items.forEach((x) => { const id = keyOf(x); IMPMEM.add(id); if (done.has(id)) return; done.add(id);
+      let op = x.op, data = x.data;
+      if (x.path.startsWith("config/") && op === "set" && data) { // de versiones viejas de Campo: solo saldos y conteo
+        op = "update"; data = Object.fromEntries(Object.entries(data).filter(([key]) => ["lugares", "lugaresT", "lugaresRef", "conteo", "zonas"].includes(key)));
+      }
+      if (x.path === "config/finanzas" && data) data = finFresh({ ...x, op, data });
+      if (op !== "delete" && data && !Object.keys(data).length) return;
+      put(x.path, op, data); k++; });
     ls.set(K_IMP, [...done].slice(-3000));
     overlay(); // que lo recién traído ya esté en S antes de copiar los datos de vuelta
     sched(true);
@@ -2600,6 +2621,16 @@ const CAMPO = (() => {
   const mainCode = () => pack("MMC1", { t: Date.now(), fresh: lastFresh, imp: [...new Set([...(ls.get(K_IMP) || []), ...IMPMEM])].slice(-3000), S: (({ largo, corto, habitos, movs, lotes, ctareas, fin, pl, cfg, dias }) => clone({ largo, corto, habitos, movs, lotes, ctareas, fin, pl, cfg, dias }))(S) });
   const campoCode = () => pack("MMR1", { t: Date.now(), items: OB.map(({ sending, ...x }) => x) });
 
+  function desc(x) {
+    const [col] = x.path.split("/"), d = x.data || {};
+    const f = x.t ? fecha(x.t) : "";
+    if (col === "movs") return x.op === "delete" ? `Borrar un movimiento · ${f}` : `${d.tipo === "ingreso" ? "Ingreso" : d.tipo === "ahorro" ? "Ahorro" : "Gasto"} ${d.monto != null ? money(+d.monto) : ""} · ${d.cat || ""}${d.nota ? " · " + d.nota : ""}${d.fecha ? " · " + fmtFc(d.fecha) : ""}`;
+    if (x.path === "config/finanzas") return d.lugares ? `Saldos de “¿dónde está tu dinero?” · ${f}` : `Ajustes de dinero · ${f}`;
+    if (x.path === "config/castillo") return d.conteo ? `Conteo de matas · ${f}` : `Ajustes de Castillo · ${f}`;
+    if (col === "ctareas") return `Tarea de Castillo${d.titulo ? ": " + d.titulo : ""} · ${f}`;
+    if (col === "dias") return `Hábitos del día · ${f}`;
+    return `${x.path} · ${f}`;
+  }
   /* ---------- pantalla ---------- */
   function draw() {
     if (!root) return;
@@ -2607,6 +2638,7 @@ const CAMPO = (() => {
     let o = "";
     if (IS_CAMPO) {
       o += `<div class="cp-stat ${!C ? "warn" : n() ? "warn" : "ok"}">${!C ? "Esta app aún no tiene tus datos." : sentAll() ? "Tus registros ya se copiaron para Mis Metas." : n() ? (n() === 1 ? "<b>1 registro</b> guardado aquí, falta pasarlo a Mis Metas." : `<b>${n()} registros</b> guardados aquí, falta pasarlos a Mis Metas.`) : `Datos de Mis Metas del <b>${fecha((ls.get(K_DAT) || {}).t || C.t)}</b>`}</div>`;
+      if (n()) o += `<div class="cp-pend"><div class="cp-pend-h">Registros guardados aquí</div>${OB.map((x, i) => `<div class="cp-pend-r"><span>${esc(desc(x))}</span><button class="link" data-cp="drop" data-i="${i}">Quitar</button></div>`).join("")}</div>`;
       if (sentAll()) {
         o += `<button class="btn cp-main" data-cp="pull">Traer mis datos</button>`;
         o += `<p class="cp-how">Tus registros ya se copiaron. Si en Mis Metas ya tocaste <b>Sincronizar con el campo</b>, toca <b>Traer mis datos</b> y queda todo al día.</p>`;
@@ -2653,6 +2685,8 @@ const CAMPO = (() => {
     const b = e.target.closest("[data-cp]"); if (!b) return;
     const a = b.dataset.cp;
     if (a === "close") return close();
+    if (a === "drop") { const i = +b.dataset.i, x = OB[i]; if (!x) return; OB.splice(i, 1); saveQ(); paintSync(); chip(); draw(); render();
+      toast("Quitado", () => { OB.splice(i, 0, x); saveQ(); chip(); draw(); render(); }); return; }
     if (a === "url") { const r = await copyNow(() => URL_CAMPO); toast(r.ok ? "Enlace copiado: pégalo en Safari" : "Mantén presionado el enlace para copiarlo"); return; }
     if (IS_CAMPO && a === "go" && n()) {
       const r = await copyNow(campoCode);
