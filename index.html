@@ -1647,7 +1647,7 @@ function put(path,op,data){
   let j=-1;for(let i=OB.length-1;i>=0;i--)if(OB[i].path===path){j=i;break}
   const prev=j>=0&&!OB[j].sending?OB[j]:null;
   if(prev&&op!=='update')OB[j]={...item,t:prev.t};
-  else if(prev&&prev.op!=='delete')prev.data={...(prev.data||{}),...item.data};
+  else if(prev&&prev.op!=='delete'){prev.data={...(prev.data||{}),...item.data};delete prev.sent}
   else OB.push(item);
   saveQ();hadPend=true;paintSync();setTimeout(paintSync,3200);flush();saveCache();
   return Promise.resolve();
@@ -2521,7 +2521,9 @@ const CAMPO = (() => {
   const URL_APP = "https://claude.ai/artifact/2qciGbMouNhG982LEz6aPt";
   const K_IMP = "mm-imp-v1", K_DAT = "mm-campo-datos";
   let root = null, msg = "", manual = false;
+  const IMPMEM = new Set(); // por si el teléfono no deja guardar en localStorage
   const n = () => OB.length;
+  const sentAll = () => n() > 0 && OB.every((x) => x.sent); // ya se copiaron a Mis Metas: falta traer los datos
   const nTx = (k) => (k === 1 ? "1 registro" : k + " registros");
   const h32 = (s) => { let h = 5381; for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0; return (h >>> 0).toString(36); };
   const keyOf = (x) => x.path + "|" + x.op + "|" + x.t + "|" + h32(JSON.stringify(x.data));
@@ -2571,7 +2573,7 @@ const CAMPO = (() => {
       if (!o || !o.S) return false;
       const done = new Set(o.imp || []);
       const before = n();
-      OB = OB.filter((x) => !done.has(keyOf(x))); saveQ();
+      OB = OB.filter((x) => !done.has(keyOf(x))); OB.forEach((x) => delete x.sent); saveQ();
       ls.set(LS_C, { t: o.t || Date.now(), S: o.S }); ls.set(K_DAT, { t: o.t || Date.now() });
       msg = before && !n() ? "Listo: Mis Metas ya tiene todo lo del campo." : n() ? `Datos al día. Aún quedan ${nTx(n())} por pasar.` : "Listo: datos al día.";
       setTimeout(() => location.reload(), 900);
@@ -2581,13 +2583,14 @@ const CAMPO = (() => {
     if (!o) return false;
     const items = (o.items || []).filter((x) => x && x.path && x.op);
     const done = new Set(ls.get(K_IMP) || []); let k = 0;
-    items.forEach((x) => { const id = keyOf(x); if (done.has(id)) return; put(x.path, x.op, x.data); done.add(id); k++; });
+    items.forEach((x) => { const id = keyOf(x); IMPMEM.add(id); if (done.has(id)) return; put(x.path, x.op, x.data); done.add(id); k++; });
     ls.set(K_IMP, [...done].slice(-3000));
+    overlay(); // que lo recién traído ya esté en S antes de copiar los datos de vuelta
     sched(true);
     msg = k ? (k === 1 ? "Se guardó 1 registro del campo." : `Se guardaron ${k} registros del campo.`) : "Eso ya estaba guardado.";
     return true;
   }
-  const mainCode = () => pack("MMC1", { t: Date.now(), imp: (ls.get(K_IMP) || []).slice(-3000), S: (({ largo, corto, habitos, movs, lotes, ctareas, fin, pl, cfg, dias }) => clone({ largo, corto, habitos, movs, lotes, ctareas, fin, pl, cfg, dias }))(S) });
+  const mainCode = () => pack("MMC1", { t: Date.now(), imp: [...new Set([...(ls.get(K_IMP) || []), ...IMPMEM])].slice(-3000), S: (({ largo, corto, habitos, movs, lotes, ctareas, fin, pl, cfg, dias }) => clone({ largo, corto, habitos, movs, lotes, ctareas, fin, pl, cfg, dias }))(S) });
   const campoCode = () => pack("MMR1", { t: Date.now(), items: OB.map(({ sending, ...x }) => x) });
 
   /* ---------- pantalla ---------- */
@@ -2596,10 +2599,16 @@ const CAMPO = (() => {
     const C = ls.get(LS_C);
     let o = "";
     if (IS_CAMPO) {
-      o += `<div class="cp-stat ${!C ? "warn" : n() ? "warn" : "ok"}">${!C ? "Esta app aún no tiene tus datos." : n() ? (n() === 1 ? "<b>1 registro</b> guardado aquí, falta pasarlo a Mis Metas." : `<b>${n()} registros</b> guardados aquí, falta pasarlos a Mis Metas.`) : `Todo al día · datos del <b>${fecha((ls.get(K_DAT) || {}).t || C.t)}</b>`}</div>`;
+      o += `<div class="cp-stat ${!C ? "warn" : n() ? "warn" : "ok"}">${!C ? "Esta app aún no tiene tus datos." : sentAll() ? "Tus registros ya se copiaron para Mis Metas." : n() ? (n() === 1 ? "<b>1 registro</b> guardado aquí, falta pasarlo a Mis Metas." : `<b>${n()} registros</b> guardados aquí, falta pasarlos a Mis Metas.`) : `Todo al día · datos del <b>${fecha((ls.get(K_DAT) || {}).t || C.t)}</b>`}</div>`;
+      if (sentAll()) {
+        o += `<button class="btn cp-main" data-cp="pull">Traer mis datos</button>`;
+        o += `<p class="cp-how">Tus registros ya se copiaron. Si en Mis Metas ya tocaste <b>Sincronizar con el campo</b>, toca <b>Traer mis datos</b> y queda todo al día.</p>`;
+        o += `<button class="btn sec" data-cp="go">Volver a pasar a Mis Metas</button>`;
+      } else {
       o += `<button class="btn cp-main" data-cp="go">${n() ? "Pasar a Mis Metas" : "Traer mis datos"}</button>`;
       o += `<p class="cp-how">${n() ? "Se copian tus registros y se abre Mis Metas: ahí toca <b>Sincronizar con el campo</b>. Luego vuelve aquí y toca <b>Traer mis datos</b>." : "Primero, en Mis Metas toca <b>Sincronizar con el campo</b>. Luego vuelve aquí y toca este botón."}</p>`;
       if (n()) o += `<button class="btn sec" data-cp="pull">Traer mis datos</button>`;
+      }
     } else {
       o += `<div class="cp-stat ok">Abre <b>Campo</b> en el terreno: registra sin señal. Al volver, un botón en cada app y listo.</div>`;
       o += `<button class="btn cp-main" data-cp="go">Sincronizar con el campo</button>`;
@@ -2638,6 +2647,7 @@ const CAMPO = (() => {
     if (a === "url") { const r = await copyNow(() => URL_CAMPO); toast(r.ok ? "Enlace copiado: pégalo en Safari" : "Mantén presionado el enlace para copiarlo"); return; }
     if (IS_CAMPO && a === "go" && n()) {
       const r = await copyNow(campoCode);
+      if (r.ok) { OB.forEach((x) => (x.sent = Date.now())); saveQ(); }
       msg = r.ok ? "Copiado. Ahora en Mis Metas toca Sincronizar con el campo." : "No se pudo copiar solo.";
       draw();
       if (r.ok) setTimeout(() => { location.href = URL_APP; }, 700);
@@ -2680,7 +2690,7 @@ const CAMPO = (() => {
     if (IS_CAMPO) {
       const C = ls.get(LS_C);
       el.className = "campo-chip on" + (n() || !C ? " pend" : "");
-      el.innerHTML = `<i></i><span>${!C ? "Toca para traer tus datos" : n() ? nTx(n()) + " por pasar · Sin internet OK" : "Al día · funciona sin internet"}</span>`;
+      el.innerHTML = `<i></i><span>${!C ? "Toca para traer tus datos" : sentAll() ? "Enviado · toca para traer tus datos" : n() ? nTx(n()) + " por pasar · Sin internet OK" : "Al día · funciona sin internet"}</span>`;
     } else {
       el.className = "campo-chip";
       el.innerHTML = `<i></i><span>Sincronizar con el campo</span>`;
