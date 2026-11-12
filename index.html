@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" href="icon-192.png">
 <style>html,body{margin:0;background:#000}</style>
-<script>window.CAMPO_VER='a3e434'</script>
+<script>window.CAMPO_VER='e0a387'</script>
 </head><body>
 
 
@@ -238,7 +238,7 @@ input::placeholder,textarea::placeholder{color:var(--ink3)}
 .big-t{margin:0;font-size:28px;font-weight:800;line-height:1.12;letter-spacing:-.02em;text-wrap:balance}
 
 /* pestañas */
-.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(14,14,16,.78);-webkit-backdrop-filter:blur(24px) saturate(1.8);backdrop-filter:blur(24px) saturate(1.8);border-top:.5px solid var(--sep);padding:7px max(8px,env(safe-area-inset-right,0px)) calc(4px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:repeat(5,1fr)}
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(14,14,16,.78);-webkit-backdrop-filter:blur(24px) saturate(1.8);backdrop-filter:blur(24px) saturate(1.8);border-top:.5px solid var(--sep);padding:7px max(8px,env(safe-area-inset-right,0px)) calc(4px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:repeat(4,1fr)}
 .tabs button{appearance:none;border:0;background:none;color:#8e8e93;font-size:10.5px;font-weight:600;padding:2px 0 4px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;letter-spacing:0}
 .tabs svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s var(--ease)}
 .tabs button:active svg{transform:scale(.88)}
@@ -841,7 +841,6 @@ html.ram-lock,html.ram-lock body{overflow:hidden}
   <button data-tab="metas"><svg viewBox="0 0 24 24"><circle class="fillable" cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3"/></svg>Metas</button>
   <button data-tab="dinero"><svg viewBox="0 0 24 24"><rect class="fillable" x="3" y="5.5" width="18" height="13.5" rx="3"/><path d="M3 10h18M7 15h3"/></svg>Dinero</button>
   <button data-tab="castillo"><svg viewBox="0 0 24 24"><path class="fillable" d="M12 21c-4.5-2.2-7-6-7-10.2C5 6.5 8 3.5 12 3c4 .5 7 3.5 7 7.8 0 4.2-2.5 8-7 10.2z"/><path d="M12 21V8M12 13l3-2.5M12 16.5l-3-2.5"/></svg>Castillo</button>
-  <button data-tab="placas"><svg viewBox="0 0 24 24"><rect class="fillable" x="5" y="2.5" width="14" height="19" rx="3"/><rect x="8" y="6" width="5" height="5" rx="1"/><path d="M8 15h8M8 18h5"/></svg>Placas</button>
 </nav>
 
 <script>
@@ -1571,7 +1570,7 @@ ${LIST.map(([n, t, p], i) => `<g class="lrow" data-pick="${p}"><rect x="1296" y=
 
 /* ================= estado ================= */
 const TABS={hoy:'Hoy',metas:'Metas',dinero:'Dinero',castillo:'Castillo',placas:'Placas'};
-let tab=(location.hash||'').slice(1); if(!TABS[tab]) tab='hoy';
+let tab=(location.hash||'').slice(1); if(!TABS[tab]||tab==='placas') tab='hoy';
 const view=document.getElementById('view'), sheetEl=document.getElementById('sheet');
 const IS_CAMPO=true;
 let db=null, assets=null;
